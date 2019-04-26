@@ -1,9 +1,10 @@
-package com.p2p.qiyundai.hjh.dao;
+package com.p2p.qiyun.hjh.dao;
 
-import com.p2p.qiyundai.hjh.entity.Question;
-import com.p2p.qiyundai.hjh.entity.QuestionExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.p2p.qiyun.hjh.entity.Question;
+import com.p2p.qiyun.hjh.entity.QuestionExample;
 
 public interface QuestionMapper {
     int countByExample(QuestionExample example);

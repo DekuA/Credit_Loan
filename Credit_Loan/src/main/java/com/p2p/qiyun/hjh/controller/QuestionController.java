@@ -1,4 +1,4 @@
-package com.p2p.qiyundai.hjh.controller;
+package com.p2p.qiyun.hjh.controller;
 
 public class QuestionController {
 

@@ -1,16 +1,16 @@
-package com.p2p.qiyundai.hjh.entity;
+package com.p2p.qiyun.hjh.entity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuestionTypeExample {
+public class QuestionExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public QuestionTypeExample() {
+    public QuestionExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,6 +104,66 @@ public class QuestionTypeExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
+        public Criteria andQIdIsNull() {
+            addCriterion("q_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQIdIsNotNull() {
+            addCriterion("q_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQIdEqualTo(Integer value) {
+            addCriterion("q_id =", value, "qId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQIdNotEqualTo(Integer value) {
+            addCriterion("q_id <>", value, "qId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQIdGreaterThan(Integer value) {
+            addCriterion("q_id >", value, "qId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("q_id >=", value, "qId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQIdLessThan(Integer value) {
+            addCriterion("q_id <", value, "qId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQIdLessThanOrEqualTo(Integer value) {
+            addCriterion("q_id <=", value, "qId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQIdIn(List<Integer> values) {
+            addCriterion("q_id in", values, "qId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQIdNotIn(List<Integer> values) {
+            addCriterion("q_id not in", values, "qId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQIdBetween(Integer value1, Integer value2) {
+            addCriterion("q_id between", value1, value2, "qId");
+            return (Criteria) this;
+        }
+
+        public Criteria andQIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("q_id not between", value1, value2, "qId");
+            return (Criteria) this;
+        }
+
         public Criteria andQTIdIsNull() {
             addCriterion("q_t_id is null");
             return (Criteria) this;
@@ -164,73 +224,143 @@ public class QuestionTypeExample {
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeIsNull() {
-            addCriterion("q_t_type is null");
+        public Criteria andQQuestionIsNull() {
+            addCriterion("q_question is null");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeIsNotNull() {
-            addCriterion("q_t_type is not null");
+        public Criteria andQQuestionIsNotNull() {
+            addCriterion("q_question is not null");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeEqualTo(String value) {
-            addCriterion("q_t_type =", value, "qTType");
+        public Criteria andQQuestionEqualTo(String value) {
+            addCriterion("q_question =", value, "qQuestion");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeNotEqualTo(String value) {
-            addCriterion("q_t_type <>", value, "qTType");
+        public Criteria andQQuestionNotEqualTo(String value) {
+            addCriterion("q_question <>", value, "qQuestion");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeGreaterThan(String value) {
-            addCriterion("q_t_type >", value, "qTType");
+        public Criteria andQQuestionGreaterThan(String value) {
+            addCriterion("q_question >", value, "qQuestion");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("q_t_type >=", value, "qTType");
+        public Criteria andQQuestionGreaterThanOrEqualTo(String value) {
+            addCriterion("q_question >=", value, "qQuestion");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeLessThan(String value) {
-            addCriterion("q_t_type <", value, "qTType");
+        public Criteria andQQuestionLessThan(String value) {
+            addCriterion("q_question <", value, "qQuestion");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeLessThanOrEqualTo(String value) {
-            addCriterion("q_t_type <=", value, "qTType");
+        public Criteria andQQuestionLessThanOrEqualTo(String value) {
+            addCriterion("q_question <=", value, "qQuestion");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeLike(String value) {
-            addCriterion("q_t_type like", value, "qTType");
+        public Criteria andQQuestionLike(String value) {
+            addCriterion("q_question like", value, "qQuestion");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeNotLike(String value) {
-            addCriterion("q_t_type not like", value, "qTType");
+        public Criteria andQQuestionNotLike(String value) {
+            addCriterion("q_question not like", value, "qQuestion");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeIn(List<String> values) {
-            addCriterion("q_t_type in", values, "qTType");
+        public Criteria andQQuestionIn(List<String> values) {
+            addCriterion("q_question in", values, "qQuestion");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeNotIn(List<String> values) {
-            addCriterion("q_t_type not in", values, "qTType");
+        public Criteria andQQuestionNotIn(List<String> values) {
+            addCriterion("q_question not in", values, "qQuestion");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeBetween(String value1, String value2) {
-            addCriterion("q_t_type between", value1, value2, "qTType");
+        public Criteria andQQuestionBetween(String value1, String value2) {
+            addCriterion("q_question between", value1, value2, "qQuestion");
             return (Criteria) this;
         }
 
-        public Criteria andQTTypeNotBetween(String value1, String value2) {
-            addCriterion("q_t_type not between", value1, value2, "qTType");
+        public Criteria andQQuestionNotBetween(String value1, String value2) {
+            addCriterion("q_question not between", value1, value2, "qQuestion");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventIsNull() {
+            addCriterion("q_resolvent is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventIsNotNull() {
+            addCriterion("q_resolvent is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventEqualTo(String value) {
+            addCriterion("q_resolvent =", value, "qResolvent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventNotEqualTo(String value) {
+            addCriterion("q_resolvent <>", value, "qResolvent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventGreaterThan(String value) {
+            addCriterion("q_resolvent >", value, "qResolvent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventGreaterThanOrEqualTo(String value) {
+            addCriterion("q_resolvent >=", value, "qResolvent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventLessThan(String value) {
+            addCriterion("q_resolvent <", value, "qResolvent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventLessThanOrEqualTo(String value) {
+            addCriterion("q_resolvent <=", value, "qResolvent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventLike(String value) {
+            addCriterion("q_resolvent like", value, "qResolvent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventNotLike(String value) {
+            addCriterion("q_resolvent not like", value, "qResolvent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventIn(List<String> values) {
+            addCriterion("q_resolvent in", values, "qResolvent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventNotIn(List<String> values) {
+            addCriterion("q_resolvent not in", values, "qResolvent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventBetween(String value1, String value2) {
+            addCriterion("q_resolvent between", value1, value2, "qResolvent");
+            return (Criteria) this;
+        }
+
+        public Criteria andQResolventNotBetween(String value1, String value2) {
+            addCriterion("q_resolvent not between", value1, value2, "qResolvent");
             return (Criteria) this;
         }
     }

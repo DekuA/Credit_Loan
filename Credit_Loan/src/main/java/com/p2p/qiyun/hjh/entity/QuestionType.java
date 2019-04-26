@@ -1,4 +1,4 @@
-package com.p2p.qiyundai.hjh.entity;
+package com.p2p.qiyun.hjh.entity;
 
 public class QuestionType {
     private Integer qTId;

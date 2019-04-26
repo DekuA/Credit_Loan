@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.p2p.qiyundai.hjh.dao.QuestionMapper" >
-  <resultMap id="BaseResultMap" type="com.p2p.qiyundai.hjh.entity.Question" >
+<mapper namespace="com.p2p.qiyun.hjh.dao.QuestionMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.qiyun.hjh.entity.Question" >
     <id column="q_id" property="qId" jdbcType="INTEGER" />
     <result column="q_t_id" property="qTId" jdbcType="INTEGER" />
     <result column="q_question" property="qQuestion" jdbcType="VARCHAR" />
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List" >
     q_id, q_t_id, q_question, q_resolvent
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.p2p.qiyundai.hjh.entity.QuestionExample" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.p2p.qiyun.hjh.entity.QuestionExample" >
     select
     <if test="distinct" >
       distinct
@@ -92,13 +92,13 @@
     delete from question
     where q_id = #{qId,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.p2p.qiyundai.hjh.entity.QuestionExample" >
+  <delete id="deleteByExample" parameterType="com.p2p.qiyun.hjh.entity.QuestionExample" >
     delete from question
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.p2p.qiyundai.hjh.entity.Question" >
+  <insert id="insert" parameterType="com.p2p.qiyun.hjh.entity.Question" >
     insert into question (q_id, q_t_id, q_question, 
       q_resolvent)
     values (#{qId,jdbcType=INTEGER}, #{qTId,jdbcType=INTEGER}, #{qQuestion,jdbcType=VARCHAR}, 

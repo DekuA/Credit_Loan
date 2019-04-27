@@ -7,6 +7,9 @@
     <result column="q_question" property="qQuestion" jdbcType="VARCHAR" />
     <result column="q_resolvent" property="qResolvent" jdbcType="VARCHAR" />
   </resultMap>
+  <select id="Selquestion" parameterType="int" resultMap="BaseResultMap">
+ select *From question where q_t_id =#{qTId}
+  </select>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -104,7 +107,7 @@
     values (#{qId,jdbcType=INTEGER}, #{qTId,jdbcType=INTEGER}, #{qQuestion,jdbcType=VARCHAR}, 
       #{qResolvent,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.p2p.qiyundai.hjh.entity.Question" >
+  <insert id="insertSelective" parameterType="com.p2p.qiyun.hjh.entity.Question" >
     insert into question
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="qId != null" >
@@ -135,7 +138,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.p2p.qiyundai.hjh.entity.QuestionExample" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="com.p2p.qiyun.hjh.entity.QuestionExample" resultType="java.lang.Integer" >
     select count(*) from question
     <if test="_parameter != null" >
       <include refid="Example_Where_Clause" />
@@ -171,7 +174,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.p2p.qiyundai.hjh.entity.Question" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.p2p.qiyun.hjh.entity.Question" >
     update question
     <set >
       <if test="qTId != null" >
@@ -186,7 +189,7 @@
     </set>
     where q_id = #{qId,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.p2p.qiyundai.hjh.entity.Question" >
+  <update id="updateByPrimaryKey" parameterType="com.p2p.qiyun.hjh.entity.Question" >
     update question
     set q_t_id = #{qTId,jdbcType=INTEGER},
       q_question = #{qQuestion,jdbcType=VARCHAR},

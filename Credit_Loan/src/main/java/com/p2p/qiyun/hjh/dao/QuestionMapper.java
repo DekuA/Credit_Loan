@@ -1,12 +1,14 @@
 package com.p2p.qiyun.hjh.dao;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
-
 import com.p2p.qiyun.hjh.entity.Question;
 import com.p2p.qiyun.hjh.entity.QuestionExample;
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface QuestionMapper {
+	List<Question> Selquestion(Integer qTId);
     int countByExample(QuestionExample example);
 
     int deleteByExample(QuestionExample example);

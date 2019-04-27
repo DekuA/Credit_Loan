@@ -1,11 +1,12 @@
 package com.p2p.qiyun.hjh.dao;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
-
 import com.p2p.qiyun.hjh.entity.QuestionType;
 import com.p2p.qiyun.hjh.entity.QuestionTypeExample;
+import java.util.List;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface QuestionTypeMapper {
     int countByExample(QuestionTypeExample example);
 

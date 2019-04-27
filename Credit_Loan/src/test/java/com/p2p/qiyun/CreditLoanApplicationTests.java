@@ -8,17 +8,18 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import com.p2p.qiyun.hjh.dao.QuestionTypeMapper;
 import com.p2p.qiyun.hjh.entity.QuestionType;
+import com.p2p.qiyun.hjh.service.QuestionService;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CreditLoanApplicationTests {
 	@Autowired
-private QuestionTypeMapper q;
+private QuestionService q;
 
 	@Test
 	public void contextLoads() {
-		QuestionType selectByPrimaryKey = q.selectByPrimaryKey(1);
-		System.out.println(selectByPrimaryKey);
+	
+		System.out.println(	q.selectByExample());
 	}
 
 }

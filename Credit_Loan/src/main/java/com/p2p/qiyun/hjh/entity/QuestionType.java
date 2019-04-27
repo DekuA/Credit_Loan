@@ -1,7 +1,12 @@
 package com.p2p.qiyun.hjh.entity;
 
 public class QuestionType {
-    private Integer qTId;
+    @Override
+	public String toString() {
+		return "QuestionType [qTId=" + qTId + ", qTType=" + qTType + "]";
+	}
+
+	private Integer qTId;
 
     private String qTType;
 

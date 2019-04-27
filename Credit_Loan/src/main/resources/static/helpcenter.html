@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>帮助中心</title>
+<meta charset="utf-8">
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1">
+<link
+	rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+	<div style="height: 100px;"></div>
+	<div class="container">
+
+		<!-- Nav tabs -->
+		<ul
+			class="nav nav-tabs"
+			role="tablist">
+			<li class="nav-item"><a
+				id="a1"
+				class="nav-link active text-info"
+				data-toggle="tab"
+				href="#home1"></a></li>
+			<li class="nav-item"><a
+				id="a2"
+				class="nav-link text-info"
+				data-toggle="tab"
+				href="#home2"> </a></li>
+			<li class="nav-item "><a
+				id="a3"
+				class="nav-link text-info"
+				data-toggle="tab"
+				href="#home3"></a></li>
+			<li class="nav-item "><a
+				id="a4"
+				class="nav-link text-info"
+				data-toggle="tab"
+				href="#home4"></a></li>
+			<li class="nav-item "><a
+				id="a5"
+				class="nav-link text-info"
+				data-toggle="tab"
+				href="#home5"></a></li>
+			<li class="nav-item "><a
+				class="nav-link text-info"
+				id="a6"
+				data-toggle="tab"
+				href="#home6"></a></li>
+			<li class="nav-item "><a
+				id="a7"
+				class="nav-link text-info"
+				data-toggle="tab"
+				href="#home7"></a></li>
+			<li class="nav-item "><a
+				id="a8"
+				class="nav-link text-info"
+				data-toggle="tab"
+				href="#home8"></a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div
+				id="home1"
+				class="container tab-pane active"></div>
+			<div
+				id="home2"
+				class="container tab-pane fade"></div>
+			<div
+				id="home3"
+				class="container tab-pane fade"></div>
+			<div
+				id="home4"
+				class="container tab-pane fade"></div>
+			<div
+				id="home5"
+				class="container tab-pane fade"></div>
+
+			<div
+				id="home6"
+				class="container tab-pane fade"></div>
+			<div
+				id="home7"
+				class="container tab-pane fade"></div>
+			<div
+				id="home8"
+				class="container tab-pane fade"></div>
+
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+
+			$.ajax({
+				url : "SelQuestionType",
+				type : "post",
+				dataType : "json",
+				success : function(data) {
+					for (var i = 0; i < data.length; i++) {
+
+						$("#a" + (i + 1)).text(data[i].qTType);
+
+					}
+
+				}
+
+			})
+			for (var y = 1; y < 9; y++) {
+				creatediv(y);
+			}
+
+		})
+
+		function creatediv(y) {
+
+			$
+					.ajax({
+						url : "Selquestion",
+						type : "post",
+						data : {
+							qTId : y
+						},
+						dataType : "json",
+						success : function(data) {
+							for (var i = 0; i < data.length; i++) {
+
+								var div = $("<div>");
+								div.attr('class',
+										'dropdown-toggle bg-light text-dark');
+								div.attr('data-toggle', 'collapse');
+								div.attr('data-target', '#' + y + 'di'
+										+ (i + 1));
+
+								div.html('<br><font size="3" face="华文细黑">'
+										+ (i+1)+'.'+data[i].qQuestion + '</font>');
+
+								$("#home" + y).append(div);
+								var div1 = $("<div>");
+								div1.attr('id', y + 'di' + (i + 1));
+								div1.attr('class', 'collapse');
+								div1.html('<font size="2">'
+										+ data[i].qResolvent + '</font><br>');
+								$("#home" + y).append(div1);
+
+							}
+
+						}
+
+					})
+
+		}
+	</script>
+</body>
+
+</html>

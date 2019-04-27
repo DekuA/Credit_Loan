@@ -1,0 +1,103 @@
+body, button, input, select, textarea {
+			    font-family: "Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;
+			}
+			.main-wide-wrap{
+				width: 1250px;
+				position: relative;
+			}
+			.main-body{
+				width: 880px;
+			    height: 680px;
+			}
+			.p2p-slider{
+			    width: 880px;
+			    height: 206px;
+			    margin-bottom: 15px;
+			    float: left;
+			    overflow: hidden;
+			    background: #ccc;
+			}
+			.right-box-shouye{
+				position: relative;
+				bottom: 670px;
+				right: 130px;
+				font-size: 12px;
+				float: right;
+				width: 208px;
+			}
+			.right-box-touzi{
+				position: relative;
+				bottom: 670px;
+				right: 130px;
+				font-size: 12px;
+				float: right;
+				width: 208px;
+				display: none;
+			}
+			.week-data-box {
+    			width: 208px;
+			    border: 1px solid #dcdcdc;
+			    margin-bottom: 15px;
+			    background: #fff;
+			}
+			.week-data-box.head {
+			    height: 44px;
+			    padding-left: 15px;
+			    line-height: 43px;
+			    font-size: 14px;
+			    position: relative;
+			    color: #333;
+			}
+			.week-data-box.list {
+			    padding: 16px 0 10px 15px;
+			}
+			.week-data-box.list-item {
+			    margin-bottom: 10px;
+			    padding-left: 14px;
+			}
+			.week-data-box .week-data {
+			    font-size: 20px;
+			    color: #FD8238;
+			    margin: 0 2px;
+			}
+			.product-introduce-div{
+				background-color: #FEFEFE;
+				width: 208px;
+			}
+			.product-introduce-div dd {
+			    margin: 0;
+			    padding: 0 10px 0 20px;
+			    height: auto;
+			    border: none;
+			}
+			.title{
+				color: #666;
+				font-size: 16px;
+			}
+			.sider-blk {
+			    margin-bottom: 15px;
+			    width: 100%;
+			    background: #fff;
+			}
+			.about-content {
+			    padding: 0 20px 10px;
+			    font-size: 12px;
+			    line-height: 1.6;
+			    text-align: justify;
+			}
+			.touzixm{
+				position:absolute;
+				margin-top:230px;
+				background-color: white;
+				width: 880px;
+				height: 400px;
+			}
+			.tag-discount-orange {
+			    border: 1px solid #FE864A;
+			    color: #FE864A;
+			    padding: .5px 3px;
+			}
+			.tttddd1{
+				color: #666;
+				font-size: 13px;
+			}

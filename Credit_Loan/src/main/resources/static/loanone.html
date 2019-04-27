@@ -5,11 +5,11 @@
 		<meta charset="utf-8" />
 		<title>我要借款</title>
 	</head>
-	<link rel="stylesheet" href="css/bootstrap.min.css" />
+	<link rel="stylesheet" href="lsx_html/css/bootstrap.min.css" />
 	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+	<script type="text/javascript" src="lsx_html/js/jquery-3.3.1.js"></script>
+	<script type="text/javascript" src="lsx_html/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lsx_html/js/bootstrap-paginator.js"></script>
 
 	<style>
 		#fwf {
@@ -81,7 +81,7 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">
-							<img src="img/q11.jpg" style="height: 30px;width: 30px;border-radius: 30px;border: 1px solid black;" /></a>
+							<img src="lsx_html/img/q11.jpg" style="height: 30px;width: 30px;border-radius: 30px;border: 1px solid black;" /></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#">我的账户</a>
@@ -101,7 +101,7 @@
 				</ul>
 			</div>
 			<div style="position: absolute;right: 180px;top:35px;">
-				<img src="img/logo.png" style="height: 50px;width: 140px;" />
+				<img src="lsx_html/img/logo.png" style="height: 50px;width: 140px;" />
 			</div>
 		</div>
 		<div style="width: 1170px;height: 596px;">
@@ -172,18 +172,18 @@
 							<div style="position: absolute;top: 40px;">
 								<span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			 	 		名&nbsp;:&nbsp;&nbsp;</span>
-								<input id="loanname" />
+								<input id="loanname" value="lisi"/>
 								
 							</div>
 							<div style="position: absolute;top: 80px;">
 								<span>身&nbsp;&nbsp;份&nbsp;&nbsp;证&nbsp;&nbsp;号&nbsp;&nbsp;:&nbsp;&nbsp;</span>
-								<input id="identity" />
+								<input id="identity" value="430224199111251322" />
 							</div>
 							<div style="position: absolute;top: 120px;">
 								<span>手&nbsp;&nbsp;&nbsp;机
 			 	 		&nbsp;&nbsp;&nbsp;
 			 	 		&nbsp;&nbsp;&nbsp;号&nbsp;:&nbsp;&nbsp;</span>
-								<input id="lphone" />
+								<input id="lphone" value="15207400988"/>
 							</div>
 							<div class="input-group mb-2" style="position: absolute;top: 160px;height:30px;">
 								<span>期望借款金额&nbsp;:&nbsp;&nbsp;</span>
@@ -219,6 +219,8 @@
 				var lanme=$("#loanname").val();
 				var code=$("#identity").val();
 				var lphone=$("#lphone").val();
+				var amount=$("#amount").val();
+				var amperiods=$("#amperiods").val();
 				if(!lanme){
 					alert("姓名不能为空！")
 				}else if(!identity){
@@ -231,8 +233,16 @@
 					alert("电话号格式不正确！")
 				}else(
 					 $.ajax({
-					 	type:"get",
-					 	url:"",
+					 	type:"post",
+					 	url:"addLoanOne",
+					 	data:{
+					 		uid:1,
+					 		loanname:lanme,
+					 		identity:code,
+					 		phone:lphone,
+					 		amo:amount,
+					 		aper:amperiods,
+					 	},
 					 	async:true,
 					 	success:function(data){
 					 		if(data>0){
@@ -240,7 +250,7 @@
 					            alert("借款申请提交成功，请等待客户经理联系")
 					 		}
 					 	}
-					 });
+					 })
 				)
 				
 			}

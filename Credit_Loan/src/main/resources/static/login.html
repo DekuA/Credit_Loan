@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/login.css" />
+		<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="locale/easyui-lang-zh_CN.js"></script>
+		<link rel="stylesheet" href="themes/icon.css" />
+		<link rel="stylesheet" href="themes/default/easyui.css" />
+	</head>
+
+	<style>
+		#img1{
+			position: absolute;
+			height: 550px;
+			display: block;
+			top: 60px;
+			left: 18%;
+			margin-left: -1150px;
+		}
+	</style>
+	<body>
+		<div>
+			<div style="position: relative;left: 70px;top: 8px;">
+				<img src="img/logo.png" width="130" height="40" />
+			</div><br>
+
+			<div>
+				<img id="img1" src="img/login.jpeg" />
+			</div>
+			<div id="denglu" style="position: relative;left: 260px;top: 200px;">
+				<div class="bg">
+					<div class="wel">密码登录</div>
+					<div class="user">
+						<div id="yonghu" style="">用户名</div>
+						<input class="easyui-textbox" type="text" id="user" onfocus="focusdenglu1()" onblur="blurdenglu1()" placeholder="手机号" />
+					</div>
+					<div class="dengluuser" style="position: absolute;top: 110px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
+
+					</div>
+					<div class="password">
+						<div id="yonghu">密&nbsp;&nbsp;&nbsp;码</div>
+						<input class="easyui-passwordbox" onfocus="focusdenglu2()" type="password" id="password" placeholder="密码" />
+					</div>
+					<div class="denglupassword" style="position: absolute;top: 172px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
+
+					</div>
+					<div class="denglufg">
+						<div style="font-size: 11px;margin-top: 11px;">
+							<a style="font-size: 11px;color:#2C66AB;" href="javascript:wangji()">忘记密码?</a>
+						</div>
+					</div>
+					<div class="fg">
+						<div style="font-size: 11px;margin-top: 11px;">
+							<a style="font-size: 11px;color:#2C66AB;" href="javascript:zhuce()">点击注册</a>
+						</div>
+					</div>
+					<input class="btn" type="button" onclick="denglu()" value="登录" />
+				</div>
+			</div>
+			<div id="zhuce" style="position: relative;left: 260px;top: 200px;">
+				<div class="zhucebg">
+					<div class="wel">用户注册</div>
+					<div class="userrr">
+						<input class="easyui-textbox" type="text" id="zhuceuser" onfocus="focus1()" onblur="blur1()" placeholder="手机号" />
+					</div>
+					<div id="zhucediv1" style="position: absolute;top: 132px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
+
+					</div>
+					<div class="zhuceuser">
+						<input class="easyui-textbox" type="password" id="zhucepassword" onfocus="focus2()" onblur="blur2()" placeholder="密码" />
+					</div>
+					<div id="zhucediv2" style="position: absolute;top: 187px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
+
+					</div>
+					<div class="zhucepassword">
+						<input class="easyui-passwordbox" type="text" id="zhuceyanzheng" onfocus="focus3()" placeholder="验证码" />&nbsp;&nbsp;
+						<input type="button" style="border: #00EE00;border-radius:4px;;font-size:12px;position:relative;top:-10px;text-decoration:none;background-color:#1AA034;color:white;width:105px;height:50px;text-indent:0.8rem;"
+						 onclick="settime(this)" value="获取验证码" />
+					</div>
+					<div id="zhucediv3" style="position: absolute;top: 268px;right: 14.8rem;display: flex;font-size: 5px;color:#FF8133;">
+							
+					</div>
+					<div style="position: absolute;top: 9rem;right: 3.5rem;display: flex;">
+					</div>
+					<div class="zhucefg">
+						<div style="font-size: 11px;margin-top: 11px;">
+							<a style="font-size: 11px;color:#2C66AB;" href="javascript:login()">密码登录</a>
+						</div>
+					</div>
+					<input class="zhucebtn" type="button" onclick="quding()" value="确定" />
+				</div>
+			</div>
+		</div>
+		<!--底部代码-->
+			<div id="divvvv" style="text-align: center;font-size: 13px;color:#888888;position:relative;top: 580px;">
+				© 2019 祁云贷 All rights reserved祁云信用顾问(湖南)有限公司湘公网安备11010502020657湘ICP备12025643号-1网贷有风险，出借需谨慎 按扣费后年利率计算的利息不代表对实际					获得利息的承诺，风险自担
+			</div>
+	</body>
+	<script>
+		$(function() {
+			$("#denglu").show();
+			$("#zhuce").hide();
+			$("#zhucediv1").hide();
+			$("#zhucediv2").hide();
+			$("#zhucediv3").hide();
+		});
+
+		function focusdenglu1() {
+			$(".dengluuser").empty();
+		}
+
+		function focusdenglu2() {
+			$(".denglupassword").empty();
+		}
+
+		function blurdenglu1() {
+			$(".dengluuser").show();
+			var phone = $("#user").val();
+			if (!(/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(phone))) {
+				$(".dengluuser").show();
+				$(".dengluuser").append("请输入正确的号码");
+			}
+		}
+
+		function focus1() {
+			$("#zhucediv1").hide();
+			$("#zhucediv1").empty();
+			$("#zhucediv2").empty();
+		}
+
+		function blur1() {
+			var phone = $("#zhuceuser").val();
+			if (/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(phone)) {
+				//$.ajax
+				//alert("12345678")
+			} else {
+				$("#zhucediv1").show();
+				$("#zhucediv1").append("请输入正确的号码");
+			}
+		}
+
+		function focus2() {
+			$("#zhucediv1").empty();
+			$("#zhucediv2").empty();
+			var phone = $("#zhuceuser").val();
+			if (phone.length > 0) {} else {
+				$("#zhucediv1").show();
+				$("#zhucediv1").append("手机号不能为空！");
+			}
+			$("#zhucediv2").show();
+			$("#zhucediv2").append("长度为8-16个字符");
+		}
+
+		function blur2() {
+			var pwd = $("#zhucepassword").val();
+			if (/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/.test(pwd)) {
+				$("#zhucediv2").empty();
+			} else {
+				$("#zhucediv2").empty();
+				$("#zhucediv2").append("密码格式不正确");
+			}
+		}
+
+		var countdown = 60;
+		var m = "";
+		function settime(val) {
+			var phone = $("#zhuceuser").val();
+			if (/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(phone)) {
+				if(countdown == 60){
+					m = "";
+				}
+				if(m.length<6){
+					for (i = 0; i < 6; i++) {
+						var t = Math.floor(Math.random() * 10);
+						m += t;
+					}
+				}
+				if (countdown == 0) {
+					val.removeAttribute("disabled");
+					val.value = "获取验证码";
+					countdown = 60;
+				}else {
+					val.setAttribute("disabled", true);
+					val.value = "重新发送(" + countdown + ")";
+					countdown--;
+					setTimeout(function() {
+						settime(val)
+					}, 1000);
+				}
+			} else {
+				$("#zhucediv1").show();
+				$("#zhucediv1").empty();
+				$("#zhucediv1").append("请输入正确的号码");
+			}
+		}
+
+		function denglu() {
+			var user = $("#user").val();
+			var pwd = $("#password").val();
+			if (/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(user)) {
+				if (pwd.length > 0) {
+					alert("123456")
+					/*$.ajax({
+						url:"login.do",
+						data:{
+							"sname":user,
+							"spwd":pwd
+						},
+						success:function(date){
+							if(date>0){
+								alert("登录成功！");
+								location.href="index.jsp";
+							}else{
+								alert("您的账号或密码不正确!");
+							}
+						}
+					});*/
+				} else {
+					$(".denglupassword").show();
+					$(".denglupassword").append("请输入密码");
+				}
+			} else {
+				$("#zhucediv1").show();
+				$("#zhucediv1").append("请输入正确的号码");
+			}
+		}	
+
+		function zhuce() {
+			$("#zhuce").show();
+			$("#denglu").hide();
+		}
+
+		function focus3() {
+			$("#zhucediv3").empty();
+		}
+
+		function login() {
+			$("#denglu").show();
+			$("#zhuce").hide();
+		}
+
+		function quding() {
+			var phone = $("#zhuceuser").val();
+			var pwd = $("#zhucepassword").val();
+			var yanzheng = $("#zhuceyanzheng").val();
+			if (/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(phone)) {
+				if (/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/.test(pwd) || pwd.length > 0) {
+					$("#zhucediv2").empty();
+					if (yanzheng.length > 0) {
+						if (yanzheng == m) {
+							//$.ajax();
+							alert("11111");
+						}
+					} else {
+						$("#zhucediv3").show();
+						$("#zhucediv3").empty();
+						$("#zhucediv3").append("验证码输入有误！");
+					}
+				} else {
+					$("#zhucediv2").show();
+					$("#zhucediv2").empty();
+					$("#zhucediv2").append("密码格式不正确");
+				}
+			} else {
+				$("#zhucediv1").show();
+				$("#zhucediv1").empty();
+				$("#zhucediv1").append("请输入正确的号码");
+
+			}
+		}
+	</script>
+</html>

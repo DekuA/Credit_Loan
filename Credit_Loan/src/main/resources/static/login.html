@@ -38,14 +38,14 @@
 						<div id="yonghu" style="">用户名</div>
 						<input class="easyui-textbox" type="text" id="user" onfocus="focusdenglu1()" onblur="blurdenglu1()" placeholder="手机号" />
 					</div>
-					<div class="dengluuser" style="position: absolute;top: 102px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
+					<div class="dengluuser" style="position: absolute;top: 110px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
 
 					</div>
 					<div class="password">
 						<div id="yonghu">密&nbsp;&nbsp;&nbsp;码</div>
 						<input class="easyui-passwordbox" onfocus="focusdenglu2()" type="password" id="password" placeholder="密码" />
 					</div>
-					<div class="denglupassword" style="position: absolute;top: 150px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
+					<div class="denglupassword" style="position: absolute;top: 172px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
 
 					</div>
 					<div class="denglufg">
@@ -67,13 +67,13 @@
 					<div class="userrr">
 						<input class="easyui-textbox" type="text" id="zhuceuser" onfocus="focus1()" onblur="blur1()" placeholder="手机号" />
 					</div>
-					<div id="zhucediv1" style="position: absolute;top: 100px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
+					<div id="zhucediv1" style="position: absolute;top: 132px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
 
 					</div>
 					<div class="zhuceuser">
 						<input class="easyui-textbox" type="password" id="zhucepassword" onfocus="focus2()" onblur="blur2()" placeholder="密码" />
 					</div>
-					<div id="zhucediv2" style="position: absolute;top: 150px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
+					<div id="zhucediv2" style="position: absolute;top: 187px;right: 3.5rem;display: flex;font-size: 5px;color:#FF8133;">
 
 					</div>
 					<div class="zhucepassword">
@@ -81,8 +81,8 @@
 						<input type="button" style="border: #00EE00;border-radius:4px;;font-size:12px;position:relative;top:-10px;text-decoration:none;background-color:#1AA034;color:white;width:105px;height:50px;text-indent:0.8rem;"
 						 onclick="settime(this)" value="获取验证码" />
 					</div>
-					<div id="zhucediv3" style="position: absolute;top: 240px;right: 12rem;display: flex;font-size: 5px;color:#FF8133;">
-
+					<div id="zhucediv3" style="position: absolute;top: 268px;right: 14.8rem;display: flex;font-size: 5px;color:#FF8133;">
+							
 					</div>
 					<div style="position: absolute;top: 9rem;right: 3.5rem;display: flex;">
 					</div>
@@ -167,28 +167,35 @@
 
 		var countdown = 60;
 		var m = "";
-
 		function settime(val) {
-			if (m == "") {
-				for (i = 0; i < 6; i++) {
-					var t = Math.floor(Math.random() * 10);
-					m += t;
+			var phone = $("#zhuceuser").val();
+			if (/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(phone)) {
+				if(countdown == 60){
+					m = "";
 				}
-				alert(m);
-			}
-			if (countdown == 0) {
-				val.removeAttribute("disabled");
-				val.value = "获取验证码";
-				countdown = 60;
+				if(m.length<6){
+					for (i = 0; i < 6; i++) {
+						var t = Math.floor(Math.random() * 10);
+						m += t;
+					}
+				}
+				if (countdown == 0) {
+					val.removeAttribute("disabled");
+					val.value = "获取验证码";
+					countdown = 60;
+				}else {
+					val.setAttribute("disabled", true);
+					val.value = "重新发送(" + countdown + ")";
+					countdown--;
+					setTimeout(function() {
+						settime(val)
+					}, 1000);
+				}
 			} else {
-				val.setAttribute("disabled", true);
-				val.value = "重新发送(" + countdown + ")";
-				countdown--;
-				setTimeout(function() {
-					settime(val)
-				}, 1000);
+				$("#zhucediv1").show();
+				$("#zhucediv1").empty();
+				$("#zhucediv1").append("请输入正确的号码");
 			}
-
 		}
 
 		function denglu() {
@@ -220,7 +227,7 @@
 				$("#zhucediv1").show();
 				$("#zhucediv1").append("请输入正确的号码");
 			}
-		}
+		}	
 
 		function zhuce() {
 			$("#zhuce").show();

@@ -33,6 +33,6 @@ private QuestionMapper qu;
 		// TODO Auto-generated method stub
 		List<Question> selquestion = qu.Selquestion(qTId);
 		return selquestion;
-	}
+	} 
 	
 }

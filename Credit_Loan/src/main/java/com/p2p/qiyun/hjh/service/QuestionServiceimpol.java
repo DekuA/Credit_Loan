@@ -32,7 +32,7 @@ private QuestionMapper qu;
 	public List<Question> Selquestion(int qTId) {
 		// TODO Auto-generated method stub
 		List<Question> selquestion = qu.Selquestion(qTId);
-		return selquestion; 
+		return selquestion;  
 	} 
 	
 }

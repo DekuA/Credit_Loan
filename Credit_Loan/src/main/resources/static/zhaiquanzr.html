@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+		<link rel="stylesheet" href="lxm/css/zqzr.css" />
+	<body style="background-color: #f1eff1;">
+			<div style="background-color: gray;">				
+				<nav class="navbar navbar-expand-sm bg-light" style="height: 30px;">
+					  <ul class="navbar-nav">					  	
+						    <li class="nav-item">
+						     <a class="nav-link" href="#"> <font size="1">用户论坛</font></a>
+						    </li>
+						    <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">帮助中心</font></a>
+						    </li>
+						    <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">关于我们</font></a>
+						    </li>
+						     <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">出借人教育</font></a>
+						    </li>
+						    <li class="nav-item">
+						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						    </li>
+						    <li class="nav-item">
+						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						    <li class="nav-item">
+						    	 <li>
+						      	<a class="nav-link" href="#"><font size="1">昵称</font></a>						   
+						    </li>
+						     <li>
+						      	<a class="nav-link" href="#">[<font size="1">退出 </font>]</a>						   
+						    </li>
+					  </ul>
+				</nav>
+				<div style="position: absolute;right: 40px;top:3px;"><font size="1" >客服电话: 38383</font></div>
+			</div>
+			<div style="height: 60px;">
+				<div style="position: absolute;top: 40px;">
+					<ul class="nav">
+						<li class="nav-item">
+					     &nbsp; &nbsp; &nbsp; 
+					    </li>
+						<li class="nav-item"><a class="nav-link" href="#">
+					      <img src="img/q11.jpg" style="height: 30px;width: 30px;border-radius: 30px;border: 1px solid black;" /></a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="#">我的账户</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="#">信息披露</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="javascript::" onclick="shouye()">我要投资</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="#">我要借款/还款</a>
+					    </li>
+					     <li class="nav-item">
+					      <a class="nav-link" href="javascript::" onclick="zqzhuanr()">债权转让</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="javascript::" onclick="shouye()">首页</a>
+					    </li>
+					  </ul>
+				</div> 
+				<div class="container" style="float:right;position: absolute;right: -580px;top:35px;">
+					<img src="img/logo.png" style="height: 50px;width: 140px;" />
+				</div>
+			</div>
+			
+			<div id="zaiquanzhuanr" class="container" style="height: 750px;width:1450px;position:relative;">
+				
+				<div id="seltiaojian">
+					<table class="table table-striped" style="font;">
+						<tr  id="tr1">
+							<th>剩余期限：</th>
+							<td style="color: orange;" onclick="seltiaojian1(this,'tr1')">不限</td>
+							<td onclick="seltiaojian1(this,'tr1','12')">12个月以下</td>
+							<td onclick="seltiaojian1(this,'tr1','12','18')">12个~18个月</td>
+							<td onclick="seltiaojian1(this,'tr1','18','24')">18~24个月</td>
+							<td onclick="seltiaojian1(this,'tr1','24')">24个月以上</td>
+							<td><input class="input-group-sm"/>个月-<input class="input-group-sm"/>个月</td>
+						</tr>
+						<tr  id="tr2">
+							<th>转让价格：</th>
+							<td style="color: orange;" onclick="seltiaojian2(this,'tr2')">不限</td>
+							<td onclick="seltiaojian2(this,'tr2','5000')">5千元以下</td>
+							<td onclick="seltiaojian2(this,'tr2','5000','10000')">5千元~1万元</td>
+							<td onclick="seltiaojian2(this,'tr2','10000','30000')">1万~3万元</td>
+							<td onclick="seltiaojian2(this,'tr2','30000')">3万元以上</td>
+							<td><input class="input-group-sm"/>万元-<input class="input-group-sm"/>万元</td>
+						</tr>
+						<tr id="tr3">
+							<th>是否预期：</th>
+							<td style="color: orange;" onclick="seltiaojian3(this,'tr3')">不限</td>
+							<td onclick="seltiaojian3(this,'tr3','0')">非逾期</td>
+							<td onclick="seltiaojian3(this,'tr3','1')">已逾期</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+				</div>
+				<br><br>
+				<div id="zrxiangmu" class="container" style="background-color: white;">
+					<h3>慧盈-安e+ 1904280330944</h3>
+					<span class="tag-title" title="该项目为转让项目"><span class="tag-discount-blue">转</span></span>
+					<br><br>
+					<table id="zrxm" class="table table-hover" style="margin-left: 15px;width: 865px;">
+							<tr>
+								<td class="tttddd1">历史参考收益率</td>
+								<td class="tttddd1">剩余期限</td>
+								<td class="tttddd1">项目价值</td>
+								<td class="tttddd1">调价</td>
+								<td class="tttddd1">转让价格</td>
+								<td></td>
+							</tr>
+							
+							<tr>
+								<th class="td-syl">7.80%</td>
+								<td>7个月</td>
+								<td>5,998.44元</td>
+								<td>0.00 元</td>
+								<th class="td-syl">5,998.44元</th>
+								<td><button class="btn btn-group" style="background-color: orange;">投资</button></td>
+							</tr>
+							
+							<tr>
+								<th class="td-syl">7.88%</th>
+								<td>10个月</td>
+								<td>6,998.44元</td>
+								<td>0.00 元</td>
+								<th class="td-syl">6,998.44元</th>
+								<td><button class="btn btn-group" disabled>已卖</button></td>
+							</tr>
+						</table>
+					
+				</div>
+				
+			</div>
+			
+			<script src="lxm/js/zqzr.js">
+				
+			</script>
+	</body>
+</html>

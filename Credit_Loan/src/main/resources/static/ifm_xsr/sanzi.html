@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="../css_xsr/bootstrap.min.css" />
+		<script type="text/javascript" src="../js_xsr/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap-paginator.js"></script>
+		<style>
+			.td1{
+				width: 320px;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+							<tr>
+								<td class='td1'><font color='gray' size="1"> -出借金额-</font></td>
+								<td class='td1'><font color='gray' size="1"> - 应收利息 -</font></td>
+								<td class='td1'><font color='gray' size="1"> - 月收本息 -</font></td>
+							</tr>
+							<tr>
+								<td class='td1'><font id='ben4' color='orange' size='5'> 0.00</font>元</td>
+								<td class='td1'><font id='yings4' color='orange' size='5'> 0.00</font>元</td>
+								<td class='td1'><font id='lixi4' color='orange' size='5'> 0.00</font>元</td>
+							</tr>
+					</table><hr />
+			<div align='center' id='div111'>
+						
+			</div>
+			
+			<script>
+				function diao(num,arr){
+					$("#div111").html("<div>本息回收利息表</div><table id='table2' class='table table-striped'><tr><td class='td1'>月份</td><td class='td1'>月收本息</td><td class='td1'>月收本金</td><td class='td1'>月收利息</td><td class='td1'>待收本息</td></tr></table>")
+					for(i=1;i<num;i++){
+						$("#table2").append("<tr><td class='td1'>"+i+"月</td><td class='td1'>"+arr[i-1][0]+"</td><td class='td1'>"+arr[i-1][1]+"</td><td class='td1'>"+arr[i-1][2]+"</td><td class='td1'>"+arr[i-1][3]+"</td></tr>");
+					}
+				}
+				
+			</script>
+	</body>
+</html>

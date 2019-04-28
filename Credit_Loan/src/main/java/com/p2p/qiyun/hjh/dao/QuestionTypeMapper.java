@@ -11,7 +11,6 @@ public interface QuestionTypeMapper {
     int countByExample(QuestionTypeExample example);
 
     int deleteByExample(QuestionTypeExample example);
-
     int deleteByPrimaryKey(Integer qTId);
 
     int insert(QuestionType record);

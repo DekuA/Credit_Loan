@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>投资计算器-祁云贷官网</title>
+	</head>
+		<link rel="stylesheet" href="css_xsr/bootstrap.min.css" />
+		<script type="text/javascript" src="js_xsr/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="js_xsr/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js_xsr/bootstrap-paginator.js"></script>
+		<style>
+			.td1{
+				width: 320px;
+				text-align: center;
+			}
+		</style>
+	<body>
+		<div >				
+				<nav class="navbar navbar-expand-sm bg-light" style="height: 30px;">
+					  <ul class="navbar-nav">					  	
+						    <li class="nav-item">
+						     <a class="nav-link" href="#"> <font size="1">用户论坛</font></a>
+						    </li>
+						    <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">帮助中心</font></a>
+						    </li>
+						    <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">关于我们</font></a>
+						    </li>
+						    <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">人人学院</font></a>
+						    </li>
+						     <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">出借人教育</font></a>
+						    </li>
+						    <li class="nav-item">
+						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						    </li>
+						    <li class="nav-item">
+						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						    <li class="nav-item">
+						    	 <li>
+						      	<a class="nav-link" href="#"><font size="1">昵称</font></a>						   
+						    </li>
+						     <li>
+						      	<a class="nav-link" href="#">[<font size="1">退出 </font>]</a>						   
+						    </li>
+					  </ul>
+				</nav>
+				<div style="position: absolute;right: 40px;top:3px;"><font size="1" >客服电话: 38383</font></div>
+			</div>
+			<div  style="height: 60px;background-color: white;" >
+				<div style="position: absolute;top: 40px;">
+					<ul class="nav">
+						<li class="nav-item">
+					     &nbsp; &nbsp; &nbsp; 
+					    </li>
+						<li class="nav-item"><a class="nav-link" href="#">
+					      <img src="img_xsr/kefu.jpg" style="height: 30px;width: 30px;border-radius: 30px;border: 1px solid black;" /></a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="#">我的账户</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="#">信息披露</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="#">我要借款/还款</a>
+					    </li>
+					     <li class="nav-item">
+					      <a class="nav-link" href="#">我要出借</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="#">首页</a>
+					    </li>
+					  </ul>
+				</div> 
+				<div style="position: absolute;right: 180px;top:35px;">
+					<img src="img_xsr/logo.png" style="height: 50px;width: 140px;" />
+				</div>
+			</div>
+			<!---以上是顶部代码------------------- -->		
+			<div id='jisuanqi' class='container col-sm-12' style="position: relative;height: 450px;background-color: gainsboro;"><br>
+			<!--填-->
+				<div class="container"  style="height: 180px;width: 80%;background-color: white;position: relative;">
+						<div class="container">回报计算器</div>
+						<div  style='height: 40px;background-color: gainsboro;' align="center">
+							<button style='background-color: gainsboro;border:1px solid gainsboro' class="btn btn-primary" onclick="uxiang()">U享服务</button>
+						    <button style='background-color: gainsboro;border:1px solid gainsboro' class="btn btn-primary" onclick="youxuan()">优选服务</button>
+						    <button style='background-color: gainsboro;border:1px solid gainsboro' class="btn btn-primary" onclick="xinxiang()"> 薪享服务</button>
+						    <button style='background-color: gainsboro;border:1px solid gainsboro' class="btn btn-primary" onclick="sanzi()">散资投标</button>
+						</div>						
+						<div class='container' style='width: 80%;position: relative;'>
+							<!--uxiang-->
+							<div id='uxiangdian' style='top: 20px;position: relative;'>
+									<div>
+										<font size='2' color="gray">服务类型 </font><select id='yue' style='border-radius: 5px;width: 100px;'>
+														<option value="1">U享-1月</option>
+														<option value="3">U享-3月</option>
+														<option value="6">U享-6月</option>
+														<option value="12">U享-12月</option>
+														<option value="24">U享-24月</option>
+														<option value="36">U享-36月</option>							
+													</select>							
+									</div><br />
+									<div style='position: absolute;right: 150px;top: 0px;'>
+										<font size='2' color='gray'>利息处理方式 </font><select id='fangshi' style='border-radius: 5px;width: 150px;'>
+														<option value='1'>循环出借</option>
+														<option value='0'>提取至账户</option>						
+												</select>							
+									</div>
+									<div style='position: absolute;left: 0px;top: 50px;'>
+										<font size='2' color='gray'>出借本金</font>	<input id='benjin' style='border-radius: 5px;width: 100px;height: 25px;border: 1px solid gray;' />元
+									</div>
+									<div style='position: absolute;right: 150px;top: 50px;'>
+										<input type='button' style='border-radius: 5px;height: 25px;width: 150px;background-color:#BCE8F1;border: 0px solid gray;' value='开始计算' onclick='jisuan()' />
+									</div>						 
+							</div>
+							<!--优选-->
+							<div id='youxuandian' style="display: none;">
+								<div class="container"><br><br>
+									<font size='2' color='gray'>出借本金</font>	<input id='benjin1' style='border-radius: 5px;width: 100px;height: 25px;border: 1px solid gray;' />元
+								</div>
+								<div style='position: absolute;right: 150px;top: 50px;'>
+										<input type='button' style='border-radius: 5px;height: 25px;width: 150px;background-color:#BCE8F1;border: 0px solid gray;' value='开始计算' onclick='jisuan1()' />
+								</div>	
+							</div>
+							<!--薪服务-->
+							<div id='xinxiang' style='display: none;'>
+								<div class="container"><br><br>
+									<font size='2' color='gray'>每月出借本金</font>	<input id='benjin2' style='border-radius: 5px;width: 100px;height: 25px;border: 1px solid gray;' />元
+								</div>
+								
+								<div style='position: absolute;right: 380px;top: 0px;'><br><br>
+									<font size='4' color='gray'>服务期限：12个月</font>
+								</div>
+								
+								<div style='position: absolute;right: 150px;top: 50px;'>
+										<input type='button' style='border-radius: 5px;height: 25px;width: 150px;background-color:#BCE8F1;border: 0px solid gray;' value='开始计算' onclick='jisuan2()' />
+								</div>
+							
+						</div>
+							<!--散资投标-->
+							<div id='sanbiao' style='display: none;'>
+									<div><br>
+											<font size='2' color='gray'>出借本金</font>	<input id='benjin4' style='border-radius: 5px;width: 100px;height: 25px;border: 1px solid gray;' />元					
+									</div>
+									<div style='position: absolute;right: 380px;top: -25px;'><br><br>
+										<font size='2' color='gray'>年化利率 </font><input id='nianlv4' style='border-radius: 5px;width: 100px;height: 25px;border: 1px solid gray;' />%
+									</div><br>
+									<div>
+											<font size='2' color='gray'>出借期限 </font>	<input id='cjqx' style='border-radius: 5px;width: 100px;height: 25px;border: 1px solid gray;' />个月					
+									</div>
+									<div style='position: absolute;right: 340px;top: 25px;'><br><br>
+										<font size='2' color='gray'>还款方式 </font>
+													<select id='huanfang' style='border-radius: 5px;width: 150px;'>
+														<option value="0">等额本息</option>
+														<option value="1">每月付息，到期还本</option>
+													</select>
+									</div>
+									<div style='position: absolute;right: 150px;top: 70px;'>
+										<input type='button' style='border-radius: 5px;height: 25px;width: 150px;background-color:#BCE8F1;border: 0px solid gray;' value='开始计算' onclick='jisuan3()' />
+									</div>
+							</div>
+				</div>
+				</div>
+				
+				<!--结果-->
+				<div class='container' id='jieguo' style='position: relative;background-color: white;height: 200px;top: 20px;width: 80%'>
+						<div class='container'>回报描述(<font size="1" color="gray">预期收益不代表实际收益</font>)</div> <hr />
+					<div class='container' align='center'>					
+						<iframe id='iframe1' src="ifm_xsr/uxiang.html" frameborder="no"  style="width: 80%;height: 80px;" ></iframe>					
+					</div>
+					
+				</div>
+			</div>	
+			<!--底部代码-->
+			<div id='didiv' style='position: relative;height: 450px;top:20px;'><br />
+				<div class='container' ><font size='2' >客服服务</font></div><br />
+					<div class='container'>
+						<a href='javascript::' data-toggle="modal" data-target="#myModal"><font size='2' color='gray' >客服微信</font></a> |
+						<a href='#'><font size='2' color='gray' >在线克服</font></a> |
+						<a href='#'><font size='2' color='gray' >新浪微博</font></a> <br /><br />
+						<hr  /><br />
+					</div>
+					<div class="container">
+						<div class='container' ><br />
+							<font size='2'>© 2019 祁云信用贷商务顾问(长沙)有限公司  湖南硅谷软件公司</font><br />
+							<font size='1' color='gray'>长ICP证 100953号 长公网安备 11010502020657 长ICP备12025643号-1</font>
+						</div>
+						<div style="position: absolute;top: 150px;left: 530px;">
+							<img src="img_xsr/kefu.jpg" style="width: 150px;height: 150px;" />
+							<img src="img_xsr/kefu.jpg" style="width: 150px;height: 150px;" />						
+						</div>
+						<div style="position: absolute;top: 146px;left: 930px;">
+							<font size="3" color="gray">祁云信用贷财富客服：</font> <font size="5">85886</font><br><br>
+							<font size="3" color="gray">祁云信用贷借款客服：</font> <font size="5">632 133 4027</font><br><br>
+							<font size="3" color="gray">服务时间: 9:00-21:00</font>
+						</div><br><br><hr />
+						<div class="container" align="center"><br />
+							<img src="img_xsr/tu1.PNG" />
+							<img src="img_xsr/tu2.PNG" />
+							<img src="img_xsr/tu3.PNG" />
+							<img src="img_xsr/tu4.PNG" />
+							<img src="img_xsr/tu5.PNG" />
+							<img src="img_xsr/tu6.PNG" />
+						</div>
+					</div>
+			</div>
+			<!--模态-->
+			<div class="modal fade" id="myModal">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        <div class="modal-body" align="center">
+			       		<img src="img_xsr/kefu.jpg" style="width: 150px;height: 150px;" />
+			        </div>			   
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+				        </div>
+			      </div>
+			    </div>
+			  </div>
+	</body>
+	<script>		
+		function uxiang(){
+			document.getElementById("iframe1").src="ifm_xsr/uxiang.html";
+			$("#uxiangdian").css("display","");
+			$("#sanbiao").css("display","none");
+			$("#youxuandian").css("display","none");
+			$("#xinxiang").css("display","none");
+			$("#jisuanqi").css("height","450px");
+			$("#jieguo").css("height","200px");
+			$("#iframe1").css("height","80px");
+		}
+		function youxuan(){
+			document.getElementById("iframe1").src="ifm_xsr/youxuan.html";
+			$("#uxiangdian").css("display","none");
+			$("#xinxiang").css("display","none");
+			$("#youxuandian").css("display","");
+			$("#sanbiao").css("display","none");
+			$("#jisuanqi").css("height","500px");
+			$("#jieguo").css("height","260px");
+			$("#iframe1").css("height","180px");
+		}
+		function xinxiang(){
+			document.getElementById("iframe1").src="ifm_xsr/xinxiang.html";
+			$("#uxiangdian").css("display","none");
+			$("#youxuandian").css("display","none");
+			$("#xinxiang").css("display","");
+			$("#sanbiao").css("display","none");
+			$("#jisuanqi").css("height","450px");
+			$("#jieguo").css("height","200px");
+			$("#iframe1").css("height","100px");
+		}
+		function sanzi(){
+			document.getElementById("iframe1").src="ifm_xsr/sanzi.html";
+			$("#uxiangdian").css("display","none");
+			$("#youxuandian").css("display","none")
+			$("#sanbiao").css("display","");
+			$("#xinxiang").css("display","none");
+			$("#jisuanqi").css("height","800px");
+			$("#jieguo").css("height","550px");
+			$("#iframe1").css("height","470px");
+		}
+		//uxiang
+		function jisuan(){				
+			self.frames[0].$("#ben").html($("#benjin").val());
+			if($("#fangshi").val()==0){				
+				self.frames[0].$("#lixi").html(($("#yue").val()*$("#benjin").val()*0.018).toFixed(2));
+			}else{
+				var ben=eval($("#benjin").val());
+				for(i=0;i<$("#yue").val();i++){
+					ben = eval(ben+ben*0.018);
+				}	
+				self.frames[0].$("#lixi").html((ben-$("#benjin").val()).toFixed(2));			
+			}
+		}
+		//优选
+		function jisuan1(){		
+			var nianxi1 = eval($("#benjin1").val()*0.095).toFixed(2);
+			var rixi1 = (nianxi1/365).toFixed(2);
+			
+			var nianxi2 = eval($("#benjin1").val()*0.104).toFixed(2);
+			var rixi2 = (nianxi2/365).toFixed(2);
+			self.frames[0].$("#niannian1").html(nianxi1+"元");
+			self.frames[0].$("#nianri1").html(rixi1+"元");
+			self.frames[0].$("#niannian2").html(nianxi2+"元");
+			self.frames[0].$("#nianri2").html(rixi2+"元");
+		}
+		//薪享
+		function jisuan2(){
+			var benjin2 = $("#benjin2").val();
+			var yinian = eval(benjin2*12);
+			var lixi = (yinian*0.044).toFixed(0);
+			self.frames[0].$("#ben").html(yinian);
+			self.frames[0].$("#kou").html(8);
+			self.frames[0].$("#lixi").html(lixi);
+		}
+		//散标
+		function jisuan3(){
+			var bj = $("#benjin4").val();
+			var lv = $("#nianlv4").val();
+			var lh1= $("#huanfang").val();
+			if(lh1==1){
+				var yuebenxi = (bj*(lv/100)/$("#cjqx").val());			
+				yuebenxi = (yuebenxi/2).toFixed(2);
+				var zonglixi = eval(yuebenxi*$("#cjqx").val()).toFixed(2);
+				self.frames[0].$("#ben4").html(bj);
+				self.frames[0].$("#yings4").html(zonglixi);
+				self.frames[0].$("#lixi4").html(yuebenxi);
+				var arr = new Array();
+				for(i=0;i<$("#cjqx").val()*1;i++){
+					arr[i]=[yuebenxi,0,yuebenxi,eval((bj*1+zonglixi*1-(yuebenxi*(i+1)))).toFixed(2)]; 
+				}
+				arr[arr.length-1][0]=bj*1+yuebenxi*1;
+				self.frames[0].diao(eval($("#cjqx").val()*1+1),arr);
+			}else{
+				var zonglixi2 = bj*lv/100*0.294; 
+				var yueshoubenxi = ((bj*1+zonglixi2*1)/$("#cjqx").val()*1).toFixed(2);//月收本息
+				var yueshoubenji = (yueshoubenxi*0.294/$("#cjqx").val()*1).toFixed(2);//月收利息
+				var daishoubenxi = (bj*1+bj*lv/100*0.294-yueshoubenxi*1).toFixed(2);//待收本息
+				self.frames[0].$("#ben4").html(bj);
+				self.frames[0].$("#yings4").html(zonglixi2);
+				self.frames[0].$("#lixi4").html(yueshoubenxi);
+				var arr = new Array();
+				for(i=0;i<$("#cjqx").val()*1;i++){
+					arr[i]=[yueshoubenxi,(yueshoubenxi-yueshoubenji).toFixed(2),yueshoubenji,eval((bj*1-yueshoubenxi*(i+1))).toFixed(2)]; 
+				}
+				self.frames[0].diao(eval($("#cjqx").val()*1+1),arr);
+			}
+			
+		}
+		
+		
+	</script>
+</html>

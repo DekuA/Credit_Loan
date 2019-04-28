@@ -119,19 +119,19 @@
 			<div
 				id="home8"
 				class="container tab-pane fade"></div>
-				<div
+			<div
 				id="home9"
 				class="container tab-pane fade"></div>
-				<div
+			<div
 				id="home10"
 				class="container tab-pane fade"></div>
-				<div
+			<div
 				id="home11"
 				class="container tab-pane fade"></div>
-				<div
+			<div
 				id="home12"
 				class="container tab-pane fade"></div>
-				<div
+			<div
 				id="home13"
 				class="container tab-pane fade"></div>
 
@@ -139,7 +139,6 @@
 	</div>
 	<script type="text/javascript">
 		$(function() {
-			
 
 			$.ajax({
 				url : "SelQuestionType",
@@ -181,9 +180,8 @@
 								div.attr('data-target', '#' + y + 'di'
 										+ (i + 1));
 
-								div.html('<br><font size="2">'
-										+ (i + 1) + '.' + data[i].qQuestion
-										+ '</font>');
+								div.html('<br><font size="2">' + (i + 1) + '.'
+										+ data[i].qQuestion + '</font>');
 
 								$("#home" + y).append(div);
 								var div1 = $("<div>");

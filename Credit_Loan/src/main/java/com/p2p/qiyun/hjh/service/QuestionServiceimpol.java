@@ -24,8 +24,6 @@ private QuestionMapper qu;
 			QuestionTypeExample example=new QuestionTypeExample();
 			List<QuestionType> selectByExample = ques.selectByExample(example);
 			return selectByExample;
-			
-		
 	}
 
 	@Override

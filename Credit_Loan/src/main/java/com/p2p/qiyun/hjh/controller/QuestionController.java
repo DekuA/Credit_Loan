@@ -19,7 +19,7 @@ public class QuestionController {
 	public List<QuestionType> SelQuestionType() {
 
 		List<QuestionType> selectByExample = questionService.selectByExample();
-
+		System.out.println(selectByExample);
 		return selectByExample;
 
 	}
@@ -28,6 +28,7 @@ public class QuestionController {
 	public List<Question> Selquestion(int qTId) {
 		System.out.println("-------------"+qTId);
 		List<Question> selquestion = questionService.Selquestion(qTId);
+		System.out.println(selquestion);
 		return selquestion;
 	}
 }

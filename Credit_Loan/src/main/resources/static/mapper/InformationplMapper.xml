@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.wzz.dao.InformationplMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.qiyun.wzz.entity.Informationpl" >
+    <id column="information_id" property="informationId" jdbcType="INTEGER" />
+    <result column="information_data" property="informationData" jdbcType="VARCHAR" />
+    <result column="information_safe" property="informationSafe" jdbcType="VARCHAR" />
+    <result column="information_risk" property="informationRisk" jdbcType="VARCHAR" />
+    <result column="information_education" property="informationEducation" jdbcType="VARCHAR" />
+    <result column="information_charge" property="informationCharge" jdbcType="VARCHAR" />
+    <result column="information_us" property="informationUs" jdbcType="VARCHAR" />
+    <result column="information_duce" property="informationDuce" jdbcType="VARCHAR" />
+    <result column="information_news" property="informationNews" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    information_id, information_data, information_safe, information_risk, information_education, 
+    information_charge, information_us, information_duce, information_news
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.p2p.qiyun.wzz.entity.InformationplExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from informationpl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from informationpl
+    where information_id = #{informationId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from informationpl
+    where information_id = #{informationId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.p2p.qiyun.wzz.entity.InformationplExample" >
+    delete from informationpl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.p2p.qiyun.wzz.entity.Informationpl" >
+    insert into informationpl (information_id, information_data, information_safe, 
+      information_risk, information_education, 
+      information_charge, information_us, information_duce, 
+      information_news)
+    values (#{informationId,jdbcType=INTEGER}, #{informationData,jdbcType=VARCHAR}, #{informationSafe,jdbcType=VARCHAR}, 
+      #{informationRisk,jdbcType=VARCHAR}, #{informationEducation,jdbcType=VARCHAR}, 
+      #{informationCharge,jdbcType=VARCHAR}, #{informationUs,jdbcType=VARCHAR}, #{informationDuce,jdbcType=VARCHAR}, 
+      #{informationNews,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.qiyun.wzz.entity.Informationpl" >
+    insert into informationpl
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="informationId != null" >
+        information_id,
+      </if>
+      <if test="informationData != null" >
+        information_data,
+      </if>
+      <if test="informationSafe != null" >
+        information_safe,
+      </if>
+      <if test="informationRisk != null" >
+        information_risk,
+      </if>
+      <if test="informationEducation != null" >
+        information_education,
+      </if>
+      <if test="informationCharge != null" >
+        information_charge,
+      </if>
+      <if test="informationUs != null" >
+        information_us,
+      </if>
+      <if test="informationDuce != null" >
+        information_duce,
+      </if>
+      <if test="informationNews != null" >
+        information_news,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="informationId != null" >
+        #{informationId,jdbcType=INTEGER},
+      </if>
+      <if test="informationData != null" >
+        #{informationData,jdbcType=VARCHAR},
+      </if>
+      <if test="informationSafe != null" >
+        #{informationSafe,jdbcType=VARCHAR},
+      </if>
+      <if test="informationRisk != null" >
+        #{informationRisk,jdbcType=VARCHAR},
+      </if>
+      <if test="informationEducation != null" >
+        #{informationEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="informationCharge != null" >
+        #{informationCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="informationUs != null" >
+        #{informationUs,jdbcType=VARCHAR},
+      </if>
+      <if test="informationDuce != null" >
+        #{informationDuce,jdbcType=VARCHAR},
+      </if>
+      <if test="informationNews != null" >
+        #{informationNews,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.p2p.qiyun.wzz.entity.InformationplExample" resultType="java.lang.Integer" >
+    select count(*) from informationpl
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update informationpl
+    <set >
+      <if test="record.informationId != null" >
+        information_id = #{record.informationId,jdbcType=INTEGER},
+      </if>
+      <if test="record.informationData != null" >
+        information_data = #{record.informationData,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informationSafe != null" >
+        information_safe = #{record.informationSafe,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informationRisk != null" >
+        information_risk = #{record.informationRisk,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informationEducation != null" >
+        information_education = #{record.informationEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informationCharge != null" >
+        information_charge = #{record.informationCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informationUs != null" >
+        information_us = #{record.informationUs,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informationDuce != null" >
+        information_duce = #{record.informationDuce,jdbcType=VARCHAR},
+      </if>
+      <if test="record.informationNews != null" >
+        information_news = #{record.informationNews,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update informationpl
+    set information_id = #{record.informationId,jdbcType=INTEGER},
+      information_data = #{record.informationData,jdbcType=VARCHAR},
+      information_safe = #{record.informationSafe,jdbcType=VARCHAR},
+      information_risk = #{record.informationRisk,jdbcType=VARCHAR},
+      information_education = #{record.informationEducation,jdbcType=VARCHAR},
+      information_charge = #{record.informationCharge,jdbcType=VARCHAR},
+      information_us = #{record.informationUs,jdbcType=VARCHAR},
+      information_duce = #{record.informationDuce,jdbcType=VARCHAR},
+      information_news = #{record.informationNews,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.p2p.qiyun.wzz.entity.Informationpl" >
+    update informationpl
+    <set >
+      <if test="informationData != null" >
+        information_data = #{informationData,jdbcType=VARCHAR},
+      </if>
+      <if test="informationSafe != null" >
+        information_safe = #{informationSafe,jdbcType=VARCHAR},
+      </if>
+      <if test="informationRisk != null" >
+        information_risk = #{informationRisk,jdbcType=VARCHAR},
+      </if>
+      <if test="informationEducation != null" >
+        information_education = #{informationEducation,jdbcType=VARCHAR},
+      </if>
+      <if test="informationCharge != null" >
+        information_charge = #{informationCharge,jdbcType=VARCHAR},
+      </if>
+      <if test="informationUs != null" >
+        information_us = #{informationUs,jdbcType=VARCHAR},
+      </if>
+      <if test="informationDuce != null" >
+        information_duce = #{informationDuce,jdbcType=VARCHAR},
+      </if>
+      <if test="informationNews != null" >
+        information_news = #{informationNews,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where information_id = #{informationId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.p2p.qiyun.wzz.entity.Informationpl" >
+    update informationpl
+    set information_data = #{informationData,jdbcType=VARCHAR},
+      information_safe = #{informationSafe,jdbcType=VARCHAR},
+      information_risk = #{informationRisk,jdbcType=VARCHAR},
+      information_education = #{informationEducation,jdbcType=VARCHAR},
+      information_charge = #{informationCharge,jdbcType=VARCHAR},
+      information_us = #{informationUs,jdbcType=VARCHAR},
+      information_duce = #{informationDuce,jdbcType=VARCHAR},
+      information_news = #{informationNews,jdbcType=VARCHAR}
+    where information_id = #{informationId,jdbcType=INTEGER}
+  </update>
+</mapper>

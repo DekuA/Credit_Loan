@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>祁云贷管理系统</title>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+		<script src="locale/easyui-lang-zh_CN.js"></script>
+		<script src="js/schedule.js"></script>
+		<link rel="stylesheet" href="https://at.alicdn.com/t/font_234130_nem7eskcrkpdgqfr.css">
+		<script type="text/javascript" src="js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<link rel="stylesheet" href="themes/icon.css" />
+		<link rel="stylesheet" href="themes/default/easyui.css" />
+		<link rel="stylesheet" href="css/schendule.css">
+</head>
+<style>
+	.logo{
+		width:250px;
+		height:50px;
+		line-height:50px;
+		text-align:center;
+		font-size:20px;
+		font-weight:bold;
+		float:left;
+		color:#fff;
+	}
+	a{
+		color:#1A1B1B;
+		text-decoration:none;
+	}
+	a:hover{
+		text-decoration:underline;
+	}
+	#logoout{
+		height:95%;
+	}
+</style>
+<body class="easyui-layout">   
+    <div data-options="region:'north',split:true" style="height:70px; background: deepskyblue">
+    	<img src="img/logo.png" style="float: left"/>
+    	<div class="logo">祁云贷后台管理系统</div>
+	    	<div id="clock">
+			    <div id="h10" class="num">
+			      <div class="upper"></div>
+			      <div class="base upper"></div>
+			      <div class="base lower"></div>
+			      <div class="lower"></div>
+			    </div>
+			    
+			    <div id="h0" class="num">
+			      <div class="upper"></div>
+			      <div class="base upper"></div>
+			      <div class="base lower"></div>
+			      <div class="lower"></div>
+			    </div>
+			    
+			    <div class="colon">:</div>
+			    
+			    <div id="m10" class="num">
+			      <div class="upper"></div>
+			      <div class="base upper"></div>
+			      <div class="base lower"></div>
+			      <div class="lower"></div>
+			    </div>
+			    
+			    <div id="m0" class="num">
+			      <div class="upper"></div>
+			      <div class="base upper"></div>
+			      <div class="base lower"></div>
+			      <div class="lower"></div>
+			    </div>
+			    
+			    <div class="colon">:</div>
+			    
+			    <div id="s10" class="num">
+			      <div class="upper"></div>
+			      <div class="base upper"></div>
+			      <div class="base lower"></div>
+			      <div class="lower"></div>
+			    </div>
+			    
+			    <div id="s0" class="num">
+			      <div class="upper"></div>
+			      <div class="base upper"></div>
+			      <div class="base lower"></div>
+			      <div class="lower"></div>
+			    </div>
+	  	</div>
+    </div>   
+    <div data-options="region:'south',split:true" style="height:60px;padding:10px;font-size:16px;text-align:center;">
+    	2018-2019 祁云贷，Powered by Maven and SSM or EasyUI.
+    </div> 
+    <div data-options="region:'west',title:'操作导航',split:true" style="width:180px;">
+    	<!--树节点栏-->
+    	<div id="ultt" class="easyui-accordion" data-options="fit:true,border:false,animate:true,lines:true">
+    		
+    	</div>
+    </div>   
+    <div data-options="region:'center'" style="padding:5px;background:#eee;width:500px;font-size:20px;">
+    	<div id="tabss">
+    		<div id="" title="首页" iconCls="icon-first_img" style="padding:0 10px;diaplay:block;font-size:18px;">
+    			<img alt="无图" src="img/index.png">
+    		</div>
+    	</div>
+    </div> 
+    <div data-options="region:'east',title:'个人信息',split:true" style="width:300px;">
+    		<div id="logoout" style="padding:10px;background:#eee;font-size:13px;text-align: center;">
+    			欢迎您,<font color="red" id="fu"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    			<a href="findpwd?loginname=exit">[退出]</a><br><br>
+    			 您上次访问时间为:<br><font color="blue" id="fd"></font> 
+    			<br><br>
+    			<div id='schedule-box' class="boxshaw">
+				</div>
+				<div>
+					<h3 id='h3Ele'></h3>
+				</div>
+    		</div>
+    </div>    
+</body>
+<script>
+$.ajax({
+	Type:"post",
+	url:"getUsername",
+	dataType:"json",
+	success:function(data){
+		$("#fu").empty();
+		$("#fu").text(data.username);
+	}
+});
+$.ajax({
+	Type:"post",
+	url:"findLT",
+	dataType:"json",
+	success:function(data){
+		$("#fd").empty();
+		$("#fd").text(data.ltdate);
+	}
+});
+//日历表
+var mySchedule = new Schedule({
+	el: '#schedule-box',
+	//date: '2018-9-20',
+	clickCb: function (y,m,d) {
+		document.querySelector('#h3Ele').innerHTML = '日期：'+y+'-'+m+'-'+d	
+	},
+	nextMonthCb: function (y,m,d) {
+		document.querySelector('#h3Ele').innerHTML = '日期：'+y+'-'+m+'-'+d	
+	},
+	nextYeayCb: function (y,m,d) {
+		document.querySelector('#h3Ele').innerHTML = '日期：'+y+'-'+m+'-'+d	
+	},
+	prevMonthCb: function (y,m,d) {
+		document.querySelector('#h3Ele').innerHTML = '日期：'+y+'-'+m+'-'+d	
+	},
+	prevYearCb: function (y,m,d) {
+		document.querySelector('#h3Ele').innerHTML = '日期：'+y+'-'+m+'-'+d	
+	}
+});
+
+//时间表
+//set 3d transforms
+TweenMax.set("#clock", {perspective:1500})
+TweenMax.set(".upper", {rotationX:0.01, transformOrigin:"50% 100%"})
+TweenMax.set(".lower", {rotationX:0.01, transformOrigin:"50% 0%"})
+
+// set clock
+var t, ss, mm, hh;
+setTimeVars();
+function setTimeVars(){
+  t = new Date();
+  t = new Date();
+	ss = String(t.getSeconds());
+  mm = String(t.getMinutes());
+  hh = String( (t.getHours()>24) ? t.getHours()-24 : t.getHours() );
+  if (ss.length==1) ss = "0"+ss;
+  if (mm.length==1) mm = "0"+mm;
+  if (hh.length==1) hh = "0"+hh;
+}
+
+h10.childNodes[3].innerHTML = h10.childNodes[7].innerHTML = "<span>"+Number(hh.substr(0,1))+"</span>";
+h0.childNodes[3].innerHTML = h0.childNodes[7].innerHTML = "<span>"+Number(String(hh).substr(1,1))+"</span>";
+
+m10.childNodes[3].innerHTML = m10.childNodes[7].innerHTML = "<span>"+Number(mm.substr(0,1))+"</span>";
+m0.childNodes[3].innerHTML = m0.childNodes[7].innerHTML = "<span>"+Number(mm.substr(1,1))+"</span>";
+
+s10.childNodes[3].innerHTML = s10.childNodes[7].innerHTML = "<span>"+Number(ss.substr(0,1))+"</span>";
+s0.childNodes[3].innerHTML = s0.childNodes[7].innerHTML = "<span>"+Number(ss.substr(1,1))+"</span>";
+
+
+// start ticking
+var interval = setInterval(function(){
+ 	setTimeVars();
+  
+  tick(s0, Number(ss.substr(1,1)) )
+  
+  if (ss.substr(1,1)=="9"){
+    tick(s10, Number(ss.substr(0,1)) ) 
+    if (ss=="59"){
+      tick(s10, 5, true)
+      tick(m0, Number(mm.substr(1,1)))
+      if (mm.substr(1,1)=="9"){
+        tick(m10, Number(mm.substr(0,1)))
+        if (mm=="59") {
+          tick(m10, 5, true)
+          tick(h0, Number(hh.substr(1,1)))
+          if (hh.substr(1,1)=="9") tick(h10, Number(hh.substr(0,1)))
+          if (hh=="12") {
+            tick(h0, Number(hh.substr(0,1)), true)
+            tick(h10, Number(hh.substr(1,1)), true)
+          }
+        }
+      }
+    }
+  }
+  
+}, 1000)
+
+function tick(mc,i, toZero=false){
+  // set numbers
+  mc.childNodes[3].innerHTML = "<span>"+i+"</span>"; //start upper
+  mc.childNodes[5].innerHTML = "<span>"+i+"</span>"; //start lower
+  if ( i==9 || toZero ) i=-1;
+  mc.childNodes[1].innerHTML = "<span>"+(i+1)+"</span>"; //end upper
+  mc.childNodes[7].innerHTML = "<span>"+(i+1)+"</span>"; //end lower
+  // animate tick
+  TweenMax.fromTo(mc.childNodes[1], .3, {alpha:0},{alpha:1, ease:Power4.easeIn})  
+  TweenMax.fromTo(mc.childNodes[3], .3, {rotationX:0, background:"linear-gradient(0deg, rgba(200,200,200,1), rgba(255,255,255,1) 15%)"},{rotationX:-90, ease:Power1.easeIn})
+  TweenMax.fromTo(mc.childNodes[7], .5+.2*Math.random(), {rotationX:90},{rotationX:0, ease:Bounce.easeOut, delay:.3})
+  TweenMax.fromTo(mc.childNodes[5], .6, {alpha:1},{alpha:0, ease:Bounce.easeOut, delay:.3})  
+}
+</script>
+</html>

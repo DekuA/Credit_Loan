@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>安全保障</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+	</head>
+	
+	<style>
+		
+		* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+}
+.header {
+    background-color:gray;
+    color: white;
+    text-align: center;
+    padding: 15px;
+}
+.footer {
+    background-color: whitesmoke;
+    color: white;
+    padding: 15px;
+}
+.topmenu {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:#007BFF;;
+}
+.topmenu li {
+    float: left;
+}
+.topmenu li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+.topmenu li a:hover {
+    background-color: #005CBF;
+}
+.topmenu li a.active {
+    color: white;
+    background-color: #005CBF;
+}
+
+.column {
+    float: left;
+    padding: 1px;
+
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.sidemenu {
+    width: 25%;
+    margin-top: 30px;
+    margin-left: 40px;
+}
+.content {
+    width: 70%;
+    margin-top: 30px;
+    margin-left: 0px;
+     
+}
+.accordion{
+	width: 15%;
+	
+}
+.sidemenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.sidemenu li a {
+    margin-bottom: 2px;
+    display: block;
+    padding: 8px;
+    background-color: gainsboro;
+    text-decoration: none;
+    color: #666;
+}
+.sidemenu li a:hover {
+    background-color: #555;
+    color: white;
+}
+#uu li a:hover {
+	color:#FD7E14;
+	} 
+.divcss5{
+	 color:whitesmoke;border:1px dashed gainsboro; height:0px;width:100%;background-color: whitesmoke;
+	}
+			
+
+	</style>
+	<body>        
+		<!--
+        	作者：offline
+        	时间：2019-04-27
+        	描述：顶部模拟框
+        -->
+		<div style="height: 40px; background-color: whitesmoke;">
+		              <div style="position: absolute;left:700px;" id="u">
+					  <ul class="nav">					  	
+						    <li class="nav-item">
+						     <a class="nav-link" href="#"> <font size="1">用户论坛</font></a>
+						    </li>
+						    <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">帮助中心</font></a>
+						    </li>
+						    <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">关于我们</font></a>
+						    </li>
+						    <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">人人学院</font></a>
+						    </li>
+						     <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">出借人教育</font></a>
+						    </li>
+						      <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">手机客户端口</font></a>
+						    </li>
+						    <li class="nav-item">
+						      &nbsp; &nbsp; 
+						    </li>
+						    <li class="nav-justified">
+						      <a class="nav-link" href="#u"><font size="1">我的账号</font></a>
+						    </li>
+						
+					  </ul>
+					  </div>
+				<div style="position: absolute;left: 40px;top:3px;">
+					<font size="1" >客服电话: 38383</font>			
+				</div>
+				 </div>
+				 <div class="divcss5"></div>
+				 <!--
+                 	作者：offline
+                 	时间：2019-04-27
+                 	描述：第二个div框
+                 -->
+				 	<div style="height: 80px; background-color: whitesmoke;">
+				 <div style="top: 45px; left: 80px;">
+					<ul class="nav">
+						<li class="nav-item">
+					      <img src="img/webwxgetmsgimg.jpg" style="height: 70px;width: 100px;border-radius: 50px;border: 1px solid white; margin-left: 40px;"/>
+					   </li>
+					    <li class="nav-item">
+					   <font size="4px" color="black" class="nav-link" style="margin-top: 10px;">湖南硅谷祁云信用网贷有限公司</font> 
+					  </li>
+                     </div>
+                     </ul>
+					 <div style="position: absolute;left: 1000px;top: 60px;" id="uu">	
+					<ul class="nav">
+					      <li class="nav-item">
+					      <a class="nav-link" href="#"><b>注册/登录</b></a>
+					    </li> &nbsp; &nbsp; 
+					     <li class="nav-item">
+					      <a class="nav-link" href="#"><font size="1">前往祁云贷首页</font></a>
+					    </li>
+					  </ul>
+				</div> 
+				</div>		
+<div style="height: 1750px; background-color:whitesmoke;">
+	<div>
+  <ul class="topmenu">
+  <li>&nbsp;&nbsp;<a href="#home">首页</a></li>
+  <li>&nbsp;&nbsp;<a href="#news">我要借款</a></li>
+   <li>&nbsp;&nbsp;<a href="#contact">我要借款/还款</a></li>
+    <li>&nbsp;&nbsp;<a href="#contact">信息披露</a></li>
+  <li>&nbsp;&nbsp;<a href="#contact">联系我们</a></li>
+  <li>&nbsp;&nbsp;<a href="#about">关于我们</a></li>
+</ul>
+</div>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+		
+  <div class="column sidemenu" style="border: 1px solid gainsboro; height: 1650px;">
+    <ul id="u">
+      <li><a href="#" onclick="data()">运营数据</a></li>
+      <li><a href="#" onclick="anquan()">安全保障</a></li>
+      <li><a href="#people"onclick="fengx()">风险提示</a></li>
+      <li><a href="#history">出借人教育</a></li>
+      <li><a href="#oceans">收费说明</a></li>
+      	<li><a href="#oceans">关于我们</a></li>
+      	<li><a href="#oceans">公司介绍</a></li>
+      	<li><a href="#oceans">公告新闻</a></li>
+      	<li><a href="#oceans">网站申明</a></li>
+      	
+    </ul>
+  </div>
+
+  <div id="div1" class="column content" style="height:1650px;border: 1px solid gainsboro; background-color: white;">
+  	<br>
+  	<div style="margin-left: 15px;">
+    &nbsp;&nbsp;<strong>资金管理</strong>
+          <hr><br>
+          <ul class="nav">
+          	<li>
+     <h4 style="font-size: 16px;color: #666;">投资人资金全额交由平安银行股份有限公司
+     	（简称“平安银行”）管理，平安银行为用户在存管银行开立存管账户，
+     	并根据合同核查每笔资金交易，实现投资人-平安银行-借款人资金闭环，资金安全系数高。</h4>
+     	
+     </li>
+     	</ul>
+     	</div>
+     <div style="margin-left: 10px;">
+     <ul class="nav">
+     	<li class="nav-item">
+     	<img src="img/niub.PNG"/><b>2019年7月30日：祁云信用与平安银行签署资金存管合作协议，开展资金存管业务合作</b>
+     	<br>&nbsp;&nbsp;&nbsp;&nbsp;<b>2019年12月13日：祁云信用网贷业务正式对接资金存管，实现用投资人资金全额银行监管</b>
+     	</li>	
+     </ul>
+     </div>
+     <div>
+     	<img src="img/uuuu.PNG"/>
+     	
+     </div>
+     <br>
+     <div style="margin-left:10px ;">
+     	 &nbsp;&nbsp;<strong>信息安全</strong>
+          <hr>
+          <strong>祁云信用信息安全概况</strong><br>
+     	<img src="img/bbbb.PNG"/><br><br><br>
+     	<h3 style="font-size: 15px;color: #666;">祁云信用贷通过公安部国家信息系统安全保护等级三级认证，查看<a href="">信息安全等级报告审核回执</a></h3>
+     	
+     </div><br>
+        <div style="margin-left:10px ;">
+        	 &nbsp;&nbsp;<strong>风险控制</strong>
+          <hr>
+          <strong>陆金服风控流程</strong><br><br>
+     	
+     	<img src="img/yyy.PNG"/>
+     <strong>风险预警管理</strong><br>
+    <h3 style="font-size: 15px;color: #666;">我们对借款项目进行了风险测评，并在平台上进行了充分的风险提示。同时，我们也将按照监管要求对项目信息和借款人信息及时进行披露</h3><br>
+     	<br><strong>贷后管理流程</strong><br>
+     	<h3 style="font-size: 15px;color: #666;">贷后管理是指从借贷行为发生后直到本息收回或借贷行为结束的全过程中的各项管理与服务活动，是风险管理的最终环节。</h3>
+     	
+     </div><br>
+     <div style="margin-left:10px;">
+     	<img src="img/aaa.PNG"/><br><br>
+     	<h3 style="font-size: 15px;color: #666;">祁云的贷后管理系统会根据各渠道、地区及账龄情况统一调配催收资源，
+     		妥善执行催收工作，避免形成不良资产。对于通过常规催收流程仍然不能实现有效回款的情况，我们将通过采取司法诉讼的方式进行债权回收</h3>
+     	
+     </div>   
+</div>
+  <div id="div2" class="column content" style="height:800px;display:none; pborder: 1px solid gainsboro; background-color: white;">
+  	<br><br>
+  	<ul>
+  		<li>
+  			<font size="2">2019年03月数据</font><hr>
+  		</li>
+  		<li>
+  			<font size="2">2019年02月数据</font><hr>
+  		</li>
+  		<li>
+  			<font size="2">2019年01月数据</font><hr>
+  		</li>
+  		<li>
+  			<font size="2">2018年12月数据</font><hr>
+  		</li>
+  		<li>
+  			<font size="2">2018年11月数据</font><hr>
+  		</li>
+  		<li>
+  			<font size="2">2018年10月数据</font><hr>
+  		</li>
+  		<li>
+  			<font size="2">2018年9月数据</font><hr>
+  		</li>
+  		<li>
+  			<font size="2">2018年8月数据</font><hr>
+  		</li>
+  		<li>
+  			<font size="2">2018年7月数据</font><hr>
+  		</li>
+  		<li>
+  			<font size="2">2018年6月数据</font><hr>
+  		</li>
+  		<li>
+  			<font size="2">2018年5月数据</font><hr>
+  		</li>
+  		
+  	</ul>
+</div>
+<div id="div3"class="column content" style=" display:none;height:1000px;border: 1px solid gainsboro; background-color: white;">
+  	<div style="margin-left: 10px;"><br><br>
+  	<ul>
+  		<li>
+  			<font size="3" color="gray"><strong>风险揭示书</strong></font><hr>
+  		</li>
+  		<li>
+  			<font size="3" color="#666666">上海陆金所互联网金融信息服务有限公司(以下简称“陆金服”)于其网站和APP客户端平台上向出借人和借款人提供的网络借贷信息中介服务。以下主要风险揭示内容请陆金服用户详细阅读，在充分了解并清楚知晓网络借贷相关法律规定、行业风险的基础上，通过理性判断自主参与交易，并自愿承担相关风险。</font>
+  		</li><br>
+  		<li>
+  			<font size="3" color="gray"><strong>一、政策风险</strong></font>
+  		</li><br>
+  		<li>
+        <font size="3" color="#666666">网络借贷所属行业是基于当前的国家宏观政策及相关法律法规设计，因国家宏观政策和相关法律法规发生变化，影响网络借贷服务的正常提供.</font>
+       </li><br>
+          <li>
+          <font size="3" color="gray"><strong>二、信用风险</strong></font>
+            </li><br>
+            <li>
+            	<font size="3" color="#666666">网络借贷中介机构不对融资项目本金和收益提供任何保证或承诺。在发生最不利情况下（可能但并不一定发生），可能不利于用户实现项目收益甚至本金遭受损失</font>
+            	
+            </li>
+            <li>	
+            	 <font size="3" color="gray"><strong>三、市场风险</strong></font>
+            </li><br>
+            <li>
+            	<font size="3" color="#666666">由于市场供求关系、利率变动、资产价值波动等不确定的未来市场变化，在发生最不利情况下（可能但并不一定发生），可能不利于陆金服用户实现期望收益甚至本金遭受损失</font>
+            	
+            </li><br>
+             <li>	
+            	 <font size="3" color="gray"><strong>四、不可抗力风险</strong></font>
+            </li><br>
+               <li>
+            	<font size="3" color="#666666">发生不可预测或无法控制的系统故障、设备故障、通讯故障、停电等突发事故，或发生自然灾害、战争、恐怖袭击或其他无法控制的事件，陆金服用户有可能遭受损失</font>
+            	
+            </li><br>
+            <li>	
+            	 <font size="3" color="gray"><strong>※ 以上并不能揭示“网贷行业”的全部风险及市场的全部情形</strong></font>
+            </li>
+            <li>	
+            	 <font size="3" color="gray"><strong>四、不可抗力风险</strong></font>
+            </li><br><hr>
+             <li>	
+            	 <font size="3" color="gray"><strong>网络借贷信息中介机构禁止性行为揭示书</strong></font>
+            </li>
+               <li>
+            	<font size="3" color="#666666">根据《网络借贷信息中介机构业务活动管理暂行办法》及相关法律法规，网络借贷信息中介机构不得从事或者接受委托从事下列活动：</font>
+            	
+            </li>
+                <li>
+            	<font size="2" color="#666666">（一）为自身或变相为自身融资；</font>	
+            </li>
+            <li>
+            	<font size="2" color="#666666">（二）直接或间接接受、归集出借人的资金；</font>	
+            </li>
+             <li>
+            	<font size="2" color="#666666">（三）直接或变相向出借人提供担保或者承诺保本保息；</font>	
+            </li>
+             <li>
+            	<font size="2" color="#666666">（四）自行或委托、授权第三方在互联网、固定电话、移动电话等电子渠道以外的物理场所进行宣传或推介融资项目；</font>	
+            </li>
+             <li>
+            	<font size="2" color="#666666">（五）发放贷款，但法律法规另有规定的除外；</font>	
+            </li>
+             <li>
+            	<font size="2" color="#666666">（六）将融资项目的期限进行拆分；</font>	
+            </li>
+             <li>
+            	<font size="2" color="#666666">（七）自行发售理财等金融产品募集资金，代销银行理财、券商资管、基金、保险或信托产品等金融产品；</font>	
+            </li>
+             <li>
+            	<font size="2" color="#666666">（八）开展类资产证券化业务或实现以打包资产、证券化资产、信托资产、基金份额等形式的债权转让行为；</font>	
+            </li>
+             <li>
+            	<font size="2" color="#666666">（九）除法律法规和网络借贷有关监管规定允许外，与其他机构投资、代理销售、经纪等业务进行任何形式的混合、捆绑、代理；</font>	
+            </li>
+             <li>
+            	<font size="2" color="#666666">（十）虚构、夸大融资项目的真实性、收益前景，隐瞒融资项目的瑕疵及风险，以歧义性语言或其他欺骗性手段等进行虚假片面宣传或促销等，捏造、散布虚假信息或不完整信息损害他人商业信誉，误导出借人或借款人；</font>	
+            </li>
+             <li>
+            	<font size="2" color="#666666">（十一）向借款用途为投资股票、场外配资、期货合约、结构化产品及其他衍生品等高风险的融资提供信息中介服务；</font>	
+            </li>
+             <li>
+            	<font size="2px" color="#666666">（十二）从事股权众筹等业务；</font>	
+            </li>
+            <li>
+            	<font size="2" color="#666666">（十三）法律法规、网络借贷有关监管规定禁止的其他活动。</font>	
+            </li>
+  	</ul>
+  	</div>
+</div>
+
+
+
+
+</div>
+     
+       <div style="background-color: gainsboro; height: 100px;" align="center">
+       	<br>
+       	<font size="1">
+       	 	湖南祁云互联网金融信息服务有限公司官方网站长沙市岳麓区陆家嘴环路1333号14楼10单元沪ICP备15024582号</font>
+       </div>
+					
+	
+	
+<script type="text/javascript">
+function data(){
+	$("#div1").css("display","inline");
+	$("#div2").css("display","none");
+	$("#div3").css("display","none");
+
+}
+function anquan(){
+	$("#div2").css("display","inline");
+	$("#div1").css("display","none");
+	$("#div3").css("display","none");
+	
+}
+function fengx(){
+	$("#div2").css("display","none");
+	$("#div1").css("display","none");
+	$("#div3").css("display","inline");
+	
+}
+	
+	
+		
+	</script>
+</body>
+</html>

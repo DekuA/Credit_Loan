@@ -30,9 +30,10 @@ public class UserinfoController {
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);
-            System.out.println(subject.getPrincipal());
-            session.setAttribute("user", subject.getPrincipal());
+            session.setAttribute("user", user.getPhone());
             service.UserTime(user.getPhone());
+            userinfo userEntry = service.UserEntry(user.getPhone());
+            service.charukuhuxinxi(userEntry.getUserid());
             return 1;
         } catch (Exception e) {
            e.printStackTrace();

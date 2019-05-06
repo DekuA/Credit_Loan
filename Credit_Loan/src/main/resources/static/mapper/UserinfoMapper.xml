@@ -14,4 +14,7 @@
   	<insert id="UserTime" parameterType="String">
   		insert into scshijian(Phone) values(#{phone})
   	</insert>
+  	<insert id="charukuhuxinxi" parameterType="int">
+  		insert into customer(userid,custometype) values(#{userid},'个人')
+  	</insert>
 </mapper>

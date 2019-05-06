@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+		<link rel="stylesheet" href="../css_xsr/bootstrap.min.css" />
+		<script type="text/javascript" src="../js_xsr/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap-paginator.js"></script>
+			<style>
+				td{
+					text-align: center;
+					width: 300px;
+				}
+				#tdt1{
+					text-align: left;
+				}
+				#tdt2{
+					text-align: right;
+				}
+			</style>
+	<body>
+		<div class='container'>
+					<div style='top: 5px;position: absolute;'>
+						<img style='width: 150px;height: 150px;' src="../img_xsr/kefu.jpg" />
+					</div>
+					<div  style='top: 70px;position: absolute;left: 250px;'>
+						昵称：<font id='nicheng' color="blue">手机号码</font>
+					</div>
+				</div>
+				<!--具体信息 table-->
+				<div class='container' style='width: 100%;height: 400px;top: 160px;position: relative;'>
+					    <table>
+					    	<tr>
+					    		<td id='tdt1'>
+					    			实名认证<br>
+					    			<font size='3' color='gray' >账户更安全出借更放心</font>
+					    		</td>
+					    		<td ><font id='renzheng' color='gray'>认证</font></td>
+					    		<td id='tdt2'><font id='renzhengqueding'><a href='#'>立即认证</a></font></td>				    		
+					    	</tr>
+					    	<tr>
+					    		<td colspan='3'><hr /></td>
+					    	</tr>
+					    	
+					    	<tr>
+					    		<td id='tdt1'>
+					    			绑定手机<br>
+					    			<font size='3' color='gray' >账户更安全出借更放心</font>
+					    		</td>
+					    		<td ><font id='phone' color='gray'>手机号码</font></td>
+					    		<td id='tdt2'><font id='bdsj' color="gray"></font></td>				    		
+					    	</tr>
+					    	<tr>
+					    		<td colspan='3'><hr /></td>
+					    	</tr>
+					    	
+					    	<tr>
+					    		<td id='tdt1'>
+					    			绑定邮箱<br>
+					    			<font size='3' color='gray' >及时获取账户资金变动通知和出借讯息</font>
+					    		</td>
+					    		<td ><font id='youxiang' color='gray'>未绑定</font></td>
+					    		<td id='tdt2'><font id='bangyou' ><a href='#'>立即绑定</a></font></td>				    		
+					    	</tr>
+					    	<tr>
+					    		<td colspan='3'><hr /></td>
+					    	</tr>
+					    	
+					    	<tr>
+					    		<td id='tdt1'>
+					    			登录密码<br>
+					    			<font size='3' color='gray' >账户密码登录时需要填写</font>
+					    		</td>
+					    		<td ><font id='logintime' color='gray'>上次登录时间</font></td>
+					    		<td id='tdt2'><a href='#'>修改</a></td>				    		
+					    	</tr>
+					    	<tr>
+					    		<td colspan='3'><hr /></td>
+					    	</tr>
+					    	
+					    	<tr>
+					    		<td id='tdt1'>
+					    			信用评级<br>
+					    			<font size='3' color='gray' >对您的信用进行评分</font>
+					    		</td>
+					    		<td ><font id='fenshu' color='gray'>400分</font></td>
+					    		<td id='tdt2'><font size='3' color='gray' >每月1日进行一次评分</font></td>				    		
+					    	</tr>
+					    </table>
+				</div>
+	</body>
+	<script>
+		$.ajax({
+			url:"http:///127.0.0.1:8080/zhanghu_xsr",
+			data:{
+				
+			},
+			dataType : "json",
+			success:function(da){
+				$("#nicheng").html(da.userinfo_xsr.nickname);
+				if(da.userinfo_xsr.idnumber!=null){
+						var name = da.userinfo_xsr.username;
+						var le = name.length;
+						if(le==2){
+							name=name.substring(0,1)+"*";
+						}else{
+							name=name.substring(0,1)+"**";
+						}
+						$("#renzheng").html(name);
+						$("#renzhengqueding").html("已认证");
+						$("#renzhengqueding").css("color","gray");
+				}else{
+						$("#renzheng").html("未认证");
+						$("#renzhengqueding").html("<a href='../../xsr_renzheng.html' target='_self' >立即认证</a>");
+				}
+				var phone = da.userinfo_xsr.phone
+				phone = phone.substring(0,3)+"****"+phone.substring(7);
+				$("#phone").html(phone);
+				$("#bdsj").html("已绑定");
+				$("#logintime").html("上次登录时间:"+da.logintime_xsr);
+				$("#fenshu").html(da.customer_xsr.creditrate+"分");
+				
+				var youxiang = da.customer_xsr.email;
+				if(youxiang!=null){
+					$("#youxiang").html(youxiang);
+					$("#bangyou").html("已绑定")
+					$("#bangyou").css("color","gray");
+				}else{
+					$("#youxiang").html("未绑定");
+					$("#bangyou").html("<a href='#'>立即绑定</a>");
+				}
+				
+			}
+		});
+	</script>
+</html>

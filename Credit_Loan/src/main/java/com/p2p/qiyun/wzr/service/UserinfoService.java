@@ -13,4 +13,6 @@ public interface UserinfoService {
 	int UserCode(userinfo user);
 	
 	int UserTime(String phone);
+	
+	int charukuhuxinxi(int userid);
 }

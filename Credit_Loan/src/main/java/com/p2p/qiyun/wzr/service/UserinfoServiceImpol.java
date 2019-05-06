@@ -36,4 +36,10 @@ public class UserinfoServiceImpol implements UserinfoService {
 		return time;
 	}
 
+	@Override
+	public int charukuhuxinxi(int userid) {
+		int charukuhuxinxi = Mapper.charukuhuxinxi(userid);
+		return charukuhuxinxi;
+	}
+
 }

@@ -16,4 +16,6 @@ public interface UserinfoMapper {
 	int UserCode(userinfo user);
 	//登录成功之后添加当前时间
 	int UserTime(String phone);
+	//注册成功插入客户信息表
+	int charukuhuxinxi(int userid);
 }

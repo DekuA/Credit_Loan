@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.wzr.dao.UserinfoMapper" >
+  	<select id="UserEntry" parameterType="String" resultType="com.p2p.qiyun.wzr.domain.userinfo">
+  		select * from userinfo where Phone=#{phone}
+  	</select>
+  	<insert id="UserEnroll" parameterType="com.p2p.qiyun.wzr.domain.userinfo">
+  		insert into userinfo(nickname,username,idnumber,Phone,password) 
+  		values(#{nickname},#{username},#{idnumber},#{Phone},#{password})
+  	</insert>
+  	<select id="UserCode" parameterType="com.p2p.qiyun.wzr.domain.userinfo" resultType="int">
+  		select count(*) from userinfo where Phone=#{Phone}
+  	</select>
+  	<insert id="UserTime" parameterType="String">
+  		insert into scshijian(Phone) values(#{phone})
+  	</insert>
+</mapper>

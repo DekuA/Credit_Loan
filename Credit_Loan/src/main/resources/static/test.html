@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+		<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script src="locale/easyui-lang-zh_CN.js"></script>
+		<link rel="stylesheet" href="themes/icon.css" />
+		<link rel="stylesheet" href="themes/default/easyui.css" />
+</head>
+<body>
+	<a href="javascript:logout()">退出</a>
+</body>
+<script type="text/javascript">
+	function logout(){
+		$.ajax({
+			url:"logout",
+			success:function(data){
+				if(data>0){
+					location.href="login.html";
+				}
+			}
+		});
+	}
+</script>
+</html>

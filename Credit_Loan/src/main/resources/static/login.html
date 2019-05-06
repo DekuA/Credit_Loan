@@ -81,7 +81,7 @@
 						<input type="button" style="border: #00EE00;border-radius:4px;;font-size:12px;position:relative;top:-10px;text-decoration:none;background-color:#1AA034;color:white;width:105px;height:50px;text-indent:0.8rem;"
 						 onclick="settime(this)" value="获取验证码" />
 					</div>
-					<div id="zhucediv3" style="position: absolute;top: 268px;right: 14.8rem;display: flex;font-size: 5px;color:#FF8133;">
+					<div id="zhucediv3" style="position: absolute;top: 268px;right: 13.4rem;display: flex;font-size: 5px;color:#FF8133;">
 							
 					</div>
 					<div style="position: absolute;top: 9rem;right: 3.5rem;display: flex;">
@@ -132,13 +132,27 @@
 			$("#zhucediv2").empty();
 		}
 
+		var b = 0;
 		function blur1() {
 			var phone = $("#zhuceuser").val();
 			if (/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(phone)) {
-				//$.ajax
-				//alert("12345678")
+				$.ajax({
+					url:"usercode",
+					data:{
+						Phone:phone
+					},
+					success:function(date){
+						if(date>0){
+							b = date;
+							$("#zhucediv1").show();
+							$("#zhucediv1").empty();
+							$("#zhucediv1").append("该手机号已注册!");
+						}
+					}
+				});
 			} else {
 				$("#zhucediv1").show();
+				$("#zhucediv1").empty();
 				$("#zhucediv1").append("请输入正确的号码");
 			}
 		}
@@ -178,6 +192,7 @@
 						var t = Math.floor(Math.random() * 10);
 						m += t;
 					}
+					alert(m);
 				}
 				if (countdown == 0) {
 					val.removeAttribute("disabled");
@@ -203,22 +218,21 @@
 			var pwd = $("#password").val();
 			if (/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(user)) {
 				if (pwd.length > 0) {
-					alert("123456")
-					/*$.ajax({
-						url:"login.do",
+					$.ajax({
+						url:"userentry",
 						data:{
-							"sname":user,
-							"spwd":pwd
+							Phone:user,
+							password:pwd
 						},
 						success:function(date){
 							if(date>0){
 								alert("登录成功！");
-								location.href="index.jsp";
+								location.href="test.html";
 							}else{
 								alert("您的账号或密码不正确!");
 							}
 						}
-					});*/
+					});
 				} else {
 					$(".denglupassword").show();
 					$(".denglupassword").append("请输入密码");
@@ -248,22 +262,40 @@
 			var pwd = $("#zhucepassword").val();
 			var yanzheng = $("#zhuceyanzheng").val();
 			if (/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(phone)) {
-				if (/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/.test(pwd) || pwd.length > 0) {
-					$("#zhucediv2").empty();
-					if (yanzheng.length > 0) {
-						if (yanzheng == m) {
-							//$.ajax();
-							alert("11111");
+				if(b>0){
+					$("#zhucediv1").show();
+					$("#zhucediv1").empty();
+					$("#zhucediv1").append("该手机号已注册!");
+				}else{
+					if (/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/.test(pwd) || pwd.length > 0) {
+						$("#zhucediv2").empty();
+						if (yanzheng.length > 0) {
+							if (yanzheng == m) {
+								$.ajax({
+									url:"userenroll",
+									data:{
+										Phone:phone,
+										password:pwd
+									},
+									success:function(data){
+										alert("啊啊啊啊啊啊啊啊啊");
+									}
+								});
+							}else{
+								$("#zhucediv3").show();
+								$("#zhucediv3").empty();
+								$("#zhucediv3").append("验证码输入有误！");
+							}
+						} else {
+							$("#zhucediv3").show();
+							$("#zhucediv3").empty();
+							$("#zhucediv3").append("验证码输入有误！");
 						}
 					} else {
-						$("#zhucediv3").show();
-						$("#zhucediv3").empty();
-						$("#zhucediv3").append("验证码输入有误！");
+						$("#zhucediv2").show();
+						$("#zhucediv2").empty();
+						$("#zhucediv2").append("密码格式不正确");
 					}
-				} else {
-					$("#zhucediv2").show();
-					$("#zhucediv2").empty();
-					$("#zhucediv2").append("密码格式不正确");
 				}
 			} else {
 				$("#zhucediv1").show();

@@ -278,7 +278,11 @@
 										password:pwd
 									},
 									success:function(data){
-										alert("啊啊啊啊啊啊啊啊啊");
+										if(data>0){
+											location.href="test.html";
+										}else{
+											alert("注册失败!!!");
+										}
 									}
 								});
 							}else{

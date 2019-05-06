@@ -1,3 +1,4 @@
+$(function(){});
 function touzi(){
 	$(".right-box-touzi").css("display","block");
 	$(".right-box-shouye").css("display","none");

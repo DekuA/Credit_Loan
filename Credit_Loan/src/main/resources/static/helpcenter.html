@@ -24,6 +24,7 @@
 		<!-- Nav tabs -->
 		<ul
 			class="nav nav-tabs"
+			id="uls"
 			role="tablist">
 			<li class="nav-item"><a
 				id="a1"
@@ -65,6 +66,31 @@
 				class="nav-link text-info"
 				data-toggle="tab"
 				href="#home8"></a></li>
+			<li class="nav-item "><a
+				id="a9"
+				class="nav-link text-info"
+				data-toggle="tab"
+				href="#home9"></a></li>
+			<li class="nav-item "><a
+				id="a10"
+				class="nav-link text-info"
+				data-toggle="tab"
+				href="#home10"></a></li>
+			<li class="nav-item "><a
+				id="a11"
+				class="nav-link text-info"
+				data-toggle="tab"
+				href="#home11"></a></li>
+			<li class="nav-item "><a
+				id="a12"
+				class="nav-link text-info"
+				data-toggle="tab"
+				href="#home12"></a></li>
+			<li class="nav-item "><a
+				id="a13"
+				class="nav-link text-info"
+				data-toggle="tab"
+				href="#home13"></a></li>
 		</ul>
 
 		<div class="tab-content">
@@ -93,6 +119,21 @@
 			<div
 				id="home8"
 				class="container tab-pane fade"></div>
+			<div
+				id="home9"
+				class="container tab-pane fade"></div>
+			<div
+				id="home10"
+				class="container tab-pane fade"></div>
+			<div
+				id="home11"
+				class="container tab-pane fade"></div>
+			<div
+				id="home12"
+				class="container tab-pane fade"></div>
+			<div
+				id="home13"
+				class="container tab-pane fade"></div>
 
 		</div>
 	</div>
@@ -113,7 +154,7 @@
 				}
 
 			})
-			for (var y = 1; y < 9; y++) {
+			for (var y = 1; y < 14; y++) {
 				creatediv(y);
 			}
 
@@ -139,8 +180,8 @@
 								div.attr('data-target', '#' + y + 'di'
 										+ (i + 1));
 
-								div.html('<br><font size="3" face="华文细黑">'
-										+ (i+1)+'.'+data[i].qQuestion + '</font>');
+								div.html('<br><font size="2">' + (i + 1) + '.'
+										+ data[i].qQuestion + '</font>');
 
 								$("#home" + y).append(div);
 								var div1 = $("<div>");

@@ -24,15 +24,13 @@ private QuestionMapper qu;
 			QuestionTypeExample example=new QuestionTypeExample();
 			List<QuestionType> selectByExample = ques.selectByExample(example);
 			return selectByExample;
-			
-		
 	}
 
 	@Override
 	public List<Question> Selquestion(int qTId) {
 		// TODO Auto-generated method stub
 		List<Question> selquestion = qu.Selquestion(qTId);
-		return selquestion;
-	}
+		return selquestion;  
+	} 
 	
 }

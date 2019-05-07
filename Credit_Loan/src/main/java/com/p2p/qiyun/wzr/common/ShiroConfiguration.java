@@ -82,7 +82,9 @@ public class ShiroConfiguration {
         map.put("/login.html", "anon");
         map.put("/userentry","anon");
         map.put("/loginout","logout");
-		//授权过滤器
+        map.put("/usercode", "anon");
+        map.put("/userenroll", "anon");
+        //授权过滤器
 		//注意：当前授权拦截后，shiro会自动跳转到未授权页面
 		/*filterMap.put("/add", "perms[user:add]");
 		filterMap.put("/update", "perms[user:update]");*/

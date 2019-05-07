@@ -67,19 +67,9 @@
   <sql id="Base_Column_List" >
     roleid, rolename, rolecreatedate
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.p2p.qiyun.dyj.pojo.RoleExample" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from role
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.p2p.qiyun.dyj.pojo.RoleQueryVO" >
+    select * from role LIMIT #{pageNum},#{maxPage}
+        
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -128,11 +118,14 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.p2p.qiyun.dyj.pojo.RoleExample" resultType="java.lang.Integer" >
+  <insert id="addRole" parameterType="String">
+  	insert into role (rolename, rolecreatedate
+      )
+    values ( #{rolename,jdbcType=VARCHAR}, now()
+      )
+  </insert>
+  <select id="countByExample" parameterType="com.p2p.qiyun.dyj.pojo.RoleQueryVO" resultType="java.lang.Integer" >
     select count(*) from role
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map" >
     update role

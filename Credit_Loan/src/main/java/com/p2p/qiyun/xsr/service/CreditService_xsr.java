@@ -12,4 +12,8 @@ public interface CreditService_xsr {
 	int shimingrz(userinfo info);
 	int delecus(int id);
 	int bangyou(customer cus);
+	int xiumi(userinfo info);
+	customer kehuxinxi22(int id);
+	int bangyin(customer cus);
+	int xiuxinyongfen(customer cus);
 }

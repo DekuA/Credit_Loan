@@ -4,14 +4,14 @@
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
-	<link rel="stylesheet" href="../css_xsr/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css_xsr/bootstrap.min.css" />
 		<script type="text/javascript" src="../js_xsr/jquery-3.3.1.js"></script>
 		<script type="text/javascript" src="../js_xsr/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../js_xsr/bootstrap-paginator.js"></script>
 	<body>
 		<div class="container" style="position: relative;top: 20px;">
 			
-				<div style="width: 290px;height: 150px;border-radius: 10px;background-color: gainsboro;">
+				<div id='bangka' style="width: 290px;height: 150px;border-radius: 10px;background-color: gainsboro;">
 					<a href="javascript::" onclick="tianyin()">
 					<div style="position: absolute;height: 100px;width: 15px;border-radius: 10px;left: 150px;top: 25px;background-color: gray;">
 						
@@ -25,8 +25,41 @@
 		</div>
 	</body>
 	<script>
+		 $.ajax({
+			url:"../../../chayin_xsr",
+			data:{
+				
+			},
+			dataType : "json",
+			success:function(da){		
+				if(da.bankid != null){
+					var numid = da.bankid;
+					var d="";
+					var a=4;
+					for(i=0;i<5;i++){
+						d += numid.substring(a*(i),a*(i+1))+" ";
+					}
+					$("#bangka").html("<div class='container' align='right' style='position:relative;top: 10px;width: 80%;'><b id='yinname'>"+da.bankname+"</b></div><div class='container' align='right' style='position:relative;top: 80px;width: 80%;'><b id='yinid'>"+d+"</b></div>");
+					$("#bangka").css("background-color","burlywood");
+				}
+			}
+		}) 
 		function tianyin(){
-			alert(21)
+			 
+			 $.ajax({
+					url:"../../../panduan_xsr",
+					data:{
+						
+					},
+					dataType : "text",
+					success:function(da){	
+						if(da=="0"){
+							alert("请先实名认证");
+						}else{
+							 window.location.href="../../xsr_bangyin.html";
+						}
+					}
+				}) 	
 		}
 	</script>
 </html>

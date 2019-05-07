@@ -1,6 +1,11 @@
 package com.p2p.qiyun.wzr.web;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,6 +19,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.p2p.qiyun.wzr.common.cn.com.webxml.ArrayOfString;
+import com.p2p.qiyun.wzr.common.cn.com.webxml.WeatherWSSoap;
+import com.p2p.qiyun.wzr.common.cn.com.webxml.GetRegionDatasetResponse.GetRegionDatasetResult;
+import com.p2p.qiyun.wzr.common.cn.com.webxml.GetSupportCityDatasetResponse.GetSupportCityDatasetResult;
+import com.p2p.qiyun.wzr.common.cn.com.webxml.WeatherWS;
 import com.p2p.qiyun.wzr.domain.userinfo;
 import com.p2p.qiyun.wzr.service.UserinfoService;
 
@@ -31,7 +41,7 @@ public class UserinfoController {
         try {
             subject.login(token);
             System.out.println(subject.getPrincipal());
-            session.setAttribute("user", subject.getPrincipal());
+            session.setAttribute("user", user.getPhone());
             service.UserTime(user.getPhone());
             return 1;
         } catch (Exception e) {
@@ -67,5 +77,17 @@ public class UserinfoController {
 	public int logout(HttpServletResponse response,HttpSession session){
 		session.removeAttribute("user");
 		return 1;
+	}
+	@RequestMapping("getcity")
+	public Map getcity() throws Exception{
+		WeatherWS ws = new WeatherWS();
+		WeatherWSSoap soap = ws.getWeatherWSSoap();
+		ArrayOfString weather = soap.getWeather("长沙", null);
+		List<String> list = weather.getString();
+		Map map = new HashMap<>();
+		map.put("test1", list.get(0));
+		map.put("test2", list.get(7));
+		map.put("test3", list.get(8));
+		return map;
 	}
 }

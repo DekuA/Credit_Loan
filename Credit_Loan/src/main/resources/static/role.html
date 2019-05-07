@@ -29,9 +29,9 @@
 	</p>
 </form>
 <form id="manage_edit1" style="margin:0;padding:5px 0 0 25px;color:#333;">
-	<p>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:<input readonly="readonly" name="id" id="id" class="textbox" style="width:200px;"></p>
+	<p>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:<input readonly="readonly" name="roleid" id="roleid" class="textbox" style="width:200px;"></p>
 	<p>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:<input type="text" id="rolename" name="rolename" class="textbox" style="width:200px;"></p>
-	<p>注册时间：<input id="createDate" type="text" readonly="readonly" name="createDate" style="width:205px;" /></p>
+	<p>注册时间：<input id="rolecreatedate" type="text" readonly="readonly" name="rolecreatedate" style="width:205px;" /></p>
 </form>
 <style>
 	.dialog-button {
@@ -61,7 +61,7 @@
 									url: "showRoleById",
 									async: true,
 									data: {
-										id: rows[0].id,
+										roleid: rows[0].roleid,
 									},
 									beforeSend: function() {
 										$.messager.progress({
@@ -71,9 +71,9 @@
 									success: function(data) {
 										$.messager.progress('close');
 										$('#manage_edit1').form('load', {
-											id: data.id,
+											roleid: data.roleid,
 											rolename: data.rolename,
-											createDate: data.createdate,
+											rolecreatedate: data.rolecreatedate,
 										}).dialog('open');
 
 									},
@@ -105,7 +105,7 @@
 										if(flag) {
 											var ids = [];
 											for(var i = 0; i < rows.length; i++) {
-												ids.push(rows[i].id);
+												ids.push(rows[i].roleid);
 											}
 											$.ajax({
 												type: "post",
@@ -286,10 +286,10 @@
 				text: '提交',
 				handler: function() {
 					$.ajax({
-						url: "updateRole.do",
+						url: "updateRole",
 						type: "post",
 						data: {
-							id: $('#id').val(),
+							roleid: $('#roleid').val(),
 							rolename: $('#rolename').val(),
 						},
 						beforeSend: function() {

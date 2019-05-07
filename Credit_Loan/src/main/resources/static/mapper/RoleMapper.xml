@@ -167,8 +167,8 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.p2p.qiyun.dyj.pojo.Role" >
     update role
-    set rolename = #{rolename,jdbcType=VARCHAR},
-      rolecreatedate = #{rolecreatedate,jdbcType=VARCHAR}
+    set rolename = #{rolename,jdbcType=VARCHAR}<!-- ,
+      rolecreatedate = #{rolecreatedate,jdbcType=VARCHAR} -->
     where roleid = #{roleid,jdbcType=INTEGER}
   </update>
 </mapper>

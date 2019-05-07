@@ -33,4 +33,14 @@ public class RoleController {
 		int addRole = rs.addRole(rolename);
 		return addRole;
 	}
+	@RequestMapping("/updateRole")
+	public int updateRole(Role r){
+		int count = rs.updateRole(r);
+		return count;
+	}
+	@RequestMapping("/showRoleById")
+	public Role showRoleById(int roleid){
+		Role roleById = rs.showRoleById(roleid);
+		return roleById;
+	}
 }

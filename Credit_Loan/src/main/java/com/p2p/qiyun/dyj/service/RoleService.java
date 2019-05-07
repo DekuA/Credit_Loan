@@ -25,4 +25,12 @@ public class RoleService {
 		int addRole = mapper.addRole(rolename);
 		return addRole;
 	}
+	public int updateRole(Role r){
+		int count = mapper.updateByPrimaryKey(r);
+		return count;
+	}
+	public Role showRoleById(int roleid){
+		Role r = mapper.selectByPrimaryKey(roleid);
+		return r;
+	}
 }

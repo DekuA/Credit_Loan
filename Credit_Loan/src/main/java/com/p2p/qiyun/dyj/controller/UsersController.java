@@ -54,4 +54,9 @@ public class UsersController {
 		subject.logout();
 		return "lg.html";
 	}
+	@RequestMapping("/showDeptByDid")
+	public int showDeptByDid(int[] idlist){
+		int showDeptByDid = us.showDeptByDid(idlist);
+		return showDeptByDid;
+	}
 }

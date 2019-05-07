@@ -15,11 +15,11 @@
 </table> 
 <form id="manage_add" style="margin: 0;padding: 5px 0 0 25px;color:#333;font-size: 20px;">
 	<p>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:
-		<input type="text" name="username" class="textbox" style="width: 200px;height: 30px;"/>
+		<input type="text" name="deptname" class="textbox" style="width: 200px;height: 30px;"/>
 	</p>
 </form>
 <form id="manage_edit" style="margin:0;padding:5px 0 0 25px;color:#333;">
-	<p>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:<input readonly="readonly" id="id" name="id" class="textbox" style="width:200px;"></p>
+	<p>编&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号:<input readonly="readonly" id="deptid" name="deptid" class="textbox" style="width:200px;"></p>
 	<p>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:<input type="text" id="dname" name="dname" class="textbox" style="width:200px;"></p>
 </form>
 <style>
@@ -32,7 +32,7 @@
 				$('#dg').datagrid({  
 					//fit:true,
 					fitColumns:true,
-				    url:"findDepartment.do",   
+				    url:"findDepartment",   
 				    //title:"<div align='center'>新闻</div>",
 				    width:'auto',
 				    height:430,
@@ -46,10 +46,10 @@
 							} else if(rows.length == 1) {
 								$.ajax({
 									type: "post",
-									url: "showById.do",
+									url: "showByDid",
 									async: true,
 									data: {
-										id: rows[0].id,
+										deptid: rows[0].deptid,
 									},
 									beforeSend: function() {
 										$.messager.progress({
@@ -59,8 +59,8 @@
 									success: function(data) {
 										$.messager.progress('close');
 										$('#manage_edit').form('load', {
-											id: data.id,
-											dname: data.dname,
+											deptid: data.deptid,
+											dname: data.deptname,
 										}).dialog('open');
 
 									},
@@ -91,11 +91,11 @@
 										if(flag) {
 											var ids = [];
 											for(var i = 0; i < rows.length; i++) {
-												ids.push(rows[i].id);
+												ids.push(rows[i].deptid);
 											}
 											$.ajax({
 												type: "post",
-												url: "showByDid.do",
+												url: "showDeptByDid",
 												async: true,
 												data: {
 													idlist: ids.join(','),
@@ -112,7 +112,7 @@
 													} else {
 														$.ajax({
 															type: "post",
-															url: "delete.do",
+															url: "deleteDept",
 															async: true,
 															data: {
 																idlist: ids.join(','),
@@ -155,8 +155,8 @@
 						}
 					},'-',],
 				    columns:[[    
-						{field:'id',width:200,align:'center',checkbox:'true'},
-				        {field:'dname',title:'部门名称',width:200,align:'center'},    
+						{field:'deptid',width:200,align:'center',checkbox:'true'},
+				        {field:'deptname',title:'部门名称',width:200,align:'center'},    
 				    ]],
 				    pagination:true,
 				    pageSize:5,
@@ -176,9 +176,9 @@
 					handler:function(){
 						 $.ajax({
 								type:"post",
-								url:"addDept.do",
+								url:"addDept",
 								data:{
-									dname:$("input[name='username']").val(),
+									deptname:$("input[name='deptname']").val(),
 								},
 								beforeSend:function(){
 									$.messager.progress({
@@ -217,23 +217,7 @@
 					}
 				}]
 			})
-			$('#auth_edit').datetimebox({
-				required: true,
-				missingMessage: '请选择时间',
-				editable: false
-			});
-			$("input[name='username']").validatebox({
-				required:"true",
-				validType: 'length[2,20]',
-				missingMessage:"请输入账号",
-				invalidMessage:'账号长度2-20位'
-			});
-			$("input[name='email']").validatebox({
-				required:"true",
-				missingMessage:"请输入邮箱",
-				validType: 'email',
-				invalidMessage:'邮箱格式不正确'
-			})
+			
 			//修改弹出框
 		$("#manage_edit").dialog({
 			width: 350,
@@ -244,11 +228,11 @@
 				text: '提交',
 				handler: function() {
 					$.ajax({
-						url: "updateDept.do",
+						url: "updatedept",
 						type: "post",
 						data: {
-							id: $('#id').val(),
-							dname: $('#dname').val(),
+							deptid: $('#deptid').val(),
+							deptname: $('#dname').val(),
 						},
 						beforeSend: function() {
 							$.messager.progress({

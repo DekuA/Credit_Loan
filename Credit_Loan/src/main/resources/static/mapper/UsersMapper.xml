@@ -94,6 +94,12 @@
     from users
     where uid = #{uid,jdbcType=INTEGER}
   </select>
+  <select id="showDeptByDid" resultType="int" parameterType="int">
+  	select count(*) from users where did in <foreach collection="array" open="(" close=")" item="k" separator=",">
+  	
+  																			#{k}
+  											</foreach>
+  </select>
   <select id="findPwd" parameterType="String" resultType="com.p2p.qiyun.dyj.pojo.Users">
   
   	select * from users where loginname=#{loginname}

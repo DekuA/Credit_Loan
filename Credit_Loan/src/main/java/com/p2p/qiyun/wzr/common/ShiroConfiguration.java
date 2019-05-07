@@ -75,10 +75,29 @@ public class ShiroConfiguration {
         bean.setUnauthorizedUrl("404.html");
         //定义过滤器
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
+        map.put("/lg.html", "anon");
+		//放行login.html页面
+        map.put("/findpwd", "anon");
+        map.put("/shouye.html", "anon");
+        map.put("/login.html", "anon");
+        map.put("/userentry","anon");
+        map.put("/loginout","logout");
+		//授权过滤器
+		//注意：当前授权拦截后，shiro会自动跳转到未授权页面
+		/*filterMap.put("/add", "perms[user:add]");
+		filterMap.put("/update", "perms[user:update]");*/
+		
+       
+		
+		//修改调整的登录页面
+        bean.setLoginUrl("/lg.html");
+		//设置未授权提示页面
+       
         //map.put("/index", "authc");
         map.put("/login", "anon");
         //需要登录访问的资源 , 一般将/**放在最下边
         //map.put("/**", "authc");
+        map.put("/*", "authc");
         bean.setFilterChainDefinitionMap(map);
         return bean;
     }

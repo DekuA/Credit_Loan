@@ -33,6 +33,7 @@ public class UserinfoController {
             session.setAttribute("user", user.getPhone());
             service.UserTime(user.getPhone());
             userinfo userEntry = service.UserEntry(user.getPhone());
+            session.setAttribute("username", user.getNickname());
             service.charukuhuxinxi(userEntry.getUserid());
             return 1;
         } catch (Exception e) {

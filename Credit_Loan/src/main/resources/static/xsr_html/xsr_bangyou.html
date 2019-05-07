@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+			<link rel="stylesheet" href="xsr_wenjian/css_xsr/bootstrap.min.css" />
+			<script type="text/javascript" src="xsr_wenjian/js_xsr/jquery-3.3.1.js"></script>
+			<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap.min.js"></script>
+			<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap-paginator.js"></script>
+	<body><br>
+			<div style='position: relative;height:350px;background-color: gainsboro;'>
+			<div class="container" style="position: relative;height: 300px;top: 25px;width: 80%;background-color: white;">
+				<h2>绑定邮箱</h2><hr />
+				<div align="center">
+					<table align="center" >
+						<tr align="right">
+							<td>输入邮箱：</td>
+							<td><input id='usereiml' class="form-control" placeholder="正确邮箱" style='width: 300px;' /></td>
+						</tr>
+					</table><br>
+					<button class="btn btn-warning" onclick="bangyou()" style="width: 120px;" >立即绑定</button>
+				</div>
+			</div>		
+		</div>
+	</body>
+	<script>
+		function bangyou(){
+			var name = $("#usereiml").val();
+			 $.ajax({
+				url:"../../bangyou_xsr",
+				data:{
+					email:name,
+				},
+				dataType : "text",
+				success:function(da){
+					if(da=="1"){
+						alert("邮箱绑定成功!!");
+						window.location.href="xsr_wenjian/ifm_xsr/zhanghu.html";
+					}else{
+						alert("邮箱绑定失败。。");
+					}
+				}
+			}) 
+		}
+	</script>
+</html>

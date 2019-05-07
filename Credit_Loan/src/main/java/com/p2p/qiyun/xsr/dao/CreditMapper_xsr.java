@@ -13,4 +13,6 @@ public interface CreditMapper_xsr {
 	List<customer> kehuxinxi(int userid);
 	List<String> scdenglu(String phone);
 	int shimingrz(userinfo info);
+	int delecus(int id);
+	int bangyou(customer cus);
 }

@@ -10,4 +10,6 @@ public interface CreditService_xsr {
 	List<customer> kehuxinxi(int userid);
 	String scdenglu(String phone);
 	int shimingrz(userinfo info);
+	int delecus(int id);
+	int bangyou(customer cus);
 }

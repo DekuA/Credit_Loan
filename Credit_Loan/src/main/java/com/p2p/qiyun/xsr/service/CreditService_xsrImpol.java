@@ -44,4 +44,16 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 		return phonechaxinxi;
 	}
 
+	@Override
+	public int delecus(int id) {
+		int delecus = dao.delecus(id);
+		return delecus;
+	}
+
+	@Override
+	public int bangyou(customer cus) {
+		int bangyou = dao.bangyou(cus);
+		return bangyou;
+	}
+
 }

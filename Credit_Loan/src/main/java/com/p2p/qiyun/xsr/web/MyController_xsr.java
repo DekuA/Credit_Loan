@@ -25,6 +25,10 @@ public class MyController_xsr {
 		String attribute = (String) session.getAttribute("user");
 		userinfo us= im.phonechaxinxi(attribute);
 		List<customer> kehuxinxi = im.kehuxinxi(us.getUserid());
+		for (int i = 1; i < kehuxinxi.size(); i++) {
+			im.delecus(kehuxinxi.get(i).getCustomerid());			
+		}
+		session.setAttribute("Customerid_xsr", kehuxinxi.get(0).getCustomerid());
 		String scdenglu = im.scdenglu(us.getPhone());
 		Map map = new HashMap();
 		map.put("userinfo_xsr",us);
@@ -40,4 +44,12 @@ public class MyController_xsr {
 		return shimingrz+"";
 	}
 	
+
+	@RequestMapping("bangyou_xsr")
+	public String bangyou_xsr(customer cus,HttpSession session) {
+		int attribute = (int) session.getAttribute("Customerid_xsr");
+		cus.setCustomerid(attribute);
+		int bangyou = im.bangyou(cus);
+		return bangyou+"";
+	}
 }

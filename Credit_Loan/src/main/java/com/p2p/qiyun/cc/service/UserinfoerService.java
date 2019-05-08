@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.p2p.qiyun.cc.dao.UserinfoMapper;
+import com.p2p.qiyun.cc.dao.UserinfoerMapper;
 import com.p2p.qiyun.cc.pojo.Userinfo;
 
 @Service
-public class UserinfoService {
+public class UserinfoerService {
 	@Autowired
-	private UserinfoMapper mapper;
+	private UserinfoerMapper mapper;
 	
 	public List<Userinfo> userinfo() {
 		List<Userinfo> userinfo = mapper.userinfo();

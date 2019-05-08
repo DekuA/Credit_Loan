@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import com.p2p.qiyun.cc.pojo.Userinfo;
 
 @Mapper
-public interface UserinfoMapper {
+public interface UserinfoerMapper {
 	//查询所有
 	List<Userinfo> userinfo();
 }

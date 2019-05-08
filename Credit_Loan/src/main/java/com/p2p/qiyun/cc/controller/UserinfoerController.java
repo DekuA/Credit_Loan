@@ -7,12 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.p2p.qiyun.cc.pojo.Userinfo;
-import com.p2p.qiyun.cc.service.UserinfoService;
+import com.p2p.qiyun.cc.service.UserinfoerService;
+
 
 @RestController
-public class UserinfoController {
+public class UserinfoerController {
 	@Autowired
-	private UserinfoService service;
+	private UserinfoerService service;
 	
 	@RequestMapping("find")
 	public List<Userinfo> userinfo() {

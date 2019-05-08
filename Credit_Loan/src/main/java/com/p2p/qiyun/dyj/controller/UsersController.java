@@ -47,16 +47,27 @@ public class UsersController {
 		Users u =(Users) session.getAttribute("user");
 		return u;
 	}
+	
 	@RequestMapping("/loginout")
-	public String logout(HttpSession session){
+	public void logout(HttpSession session,HttpServletResponse response){
 		Subject subject = SecurityUtils.getSubject();
 		session.removeAttribute("user");
 		subject.logout();
-		return "lg.html";
+		try {
+			response.sendRedirect("lg.html");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+	
 	@RequestMapping("/showDeptByDid")
 	public int showDeptByDid(int[] idlist){
 		int showDeptByDid = us.showDeptByDid(idlist);
 		return showDeptByDid;
+	}
+	@RequestMapping("/selectByRid")
+	public int selectByRid(int[] idlist){
+		int showByRid = us.showByRid(idlist);
+		return showByRid;
 	}
 }

@@ -47,16 +47,9 @@ public class AuthRealm extends AuthorizingRealm{
       		//2.判断密码
       		return new SimpleAuthenticationInfo(user,user.getPwd(),ByteSource.Util.bytes(usernamePasswordToken.getUsername()),"");			
         }else{
-        	System.out.println("111111");
-        	userinfo user = Mapper.UserEntry(userName);
-        	System.out.println(usernamePasswordToken.getPassword());
-            //当前realm对象的name
-            String realmName = getName();
-            //盐值
-            ByteSource salt = ByteSource.Util.bytes(user.getPhone());
+        	
             //封装用户信息，构建AuthenticationInfo对象并返回
-              return  new SimpleAuthenticationInfo(user, user.getPassword(),
-                   salt, realmName);
+              return  null;
         }
 	}
 

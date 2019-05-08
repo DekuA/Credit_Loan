@@ -109,7 +109,7 @@
 											}
 											$.ajax({
 												type: "post",
-												url: "selectById.do",
+												url: "selectByRid",
 												async: true,
 												data: {
 													idlist: ids.join(','),
@@ -126,7 +126,7 @@
 													} else {
 														$.ajax({
 															type: "post",
-															url: "deleteRole.do",
+															url: "deleteRole",
 															async: true,
 															data: {
 																idlist: ids.join(','),

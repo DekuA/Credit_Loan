@@ -7,11 +7,13 @@ import org.springframework.stereotype.Service;
 
 import com.p2p.qiyun.wzr.dao.UserinfoMapper;
 import com.p2p.qiyun.wzr.domain.userinfo;
+
 @Service
 public class UserinfoServiceImpol implements UserinfoService {
 
 	@Autowired
 	private UserinfoMapper Mapper;
+
 	@Override
 	public userinfo UserEntry(String phone) {
 		userinfo entry = Mapper.UserEntry(phone);
@@ -35,11 +37,16 @@ public class UserinfoServiceImpol implements UserinfoService {
 		int time = Mapper.UserTime(phone);
 		return time;
 	}
-
+	
 	@Override
 	public int charukuhuxinxi(int userid) {
 		int charukuhuxinxi = Mapper.charukuhuxinxi(userid);
 		return charukuhuxinxi;
 	}
 
+	@Override
+	public List<userinfo> userlogin(userinfo user) {
+		List<userinfo> list = Mapper.userlogin(user);
+		return list;
+	}
 }

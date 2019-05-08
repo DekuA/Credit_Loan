@@ -66,11 +66,6 @@ public class ShiroConfiguration {
         ShiroFilterFactoryBean bean = new ShiroFilterFactoryBean();
         //设置securityManager
         bean.setSecurityManager(manager);
-        //设置登录页面
-        //可以写路由也可以写jsp页面的访问路径
-        bean.setLoginUrl("login.html");
-        //设置登录成功跳转的页面
-        bean.setSuccessUrl("test.html");
         //设置未授权跳转的页面
         bean.setUnauthorizedUrl("404.html");
         //定义过滤器
@@ -82,28 +77,19 @@ public class ShiroConfiguration {
         map.put("/login.html", "anon");
         map.put("/userentry","anon");
         map.put("/loginout","logout");
+        map.put("/logouttt", "anon");
         map.put("/usercode", "anon");
         map.put("/userenroll", "anon");
-        //授权过滤器
-		//注意：当前授权拦截后，shiro会自动跳转到未授权页面
-		/*filterMap.put("/add", "perms[user:add]");
-		filterMap.put("/update", "perms[user:update]");*/
-		
-       
 		
 		//修改调整的登录页面
         bean.setLoginUrl("/lg.html");
-		//设置未授权提示页面
-       
-        //map.put("/index", "authc");
+		
         map.put("/login", "anon");
         //需要登录访问的资源 , 一般将/**放在最下边
-        //map.put("/**", "authc");
         map.put("/*", "authc");
         bean.setFilterChainDefinitionMap(map);
         return bean;
     }
-
     /**
      * Spring的一个bean , 由Advisor决定对哪些类的方法进行AOP代理 .
      * @return

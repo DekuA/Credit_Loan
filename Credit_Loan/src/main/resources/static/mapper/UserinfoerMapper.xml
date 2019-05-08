@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.cc.dao.UserinfoerMapper" >
+	<resultMap id="BaseResultMap" type="com.p2p.qiyun.cc.pojo.Userinfo" >
+    	<id column="userid" property="userid" jdbcType="INTEGER" />
+    	<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    	<result column="username" property="username" jdbcType="VARCHAR" />
+    	<result column="idnumber" property="idnumber" jdbcType="VARCHAR" />
+    	<result column="Phone" property="Phone" jdbcType="VARCHAR" />
+    	<result column="password" property="password" jdbcType="VARCHAR" />
+  	</resultMap>
+  	<select id="userinfo" resultMap="BaseResultMap">
+  		select * from userinfo
+  	</select>
+</mapper>

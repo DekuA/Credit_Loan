@@ -30,7 +30,7 @@ public class UserinfoController {
 		
 		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
 		SimpleHash hash = new SimpleHash("MD5",user.getPassword(),bytes,1234);
-		System.out.println(hash.toString());
+		user.setPassword(hash.toString());
 		List<userinfo> list = service.userlogin(user);
 		if(list.size()>0){
 			session.setAttribute("user", user.getPhone());

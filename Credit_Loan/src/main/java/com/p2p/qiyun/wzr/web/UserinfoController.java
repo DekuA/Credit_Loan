@@ -1,5 +1,6 @@
 package com.p2p.qiyun.wzr.web;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +31,7 @@ public class UserinfoController {
 		
 		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
 		SimpleHash hash = new SimpleHash("MD5",user.getPassword(),bytes,1234);
-		System.out.println(hash.toString());
+		user.setPassword(hash.toString());
 		List<userinfo> list = service.userlogin(user);
 		if(list.size()>0){
 			session.setAttribute("user", user.getPhone());
@@ -69,7 +70,13 @@ public class UserinfoController {
 	@RequestMapping("logouttt")
 	public String logout(HttpServletResponse response,HttpSession session){
 		session.removeAttribute("user");
-		return "redirect:login.html";
+		try {
+			response.sendRedirect("login.html");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
 	}
 	
 	@RequestMapping("getcity")

@@ -1,0 +1,49 @@
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<div align="center" style="width:100%;height:100%;">
+	<table id="tabID1" class="easyui-datagrid">
+	</table>
+	<div id="juese_chakan"><table id="yonghu"></table></div>
+</div>
+	
+	<script type="text/javascript">
+	show();
+	function show(){
+	$("#tabID1").datagrid({
+		title : '会员卡号信息',
+		width : 1000,
+		height: 530,
+		url : "listuser",
+		columns : [ [ {
+			field : '',
+			title : "",
+			align : 'center',
+			//checkbox : true,
+		}, {
+			field : 'bankname',
+			title : '银行名称',
+			width : 225,
+			align : 'center',
+		},  {
+			field : 'bankid',
+			title : '卡号',
+			width : 225,
+			align : 'center',
+		}, {
+			field : 'username',
+			title : '用户名字',
+			width : 225,
+			align : 'center',
+		},  {
+			field : 'idnumber',
+			title : '用户证明',
+			width : 225,
+			align : 'center',
+		}, ] ],
+		fitColumns:true,
+		pagination:true,
+		pageList:[3,6,9,12],
+		pageSize:3 
+	});
+	}
+		</script>
+</html>

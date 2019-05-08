@@ -74,7 +74,7 @@
 					    			<font size='3' color='gray' >账户密码登录时需要填写</font>
 					    		</td>
 					    		<td ><font id='logintime' color='gray'>上次登录时间</font></td>
-					    		<td id='tdt2'><a href='#'>修改</a></td>				    		
+					    		<td id='tdt2'><a href='../../xsr_xiumi.html'>修改</a></td>				    		
 					    	</tr>
 					    	<tr>
 					    		<td colspan='3'><hr /></td>
@@ -86,14 +86,14 @@
 					    			<font size='3' color='gray' >对您的信用进行评分</font>
 					    		</td>
 					    		<td ><font id='fenshu' color='gray'>400分</font></td>
-					    		<td id='tdt2'><font size='3' color='gray' >每月1日进行一次评分</font></td>				    		
+					    		<td id='tdt2'><a href='javascript:shuapinfen()'>刷新评分</a></td>				    		
 					    	</tr>
 					    </table>
 				</div>
 	</body>
 	<script>
 		$.ajax({
-			url:"http:///127.0.0.1:8080/zhanghu_xsr",
+			url:"../../../zhanghu_xsr",
 			data:{
 				
 			},
@@ -134,5 +134,17 @@
 				
 			}
 		});
+		function shuapinfen(){
+			 $.ajax({
+					url:"../../../shuaping_xsr",
+					data:{
+						
+					},
+					dataType : "text",
+					success:function(da){	
+						$("#fenshu").html(da);
+					}
+				}) 
+		}
 	</script>
 </html>

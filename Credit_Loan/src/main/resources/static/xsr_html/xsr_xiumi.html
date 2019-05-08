@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+			<link rel="stylesheet" href="xsr_wenjian/css_xsr/bootstrap.min.css" />
+			<script type="text/javascript" src="xsr_wenjian/js_xsr/jquery-3.3.1.js"></script>
+			<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap.min.js"></script>
+			<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap-paginator.js"></script>
+	<body>
+		<div style='position: relative;height:450px;background-color: gainsboro;'>
+			<div class="container" style="position: relative;height: 400px;top: 25px;width: 80%;background-color: white;">
+				<h2>绑定邮箱</h2><hr />
+				<div align="center">
+					<table align="center" >
+						<tr align="right">
+							<td>原密码：</td>
+							<td><input id='ypass' type="password" class="form-control" placeholder="原密码" style='width: 300px;' /></td>
+						</tr><br>
+						<tr align="right">
+							<td>新密码：</td>
+							<td><input id='xpass' type="password" class="form-control" placeholder="新密码" style='width: 300px;' /></td>
+						</tr><br>
+						<tr align="right">
+							<td>确认新密码：</td>
+							<td><input id='quexpass' type="password" class="form-control" placeholder="确认新密码" style='width: 300px;' /></td>
+						</tr>
+					</table><br>
+					<button class="btn btn-warning" onclick="xiumi()" style="width: 120px;" >立即修改</button><br>
+					<font id='cuowu' color='red' size='2'></font>
+				</div>
+			</div>		
+		</div>
+	</body>
+	<script type="text/javascript">
+	function xiumi(){
+		var ymima = $("#ypass").val();
+		var xmima = $("#xpass").val();
+		var quexmima = $("#quexpass").val();
+		if(xmima!=quexmima){
+			$("#cuowu").html("新密码确认不一致");
+			return;
+		}
+		if(xmima==ymima){
+			$("#cuowu").html("新密码与原密码一致");
+			return;
+		}
+		  $.ajax({
+			url:"../../xiumima_xsr",
+			data:{
+				password1:ymima,
+				password2:xmima
+			},
+			dataType : "text",
+			success:function(da){
+				if(da=="1"){
+					alert("修改成功!!");
+					window.location.href="xsr_wenjian/ifm_xsr/zhanghu.html";
+				}else{
+					$("#cuowu").html("原密码输入错误");
+				}
+			}
+		})  
+	}
+	</script>
+</html>

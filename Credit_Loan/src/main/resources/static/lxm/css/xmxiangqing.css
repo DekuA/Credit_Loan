@@ -85,8 +85,113 @@
 }
 
 .other-info1{
-	margin-top: 20px;
-    width: 610px;
+	margin-left: 40px;
+    width: 510px;
     overflow: hidden;
-    line-height: 25px;
+    line-height: 65px;
+    font-size: 12px;
 }
+
+.other-info1 i{
+	color: orange;
+}
+
+.other-info1 p{
+	margin-top: -30px;
+}
+
+.other-info2-right{
+	width: 480px;
+	float: right;
+	margin-top: -206px;
+	border-top: solid 4px orange;
+	border-left: solid 2px orange;
+}
+
+.right-head{
+	height: 150px;
+}
+
+.right-head-span1{
+	margin-left: 40px;
+	font-size: 13px;
+}
+
+.right-dizeng{
+	font-size: 11px;
+	color: #999999;
+	margin-left: 37px;
+}
+
+#touzijieshou a{
+	color: #8DB3F8;
+}
+
+#home table{
+	font-size: 12px;
+	margin-bottom: 20px;
+	border-collapse: collapse;
+}
+
+#home table tr{
+	display: table-row;
+    vertical-align: inherit;
+    
+}
+
+#home table td{
+	padding: 10px;
+}
+
+.th1{
+	text-align: right;
+	width: 120px;
+}
+
+.th2{
+	text-align: left;
+}
+
+.qiwangshouyi{
+	margin-left: 20px;
+	font-size: 12px;
+}
+
+.qishu-income{
+	margin-left: 20px;
+	font-size: 12px;
+}
+
+#fengqi-head td{
+	text-align: center;
+}
+
+.cash-head{
+	width: 90px;
+	text-align: center;
+}
+.repaymentDate{
+	width: 145px;
+	text-align: right;
+}
+.cash1{
+	width: 145px;
+	text-align: right;
+}
+.cash2{
+	width: 210px;
+	text-align: right;
+}
+.cash3{
+	width: 230px;
+	text-align: right;
+}
+.cash-last{
+	text-align: center;
+	width: 303px;
+}
+
+.comments,.disclaimer-v2{
+	font-size: 12px;
+}
+

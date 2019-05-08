@@ -19,4 +19,20 @@
   	<update id="bangyou" parameterType="com.p2p.qiyun.xsr.domain.customer">
   		update customer set email=#{email} where customerid=#{customerid}
   	</update>  	
+  	<update id="xiumi" parameterType="com.p2p.qiyun.xsr.domain.userinfo">
+  		update userinfo set password=#{password} where phone=#{phone}
+  	</update>
+  	
+  	<select id="kehuxinxi22" parameterType="int" resultType="com.p2p.qiyun.xsr.domain.customer">
+  		select * from customer  where customerid=#{customerid} 
+  	</select>
+  	
+  	<update id="bangyin" parameterType="com.p2p.qiyun.xsr.domain.customer">
+  		update customer set bankname=#{bankname},bankid=#{bankid} where customerid=#{customerid}
+  	</update>
+  	
+  	<update id="xiuxinyongfen" parameterType="com.p2p.qiyun.xsr.domain.customer">
+  		update customer set creditrate=#{creditrate} where customerid=#{customerid}
+  	</update>
+  	
 </mapper>

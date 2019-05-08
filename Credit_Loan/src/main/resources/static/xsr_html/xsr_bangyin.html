@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+			<link rel="stylesheet" href="xsr_wenjian/css_xsr/bootstrap.min.css" />
+			<script type="text/javascript" src="xsr_wenjian/js_xsr/jquery-3.3.1.js"></script>
+			<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap.min.js"></script>
+			<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap-paginator.js"></script>
+	<body>
+			<div style='position: relative;height:200px;background-color: gainsboro;'>
+			<div class="container" style="position: relative;height: 180px;top: 10px;width: 80%;background-color: white;">
+				<h4>绑定银行卡</h4><hr />
+				<div align="center">
+					<table align="center" >
+						<tr align="right">
+							<td>银行卡号：</td>
+							<td><input id='yhhaoma' class="form-control" placeholder="输入本人银行卡号" style='width: 300px;' /></td>
+								<td>&nbsp;&nbsp;&nbsp;</td>
+							<td>银行：</td>
+							<td>
+								<select id='yinhangdizhi' style="border-radius: 5px;width: 100px;height: 36px;"></select>
+							</td>
+						</tr>
+					</table><br>
+					<button class="btn btn-warning" onclick="bangyin()" style="width: 120px;" >立即绑定</button>
+				</div>
+			</div>		
+		</div>
+	</body>
+	<script>
+		var arr = new Array();
+		arr=["建设银行","交通银行","民生银行","兴业银行","光大银行","中信银行","长沙银行","工商银行","邮政银行"];
+		$("#yinhangdizhi").val("");
+		for(i=0;i<arr.length;i++){
+			$("#yinhangdizhi").append("<option value='"+arr[i]+"'>"+arr[i]+"</option>");
+		}
+		function bangyin(){
+			 $.ajax({
+					url:"../../../bangyin_xsr",
+					data:{
+						bankname:$("#yinhangdizhi").val(),
+						bankid:$("#yhhaoma").val()
+					},
+					dataType : "text",
+					success:function(da){	
+						if(da=="1"){
+							window.location.href="xsr_wenjian/ifm_xsr/yinhang.html";
+						}else{
+							alert("绑定失败");
+						}
+					}
+				}) 
+		}
+	</script>
+</html>

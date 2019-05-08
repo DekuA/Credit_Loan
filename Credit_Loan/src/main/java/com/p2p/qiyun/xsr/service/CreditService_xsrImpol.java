@@ -56,4 +56,28 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 		return bangyou;
 	}
 
+	@Override
+	public int xiumi(userinfo info) {
+		int xiumi = dao.xiumi(info);
+		return xiumi;
+	}
+
+	@Override
+	public customer kehuxinxi22(int id) {
+		customer kehuxinxi22 = dao.kehuxinxi22(id);
+		return kehuxinxi22;
+	}
+
+	@Override
+	public int bangyin(customer cus) {
+		int bangyin = dao.bangyin(cus);
+		return bangyin;
+	}
+
+	@Override
+	public int xiuxinyongfen(customer cus) {
+		int xiuxinyongfen = dao.xiuxinyongfen(cus);
+		return xiuxinyongfen;
+	}
+
 }

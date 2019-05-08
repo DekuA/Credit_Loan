@@ -33,4 +33,8 @@ public class RoleService {
 		Role r = mapper.selectByPrimaryKey(roleid);
 		return r;
 	}
+	public int deleteRole(int[] idlist){
+		int count = mapper.deleteRole(idlist);
+		return count;
+	}
 }

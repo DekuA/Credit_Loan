@@ -12,11 +12,9 @@ public interface QuestionTypeMapper {
 
     int deleteByExample(QuestionTypeExample example);
     int deleteByPrimaryKey(Integer qTId);
-
     int insert(QuestionType record);
 
     int insertSelective(QuestionType record);
-
     List<QuestionType> selectByExample(QuestionTypeExample example);
 
     QuestionType selectByPrimaryKey(Integer qTId);

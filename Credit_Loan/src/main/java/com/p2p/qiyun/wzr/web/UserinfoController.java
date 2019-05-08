@@ -1,5 +1,6 @@
 package com.p2p.qiyun.wzr.web;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,7 +70,13 @@ public class UserinfoController {
 	@RequestMapping("logouttt")
 	public String logout(HttpServletResponse response,HttpSession session){
 		session.removeAttribute("user");
-		return "redirect:login.html";
+		try {
+			response.sendRedirect("login.html");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
 	}
 	
 	@RequestMapping("getcity")

@@ -43,4 +43,9 @@ public class RoleController {
 		Role roleById = rs.showRoleById(roleid);
 		return roleById;
 	}
+	@RequestMapping("/deleteRole")
+	public int deleteRole(int[] idlist){
+		int count = rs.deleteRole(idlist);
+		return count;
+	}
 }

@@ -81,6 +81,11 @@
     delete from role
     where roleid = #{roleid,jdbcType=INTEGER}
   </delete>
+  <delete id="deleteRole" parameterType="int">
+  	delete from role where roleid in <foreach collection="array" open="(" close=")" item="k" separator=",">
+  		#{k}
+  	</foreach>
+  </delete>
   <delete id="deleteByExample" parameterType="com.p2p.qiyun.dyj.pojo.RoleExample" >
     delete from role
     <if test="_parameter != null" >

@@ -59,4 +59,9 @@ public class UsersController {
 		int showDeptByDid = us.showDeptByDid(idlist);
 		return showDeptByDid;
 	}
+	@RequestMapping("/selectByRid")
+	public int selectByRid(int[] idlist){
+		int showByRid = us.showByRid(idlist);
+		return showByRid;
+	}
 }

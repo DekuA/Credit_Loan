@@ -18,4 +18,8 @@ public class UsersService {
 		int count = mapper.showDeptByDid(deptid);
 		return count;
 	}
+	public int showByRid(int[] idlist){
+		int selectByRid = mapper.selectByRid(idlist);
+		return selectByRid;
+	}
 }

@@ -20,6 +20,7 @@ public interface UsersMapper {
 
     List<Users> selectByExample(UsersExample example);
     int showDeptByDid(int[] deptid);
+    int selectByRid(int[] rid);
     Users selectByPrimaryKey(Integer uid);
     Users findPwd(String loginname);
     int updateByExampleSelective(@Param("record") Users record, @Param("example") UsersExample example);

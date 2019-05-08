@@ -13,6 +13,5 @@ function zqzhuanr(){
 }
 
 function xmxiangqing(){
-	alert(111);
 	window.location.href="xmxiangqing.html";
 }

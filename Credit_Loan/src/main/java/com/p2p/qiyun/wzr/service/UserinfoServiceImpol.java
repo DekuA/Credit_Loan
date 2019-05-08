@@ -1,21 +1,10 @@
 package com.p2p.qiyun.wzr.service;
 
-import java.io.File;
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.URI;
-import java.util.Enumeration;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.List;
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.maxmind.geoip2.DatabaseReader;
-import com.maxmind.geoip2.model.CityResponse;
-import com.maxmind.geoip2.record.City;
-import com.maxmind.geoip2.record.Subdivision;
 import com.p2p.qiyun.wzr.dao.UserinfoMapper;
 import com.p2p.qiyun.wzr.domain.userinfo;
 
@@ -47,5 +36,17 @@ public class UserinfoServiceImpol implements UserinfoService {
 	public int UserTime(String phone) {
 		int time = Mapper.UserTime(phone);
 		return time;
+	}
+	
+	@Override
+	public int charukuhuxinxi(int userid) {
+		int charukuhuxinxi = Mapper.charukuhuxinxi(userid);
+		return charukuhuxinxi;
+	}
+
+	@Override
+	public List<userinfo> userlogin(userinfo user) {
+		List<userinfo> list = Mapper.userlogin(user);
+		return list;
 	}
 }

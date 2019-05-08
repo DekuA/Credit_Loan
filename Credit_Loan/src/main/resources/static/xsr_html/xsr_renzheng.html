@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+		<link rel="stylesheet" href="xsr_wenjian/css_xsr/bootstrap.min.css" />
+		<script type="text/javascript" src="xsr_wenjian/js_xsr/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="xsr_wenjianxsr_wenjian/js_xsr/bootstrap.min.js"></script>
+		<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap-paginator.js"></script>
+		<style>
+			a{
+				text-decoration: none;
+			}
+		</style>
+	<body>	
+		<div style='position: relative;height:350px;background-color: gainsboro;'>
+			<div class="container" style="position: relative;height: 300px;top: 25px;width: 80%;background-color: white;">
+				<h2>实名认证</h2><hr />
+				<div align="center" id='renzheng_1'>
+					<table align="center" >
+						<tr align="right">
+							<td>姓名：</td> <!--<input type="text" class="form-control" placeholder="Last Name">-->
+							<td><input id='username' class="form-control" placeholder="真实姓名" style='width: 300px;' /></td>
+						</tr>
+						<tr>
+							<td>身份证号：</td>
+							<td><input id='usernumber' class="form-control" placeholder="身份证号" style='width: 300px;' /></td>
+						</tr>
+					</table><br>
+					<button class="btn btn-warning" onclick="renzheng()" style="width: 120px;" >立即认证</button>
+				</div>
+			</div>		
+		</div>
+			
+	</body>
+	<script>
+		function renzheng(){
+			var name = $("#username").val();
+			var ber = $("#usernumber").val();
+			$.ajax({
+				url:"../../shimingname_xsr",
+				data:{
+					username:name,
+					idnumber:ber
+				},
+				dataType : "text",
+				success:function(da){
+					if(da=="1"){
+						alert("认证成功!!");
+						window.location.href="xsr_wenjian/ifm_xsr/zhanghu.html";
+					}else{
+						alert("认证失败。。");
+					}
+				}
+			})
+		}
+	</script>
+</html>

@@ -4,6 +4,9 @@
   	<select id="UserEntry" parameterType="String" resultType="com.p2p.qiyun.wzr.domain.userinfo">
   		select * from userinfo where Phone=#{phone}
   	</select>
+  	<select id="userlogin" parameterType="com.p2p.qiyun.wzr.domain.userinfo" resultType="com.p2p.qiyun.wzr.domain.userinfo">
+  		select * from userinfo where Phone=#{phone} and password=#{password}
+  	</select>
   	<insert id="UserEnroll" parameterType="com.p2p.qiyun.wzr.domain.userinfo">
   		insert into userinfo(nickname,username,idnumber,Phone,password) 
   		values(#{nickname},#{username},#{idnumber},#{Phone},#{password})
@@ -13,5 +16,8 @@
   	</select>
   	<insert id="UserTime" parameterType="String">
   		insert into scshijian(Phone) values(#{phone})
+  	</insert>
+  	<insert id="charukuhuxinxi" parameterType="int">
+  		insert into customer(userid,custometype) values(#{userid},'个人')
   	</insert>
 </mapper>

@@ -227,7 +227,7 @@
 						success:function(date){
 							if(date>0){
 								alert("登录成功！");
-								location.href="test.html";
+								location.href="shouye.html";
 							}else{
 								alert("您的账号或密码不正确!");
 							}
@@ -279,7 +279,9 @@
 									},
 									success:function(data){
 										if(data>0){
-											location.href="test.html";
+											$("#user").val(phone);
+											$("#password").val(pwd);
+											denglu();
 										}else{
 											alert("注册失败!!!");
 										}

@@ -14,4 +14,8 @@ public class UsersService {
 		Users u = mapper.findPwd(loginname);
 		return u;
 	}
+	public int showDeptByDid(int[] deptid){
+		int count = mapper.showDeptByDid(deptid);
+		return count;
+	}
 }

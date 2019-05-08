@@ -1,5 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.p2p.qiyun.xsr.dao.CreditMapper_xsr" >
-  	
+	<select id="phonechaxinxi" parameterType="String" resultType="com.p2p.qiyun.xsr.domain.userinfo">
+		select * from  userinfo where phone=#{phone}
+	</select>
+  	<select id="kehuxinxi" parameterType="int" resultType="com.p2p.qiyun.xsr.domain.customer">
+  		select * from customer  where userid=#{userid} ORDER BY customerid asc 
+  	</select>
+  	<select id="scdenglu" parameterType="String" resultType="String">
+  		select scdate from scshijian where phone=#{phone} ORDER BY scid DESC 
+  	</select>
+  	<update id="shimingrz" parameterType="com.p2p.qiyun.xsr.domain.userinfo">
+  		update userinfo set username=#{username},idnumber=#{idnumber} where phone=${phone}
+  	</update>
+  	<delete id="delecus" parameterType="int">
+  		delete from customer where customerid=#{customerid}
+  	</delete>
+  	<update id="bangyou" parameterType="com.p2p.qiyun.xsr.domain.customer">
+  		update customer set email=#{email} where customerid=#{customerid}
+  	</update>  	
 </mapper>

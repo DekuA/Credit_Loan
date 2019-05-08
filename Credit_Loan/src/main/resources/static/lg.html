@@ -342,7 +342,7 @@
 		var h = input.height();
 		$('.spanColor').height(h + 23);
 		$('#findpass').on('click', function() {
-			$(this).text('123456');
+			$(this).text('初始密码：123123');
 		});
 		input.on('focus', function() {
 			topbar.removeClass('error success');
@@ -352,16 +352,16 @@
 			if(tries <= 2) {
 				var uid = $('#username').val();
 				var pass = $('#password').val();
-				console.log(pass);
 				$.ajax({
 					Type:"post",
 					url:"findpwd",
 					data:{
-						loginname:uid
+						loginname:uid,
+						pwd:pass,
 					},
 					success:function(data){
 						if(data!=null&&data.length!=0){
-							if(pass === data.pwd) {
+							if(data.loginname!=null&&data.loginname.length!=0) {
 								setTimeout(function() {
 									btn.text('Success!');
 								}, 250);

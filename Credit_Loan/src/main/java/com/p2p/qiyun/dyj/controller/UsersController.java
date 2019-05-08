@@ -5,6 +5,11 @@ import java.io.IOException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,12 +22,22 @@ public class UsersController {
 	@Autowired
 	private UsersService us;
 	@RequestMapping("findpwd")
-	public Users findPwd(String loginname,HttpSession session,HttpServletResponse response) throws IOException{
+	public Users findPwd(String loginname,String pwd,HttpSession session,HttpServletResponse response) throws IOException{
 		Users u = us.findPwd(loginname);
-		if(u!=null){
+		Subject subject = SecurityUtils.getSubject();
+		//2.封装用户数据
+		UsernamePasswordToken token = new UsernamePasswordToken(loginname,pwd,"11");
+		
+		//3.执行登录方法
+		try {
+			subject.login(token);
 			session.setAttribute("user", u);
-		}else{
+		} catch (UnknownAccountException e) {
+			System.out.println("不存在");
+			response.sendRedirect("lg.html");
+		}catch (IncorrectCredentialsException e) {
 			session.removeAttribute("user");
+			System.out.println("错误");
 			response.sendRedirect("lg.html");
 		}
 		return u;
@@ -31,5 +46,23 @@ public class UsersController {
 	public Users findPwd(HttpSession session) {
 		Users u =(Users) session.getAttribute("user");
 		return u;
+	}
+	
+	@RequestMapping("/loginout")
+	public void logout(HttpSession session,HttpServletResponse response){
+		Subject subject = SecurityUtils.getSubject();
+		session.removeAttribute("user");
+		subject.logout();
+		try {
+			response.sendRedirect("lg.html");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@RequestMapping("/showDeptByDid")
+	public int showDeptByDid(int[] idlist){
+		int showDeptByDid = us.showDeptByDid(idlist);
+		return showDeptByDid;
 	}
 }

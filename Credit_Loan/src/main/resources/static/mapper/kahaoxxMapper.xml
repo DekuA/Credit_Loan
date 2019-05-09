@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.p2p.qiyun.cjz.dao.kahaoxxMapper" >
-	<select id="seluser" parameterType="com.p2p.qiyun.cjz.domain.customer" resultType="com.p2p.qiyun.cjz.domain.customer">
-	<!-- select c.* from customer c,userinfo u where c.userid=u.userid -->
-	select c.*,u.username,u.idnumber,u.Phone from customer c,userinfo u where c.userid=u.userid  LIMIT #{page},#{rows}
-	</select>
 	
-	<select id="ccount" resultType="int">
-	select count(*)  from customer c,userinfo u where c.userid=u.userid
+	<select id="seluser" resultType="com.p2p.qiyun.cjz.domain.customer">
+	<!-- select c.* from customer c,userinfo u where c.userid=u.userid -->
+	<!--  select c.*,u.username,u.idnumber,u.Phone from customer c,userinfo u where c.userid=u.userid  LIMIT #{page},#{rows} -->
+	 select c.*,u.username,u.idnumber,u.Phone from customer c,userinfo u where c.userid=u.userid
+	 <if test="username!=null ">
+  			and u.username like "%"#{username}"%"
+  	</if>
+  		LIMIT #{page},#{rows}
 	</select>
+	<select id="ccount" resultType="int" parameterType="String">
+	 select count(*) from customer c,userinfo u where c.userid=u.userid and u.username like "%"#{username}"%"
+	</select>
+	<!-- <select id="seluser" parameterType="com.p2p.qiyun.cjz.domain.customer" resultType="com.p2p.qiyun.cjz.domain.customer">
+	select c.* from customer c,userinfo u where c.userid=u.userid
+	 select c.*,u.username,u.idnumber,u.Phone from customer c,userinfo u where  c.userid=u.userid  and  username like "%"#{username}"%"   LIMIT #{page},#{rows}
+	 </select> -->
+	 <select id="selkahao" parameterType="int"  resultType="com.p2p.qiyun.cjz.domain.customer">
+	 	select * from customer where userid=#{userid}
+	 </select>
 </mapper>

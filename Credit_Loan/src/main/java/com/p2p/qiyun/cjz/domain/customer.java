@@ -122,10 +122,13 @@ public class customer {
 		this.idnumber = idnumber;
 		Phone = phone;
 	}
-	public customer(int page,int rows) {
+	public customer(int page,int rows,String username) {
 		super();
 		this.page = page;
 		this.rows = rows;
+		this.username = username;
 	}
-	
+	/*
+	 * public customer(String username) { super(); this.username = username; }
+	 */
 }

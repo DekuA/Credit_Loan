@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" href="../css_xsr/bootstrap.min.css" />
+		<script type="text/javascript" src="../js_xsr/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap-paginator.js"></script>
+		<style>
+				td{
+					text-align: center;
+					height: 50px;
+				}
+				#tab3_td1{
+					text-align: left;
+					width: 850px;
+					background-color: ghostwhite;
+				}
+				#tab3_td2{
+					text-align: center;
+					width: 200px;
+					background-color: ghostwhite;
+					color: gray;
+				}
+				#tab3_td11{
+					height: 10px;
+				}
+				#tab3_td22{
+					height: 10px;
+				}
+			</style>
+	<body>
+			<table id='tab3_xsr' >
+						
+			</table>
+	</body>
+	<script>
+		  $.ajax({
+				url:"../../../xiaoxi_xsr",
+				data:{
+					
+				},
+				dataType : "json",
+				success:function(da){	
+					for(i=0;i<da.length;i++){
+						$("#tab3_xsr").append("<tr><td id='tab3_td1'>"+da[i].msgcontext+"</td><td id='tab3_td2'>"+da[i].sendtime+"</td></tr>");
+						$("#tab3_xsr").append("<tr><td id='tab3_td11'></td><td id='tab3_td22'></td></tr>");	
+					}
+				}
+			})
+	</script>
+</html>

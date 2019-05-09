@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 
 import com.p2p.qiyun.dyj.dao.LogintimeMapper;
 import com.p2p.qiyun.dyj.pojo.Logintime;
-import com.p2p.qiyun.lsx.dao.LoanOneMapper;
 
 @Service
 public class LogintimeService {

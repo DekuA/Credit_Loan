@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.p2p.qiyun.lsx.entity.Loan;
 import com.p2p.qiyun.xsr.dao.CreditMapper_xsr;
+
 import com.p2p.qiyun.xsr.domain.customer;
 import com.p2p.qiyun.xsr.domain.userinfo;
+import com.p2p.qiyun.xsr.domain.xiaoxi;
 
 @Service
 public class CreditService_xsrImpol implements CreditService_xsr {
@@ -79,5 +82,19 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 		int xiuxinyongfen = dao.xiuxinyongfen(cus);
 		return xiuxinyongfen;
 	}
+
+	@Override
+	public List<xiaoxi> xioxichaxun(int id) {
+		List<xiaoxi> xioxichaxun = dao.xioxichaxun(id);
+		return xioxichaxun;
+	}
+
+	@Override
+	public List<Loan> chajiekuan(int userid) {
+		List<Loan> chajiekuan = dao.chajiekuan(userid);
+		return chajiekuan;
+	}
+
+	
 
 }

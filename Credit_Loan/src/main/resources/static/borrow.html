@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<table id="porrow1" class="easyui-datagrid">
+		
+	</table>
+		<div align="center" id="manager_tool">
+			<br>
+			电话号码:<input id="phone" class="textbox" />&nbsp;&nbsp;&nbsp;
+				<a href="javascript:porrow()" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+		</div>
+	<script>
+	$(function() {
+		porrow();
+	});
+	function porrow() {
+		var phone = $("#phone").val();
+		$("#porrow1").datagrid({
+			modal : true,
+			fit : true,
+			fitColumns : true,
+			url : "borrowall?Phone=" + phone,
+			width : 'auto',
+			height : 370,
+			toolbar: "#manager_tool",
+			columns : [ [ {
+				field : 'loanid',
+				width : 200,
+				align : 'center',
+				title : '编号',
+				checkbox:true,
+				formatter: function(value,row,index){
+					if (row.l){
+						return row.l.loanid;
+					} else {
+						return value;
+					}
+				}
+			}, {
+				field : 'nickname',
+				title : '昵称',
+				width : 200,
+				align : 'center'
+			}, {
+				field : 'username',
+				title : '真实姓名',
+				width : 300,
+				align : 'center'
+			}, {
+				field : 'phone',
+				title : '联系电话',
+				width : 200,
+				align : 'center'
+			}, {
+				field : 'idnumber',
+				title : '身份证',
+				width : 200,
+				align : 'center'
+			},{
+				field : 'applicationdate',
+				title : '借款时间',
+				width : 200,
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.l){
+						return row.l.applicationdate;
+					} else {
+						return value;
+					}
+				}
+			},{
+				field : 'loanamount',
+				title : '借款金额(￥/元)',
+				width : 200,
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.l){
+						return row.l.loanamount;
+					} else {
+						return value;
+					}
+				}
+			} ] ],
+			pagination : true,
+			pageSize : 5,
+			pageList : [ 5, 10, 15 ]
+		});
+	}
+</script>
+</body>
+</html>

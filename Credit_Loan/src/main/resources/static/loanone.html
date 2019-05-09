@@ -1,215 +1,251 @@
 <!DOCTYPE html>
 <html>
 
-	<head>
-		<meta charset="utf-8" />
-		<title>祁云信用贷</title>
-	</head>
-	<link rel="stylesheet" href="css/bootstrap.min.css" />
-	<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+<head>
+<meta charset="utf-8" />
+<title>我要借款</title>
+</head>
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script
+	src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
 
-    <style>
-    	#lunbo{
-    		height: 800px;
-    	}
-    	#erdiv{
-    		top:5%;
-    		left: 8%;
-    		height: 95%;
-    		
-    	}
-    	#xxcol{
-    		height: 50%;
-    	}
-    	#xxlg4{
-    		height: 99%;
-    		width: 50%;
-    		position: absolute;
-    		top: -1px;
-    		left: 50%;
-    	} 
-    	#xxpl{
-    		height: 99%;
-    		width: 50%;
-    	}
-    	#loanjk{
-    		border-color: burlywood;
-    	}
-    	#jkloan{
-    		left: 10px;
-    		right: 300px;
-    	}
-    </style>
-	<body>
-		<div style="background-color: gray;">
-			<nav class="navbar navbar-expand-sm bg-light" style="height: 30px;">
-				<ul class="navbar-nav">
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<font size="1">用户论坛</font>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<font size="1">帮助中心</font>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<font size="1">关于我们</font>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<font size="1">人人学院</font>
-						</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<font size="1">出借人教育</font>
-						</a>
-					</li>
-					<li class="nav-item">
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-					</li>
-					<li class="nav-item">
-						&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-						<li class="nav-item">
-							<li>
-								<a class="nav-link" href="#">
-									<font size="1">昵称</font>
-								</a>
-							</li>
-							<li>
-								<a class="nav-link" href="#">[
-									<font size="1">退出 </font>]</a>
-							</li>
-				</ul>
-			</nav>
-			<div style="position: absolute;right: 40px;top:3px;">
-				<font size="1">客服电话: 13838384380</font>
-			</div>
+<style>
+#lunbo {
+	height: 600px;
+}
+
+#erdiv {
+	top: 5%;
+	left: 8%;
+	height: 80%;
+}
+
+#xxcol {
+	height: 50%;
+}
+
+#xxlg4 {
+	height: 99%;
+	width: 50%;
+	position: absolute;
+	top: -1px;
+	left: 50%;
+}
+
+#xxpl {
+	height: 99%;
+	width: 50%;
+}
+
+#loanjk {
+	border-color: burlywood;
+}
+
+#jkloan {
+	left: 10px;
+	right: 300px;
+}
+
+#fwf {
+	width: 633px;
+	height: 66px;
+}
+
+#tes1 {
+	color: darkgrey;
+	size: b5;
+}
+.cc{
+   position: relative;
+   line-height: 16px;
+   color: #ccc;
+   
+}
+
+</style>
+<body>
+	<div style="background-color: gray;">
+		<nav class="navbar navbar-expand-sm bg-light" style="height: 30px;">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="#"> <font
+						size="1">用户论坛</font>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"> <font
+						size="1">帮助中心</font>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"> <font
+						size="1">关于我们</font>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"> <font
+						size="1">人人学院</font>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"> <font
+						size="1">出借人教育</font>
+				</a></li>
+				<li class="nav-item">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+					&nbsp;</li>
+				<li class="nav-item">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+					&nbsp;
+				<li class="nav-item">
+				<li><a class="nav-link" href="#"> <font size="1">昵称</font>
+				</a></li>
+				<li><a class="nav-link" href="#">[ <font size="1">退出
+					</font>]
+				</a></li>
+			</ul>
+		</nav>
+		<div style="position: absolute; right: 40px; top: 3px;">
+			<font size="1">客服电话: 38383</font>
 		</div>
-		<div style="height: 60px;">
-			<div style="position: absolute;top: 40px;">
+	</div>
+	<div style="height: 60px;">
+		<div style="position: absolute; top: 40px;">
+			<ul class="nav">
+				<li class="nav-item">&nbsp; &nbsp; &nbsp;</li>
+				<li class="nav-item"><a class="nav-link" href="#"> <img
+						src="lsx_html/img/q11.jpg"
+						style="height: 30px; width: 30px; border-radius: 30px; border: 1px solid black;" /></a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">我的账户</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">信息披露</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">我要借款</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">我要出借</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">首页</a></li>
+			</ul>
+		</div>
+		<div style="position: absolute; right: 180px; top: 35px;">
+			<img src="img/logo.png" style="height: 50px; width: 140px;" />
+		</div>
+	</div>
+	<div id="lunbo" class="col-*-12" style="background-color: gainsboro;">
+		<div id="erdiv" class="col-lg-10 " style="background-color: white;">
+			<div id="loanjk">
+
 				<ul class="nav">
-					<li class="nav-item">
-						&nbsp; &nbsp; &nbsp;
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">
-							<img src="img/q11.jpg" style="height: 30px;width: 30px;border-radius: 30px;border: 1px solid black;" /></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">我的账户</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">信息披露</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">我要借款/还款</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">我要出借</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">首页</a>
-					</li>
+					<li class="nav-item"><a class="nav-link"
+						style="color: #000000;" href="#">我要借款</a></li>
+					<li class="nav-item"><a class="nav-link"
+						style="color: #000000;" href="#">还款</a></li>
 				</ul>
 			</div>
-			<div style="position: absolute;right: 180px;top:35px;">
-				<img src="img/logo.png" style="height: 50px;width: 140px;" />
-			</div>
-		</div>
-		<div id="lunbo" class="col-*-12" style="background-color: gainsboro;" >
-			<div id="erdiv" class="col-lg-10 " style="background-color: white;">
-				<div id="loanjk"> 
-					
-					<ul class="nav">
-					    <li class="nav-item">
-						  <a class="nav-link" style="color: #000000;" href="#">我要借款</a>
-					    </li>
-					    <li class="nav-item">
-						   <a class="nav-link" style="color: #000000;"  href="#">还款</a>
-					    </li>
-				     </ul>
-				</div>
-				<div id="xxcol" class="col-lg-12">
-					<div id="xxpl" >
-						<div style="position: absolute;top: 20px;left: 30px;" id="fwf">
-							<div><i class="fa fa-safari fa-3x"></i></div>
-							<div style="position: relative;left:65px ;top: -40px;">
-								<div><small>服务费</small><span class="fa-lg" style="color: royalblue;">更低</span>高效可靠</div>
-								<small><p id="tes1">强大系统支撑，更少人工参与，费率更低<br>保护用户个人隐私信息</p></small>
-							</div>
+			<div id="xxcol" class="col-lg-12">
+				<div id="xxpl">
+					<div style="position: absolute; top: 20px; left: 30px;" id="fwf">
+						<div>
+							<i class="fa fa-safari fa-3x"></i>
 						</div>
-                        <div style="position: absolute;top: 100px;left: 30px;" id="fwf">
-							<div><i class="fa fa-bar-chart-o fa-3x"></i></div>
-							<div style="position: relative;left:65px ;top: -40px;">
-								<div><small>全方位</small><span class="fa-lg" style="color: royalblue;">大数据风控</span> 评测<br></div>
-								<small><p id="tes1">利用大数据风控体系对您的信用状况进行更快速、更精准<br> 的审核，在最短时间内给您借款额度及费率 </p></small>
+						<div style="position: relative; left: 65px; top: -40px;">
+							<div>
+								<small>服务费</small><span class="fa-lg" style="color: royalblue;">更低</span>高效可靠
 							</div>
+							<small><p id="tes1">
+									强大系统支撑，更少人工参与，费率更低<br>保护用户个人隐私信息
+								</p></small>
 						</div>
-						<div style="position: absolute;top: 180px;left: 30px;" id="fwf">
-							<div><i class="fa fa-tv  fa-3x"></i></div>
-							<div style="position: relative;left:65px ;top: -40px;">
-								<div><small>灵活还款 快速</small><span class="fa-lg" style="color: royalblue;">便捷</span><br></div>
-								<small><p id="tes1">多种还款方式，方便您及时还款，保持良好的个人信用<br>记录</p></small>
-							</div>
-						
-						</div>
-						
 					</div>
-                 <div id="xxlg4" class="">
-                  	<div id="jkloan">
-							<div style="position: absolute;top: 40px;">
-								<span>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			 	 		名&nbsp;:&nbsp;&nbsp;</span>
-								<input id="loanname" />
-								
-							</div>
-							<div style="position: absolute;top: 80px;">
-								<span>身&nbsp;&nbsp;份&nbsp;&nbsp;证&nbsp;&nbsp;号&nbsp;&nbsp;:&nbsp;&nbsp;</span>
-								<input id="identity" />
-							</div>
-							<div style="position: absolute;top: 120px;">
-								<span>手&nbsp;&nbsp;&nbsp;机
-			 	 		&nbsp;&nbsp;&nbsp;
-			 	 		&nbsp;&nbsp;&nbsp;号&nbsp;:&nbsp;&nbsp;</span>
-								<input id="lphone" />
-							</div>
-							<div class="input-group mb-2" style="position: absolute;top: 160px;height:30px;">
-								<span>期望借款金额&nbsp;:&nbsp;&nbsp;</span>
-								<input id="amount" />
-								<div class="input-group-append" style="height:30px;">
-									<span class="input-group-text">元</span>
-								</div>
-							</div>
-							<div class="input-group mb-2" style="position: absolute;top: 200px;">
-								<span>期望借款期限&nbsp;:&nbsp;&nbsp;</span>
-								<input id="amperiods" style="width: 200px;height:30px;" />
-								<div class="input-group-append" style="height:30px;">
-									<span class="input-group-text">月</span>
-								</div>
-							</div>
-							<div style="position: absolute;top: 260px;left: 160px;">
-								<a class="btn btn-danger"  id="loanbtn" href="#" onclick="loan()">我要借款</a>
-							</div>
-
+					<div style="position: absolute; top: 100px; left: 30px;" id="fwf">
+						<div>
+							<i class="fa fa-bar-chart-o fa-3x"></i>
 						</div>
-                  	
-                  </div>
+						<div style="position: relative; left: 65px; top: -40px;">
+							<div>
+								<small>全方位</small><span class="fa-lg" style="color: royalblue;">大数据风控</span>
+								评测<br>
+							</div>
+							<small><p id="tes1">
+									利用大数据风控体系对您的信用状况进行更快速、更精准<br> 的审核，在最短时间内给您借款额度及费率
+								</p></small>
+						</div>
+					</div>
+					<div style="position: absolute; top: 180px; left: 30px;" id="fwf">
+						<div>
+							<i class="fa fa-tv  fa-3x"></i>
+						</div>
+						<div style="position: relative; left: 65px; top: -40px;">
+							<div>
+								<small>灵活还款 快速</small><span class="fa-lg"
+									style="color: royalblue;">便捷</span><br>
+							</div>
+							<small><p id="tes1">
+									多种还款方式，方便您及时还款，保持良好的个人信用<br>记录
+								</p></small>
+						</div>
+
+					</div>
+
 				</div>
-                  
+				<div id="xxlg4" class="">
+					<div id="jkloan">
+
+						<div class="input-group mb-2"
+							style="position: absolute; top: 60px; height: 30px; left: 20px;">
+							<span>借款金额&nbsp;:&nbsp;&nbsp;</span> <input id="amount" />
+							<div class="input-group-append" style="height: 30px;">
+								<span class="input-group-text">元</span>
+							</div>
+						</div>
+						<div class="input-group mb-2"
+							style="position: absolute; top: 120px; left: 20px;">
+							<span>借款期限&nbsp;:&nbsp;&nbsp;</span> <input id="amperiods"
+								style="width: 200px; height: 30px;" />
+							<div class="input-group-append" style="height: 30px;">
+								<span class="input-group-text">月</span>
+							</div>
+						</div>
+						<div style="position: absolute; top: 170px; left: 40px;">
+						 <p  class="cc">
+						 <small> 
+						    <input type="checkbox" id="checkbox-id"> 
+						              <a href="helpcenter.html">我已阅读并同意 </a>
+						                  《祁云服务协议》等相关法律法规</small>
+						                </p>
+						</div>
+						<div style="position: absolute; top: 210px; left: 110px;">
+							<a class="btn btn-danger" id="lixibtn" href="#" onclick="lixi()">查看利息</a>
+						</div>
+						<div style="position: absolute; top: 210px; left: 230px;">
+							<a class="btn btn-primary" id="loanbtn" href="#" onclick="loan()">我要借款</a>
+						</div>
+
+					</div>
+
+				</div>
 			</div>
-                   
+
 		</div>
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
 
-	</body>
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel">查看利息</h4>
+						 <button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						 </button><hr>
+						<table id="tablx" border="1">
+						  <tr>
+						      <th>借款总金额</th>
+						      <th>借款期限</th>
+						      <th>每期还款金额</th>
+						      <th>每期还款利息</th>
+						     <th>手续费</th>
+						  </tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
+<<<<<<< HEAD
 	<script>
 			
 			function loan(){
@@ -227,7 +263,7 @@
 				alert("身份证号码格式不正确！");
 				}else if(!lphone){
 					alert("电话号不能为空！")
-				}else if((/^1\d{10}$/ ).test(lphone)=== false){
+				}else if((/^1\d{10}$/ ).test(lphone)===false){
 					alert("电话号格式不正确！")
 				}else(
 					 $.ajax({
@@ -251,7 +287,106 @@
 					 })
 				)
 				
+=======
+</body>
+
+<script>
+	$(function() {
+		
+	})
+	function loan() {
+		var userid = 15;
+		var lixi=0; //总利息
+		var autonym = 1; //实名
+		var creditscore = 650; //信用评分
+		var gg=$("#checkbox-id").get(0).checked;//是否勾选同意合同
+		//alert();
+		var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
+		var amount = $("#amount").val();
+		var amperiods = $("#amperiods").val();
+		if (!amount) {
+			alert("请填写您的借款金额！！");
+		} else if (!amperiods) {
+			alert("请填写您的借款期限！！");
+		}  else if(gg==false){
+			alert("请勾选签订合同！！");
+		} else if (userid == null) {
+			alert("您没有登录,请登录后申请！！");
+		} else if (autonym == null) {
+			alert("您没有实名,请实名后申请！！");
+		} else if (creditscore < 550) {
+			alert("您的信用没有达到申请要求！！");
+		} else{
+			if(amperiods>0 && amperiods<4){
+				lixi=(amount*0.025).toFixed(2);
+			}else if(amperiods>3 && amperiods<7){
+				lixi=(amount*0.045).toFixed(2);
+			}else if(amperiods>6 && amperiods<13){
+				lixi=(amount*0.088).toFixed(2);
+			}else{
+				lixi=(amount*0.12).toFixed(2);
+>>>>>>> branch 'master' of https://github.com/DekuA/Credit_Loan.git
 			}
-	</script>
+			//判断用户是否登录
+		  if(userid!=null && autonym!=null && creditscore >=550){
+			$.ajax({
+				type : "post",
+				url : "loansAdd",
+				data : {
+					uid : userid,
+					amo : amount,
+					aper : amperiods,
+					lixis:lixi,
+				},
+				async : true,
+				success : function(data) {
+					if (data > 0) {
+						alert("借款申请提交成功，请等待客户经理联系")
+					}
+				}
+			})
+		   }
+
+		}
+
+	}
+	function lixi() {
+		var amount = $("#amount").val();
+		var amperiods = $("#amperiods").val();
+		if (!amount) {
+			alert("请填写您的借款金额！！");
+		} else if (!amperiods) {
+			alert("请填写您的借款期限！！");
+		} else {
+			if(amperiods>0 && amperiods<4){
+				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
+				+((amount*0.025)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
+				((amount*0.025)/amperiods).toFixed(2)+'</td><td>'
+				+'2.5%</td></tr>';
+				$("#tablx").append(str);
+			}else if(amperiods>3 && amperiods<7){
+				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
+				+((amount*0.045)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
+				((amount*0.045)/amperiods).toFixed(2)+'</td><td>'
+				+'4.5%</td></tr>';
+				$("#tablx").append(str);
+			}else if(amperiods>6 && amperiods<13){
+				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
+				+((amount*0.088)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
+				((amount*0.088)/amperiods).toFixed(2)+'</td><td>'
+				+'8.8%</td></tr>';
+				$("#tablx").append(str);
+			}else {
+				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
+				+((amount*0.12)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
+				((amount*0.12)/amperiods).toFixed(2)+'</td><td>'
+				+'12%</td></tr>';
+				$("#tablx").append(str);
+			}
+			$('#myModal').modal();
+		}
+
+	}
+</script>
 
 </html>

@@ -30,4 +30,16 @@ public class Tandr {
     public void setTid(Integer tid) {
         this.tid = tid;
     }
+
+	public Tandr(Integer rid, Integer tid) {
+		super();
+		this.rid = rid;
+		this.tid = tid;
+	}
+
+	public Tandr() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+     
 }

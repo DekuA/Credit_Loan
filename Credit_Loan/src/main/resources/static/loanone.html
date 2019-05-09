@@ -245,6 +245,49 @@
 		</div>
 	</div>
 
+<<<<<<< HEAD
+	<script>
+			
+			function loan(){
+				var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/; 
+				var lanme=$("#loanname").val();
+				var code=$("#identity").val();
+				var lphone=$("#lphone").val();
+				var amount=$("#amount").val();
+				var amperiods=$("#amperiods").val();
+				if(!lanme){
+					alert("姓名不能为空！")
+				}else if(!identity){
+					alert("身份证不能为空！")
+				}else if(reg.test(code) === false){
+				alert("身份证号码格式不正确！");
+				}else if(!lphone){
+					alert("电话号不能为空！")
+				}else if((/^1\d{10}$/ ).test(lphone)===false){
+					alert("电话号格式不正确！")
+				}else(
+					 $.ajax({
+					 	type:"post",
+					 	url:"addLoanOne",
+					 	data:{
+					 		uid:1,
+					 		loanname:lanme,
+					 		identity:code,
+					 		phone:lphone,
+					 		amo:amount,
+					 		aper:amperiods,
+					 	},
+					 	async:true,
+					 	success:function(data){
+					 		if(data>0){
+					 			
+					            alert("借款申请提交成功，请等待客户经理联系")
+					 		}
+					 	}
+					 })
+				)
+				
+=======
 </body>
 
 <script>
@@ -282,6 +325,7 @@
 				lixi=(amount*0.088).toFixed(2);
 			}else{
 				lixi=(amount*0.12).toFixed(2);
+>>>>>>> branch 'master' of https://github.com/DekuA/Credit_Loan.git
 			}
 			//判断用户是否登录
 		  if(userid!=null && autonym!=null && creditscore >=550){

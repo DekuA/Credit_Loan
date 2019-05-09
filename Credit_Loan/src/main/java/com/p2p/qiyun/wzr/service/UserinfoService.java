@@ -4,16 +4,16 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
-import com.p2p.qiyun.wzr.domain.userinfo;
+import com.p2p.qiyun.wzr.domain.Userinfo;
 
 public interface UserinfoService {
 
-	userinfo UserEntry(String phone);
-	List<userinfo> userlogin(userinfo user);
+	Userinfo UserEntry(String phone);
+	List<Userinfo> userlogin(Userinfo user);
 	
-	int UserEnroll(userinfo user);
+	int UserEnroll(Userinfo user);
 	
-	int UserCode(userinfo user);
+	int UserCode(Userinfo user);
 	
 	int UserTime(String phone);
 	int charukuhuxinxi(int userid);

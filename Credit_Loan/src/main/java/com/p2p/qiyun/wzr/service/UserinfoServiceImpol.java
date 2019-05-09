@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.p2p.qiyun.wzr.dao.UserinfoMapper;
-import com.p2p.qiyun.wzr.domain.userinfo;
+import com.p2p.qiyun.wzr.domain.Userinfo;
 
 @Service
 public class UserinfoServiceImpol implements UserinfoService {
@@ -15,19 +15,19 @@ public class UserinfoServiceImpol implements UserinfoService {
 	private UserinfoMapper Mapper;
 
 	@Override
-	public userinfo UserEntry(String phone) {
-		userinfo entry = Mapper.UserEntry(phone);
+	public Userinfo UserEntry(String phone) {
+		Userinfo entry = Mapper.UserEntry(phone);
 		return entry;
 	}
 
 	@Override
-	public int UserEnroll(userinfo user) {
+	public int UserEnroll(Userinfo user) {
 		int enroll = Mapper.UserEnroll(user);
 		return enroll;
 	}
 
 	@Override
-	public int UserCode(userinfo user) {
+	public int UserCode(Userinfo user) {
 		int userCode = Mapper.UserCode(user);
 		return userCode;
 	}
@@ -45,8 +45,8 @@ public class UserinfoServiceImpol implements UserinfoService {
 	}
 
 	@Override
-	public List<userinfo> userlogin(userinfo user) {
-		List<userinfo> list = Mapper.userlogin(user);
+	public List<Userinfo> userlogin(Userinfo user) {
+		List<Userinfo> list = Mapper.userlogin(user);
 		return list;
 	}
 }

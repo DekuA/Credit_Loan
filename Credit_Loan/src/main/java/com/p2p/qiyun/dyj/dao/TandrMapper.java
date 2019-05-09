@@ -21,7 +21,7 @@ public interface TandrMapper {
     List<Tandr> selectByExample(TandrExample example);
     List<Integer> selectId(int rid);
     Tandr selectByPrimaryKey(Integer trid);
-
+    int deleteTandR(int[] idlist);
     int updateByExampleSelective(@Param("record") Tandr record, @Param("example") TandrExample example);
 
     int updateByExample(@Param("record") Tandr record, @Param("example") TandrExample example);

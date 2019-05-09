@@ -75,6 +75,9 @@ public class ShiroConfiguration {
         map.put("/findpwd", "anon");
         map.put("/shouye.html", "anon");
         map.put("/login.html", "anon");
+
+        map.put("/loanone.html","anon");
+
         map.put("/loanone.html", "anon");
         map.put("/loanfalv.html", "anon");
         map.put("/userentry","anon");
@@ -82,6 +85,7 @@ public class ShiroConfiguration {
         map.put("/logouttt", "anon");
         map.put("/usercode", "anon");
         map.put("/userenroll", "anon");
+
 
         
         //xsr的请求
@@ -97,6 +101,7 @@ public class ShiroConfiguration {
         map.put("/panlogin_xsr","anon");
         map.put("/xiaoxi_xsr","anon");
 		map.put("/chajie_xsr","anon");
+
 
 		//修改调整的登录页面
         bean.setLoginUrl("/lg.html");

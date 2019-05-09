@@ -10,8 +10,17 @@
     <result column="datebirth" property="datebirth" jdbcType="VARCHAR" />
     <result column="xueli" property="xueli" jdbcType="VARCHAR" />
     <result column="job" property="job" jdbcType="VARCHAR" />
-    <result column="did" property="did" jdbcType="INTEGER" />
-    <result column="rid" property="rid" jdbcType="INTEGER" />
+    <!-- <result column="did" property="did" jdbcType="INTEGER" /> -->
+  <!--   <result column="rid" property="rid" jdbcType="INTEGER" /> -->
+    <association property="d" javaType="com.p2p.qiyun.dyj.pojo.Dept">
+    	<id column="deptid" property="deptid" jdbcType="INTEGER" />
+    	<result column="deptname" property="deptname" jdbcType="VARCHAR" />
+    </association>
+    <association property="r" javaType="com.p2p.qiyun.dyj.pojo.Role">
+    	  <id column="roleid" property="roleid" jdbcType="INTEGER" />
+    <result column="rolename" property="rolename" jdbcType="VARCHAR" />
+    <result column="rolecreatedate" property="rolecreatedate" jdbcType="VARCHAR" />
+    </association>
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -105,6 +114,22 @@
   	
   																			#{k}
   											</foreach>
+  </select>
+  <select id="selectByRIds" resultMap="BaseResultMap" parameterType="com.p2p.qiyun.dyj.pojo.RoleQueryVO">
+  	select u.uid,u.loginname,u.pwd,u.username,u.sex,u.datebirth,u.job,u.xueli,d.* from users u,dept d
+  	 where u.did=d.deptid and rid=#{r.roleid} LIMIT #{pageNum},#{maxPage}
+  </select>
+  <select id="selectByDeptIds" resultMap="BaseResultMap" parameterType="com.p2p.qiyun.dyj.pojo.DeptQuerVO">
+  select u.uid,u.loginname,u.pwd,u.username,u.sex,u.datebirth,u.job,u.xueli,r.* from users u,role r 
+  where u.rid=r.roleid and did=#{d.deptid}  LIMIT #{pageNum},#{maxPage}
+  </select>
+  <select id="deptidcount" resultType="int" parameterType="com.p2p.qiyun.dyj.pojo.DeptQuerVO">
+   select count(*) from users u,role r 
+  where u.rid=r.roleid and did=#{d.deptid}
+  </select>
+  <select id="ridcount" resultType="int" parameterType="com.p2p.qiyun.dyj.pojo.RoleQueryVO">
+  select count(*) from users u,dept d
+  	 where u.did=d.deptid and rid=#{r.roleid}
   </select>
   <select id="findPwd" parameterType="String" resultType="com.p2p.qiyun.dyj.pojo.Users">
   

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.wzr.dao.BorrowMapper">
+
+	<resultMap type="com.p2p.qiyun.wzr.domain.Userinfo" id="accountMap">
+		<result column="nickname" property="nickname" jdbcType="VARCHAR"/>
+		<result column="username" property="username" jdbcType="VARCHAR"/>
+		<result column="idnumber" property="idnumber" jdbcType="VARCHAR"/>
+		<result column="Phone" property="Phone" jdbcType="VARCHAR"/>
+		<association property="l" javaType="com.p2p.qiyun.wzr.domain.Loan">
+			<id column="loanid" property="loanid" jdbcType="INTEGER"/>
+			<result column="loanamount" property="loanamount" jdbcType="DOUBLE"/>
+			<result column="applicationdate" property="applicationdate" jdbcType="TIMESTAMP"/>
+		</association>
+	</resultMap>
+
+	<select id="borrowall" parameterType="com.p2p.qiyun.wzr.domain.BorrowVO" resultMap="accountMap">
+		select l.loanid,l.loanamount,l.applicationdate,u.nickname,u.username,u.idnumber,u.Phone from 
+		userinfo u INNER JOIN loan l on l.userid=u.userid
+		<if test="u.Phone!=null and u.Phone!=''">
+			where u.Phone like "%"#{u.Phone}"%"
+		</if>
+		 ORDER BY applicationdate DESC limit #{page},#{rows}
+	</select>
+	<select id="borrowallcount" parameterType="com.p2p.qiyun.wzr.domain.BorrowVO" resultType="int">
+		select count(*) from 
+		userinfo u INNER JOIN loan l on l.userid=u.userid
+		<if test="u.Phone!=null and u.Phone!=''">
+			 where u.Phone like "%"#{u.Phone}"%"
+		</if>
+	</select>
+</mapper>

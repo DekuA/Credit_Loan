@@ -13,6 +13,11 @@
 		<a href="javascript:search()" class="easyui-linkbutton" iconCls="icon-search">查询</a>
 	</div> -->
 </table> 
+<form id="userByDept">
+	 <table id="dgD" class="easyui-datagrid" >
+	
+	</table>  
+</form>
 <form id="manage_add" style="margin: 0;padding: 5px 0 0 25px;color:#333;font-size: 20px;">
 	<p>名&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称:
 		<input type="text" name="deptname" class="textbox" style="width: 200px;height: 30px;"/>
@@ -79,6 +84,20 @@
 						text:'添加',
 						handler: function(){
 							$("#manage_add").dialog('open');
+						}
+					},'-',{
+						iconCls: 'icon-search',
+						text:'查看用户',
+						handler: function(){
+							var rows = $('#dg').datagrid('getSelections');
+							if(rows.length>1){
+								$.messager.alert('警告操作', '查看记录只能选定一条数据！', 'warning');
+							}else if(rows.length==1){
+								showUsers(rows[0].deptid);
+							}else{
+								$.messager.alert('警告操作', '查看记录至少选定一条数据！', 'warning');
+							} 
+							
 						}
 					},'-',{
 						iconCls: 'icon-remove',
@@ -264,7 +283,45 @@
 			}],
 
 		})
-		
+		function showUsers(deptid){
+				$("#userByDept").dialog({
+					modal: true,
+					height:450,
+					title:'用户信息'
+				});
+				 $('#dgD').datagrid({  
+					modal:true,
+					fit:true,
+					fitColumns:true,
+				    url:'selectByDeptIds?deptid='+deptid,
+				    //title:"<div align='center'>用户信息</div>",
+				    width:'auto',
+				    height:370,
+				    columns:[[    
+								{field:'uid',width:200,align:'center',title:'编号'},
+						        {field:'loginname',title:'登录名',width:200,align:'center'},    
+						        {field:'username',title:'学生姓名',width:300,align:'center'},    
+						        {field:'sex',title:'学生性别',width:200,align:'center'},
+						        {field:'xueli',title:'最后学历',width:200,align:'center'}, 
+						        {field:'job',title:'工作职务',width:200,align:'center'},
+						        {field:'datebirth',title:'出生日期',width:200,align:'center'},
+						        {field:'rolename',title:'角色名称',width:200,align:'center',
+						        	formatter: function(value,row,index){
+					        		if (row.r){
+					        			if(row.r.rolename==null||row.r.rolename==''){
+					        				return value;
+					        			}else{
+					        				return row.r.rolename;
+					        			}
+									} 
+								}}
+						    ]],
+				    pagination:true,
+				    pageSize:5,
+				    pageList:[5,10,15],
+				   
+				}); 
+		}
 		</script>
 </body>
 </html>

@@ -19,7 +19,7 @@ public interface RoleMapper {
     int insert(Role record);
     int addRole(String rolename);
     int insertSelective(Role record);
-
+    int deleteRole(int[] idlist);
     List<Role> selectByExample(RoleQueryVO vo);
 
     Role selectByPrimaryKey(Integer roleid);

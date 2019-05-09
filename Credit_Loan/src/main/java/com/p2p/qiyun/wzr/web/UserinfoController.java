@@ -70,8 +70,15 @@ public class UserinfoController {
 	@RequestMapping("logouttt")
 	public String logout(HttpServletResponse response,HttpSession session) throws IOException{
 		session.removeAttribute("user");
-		response.sendRedirect("login.html");
-		return "redirect:login.html";
+
+		try {
+			response.sendRedirect("login.html");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "";
+
 	}
 	
 	@RequestMapping("getcity")

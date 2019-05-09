@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +29,6 @@ public class UserinfoController {
 	
 	@RequestMapping("userentry")
 	public int userentry(userinfo user,HttpSession session){
-		
 		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
 		SimpleHash hash = new SimpleHash("MD5",user.getPassword(),bytes,1234);
 		user.setPassword(hash.toString());
@@ -37,12 +37,26 @@ public class UserinfoController {
 			session.setAttribute("user", user.getPhone());
 			service.UserTime(user.getPhone());
 			userinfo userEntry = service.UserEntry(user.getPhone());
+			session.setAttribute("UserInfo",userEntry);
 			session.setAttribute("username", user.getNickname());
+		//System.out.println(userEntry);
 			service.charukuhuxinxi(userEntry.getUserid());
 			return 1;
 		}
 		return 0;
 	}
+	
+	
+	@RequestMapping("gotoindex")
+	public userinfo gotoIndex(Model model,HttpSession session,HttpServletResponse response) {
+		//System.out.println(userEntry);
+		
+		userinfo userEntry = (userinfo) session.getAttribute("UserInfo");
+		//System.out.println(userEntry);
+		return userEntry;
+	} 
+	
+	
 	
 	@RequestMapping("usercode")
 	public int usercode(userinfo user){
@@ -70,6 +84,7 @@ public class UserinfoController {
 	@RequestMapping("logouttt")
 	public String logout(HttpServletResponse response,HttpSession session){
 		session.removeAttribute("user");
+		session.removeAttribute("UserInfo");
 		try {
 			response.sendRedirect("login.html");
 		} catch (IOException e) {

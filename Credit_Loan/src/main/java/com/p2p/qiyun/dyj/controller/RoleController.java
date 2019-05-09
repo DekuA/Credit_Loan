@@ -13,11 +13,14 @@ import com.p2p.qiyun.dyj.pojo.DeptQuerVO;
 import com.p2p.qiyun.dyj.pojo.Role;
 import com.p2p.qiyun.dyj.pojo.RoleQueryVO;
 import com.p2p.qiyun.dyj.service.RoleService;
+import com.p2p.qiyun.dyj.service.TandrService;
 
 @RestController
 public class RoleController {
 	@Autowired
 	private RoleService rs;
+	@Autowired
+	private TandrService trs;
 	@RequestMapping("/findRole")
 	public Map<String, Object> findRole(int page,int rows){
 		RoleQueryVO p=new RoleQueryVO(rows*(page-1), rows);
@@ -46,6 +49,7 @@ public class RoleController {
 	@RequestMapping("/deleteRole")
 	public int deleteRole(int[] idlist){
 		int count = rs.deleteRole(idlist);
+		int deleteTandR = trs.deleteTandR(idlist);
 		return count;
 	}
 }

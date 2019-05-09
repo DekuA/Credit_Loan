@@ -30,4 +30,22 @@ public class Role {
     public void setRolecreatedate(String rolecreatedate) {
         this.rolecreatedate = rolecreatedate == null ? null : rolecreatedate.trim();
     }
+
+	public Role(Integer roleid, String rolename, String rolecreatedate) {
+		super();
+		this.roleid = roleid;
+		this.rolename = rolename;
+		this.rolecreatedate = rolecreatedate;
+	}
+
+	public Role() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Role [roleid=" + roleid + ", rolename=" + rolename + ", rolecreatedate=" + rolecreatedate + "]";
+	}
+    
 }

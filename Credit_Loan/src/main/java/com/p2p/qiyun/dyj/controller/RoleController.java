@@ -52,4 +52,9 @@ public class RoleController {
 		int deleteTandR = trs.deleteTandR(idlist);
 		return count;
 	}
+	@RequestMapping("/showRoles1")
+	public List<Role> showRoles1(){
+		List<Role> showRoles1 = rs.showRoles1();
+		return showRoles1;
+	}
 }

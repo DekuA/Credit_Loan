@@ -21,7 +21,7 @@ public interface RoleMapper {
     int insertSelective(Role record);
     int deleteRole(int[] idlist);
     List<Role> selectByExample(RoleQueryVO vo);
-
+    List<Role> showRoles1();
     Role selectByPrimaryKey(Integer roleid);
 
     int updateByExampleSelective(@Param("record") Role record, @Param("example") RoleExample example);

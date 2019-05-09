@@ -16,8 +16,15 @@ public class Loan {
     private Double repaymentperiod;
 
     private String approvalstatus;
+public Loan() {
+	// TODO Auto-generated constructor stub
+}
+    public Loan(Integer approver) {
+		super();
+		this.approver = approver;
+	}
 
-    @Override
+	@Override
 	public String toString() {
 		return "Loan [loanid=" + loanid + ", userid=" + userid + ", loanrate=" + loanrate + ", applicationdate="
 				+ applicationdate + ", loanamount=" + loanamount + ", repaymentperiod=" + repaymentperiod

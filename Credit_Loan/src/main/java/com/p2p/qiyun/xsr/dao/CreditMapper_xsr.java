@@ -18,7 +18,7 @@ public interface CreditMapper_xsr {
 	int delecus(int id);//删除无用的客户信息
 	int bangyou(customer cus);//绑定邮箱
 	int xiumi(userinfo info);//修改密码
-	customer kehuxinxi22(int id);//查客户信息
+	customer kehuxinxi22(int id);//查客户信息 
 	int bangyin(customer cus);//绑定银行卡
 	int xiuxinyongfen(customer cus);//修改信用分
 	List<xiaoxi> xioxichaxun(int id);//查消息中心

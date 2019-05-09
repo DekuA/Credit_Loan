@@ -68,8 +68,9 @@ public class UserinfoController {
 	}
 	
 	@RequestMapping("logouttt")
-	public String logout(HttpServletResponse response,HttpSession session){
+	public String logout(HttpServletResponse response,HttpSession session) throws IOException{
 		session.removeAttribute("user");
+
 		try {
 			response.sendRedirect("login.html");
 		} catch (IOException e) {
@@ -77,6 +78,7 @@ public class UserinfoController {
 			e.printStackTrace();
 		}
 		return "";
+
 	}
 	
 	@RequestMapping("getcity")

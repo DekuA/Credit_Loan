@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.p2p.qiyun.xsr.dao.liclass_usercoupon;
 import com.p2p.qiyun.xsr.domain.customer;
 import com.p2p.qiyun.xsr.domain.userinfo;
 import com.p2p.qiyun.xsr.service.CreditService_xsr;
@@ -115,5 +116,22 @@ public class MyController_xsr {
 		int xiuxinyongfen = im.xiuxinyongfen(kehu);
 		return num+"分";
 	}
+	@RequestMapping("panlogin_xsr")
+	public String panlogin_xsr(HttpSession session) {
+		if(session.getAttribute("user")!=null) {
+			return "1";
+		}
+		return "0";
+			
+	}
 	
+	/*
+	 * @RequestMapping("xiaoxi_xsr") public List<liclass_usercoupon>
+	 * xiaoxi_xsr(HttpSession session) { String attribute = (String)
+	 * session.getAttribute("user"); userinfo us= im.phonechaxinxi(attribute);
+	 * List<liclass_usercoupon> xiaoxizhongxin = im.xiaoxizhongxin(us.getUserid());
+	 * return xiaoxizhongxin;
+	 * 
+	 * }
+	 */
 }

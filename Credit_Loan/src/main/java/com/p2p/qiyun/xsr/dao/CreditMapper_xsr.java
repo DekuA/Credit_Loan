@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.p2p.qiyun.lsx.entity.Loan;
 import com.p2p.qiyun.xsr.domain.customer;
 import com.p2p.qiyun.xsr.domain.userinfo;
+import com.p2p.qiyun.xsr.domain.xiaoxi;
 
 @Mapper
 public interface CreditMapper_xsr {
@@ -19,7 +21,6 @@ public interface CreditMapper_xsr {
 	customer kehuxinxi22(int id);//查客户信息
 	int bangyin(customer cus);//绑定银行卡
 	int xiuxinyongfen(customer cus);//修改信用分
-	List<liclass_usercoupon> xiaoxizhongxin(int id);//查消息中心
-	int zhucesongfen(String phone);//注册送积分
-	
+	List<xiaoxi> xioxichaxun(int id);//查消息中心
+	List<Loan> chajiekuan(int userid);//查借款记录
 }

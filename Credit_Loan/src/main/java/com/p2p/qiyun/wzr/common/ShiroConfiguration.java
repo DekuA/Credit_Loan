@@ -77,6 +77,9 @@ public class ShiroConfiguration {
         map.put("/zhaiquanzr.html", "anon");
         map.put("/xmxiangqing.html", "anon");
         map.put("/login.html", "anon");
+        map.put("/loanone.html","anon");
+        map.put("/loanone.html", "anon");
+        map.put("/loanfalv.html", "anon");
         map.put("/userentry","anon");
         map.put("/loginout","logout");
         map.put("/logouttt", "anon");
@@ -85,7 +88,24 @@ public class ShiroConfiguration {
         map.put("/gotoindex","anon");
         map.put("/xsr_jisuanqi.html","anon");
         map.put("/loanone.html","anon");
+
+
         
+        //xsr的请求
+        map.put("/zhanghu_xsr", "anon");
+        map.put("/shimingname_xsr", "anon");
+        map.put("/bangyou_xsr", "anon");
+        map.put("/xiumima_xsr", "anon");
+        map.put("/chayin_xsr", "anon");
+        map.put("/bangyin_xsr", "anon");
+        map.put("/panduan_xsr", "anon");
+        map.put("/shuaping_xsr", "anon");
+        map.put("/panlogin_xsr","anon");
+        map.put("/panlogin_xsr","anon");
+        map.put("/xiaoxi_xsr","anon");
+		
+
+
 		//修改调整的登录页面
         bean.setLoginUrl("/lg.html");
 		

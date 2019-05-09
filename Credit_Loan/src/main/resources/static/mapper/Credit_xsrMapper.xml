@@ -35,4 +35,12 @@
   		update customer set creditrate=#{creditrate} where customerid=#{customerid}
   	</update>
   	
+  	<select id="xiaoxizhongxin" parameterType="int" resultType="com.p2p.qiyun.xsr.dao.liclass_usercoupon">
+  		select a.*,b.couponType from usercoupon a,lijuanclass b where a.couponId=b.couponId and userid=#{userid}  ORDER BY a.cptime desc 
+  	</select>
+  	
+  	<insert id="zhucesongfen" parameterType="String">
+  		insert into jifen(phone) values(#{phone})
+  	</insert>
+  	
 </mapper>

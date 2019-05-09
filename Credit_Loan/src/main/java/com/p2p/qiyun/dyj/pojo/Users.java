@@ -18,10 +18,18 @@ public class Users {
     private String job;
 
     private Integer did;
-
+    private Dept d;
     private Integer rid;
+    private Role r;
+    public Dept getD() {
+		return d;
+	}
 
-    public Integer getUid() {
+	public void setD(Dept d) {
+		this.d = d;
+	}
+
+	public Integer getUid() {
         return uid;
     }
 
@@ -100,4 +108,58 @@ public class Users {
     public void setRid(Integer rid) {
         this.rid = rid;
     }
+
+	public Users(Integer uid, String loginname, String pwd, String username, String sex, String datebirth, String xueli,
+			String job, Integer did, Dept d, Integer rid) {
+		super();
+		this.uid = uid;
+		this.loginname = loginname;
+		this.pwd = pwd;
+		this.username = username;
+		this.sex = sex;
+		this.datebirth = datebirth;
+		this.xueli = xueli;
+		this.job = job;
+		this.did = did;
+		this.d = d;
+		this.rid = rid;
+	}
+
+	public Users(Integer uid, String loginname, String pwd, String username, String sex, String datebirth, String xueli,
+			String job, Integer did, Integer rid) {
+		super();
+		this.uid = uid;
+		this.loginname = loginname;
+		this.pwd = pwd;
+		this.username = username;
+		this.sex = sex;
+		this.datebirth = datebirth;
+		this.xueli = xueli;
+		this.job = job;
+		this.did = did;
+		this.rid = rid;
+	}
+
+	public Role getR() {
+		return r;
+	}
+
+	public void setR(Role r) {
+		this.r = r;
+	}
+
+	public Users() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Users [uid=" + uid + ", loginname=" + loginname + ", pwd=" + pwd + ", username=" + username + ", sex="
+				+ sex + ", datebirth=" + datebirth + ", xueli=" + xueli + ", job=" + job + ", did=" + did + ", d=" + d
+				+ ", rid=" + rid + ", r=" + r + "]";
+	}
+
+    
+	
 }

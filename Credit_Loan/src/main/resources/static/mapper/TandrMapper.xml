@@ -97,13 +97,18 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  <delete id="deleteTandR" parameterType="int">
+  	delete from tandr where rid in <foreach collection="array" open="(" close=")" item="k" separator=",">
+  		#{k}
+  	</foreach>
+  </delete>
   <select id="selectId" parameterType="int" resultType="Integer">
 		select tid from tandr where rid=#{rid}
 	</select>
   <insert id="insert" parameterType="com.p2p.qiyun.dyj.pojo.Tandr" >
-    insert into tandr (trid, rid, tid
+    insert into tandr (rid, tid
       )
-    values (#{trid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}
+    values (#{rid,jdbcType=INTEGER}, #{tid,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.p2p.qiyun.dyj.pojo.Tandr" >

@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import com.p2p.qiyun.dyj.pojo.Users;
 import com.p2p.qiyun.dyj.service.UsersService;
 import com.p2p.qiyun.wzr.dao.UserinfoMapper;
-import com.p2p.qiyun.wzr.domain.userinfo;
+import com.p2p.qiyun.wzr.domain.Userinfo;
 
 public class AuthRealm extends AuthorizingRealm{
 

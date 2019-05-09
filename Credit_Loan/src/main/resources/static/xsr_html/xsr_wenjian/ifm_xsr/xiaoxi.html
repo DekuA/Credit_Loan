@@ -37,15 +37,18 @@
 			</table>
 	</body>
 	<script>
-		 /* $.ajax({
+		  $.ajax({
 				url:"../../../xiaoxi_xsr",
 				data:{
 					
 				},
 				dataType : "json",
 				success:function(da){	
-					
+					for(i=0;i<da.length;i++){
+						$("#tab3_xsr").append("<tr><td id='tab3_td1'>"+da[i].msgcontext+"</td><td id='tab3_td2'>"+da[i].sendtime+"</td></tr>");
+						$("#tab3_xsr").append("<tr><td id='tab3_td11'></td><td id='tab3_td22'></td></tr>");	
+					}
 				}
-			}) */
+			})
 	</script>
 </html>

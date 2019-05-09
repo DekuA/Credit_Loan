@@ -103,7 +103,7 @@ public class ShiroConfiguration {
         map.put("/panlogin_xsr","anon");
         map.put("/panlogin_xsr","anon");
         map.put("/xiaoxi_xsr","anon");
-		
+		map.put("/chajie_xsr","anon");
 
 
 		//修改调整的登录页面

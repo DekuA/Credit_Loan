@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>消息中心</title>
+		<title>借款/还款记录</title>
 	</head>
 			<link rel="stylesheet" href="xsr_wenjian/css_xsr/bootstrap.min.css" />
 			<script type="text/javascript" src="xsr_wenjian/js_xsr/jquery-3.3.1.js"></script>
@@ -75,18 +75,20 @@
 			</div>			
 		<!-- 顶部 -->
 		<hr>
+		
 		<!--我的账户选项卡-->
 		<div style='position: relative;height: 48px;'>
 			<div class='container' >
 				<div style='position: absolute;right: 100px;'>
 					 <ul class='nav' id='zhxxk'>
+					  	<li class='nav-item'>
 					  		<a  class='nav-link' style='color: black;' href='xsr_zhanghu.html'>账户设置</a>				  		
 				  		</li>
 				  		<li class='nav-item'>
-					  		<a  class='nav-link' style='color: orange;' href='xsr_xiaoxi.html'>消息中心</a>				  		
+					  		<a  class='nav-link' style='color: black;' href='xsr_xiaoxi.html'>消息中心</a>				  		
 				  		</li>
 				  		<li class='nav-item'>
-					  		<a  class='nav-link' style='color: black;' href='xsr_jiehuanjilu.html'>借款/还款 记录</a>				  		
+					  		<a  class='nav-link' style='color: orange;' href='xsr_jiehuanjilu.html'>借款/还款 记录</a>				  		
 				  		</li>
 				  		<li class='nav-item'>
 					  		<a  class='nav-link' style='color: black;' href='javacsript::'>p2p资产</a>				  		
@@ -94,18 +96,19 @@
 				  		
 					 </ul>
 				 </div>
+				 
 			</div>
 		</div>
 		<!--我的账户页面-->
-		<div id='xxdakuang' style='position: relative;height:450px;background-color: ghostwhite;'>
-			<div id='xxerkuang' class='container' style="position: relative;height: 400px;top: 30px;width: 80%;background-color: white;">
-				<br>
-				<div class="container">消息中心</div>			<hr />	
-				<iframe id='iframe3' frameborder='no' src='xsr_wenjian/ifm_xsr/xiaoxi.html' style='height: 300px;width: 100%;position: relative;'  ></iframe>
-				
-			</div>
-		</div>
-			
+				<div id='jiludakuang' style='position: relative;height:450px;background-color: ghostwhite;'>
+					<div id='jiluerkuang' class='container' style="position: relative;height: 400px;top: 30px;width: 80%;background-color: white;">
+						<br>
+						<div align="center">
+							<iframe id='iframejiehuan' frameborder='no' src='xsr_wenjian/ifm_xsr/jiehuanjilu.html' style='height: 360px;width: 100%;position: relative;'></iframe>
+						</div>
+					</div>
+				</div>
+		
 		<!--底部代码-->
 			<div id='didiv' style='position: relative;height: 450px;top:20px;'><br />
 				<div class='container' ><font size='2' >客服服务</font></div><br />
@@ -153,7 +156,7 @@
 			    </div>
 			  </div>
 
-<!-- 浮动 -->
+	<!-- 浮动 -->
 		<div style="float: left;width: 50px;height: 160px;position: fixed;top: 400px;right: 15px;background-color: white;">
 					<a href="xsr_jisuanqi.html" target="_blank"><div id='jisuan_div1' style="height: 80px;border: 1px solid gainsboro;" align="center" onmouseout="likai(1)" onmouseover="fangs(1)">
 							<img style="width: 30px;height: 30px;top: 5px;position: relative;" src="xsr_wenjian/img_xsr/jisuanqi.PNG" /><br>
@@ -165,19 +168,27 @@
 						</div></a>
 							
 		</div>
-			
 	</body>
-	<script> 	
-	
-		function kefu(){
-			window.open("xsr_kefu.html");
+	<script>
+	$.ajax({
+		url:"../panlogin_xsr",
+		dataType:"text",
+		success:function(data){
+			if(data=="0"){
+				location.href="../login.html";
+			}
 		}
-		
-		function fangs(num){
-			$("#jisuan_div"+num).css("background-color","gainsboro");
-		}
-		function likai(num){
-			$("#jisuan_div"+num).css("background-color","white");
-		}
+	});
+			function kefu(){
+					window.open("xsr_kefu.html");
+			}
+			
+			function fangs(num){
+				$("#jisuan_div"+num).css("background-color","gainsboro");
+			}
+			function likai(num){
+				$("#jisuan_div"+num).css("background-color","white");
+			}
+			
 	</script>
 </html>

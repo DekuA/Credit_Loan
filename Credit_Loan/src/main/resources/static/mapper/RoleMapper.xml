@@ -71,6 +71,9 @@
     select * from role LIMIT #{pageNum},#{maxPage}
         
   </select>
+  <select id="showRoles1" resultType="com.p2p.qiyun.dyj.pojo.Role" >
+  	select * from role
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -42,6 +42,7 @@ public class UserinfoController {
 			service.UserTime(user.getPhone());
 			Userinfo userEntry = service.UserEntry(user.getPhone());
 			session.setAttribute("username", user.getNickname());
+			session.setAttribute("useridss", userEntry.getUserid());
 			service.charukuhuxinxi(userEntry.getUserid());
 			List<customer> kehuxinxi = im.kehuxinxi(userEntry.getUserid());
 			for (int i = 1; i < kehuxinxi.size(); i++) {

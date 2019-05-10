@@ -10,8 +10,6 @@ import com.p2p.qiyun.lsx.service.LoanService2;
 import com.p2p.qiyun.lsx.service.VerificationService;
 import com.p2p.qiyun.wzr.domain.Userinfo;
 
-
-
 @RestController
 public class LoanController2 {
 

@@ -74,15 +74,15 @@ public class ShiroConfiguration {
 		//放行login.html页面
         map.put("/findpwd", "anon");
         map.put("/shouye.html", "anon");
-<<<<<<< HEAD
+
         map.put("/login.html", "anon");
         map.put("/wzz_information.html", "anon");
-=======
+
         map.put("/login.html", "anon");
 
         map.put("/loanone.html","anon");
 
->>>>>>> branch 'master' of https://github.com/DekuA/Credit_Loan.git
+
         map.put("/loanone.html", "anon");
         map.put("/loanfalv.html", "anon");
         map.put("/userentry","anon");
@@ -90,7 +90,7 @@ public class ShiroConfiguration {
         map.put("/logouttt", "anon");
         map.put("/usercode", "anon");
         map.put("/userenroll", "anon");
-<<<<<<< HEAD
+
         map.put("/loansAdd", "anon");
         map.put("/infordata", "anon");
 

@@ -50,10 +50,14 @@ public class UserinfoController {
 	@RequestMapping("gotoindex")
 	public Userinfo gotoIndex(Model model,HttpSession session,HttpServletResponse response) {
 		//System.out.println(userEntry);
-		
-		Userinfo userEntry = (Userinfo) session.getAttribute("UserInfo");
+		Userinfo user = (Userinfo) session.getAttribute("UserInfo");
+		if(user!=null) {
+			Userinfo userEntry = service.UserEntry(user.getPhone());
+			session.setAttribute("UserInfo",userEntry);
+			return userEntry;
+		}
 		//System.out.println(userEntry);
-		return userEntry;
+		return user;
 	} 
 	
 	

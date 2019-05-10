@@ -4,8 +4,8 @@
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
+		<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
 		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
@@ -121,17 +121,17 @@
 							<div class="other-info2-right">
 								<div class="right-head"><br>
 									<span class="right-head-span1">网贷资金存管账户可用余额：</span> 
-									<span id="zhye">*****</span> 元 &nbsp;&nbsp;<i class="fa fa-eye" onclick="chakanyue()"></i>
+									<span id="zhye">*****</span> 元 &nbsp;&nbsp;<button class="fa fa-eye" onclick="chakanyue()"></button>
 									<hr>
 									<div class="input-group mb-2" style="width: 300px;margin-left: 35px;">
 										<div class="input-group-prepend">
-									      	<span class="input-group-text" onclick="jianjine()">-</span>
+									      	<button class="input-group-text" onclick="jianjine()">-</button>
 									    </div>
 									    <input type="text" class="form-control" id="touzijine" value="0">
 									    <div class="input-group-append">
-									      	<span class="input-group-text" onclick="jiajine()">+</span>
+									      	<button class="input-group-text" onclick="jiajine()">+</button>
 									    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									    <button class="btn btn-group" style="background-color: orange;">立即投资</button>
+									    <button class="btn btn-group" onclick="lijitouzi()" id="touzianniu" style="background-color: orange;">立即投资</button>
 									</div>
 									<p class="right-dizeng">递增金额：100.00元</p>
 								</div>

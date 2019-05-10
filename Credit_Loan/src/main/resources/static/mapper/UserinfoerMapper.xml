@@ -9,7 +9,37 @@
     	<result column="Phone" property="Phone" jdbcType="VARCHAR" />
     	<result column="password" property="password" jdbcType="VARCHAR" />
   	</resultMap>
-  	<select id="userinfo" resultMap="BaseResultMap">
-  		select * from userinfo
+  	<select id="userinfo" resultMap="BaseResultMap" parameterType="com.p2p.qiyun.cc.pojo.UserinfoQueryVO">
+  		select * from userinfo  u
+		<where>
+			<if test="u.nickname !=null and u.nickname != '' ">
+				u.nickname like "%"#{u.nickname}"%"
+			</if>
+			<if test="u.username !=null and u.username != ''  ">
+				or u.username like "%"#{u.username}"%"
+			</if>
+			<if test="u.Phone !=null and u.Phone != '' ">
+				or u.Phone like "%"#{u.Phone}"%"
+			</if>
+		</where> LIMIT #{pageNum},#{maxPage}
   	</select>
+  	<select id="count" parameterType="com.p2p.qiyun.cc.pojo.UserinfoQueryVO" resultType="java.lang.Integer" >
+    	select count(*) from userinfo
+  </select>
+  <!-- <select id="select" resultMap="BaseResultMap" parameterType="String">
+  	select * from userinfo where nickname LIKE "%"#{nickname}"%"
+  	<where>
+  	
+  		<if test="nickname != null">
+  		 nickname LIKE "%"#{nickname}"%"
+  		</if>
+  		<if test="username != null">
+  		 username LIKE "%"#{username}"%"
+  		</if>
+  		<if test="Phone != null">
+  		 Phone LIKE "%"#{Phone}"%"
+  		</if>
+  	
+  	</where>
+  </select> -->
 </mapper>

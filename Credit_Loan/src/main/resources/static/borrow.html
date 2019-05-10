@@ -7,14 +7,28 @@
 	<table id="porrow1" class="easyui-datagrid">
 		
 	</table>
-		<div align="center" id="manager_tool">
-			<br>
-			电话号码:<input id="phone" class="textbox" />&nbsp;&nbsp;&nbsp;
-				<a href="javascript:porrow()" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+		<div id="manager_tool">
+				<a href="javascript:qiangqin()" class="easyui-linkbutton" iconCls="icon-search">查看详情</a>
+			<div align="center">
+				<br>
+				电话号码:<input id="phone" class="textbox" />&nbsp;&nbsp;&nbsp;
+					<a href="javascript:porrow()" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+			</div>
+		</div>
+		<div id="">
+			<table id="porrow2">
+				
+			</table>
 		</div>
 	<script>
 	$(function() {
 		porrow();
+		$("#manger_ppp").dialog({
+			width: 400,
+			title: '修改管理',
+			modal: true,
+			closed: true,
+		});
 	});
 	function porrow() {
 		var phone = $("#phone").val();
@@ -31,63 +45,94 @@
 				width : 200,
 				align : 'center',
 				title : '编号',
-				checkbox:true,
-				formatter: function(value,row,index){
-					if (row.l){
-						return row.l.loanid;
-					} else {
-						return value;
-					}
-				}
-			}, {
-				field : 'nickname',
-				title : '昵称',
-				width : 200,
-				align : 'center'
+				checkbox:true
 			}, {
 				field : 'username',
 				title : '真实姓名',
 				width : 300,
-				align : 'center'
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.u){
+						return row.u.username;
+					} else {
+						return value;
+					}
+				}
 			}, {
 				field : 'phone',
 				title : '联系电话',
 				width : 200,
-				align : 'center'
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.u){
+						return row.u.phone;
+					} else {
+						return value;
+					}
+				}
 			}, {
 				field : 'idnumber',
 				title : '身份证',
 				width : 200,
-				align : 'center'
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.u){
+						return row.u.idnumber;
+					} else {
+						return value;
+					}
+				}
 			},{
 				field : 'applicationdate',
 				title : '借款时间',
 				width : 200,
-				align : 'center',
-				formatter: function(value,row,index){
-					if (row.l){
-						return row.l.applicationdate;
-					} else {
-						return value;
-					}
-				}
+				align : 'center'
 			},{
 				field : 'loanamount',
 				title : '借款金额(￥/元)',
 				width : 200,
-				align : 'center',
-				formatter: function(value,row,index){
-					if (row.l){
-						return row.l.loanamount;
-					} else {
-						return value;
-					}
-				}
-			} ] ],
+				align : 'center'
+			},{
+				field : 'approvalstatus',
+				title : '状态',
+				width : 200,
+				align : 'center'
+			}] ],
 			pagination : true,
 			pageSize : 5,
 			pageList : [ 5, 10, 15 ]
 		});
+	}
+	
+	function qiangqin(){
+		$("#manger_ppp").dialog('open');
+		var rows = $('#porrow1').datagrid('getSelections');
+		if(rows.length > 1) {
+			$.messager.alert('警告操作', '编辑记录只能选定一条数据！', 'warning');
+		} else if(rows.length == 1) {
+			$.ajax({
+				type: "post",
+				url: "",
+				data: {
+					tid:rows[0].loanid,
+				},
+				beforeSend: function() {
+					$.messager.progress({
+						text: '正在尝试获取数据...',
+					});
+				},
+				success: function(data) {
+					
+				},
+				error: function() {
+					$.messager.alert('警告操作', '服务器返回数据失败', 'warning');
+				}
+
+			});
+
+		} else {
+			$.messager.alert('警告操作', '编辑记录至少选定一条数据！', 'warning');
+		}
 	}
 </script>
 </body>

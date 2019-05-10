@@ -75,9 +75,6 @@ public class ShiroConfiguration {
         map.put("/findpwd", "anon");
         map.put("/shouye.html", "anon");
         map.put("/login.html", "anon");
-
-        map.put("/loanone.html","anon");
-
         map.put("/loanone.html", "anon");
         map.put("/loanfalv.html", "anon");
         map.put("/userentry","anon");

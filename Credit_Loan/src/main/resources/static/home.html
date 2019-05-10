@@ -155,40 +155,42 @@ a:hover {
 				title="首页"
 				iconCls="icon-first_img"
 				style="padding: 0 10px; diaplay: block; font-size: 18px;">
-				<img alt="" src="img/weiban.png"/>
-				<font size="2px">未办事宜</font>
-				<table class="table  table-bordered table-sm small">
+				<img
+					alt=""
+					src="img/weiban.png" /> <font size="2px">未办事宜</font>
+				<table
+					class="table  table-bordered table-sm small"
+					id="t">
 					<tr>
-						<th>借款</th>
-						<th>申请日期</th>
+						<th>订单</th>
+						<th>用户</th>
+						<th>月利息</th>
+						<th>期数</th>
 						<th>金额</th>
-						<th>状态</th>
+						<th>操作</th>
 					</tr>
-					<tr class="table-primary">
-						<td>Primary</td>
-						<td>Joe</td>
-						<td>joe@example.com</td>
-						<td>joe@example.com</td>
-					</tr>
+
 				</table>
-				<div class="container small" style="position: absolute;left: 300px;top:400px">
-				<ul class="pagination">
-					<li class="page-item"><a
-						class="page-link"
-						href="#">上一页</a></li>
-					<li class="page-item"><a
-						class="page-link"
-						href="#">1</a></li>
-					<li class="page-item active"><a
-						class="page-link"
-						href="#">2</a></li>
-					<li class="page-item"><a
-						class="page-link"
-						href="#">3</a></li>
-					<li class="page-item"><a
-						class="page-link"
-						href="#">下一页</a></li>
-				</ul>
+				<div
+					class="container small"
+					style="position: absolute; left: 300px; top: 400px">
+					<ul class="pagination">
+						<li class="page-item"><a
+							class="page-link"
+							href="#">上一页</a></li>
+						<li class="page-item"><a
+							class="page-link"
+							href="#">1</a></li>
+						<li class="page-item active"><a
+							class="page-link"
+							href="#">2</a></li>
+						<li class="page-item"><a
+							class="page-link"
+							href="#">3</a></li>
+						<li class="page-item"><a
+							class="page-link"
+							href="#">下一页</a></li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -325,6 +327,58 @@ function tick(mc,i, toZero=false){
   TweenMax.fromTo(mc.childNodes[3], .3, {rotationX:0, background:"linear-gradient(0deg, rgba(200,200,200,1), rgba(255,255,255,1) 15%)"},{rotationX:-90, ease:Power1.easeIn})
   TweenMax.fromTo(mc.childNodes[7], .5+.2*Math.random(), {rotationX:90},{rotationX:0, ease:Bounce.easeOut, delay:.3})
   TweenMax.fromTo(mc.childNodes[5], .6, {alpha:1},{alpha:0, ease:Bounce.easeOut, delay:.3})  
+}
+
+
+$(function (){
+	$.ajax({
+		url:"selStatus",
+		type:"post",
+		dataType:"json",
+		success:function(data){
+			
+		
+			for(var i=0;i<data.length;i++){
+		
+			var tr=	"<tr class='table-primary'>"
+				+"<td>"+data[i].loanid+"</td>"
+				+"<td>"+data[i].userinfo.nickname+"</td>"
+				+"<td>"+data[i].loanamount+"</td>"
+				+"<td>"+data[i].repaymentperiod+"</td>"
+				+"<td>"+data[i].loanrate+"</td>"
+				+"<td><font color='red' size='1'><a><img src='img/ck.png' onclick='auditing("+data[i].userinfo.userid+")'/>审核</a></font></td>"
+				+"</tr>"
+				document.getElementById("t").innerHTML+=tr;
+			}
+			
+		}
+		
+		
+	})
+	
+	
+})
+function auditing(userid){
+
+	$.ajax({
+		url:"selectByPrimary",
+		type:"post",
+		data:{
+			userid:21
+		},
+		dataType:"json",
+		success:function(data){
+			if(data==1){
+				$.messager.alert('警告','审核成功！！');
+			}else{
+				
+				$.messager.alert('警告','审核失败！！');
+			}
+			
+		}
+		
+	})
+	
 }
 </script>
 </html>

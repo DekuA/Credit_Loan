@@ -76,12 +76,16 @@ public class ShiroConfiguration {
         map.put("/shouye.html", "anon");
         map.put("/login.html", "anon");
         map.put("/wzz_information.html", "anon");
+        map.put("/loanone.html", "anon");
+        map.put("/loanfalv.html", "anon");
         map.put("/userentry","anon");
         map.put("/loginout","logout");
         map.put("/logouttt", "anon");
         map.put("/usercode", "anon");
         map.put("/userenroll", "anon");
-		
+        map.put("/loansAdd", "anon");
+        map.put("/infordata", "anon");
+        
 		//修改调整的登录页面
         bean.setLoginUrl("/lg.html");
 		

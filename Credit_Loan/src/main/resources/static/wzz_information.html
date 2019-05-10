@@ -194,16 +194,16 @@ background: #0088cc;
 		
   <div class="column sidemenu" style="border: 1px solid gainsboro; height: 1650px;">
     <ul id="u">
-      <li class="active"><a href="#" onclick=""><font size="4" face="楷体">信息纰漏</font></a></li>
-      <li><a href="#" onclick="data()"><font size="4" face="楷体">运营数据</font></a></li>
+      <li class="active"><a href="#" onclick="xixinlan()"><font size="4" face="楷体">信息纰漏</font></a></li>
+      <li><a href="#" onclick="data()"><font size="4" face="楷体 ">运营数据</font></a></li>
       <li><a href="#" onclick="anquan()"><font size="4" face="楷体">安全保障</font></a></li>
       <li><a href="#people"onclick="fengx()"><font size="4" face="楷体">风险提示</font></a></li>
       <li><a href="#history"onclick="cjr()"><font size="4" face="楷体">出借人教育</font></a></li>
       <li><a href="#oceans" onclick="mon()"><font size="4" face="楷体">收费说明</font></a></li>
-      	<li class="active"><a href="#oceans"><font size="4" face="楷体">关于我们</font></a></li>
-      	<li><a href="#oceans" onclick="fid()"><font size="4" face="楷体">公司介绍</font></a></li>
+      	<li class="active"><a href="#oceans"><font size="4" face="楷体">关于我们</font></a></li> 
+      	 <li><a href="#oceans" onclick="fid()"><font size="4" face="楷体">公司介绍</font></a></li>
       	<li><a href="#oceans"onclick="ggxw()"><font size="4" face="楷体">公告新闻</font></a></li>
-      	<li><a href="#oceans"onclick="wzsm()"><font size="4" face="楷体">网站申明</font></a></li>
+      	<li><a href="#oceans"onclick="wzsm()"><font size="4" face="楷体">网站申明</font></a></li> 
       	
     </ul>
   </div>
@@ -736,8 +736,44 @@ function fid(){
 	$("#div7").css("display","inline");
 	
 }
+/* $(function(){
+	 
+	xixinlan();
+})
+
+
+function xixinlan(){
+	alert("111");
+            $.ajax({
+            	url:"infordata",
+            	type : "post",
+            	dataType:"json",
+            	success:function(data){
+            		for(var i=0;i<data.length;i++){
+            			$("#u").append("<li>"+
+    							"<li><a onclick='data()'><font size='4' face='楷体 '>"+data[i].informationData+"</font></a></li>"+
+    							"<li><a onclick='anquan()'><font size='4' face='楷体 '>"+data[i].informationSafe+"</font></a></li>"+
+    							"<li><a onclick='fengx()'><font size='4' face='楷体 '>"+data[i].informationRisk+"</font></a></li>"+
+    							"<li><a onclick='cjr()'><font size='4' face='楷体 '>"+data[i].informationEducation+"</font></a></li>"+
+    							"<li><a onclick='mon()'><font size='4' face='楷体 '>"+data[i].informationCharge+"</font></a></li>"+
+    							"<li><a onclick='fid()'><font size='4' face='楷体 '>"+data[i].informationUs+"</font></a></li>"+
+    							"<li><a onclick='ggxw()'><font size='4' face='楷体 '>"+data[i].informationDuce+"</font></a></li>"+	
+    							"<li><a onclick='wzsm()'><font size='4' face='楷体 '>"+data[i].informationNews+"</font></a></li>"+
+            		}
+            		
+            		
+            	},error:function(data){
+   				 alert("请求发送失败");
+   			 }
+            	
+            	
+            	
+            });
 	
 	
+} */
+	
+
 		
 	</script>
 </body>

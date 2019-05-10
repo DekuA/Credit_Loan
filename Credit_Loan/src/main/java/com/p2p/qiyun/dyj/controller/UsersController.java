@@ -1,6 +1,9 @@
 package com.p2p.qiyun.dyj.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -14,7 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.p2p.qiyun.dyj.pojo.Dept;
+import com.p2p.qiyun.dyj.pojo.DeptQuerVO;
+import com.p2p.qiyun.dyj.pojo.Role;
+import com.p2p.qiyun.dyj.pojo.RoleQueryVO;
 import com.p2p.qiyun.dyj.pojo.Users;
+import com.p2p.qiyun.dyj.pojo.UsersQueryVO;
 import com.p2p.qiyun.dyj.service.UsersService;
 
 @RestController
@@ -69,5 +77,45 @@ public class UsersController {
 	public int selectByRid(int[] idlist){
 		int showByRid = us.showByRid(idlist);
 		return showByRid;
+	}
+	@RequestMapping("/selectByRIds")
+	public Map<String, Object> selectByRIds(int rid,int rows,int page){
+		Role r=new Role();
+		r.setRoleid(rid);
+		RoleQueryVO p=new RoleQueryVO(rows*(page-1), rows,r);
+		List<Users> list = us.showByRids(p);
+		Map<String, Object> map=new HashMap();
+		map.put("rows", list);
+		map.put("total", us.rolecount(p));
+		return map;
+
+	}
+	@RequestMapping("/selectByDeptIds")
+	public Map<String, Object> selectByDeptIds(int deptid,int rows,int page){
+		Dept d=new Dept();
+		d.setDeptid(deptid);
+		DeptQuerVO p=new DeptQuerVO(rows*(page-1), rows,d);
+		List<Users> list = us.showByDeptid(p);
+		Map<String, Object> map=new HashMap();
+		map.put("rows", list);
+		map.put("total", us.deptcount(p));
+		return map;
+
+	}
+	@RequestMapping("/findUsers1")
+	public Map<String, Object> findUsers1(Users u,int rows,int page){
+		UsersQueryVO p=new UsersQueryVO(rows*(page-1), rows,u);
+		List<Users> list = us.findUsers1(p);
+		Map<String, Object> map=new HashMap();
+		System.out.println(list);
+		map.put("rows", list);
+		map.put("total", us.userscount(p));
+		return map;
+
+	}
+	@RequestMapping("/updateRid")
+	public int updateRid(Users u){
+		int updateRid = us.updateRid(u);
+		return updateRid;
 	}
 }

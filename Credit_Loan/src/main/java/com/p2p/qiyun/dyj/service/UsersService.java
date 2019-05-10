@@ -1,10 +1,15 @@
 package com.p2p.qiyun.dyj.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.p2p.qiyun.dyj.dao.UsersMapper;
+import com.p2p.qiyun.dyj.pojo.DeptQuerVO;
+import com.p2p.qiyun.dyj.pojo.RoleQueryVO;
 import com.p2p.qiyun.dyj.pojo.Users;
+import com.p2p.qiyun.dyj.pojo.UsersQueryVO;
 
 @Service
 public class UsersService {
@@ -21,5 +26,33 @@ public class UsersService {
 	public int showByRid(int[] idlist){
 		int selectByRid = mapper.selectByRid(idlist);
 		return selectByRid;
+	}
+	public List<Users> showByRids(RoleQueryVO vo){
+		List<Users> selectByRIds = mapper.selectByRIds(vo);
+		return selectByRIds;
+	}
+	public int rolecount(RoleQueryVO vo){
+		int ridcount = mapper.ridcount(vo);
+		return ridcount;
+	}
+	public List<Users> showByDeptid(DeptQuerVO vo){
+		List<Users> selectByDeptIds = mapper.selectByDeptIds(vo);
+		return selectByDeptIds;
+	}
+	public int deptcount(DeptQuerVO vo){
+		int deptidcount = mapper.deptidcount(vo);
+		return deptidcount;
+	}
+	public List<Users> findUsers1(UsersQueryVO vo){
+		List<Users> list = mapper.findUsers1(vo);
+		return list;
+	}
+	public int userscount(UsersQueryVO vo){
+		int userscount = mapper.userscount(vo);
+		return userscount;
+	}
+	public int updateRid(Users u){
+		int updateRid = mapper.updateRid(u);
+		return updateRid;
 	}
 }

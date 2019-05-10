@@ -74,8 +74,15 @@ public class ShiroConfiguration {
 		//放行login.html页面
         map.put("/findpwd", "anon");
         map.put("/shouye.html", "anon");
+<<<<<<< HEAD
         map.put("/login.html", "anon");
         map.put("/wzz_information.html", "anon");
+=======
+        map.put("/login.html", "anon");
+
+        map.put("/loanone.html","anon");
+
+>>>>>>> branch 'master' of https://github.com/DekuA/Credit_Loan.git
         map.put("/loanone.html", "anon");
         map.put("/loanfalv.html", "anon");
         map.put("/userentry","anon");
@@ -83,9 +90,26 @@ public class ShiroConfiguration {
         map.put("/logouttt", "anon");
         map.put("/usercode", "anon");
         map.put("/userenroll", "anon");
+<<<<<<< HEAD
         map.put("/loansAdd", "anon");
         map.put("/infordata", "anon");
+
         
+        //xsr的请求
+        map.put("/zhanghu_xsr", "anon");
+        map.put("/shimingname_xsr", "anon");
+        map.put("/bangyou_xsr", "anon");
+        map.put("/xiumima_xsr", "anon");
+        map.put("/chayin_xsr", "anon");
+        map.put("/bangyin_xsr", "anon");
+        map.put("/panduan_xsr", "anon");
+        map.put("/shuaping_xsr", "anon");
+        map.put("/panlogin_xsr","anon");
+        map.put("/panlogin_xsr","anon");
+        map.put("/xiaoxi_xsr","anon");
+		map.put("/chajie_xsr","anon");
+
+
 		//修改调整的登录页面
         bean.setLoginUrl("/lg.html");
 		

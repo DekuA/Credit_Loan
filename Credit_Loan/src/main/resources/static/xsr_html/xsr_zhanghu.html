@@ -49,7 +49,7 @@
 						      	<a class="nav-link" href="#"><font size="1">昵称</font></a>						   
 						    </li>
 						     <li>
-						      	<a class="nav-link" href="javascript:logout()">[<font size="1">退出 </font>]</a>						   
+						      	<a class="nav-link" href="../logouttt">[<font size="1">退出 </font>]</a>						   
 						    </li>
 					  </ul>
 				</nav>
@@ -92,7 +92,19 @@
 			<div class='container' >
 				<div style='position: absolute;right: 100px;'>
 					 <ul class='nav' id='zhxxk'>
-					  	
+					  	<li class='nav-item'>
+					  		<a  class='nav-link' style='color: orange;' href='xsr_zhanghu.html'>账户设置</a>				  		
+				  		</li>
+				  		<li class='nav-item'>
+					  		<a  class='nav-link' style='color: black;' href='xsr_xiaoxi.html'>消息中心</a>				  		
+				  		</li>
+				  		<li class='nav-item'>
+					  		<a  class='nav-link' style='color: black;' href='xsr_jiehuanjilu.html'>借款/还款 记录</a>				  		
+				  		</li>
+				  		<li class='nav-item'>
+					  		<a  class='nav-link' style='color: black;' href='javacsript::'>p2p资产</a>				  		
+				  		</li>
+				  		
 					 </ul>
 				 </div>
 			</div>
@@ -181,7 +193,15 @@
 			
 </body>
 <script>
-
+$.ajax({
+	url:"../panlogin_xsr",
+	dataType:"text",
+	success:function(data){
+		if(data=="0"){
+			location.href="../login.html";
+		}
+	}
+});
 		function kefu(){
 				window.open("xsr_kefu.html");
 		}
@@ -222,37 +242,6 @@
 			document.getElementById("hr1").color="gray";
 			document.getElementById("hr2").color="#0056B3";
 			$("#iframe2").css("height","200px");
-		}
-		
-		var arrlan=new Array();
-		arrlan[0]="账户设置";arrlan[1]="消息中心";arrlan[2]="我的积分";arrlan[3]="我的特权";arrlan[4]="p2p资产";
-		for(i=0;i<arrlan.length;i++){
-			$("#zhxxk").append("<li class='nav-item'><a id='xxid"+i+"' onclick='xuanxiang"+i+"()' class='nav-link' style='color: black;' href='javacsript::'>"+arrlan[i]+"</a> </li>");
-		}
-		$("#xxid0").css("color","orange");
-		function xuanxiang0(){
-			fangfa(0);
-		}
-		function xuanxiang1(){
-			fangfa(1);		
-		}
-		function xuanxiang2(){
-			fangfa(2);		
-		}
-		function xuanxiang3(){
-			fangfa(3);		
-		}
-		function xuanxiang4(){
-			fangfa(4);	
-		}
-		
-		function fangfa(id){
-			$("#xxid"+id).css("color","orange");
-			for(i=0;i<arrlan.length;i++){
-				if(i!=id){
-					$("#xxid"+i).css("color","black");
-				}
-			}
 		}
 </script>
 </html>

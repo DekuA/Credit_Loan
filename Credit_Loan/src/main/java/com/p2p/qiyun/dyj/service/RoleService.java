@@ -37,4 +37,8 @@ public class RoleService {
 		int count = mapper.deleteRole(idlist);
 		return count;
 	}
+	public List<Role> showRoles1(){
+		List<Role> showRoles1 = mapper.showRoles1();
+		return showRoles1;
+	}
 }

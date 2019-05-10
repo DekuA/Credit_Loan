@@ -30,9 +30,25 @@ public class TreesController {
 		
 		return list;
 	}
+	@RequestMapping("/hostrees")
+	public List<Trees> hostrees(int rid){
+		List<Integer> selectId = trs.selectId(rid);
+		List<Trees> find = ts.find(selectId);
+		return find;
+	}
 	@RequestMapping("hostreee")
 	public List<Trees> hostree(int id){
 		List<Trees> treehoss =ts.select(id);
 		return treehoss; 
+	}
+	@RequestMapping("/findTandR")
+	public int findTandR(int id){
+		List<Integer> list = trs.selectId(id);
+		return list.size();
+	}
+	@RequestMapping("/findTrees1")
+	public List<Trees> findTrees1(int nid){
+		List<Trees> list = ts.select(nid);
+		return list;
 	}
 }

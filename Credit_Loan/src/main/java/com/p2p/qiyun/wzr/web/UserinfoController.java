@@ -17,35 +17,43 @@ import org.springframework.web.bind.annotation.RestController;
 import com.p2p.qiyun.wzr.common.cn.com.webxml.ArrayOfString;
 import com.p2p.qiyun.wzr.common.cn.com.webxml.WeatherWSSoap;
 import com.p2p.qiyun.wzr.common.cn.com.webxml.WeatherWS;
-import com.p2p.qiyun.wzr.domain.userinfo;
+import com.p2p.qiyun.wzr.domain.Userinfo;
 import com.p2p.qiyun.wzr.service.UserinfoService;
+import com.p2p.qiyun.xsr.domain.customer;
+import com.p2p.qiyun.xsr.service.CreditService_xsr;
 
 @RestController
 public class UserinfoController {
 
 	@Autowired
 	private UserinfoService service;
+	@Autowired
+	private CreditService_xsr im;
 	
 	@RequestMapping("userentry")
-	public int userentry(userinfo user,HttpSession session){
+	public int userentry(Userinfo user,HttpSession session){
 		
 		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
 		SimpleHash hash = new SimpleHash("MD5",user.getPassword(),bytes,1234);
 		user.setPassword(hash.toString());
-		List<userinfo> list = service.userlogin(user);
+		List<Userinfo> list = service.userlogin(user);
 		if(list.size()>0){
 			session.setAttribute("user", user.getPhone());
 			service.UserTime(user.getPhone());
-			userinfo userEntry = service.UserEntry(user.getPhone());
+			Userinfo userEntry = service.UserEntry(user.getPhone());
 			session.setAttribute("username", user.getNickname());
 			service.charukuhuxinxi(userEntry.getUserid());
+			List<customer> kehuxinxi = im.kehuxinxi(userEntry.getUserid());
+			for (int i = 1; i < kehuxinxi.size(); i++) {
+				im.delecus(kehuxinxi.get(i).getCustomerid());			
+			}
 			return 1;
 		}
 		return 0;
 	}
 	
 	@RequestMapping("usercode")
-	public int usercode(userinfo user){
+	public int usercode(Userinfo user){
 		int code = service.UserCode(user);
 		if(code>0){
 			return 1;
@@ -54,7 +62,7 @@ public class UserinfoController {
 	}
 	
 	@RequestMapping("userenroll")
-	public int userenroll(userinfo user){
+	public int userenroll(Userinfo user){
 		String yonghu = "祁云用户";
 		user.setNickname(yonghu+user.getPhone());
 		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
@@ -68,8 +76,9 @@ public class UserinfoController {
 	}
 	
 	@RequestMapping("logouttt")
-	public String logout(HttpServletResponse response,HttpSession session){
+	public String logout(HttpServletResponse response,HttpSession session) throws IOException{
 		session.removeAttribute("user");
+
 		try {
 			response.sendRedirect("login.html");
 		} catch (IOException e) {
@@ -77,6 +86,7 @@ public class UserinfoController {
 			e.printStackTrace();
 		}
 		return "";
+
 	}
 	
 	@RequestMapping("getcity")

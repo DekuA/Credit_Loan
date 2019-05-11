@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -32,7 +33,6 @@ public class UserinfoController {
 	
 	@RequestMapping("userentry")
 	public int userentry(Userinfo user,HttpSession session){
-		
 		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
 		SimpleHash hash = new SimpleHash("MD5",user.getPassword(),bytes,1234);
 		user.setPassword(hash.toString());
@@ -41,7 +41,9 @@ public class UserinfoController {
 			session.setAttribute("user", user.getPhone());
 			service.UserTime(user.getPhone());
 			Userinfo userEntry = service.UserEntry(user.getPhone());
+			session.setAttribute("UserInfo",userEntry);
 			session.setAttribute("username", user.getNickname());
+			session.setAttribute("useridss", userEntry.getUserid());
 			service.charukuhuxinxi(userEntry.getUserid());
 			List<customer> kehuxinxi = im.kehuxinxi(userEntry.getUserid());
 			for (int i = 1; i < kehuxinxi.size(); i++) {
@@ -51,6 +53,22 @@ public class UserinfoController {
 		}
 		return 0;
 	}
+	
+	
+	@RequestMapping("gotoindex")
+	public Userinfo gotoIndex(Model model,HttpSession session,HttpServletResponse response) {
+		//System.out.println(userEntry);
+		Userinfo user = (Userinfo) session.getAttribute("UserInfo");
+		if(user!=null) {
+			Userinfo userEntry = service.UserEntry(user.getPhone());
+			session.setAttribute("UserInfo",userEntry);
+			return userEntry;
+		}
+		//System.out.println(userEntry);
+		return user;
+	} 
+	
+	
 	
 	@RequestMapping("usercode")
 	public int usercode(Userinfo user){
@@ -78,7 +96,7 @@ public class UserinfoController {
 	@RequestMapping("logouttt")
 	public String logout(HttpServletResponse response,HttpSession session) throws IOException{
 		session.removeAttribute("user");
-
+		session.removeAttribute("UserInfo");
 		try {
 			response.sendRedirect("login.html");
 		} catch (IOException e) {

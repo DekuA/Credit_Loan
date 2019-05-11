@@ -30,31 +30,31 @@ public class Userinfo {
 		return nickname;
 	}
 	public void setNickname(String nickname) {
-		this.nickname = nickname;
+		this.nickname = nickname == null ? null : nickname.trim();
 	}
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
-		this.username = username;
+		this.username = username == null ? null : username.trim();
 	}
 	public String getIdnumber() {
 		return idnumber;
 	}
 	public void setIdnumber(String idnumber) {
-		this.idnumber = idnumber;
+		this.idnumber = idnumber == null ? null : idnumber.trim();
 	}
 	public String getPhone() {
 		return Phone;
 	}
 	public void setPhone(String phone) {
-		this.Phone = phone;
+		this.Phone = phone == null ? null : phone.trim();
 	}
 	public String getPassword() {
 		return password;
 	}
 	public void setPassword(String password) {
-		this.password = password;
+		this.password = password == null ? null : password.trim();
 	}
 	@Override
 	public String toString() {

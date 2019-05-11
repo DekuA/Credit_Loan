@@ -23,11 +23,10 @@ function lijitouzi(){
 	$.ajax({
 		url:"lxm/selsfbk?userid="+user.userid,
 		success:function(data){
-			alert(data);
 			if(data>0){
 				alert("投资成功！");
 			}else{
-				alert("您还未绑定银行卡,请绑定银行卡后再进行投资");
+				alert("您还未绑定银行卡,请绑定银行卡后再进行投资!");
 				window.location.href="xsr_html/xsr_zhanghu.html";
 			}
 		}

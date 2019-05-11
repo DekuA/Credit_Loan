@@ -23,8 +23,14 @@ public class MyController {
 	@RequestMapping("lxm/selsfbk")
 	public String selsfbk(int userid) {
 		List<customer> list = kahaoser.selkahao(userid);
-		System.out.println(userid);
-		return list.size()+"";
+		int num=0;
+		for (customer customer : list) {
+			String bankid = customer.getBankid();
+			if(bankid!=null) {
+				num++;
+			}
+		}
+		return num+"";
 	}
 	
 }

@@ -20,12 +20,16 @@ import com.p2p.qiyun.wzr.common.cn.com.webxml.WeatherWSSoap;
 import com.p2p.qiyun.wzr.common.cn.com.webxml.WeatherWS;
 import com.p2p.qiyun.wzr.domain.Userinfo;
 import com.p2p.qiyun.wzr.service.UserinfoService;
+import com.p2p.qiyun.xsr.domain.customer;
+import com.p2p.qiyun.xsr.service.CreditService_xsr;
 
 @RestController
 public class UserinfoController {
 
 	@Autowired
 	private UserinfoService service;
+	@Autowired
+	private CreditService_xsr im;
 	
 	@RequestMapping("userentry")
 	public int userentry(Userinfo user,HttpSession session){
@@ -41,6 +45,10 @@ public class UserinfoController {
 			session.setAttribute("username", user.getNickname());
 		//System.out.println(userEntry);
 			service.charukuhuxinxi(userEntry.getUserid());
+			List<customer> kehuxinxi = im.kehuxinxi(userEntry.getUserid());
+			for (int i = 1; i < kehuxinxi.size(); i++) {
+				im.delecus(kehuxinxi.get(i).getCustomerid());			
+			}
 			return 1;
 		}
 		return 0;

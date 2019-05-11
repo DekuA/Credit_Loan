@@ -4,12 +4,12 @@
 		<meta charset="utf-8" />
 		<title>祁云信用贷</title>
 	</head>
-		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
-		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
-		<script type="text/javascript" src="js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
-		<link rel="stylesheet" href="lxm/css/shouye.css" />
+		<link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../static/css/font-awesome-4.7.0/css/font-awesome.min.css">
+		<script type="text/javascript" src="../static/js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../static/js/bootstrap-paginator.js"></script>
+		<link rel="stylesheet" href="../static/lxm/css/shouye.css" />
 	<body style="background-color: #f1eff1;">
 			<div style="background-color: gray;">				
 				<nav class="navbar navbar-expand-sm bg-light" style="height: 30px;">
@@ -32,12 +32,9 @@
 						    <li class="nav-item">
 						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 						    </li>
-						    <!-- <li class="nav-item">
-						      	<a class="nav-link" href="#"><font size="1">昵称</font></a>						   
-						    </li>
 						     <li class="nav-item">
-						      	<a class="nav-link" href="logouttt">[<font size="1">退出 </font>]</a>						   
-						    </li> -->
+						      	<a th:if="${UserInfo == null}" class="nav-link" href="logouttt">[<font size="1">退出 </font>]</a>						   
+						    </li>
 					  </ul>
 				</nav>
 				<div style="position: absolute;right: 40px;top:3px;"><font size="1" >客服电话: 38383</font></div>
@@ -48,23 +45,23 @@
 						<li class="nav-item">
 					     &nbsp; &nbsp; &nbsp; 
 					    </li>
-						<li class="nav-item"><a class="nav-link" href="xsr_html/xsr_zhanghu.html">
+						<li class="nav-item"><a class="nav-link" href="../static/xsr_html/xsr_zhanghu.html">
 					      <img src="img/q11.jpg" style="height: 30px;width: 30px;border-radius: 30px;border: 1px solid black;" /></a>
 					    </li>
 					    <li class="nav-item">
 					      <a class="nav-link" href="xsr_html/xsr_zhanghu.html">我的账户</a>
 					    </li>
 					    <li class="nav-item">
-					      <a class="nav-link" href="wzz_information.html">信息披露</a>
+					      <a class="nav-link" href="../static/wzz_information.html">信息披露</a>
 					    </li>
 					    <li class="nav-item">
 					      <a class="nav-link" href="javascript::" onclick="touzi()">我要投资</a>
 					    </li>
 					    <li class="nav-item">
-					      <a class="nav-link" href="loanone.html">我要借款/还款</a>
+					      <a class="nav-link" href="../static/loanone.html">我要借款/还款</a>
 					    </li>
 					     <li class="nav-item">
-					      <a class="nav-link" href="zhaiquanzr.html">债权转让</a>
+					      <a class="nav-link" href="../static/zhaiquanzr.html">债权转让</a>
 					    </li>
 					    <li class="nav-item">
 					      <a class="nav-link" href="javascript::" onclick="shouye()">首页</a>
@@ -72,7 +69,7 @@
 					  </ul>
 				</div> 
 				<div class="container" style="float:right;position: absolute;right: -580px;top:35px;">
-					<img src="img/logo.png" style="height: 50px;width: 140px;" />
+					<img src="../static/img/logo.png" style="height: 50px;width: 140px;" />
 				</div>
 			</div>
 			<!--<div id="lunbo" style="height: 231px;position: relative;">
@@ -82,7 +79,7 @@
 			<div class="main-wide-wrap">
 			<div class="main-body">
 				<div class="p2p-slider">
-					<img src="lxm/img/20190427091136.png" style="width: 100%;height: 100%;" />
+					<img src="../static/lxm/img/20190427091136.png" style="width: 100%;height: 100%;" />
 				</div>
 				<div class="touzixm">
 					<div class="touzixm-xilei" style="position: absolute;width: 100%;height: 45px;">
@@ -192,8 +189,8 @@
 							<font size='1' color='gray'>长ICP证 100953号 长公网安备 11010502020657 长ICP备12025643号-1</font>
 						</div>
 						<div style="position: absolute;top: 150px;left: 530px;">
-							<img src="lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />
-							<img src="lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />						
+							<img src="../static/lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />
+							<img src="../static/lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />						
 						</div>
 						<div style="position: absolute;top: 146px;left: 930px;">
 							<font size="3" color="gray">祁云信用贷财富客服：</font> <font size="5">85886</font><br><br>
@@ -201,12 +198,12 @@
 							<font size="3" color="gray">服务时间: 9:00-21:00</font>
 						</div><br><br><hr />
 						<div class="container" align="center"><br />
-							<img src="lxm/img/tu1.PNG" />
-							<img src="lxm/img/tu2.PNG" />
-							<img src="lxm/img/tu3.PNG" />
-							<img src="lxm/img/tu4.PNG" />
-							<img src="lxm/img/tu5.PNG" />
-							<img src="lxm/img/tu6.PNG" />
+							<img src="../static/lxm/img/tu1.PNG" />
+							<img src="../static/lxm/img/tu2.PNG" />
+							<img src="../static/lxm/img/tu3.PNG" />
+							<img src="../static/lxm/img/tu4.PNG" />
+							<img src="../static/lxm/img/tu5.PNG" />
+							<img src="../static/lxm/img/tu6.PNG" />
 						</div>
 					</div>
 			</div>
@@ -215,7 +212,7 @@
 			    <div class="modal-dialog">
 			      <div class="modal-content">
 			        <div class="modal-body" align="center">
-			       		<img src="lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />
+			       		<img src="../static/lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />
 			        </div>			   
 				        <div class="modal-footer">
 				          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
@@ -227,5 +224,5 @@
 	<script type="text/javascript">
 	
 	</script>
-	<script type="application/javascript" src="lxm/js/shouye.js"></script>
+	<script type="application/javascript" src="../static/lxm/js/shouye.js"></script>
 </html>

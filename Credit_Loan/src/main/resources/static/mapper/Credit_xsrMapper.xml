@@ -42,6 +42,21 @@
   	<select id="chajiekuan" parameterType="int" resultType="com.p2p.qiyun.lsx.entity.Loan">		
 		select * from loan where userid=#{userid}  		
   	</select>
+  	
+  	<select id="chahuankuan" parameterType="int" resultType="com.p2p.qiyun.xsr.domain.repayment">
+		select * from repayment where userid=#{userid} ORDER BY rdate desc		
+  	</select>
 
+	<insert id="chaduihuatext" parameterType="com.p2p.qiyun.xsr.domain.kefuinfo">
+		insert into kefuinfo(userid,uid,kfnr,qiuid) VALUES(#{userid},#{uid},#{kfnr},#{qiuid})
+	</insert>
+  	
+  	<select id="chatextuser" parameterType="int" resultType="com.p2p.qiyun.xsr.domain.kefuinfo">
+  		select a.* from kefuinfo a,yesnoqiu b where a.qiuid=b.qiuid and a.userid=#{userid} and b.yesno='yes'
+  	</select>
+  	
+  	<select id="chakfu" parameterType="int" resultType="com.p2p.qiyun.dyj.pojo.Users">
+  		select * from users where uid=#{uid}
+  	</select>
   	
 </mapper>

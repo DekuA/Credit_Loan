@@ -101,8 +101,10 @@ public class ShiroConfiguration {
         map.put("/panlogin_xsr","anon");
         map.put("/xiaoxi_xsr","anon");
 		map.put("/chajie_xsr","anon");
-
-
+		map.put("/chahuanku_xsr","anon");
+		map.put("/helpcenter.html","anon");
+		map.put("/chatext_xsr","anon");
+		map.put("/chaxuntext_xsr","anon");
 		//修改调整的登录页面
         bean.setLoginUrl("/lg.html");
 		

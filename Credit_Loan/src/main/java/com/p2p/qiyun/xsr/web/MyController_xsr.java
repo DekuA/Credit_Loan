@@ -16,6 +16,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.p2p.qiyun.lsx.entity.Loan;
 import com.p2p.qiyun.xsr.domain.customer;
+import com.p2p.qiyun.xsr.domain.kefuinfo;
+import com.p2p.qiyun.xsr.domain.repayment;
 import com.p2p.qiyun.xsr.domain.userinfo;
 import com.p2p.qiyun.xsr.domain.xiaoxi;
 import com.p2p.qiyun.xsr.service.CreditService_xsr;
@@ -157,6 +159,48 @@ public class MyController_xsr {
 		map.put("userphone",us.getNickname());//存总数据的行数
 		return map;
 			
+	}
+	
+	@RequestMapping("chahuanku_xsr")
+	public Map chahuanku_xsr(int yeshu,HttpSession session) {
+		String attribute = (String) session.getAttribute("user");
+		userinfo us= im.phonechaxinxi(attribute);
+		PageHelper.startPage(yeshu, 5);
+		List<repayment> chahuankuan = im.chahuankuan(us.getUserid());
+		PageInfo<repayment> info = new PageInfo<>(chahuankuan);
+		int zonghang = (int) info.getTotal();
+		int num = 0;
+		if(zonghang%5==0){
+			num=zonghang/5;
+		}else{
+			num=zonghang/5+1;
+		}
+		Map map = new HashMap();
+		map.put("rows",chahuankuan);//存集合
+		map.put("total",num);//存总数据的行数
+		map.put("userphone",us.getNickname());
+		return map;			
+	}
+	
+	@RequestMapping("chatext_xsr")
+	public String chatext_xsr(kefuinfo kf,HttpSession session) {
+		String attribute = (String) session.getAttribute("user");
+		userinfo us= im.phonechaxinxi(attribute);
+		kf.setUserid(us.getUserid());
+		kf.setUid(0);
+		kf.setQiuid(1);
+		System.out.println(kf);
+		int chaduihuatext = im.chaduihuatext(kf);
+		return chaduihuatext+"";
+			
+	}
+
+	@RequestMapping("chaxuntext_xsr")
+	public List<kefuinfo> chaxuntext_xsr(HttpSession session) {
+		String attribute = (String) session.getAttribute("user");
+		userinfo c= im.phonechaxinxi(attribute);
+		List<kefuinfo> chatextuser = im.chatextuser(c.getUserid());
+		return chatextuser;		
 	}
 	
 }

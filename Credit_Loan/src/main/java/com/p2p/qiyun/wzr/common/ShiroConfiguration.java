@@ -74,6 +74,11 @@ public class ShiroConfiguration {
 		//放行login.html页面
         map.put("/findpwd", "anon");
         map.put("/shouye.html", "anon");
+       //map.put("/NewFile.html", "anon");
+        map.put("/zhaiquanzr.html", "anon");
+        map.put("/xmxiangqing.html", "anon");
+        map.put("/login.html", "anon");
+        map.put("/loanone.html","anon");
 
         map.put("/login.html", "anon");
         map.put("/wzz_information.html", "anon");
@@ -90,8 +95,13 @@ public class ShiroConfiguration {
         map.put("/logouttt", "anon");
         map.put("/usercode", "anon");
         map.put("/userenroll", "anon");
+        map.put("/gotoindex","anon");
+        map.put("/xsr_jisuanqi.html","anon");
+        map.put("/loanone.html","anon");
 
         map.put("/loansAdd", "anon");
+        map.put("/panlog", "anon");
+        map.put("/panname", "anon");
         map.put("/infordata", "anon");
 
         
@@ -108,10 +118,12 @@ public class ShiroConfiguration {
         map.put("/panlogin_xsr","anon");
         map.put("/xiaoxi_xsr","anon");
 		map.put("/chajie_xsr","anon");
-
-
+		map.put("/chahuanku_xsr","anon");
+		map.put("/helpcenter.html","anon");
+		map.put("/chatext_xsr","anon");
+		map.put("/chaxuntext_xsr","anon");
 		//修改调整的登录页面
-        bean.setLoginUrl("/lg.html");
+        bean.setLoginUrl("/login.html");
 		
         map.put("/login", "anon");
         //需要登录访问的资源 , 一般将/**放在最下边

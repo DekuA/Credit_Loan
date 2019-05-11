@@ -5,10 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.p2p.qiyun.dyj.pojo.Users;
 import com.p2p.qiyun.lsx.entity.Loan;
 import com.p2p.qiyun.xsr.dao.CreditMapper_xsr;
 
 import com.p2p.qiyun.xsr.domain.customer;
+import com.p2p.qiyun.xsr.domain.kefuinfo;
+import com.p2p.qiyun.xsr.domain.repayment;
 import com.p2p.qiyun.xsr.domain.userinfo;
 import com.p2p.qiyun.xsr.domain.xiaoxi;
 
@@ -93,6 +96,30 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 	public List<Loan> chajiekuan(int userid) {
 		List<Loan> chajiekuan = dao.chajiekuan(userid);
 		return chajiekuan;
+	}
+
+	@Override
+	public List<repayment> chahuankuan(int userid) {
+		List<repayment> chahuankuan = dao.chahuankuan(userid);
+		return chahuankuan;
+	}
+
+	@Override
+	public int chaduihuatext(kefuinfo kf) {
+		int chaduihuatext = dao.chaduihuatext(kf);
+		return chaduihuatext;
+	}
+
+	@Override
+	public List<kefuinfo> chatextuser(int userid) {
+		List<kefuinfo> chatextuser = dao.chatextuser(userid);
+		return chatextuser;
+	}
+
+	@Override
+	public Users chakfu(int uid) {
+		Users chakfu = dao.chakfu(uid);
+		return chakfu;
 	}
 
 	

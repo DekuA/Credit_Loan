@@ -5,7 +5,7 @@
 		<title>祁云信用贷</title>
 	</head>
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
@@ -18,7 +18,7 @@
 						     <a class="nav-link" href="#"> <font size="1">用户论坛</font></a>
 						    </li>
 						    <li class="nav-item">
-						      <a class="nav-link" href="#"><font size="1">帮助中心</font></a>
+						      <a class="nav-link" href="helpcenter.html"><font size="1">帮助中心</font></a>
 						    </li>
 						    <li class="nav-item">
 						      <a class="nav-link" href="#"><font size="1">关于我们</font></a>
@@ -31,13 +31,13 @@
 						    </li>
 						    <li class="nav-item">
 						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-						    <li class="nav-item">
-						    	 <li>
+						    </li>
+						    <!-- <li class="nav-item">
 						      	<a class="nav-link" href="#"><font size="1">昵称</font></a>						   
 						    </li>
-						     <li>
+						     <li class="nav-item">
 						      	<a class="nav-link" href="logouttt">[<font size="1">退出 </font>]</a>						   
-						    </li>
+						    </li> -->
 					  </ul>
 				</nav>
 				<div style="position: absolute;right: 40px;top:3px;"><font size="1" >客服电话: 38383</font></div>
@@ -61,7 +61,7 @@
 					      <a class="nav-link" href="javascript::" onclick="touzi()">我要投资</a>
 					    </li>
 					    <li class="nav-item">
-					      <a class="nav-link" target="_blank" href="loanone.html">我要借款/还款</a>
+					      <a class="nav-link" href="loanone.html">我要借款/还款</a>
 					    </li>
 					     <li class="nav-item">
 					      <a class="nav-link" href="zhaiquanzr.html">债权转让</a>
@@ -106,7 +106,7 @@
 								<td>36个月</td>
 								<td>每月等额本息</td>
 								<td>34,000.00 元</td>
-								<td><button class="btn btn-group" style="background-color: orange;" onclick="xmxiangqing()">投标</button></td>
+								<td><button class="btn btn-group" style="background-color: orange;" onclick="xmxiangqing(1)">投资</button></td>
 							</tr>
 							
 							<tr>
@@ -175,13 +175,57 @@
 			</div>
 			</div>
 		</div>
-		</div>		
+		</div>	<br /><br />
+		
+		<!--底部代码-->
+			<div id='didiv' style='position: relative;height: 450px;top:20px;'><br />
+				<div class='container' ><font size='2' >客服服务</font></div><br />
+					<div class='container'>
+						<a href='javascript::' data-toggle="modal" data-target="#myModal"><font size='2' color='gray' >客服微信</font></a> |
+						<a href='#'><font size='2' color='gray' >在线客服</font></a> |
+						<a href='#'><font size='2' color='gray' >新浪微博</font></a> <br /><br />
+						<hr  /><br />
+					</div>
+					<div class="container">
+						<div class='container' ><br />
+							<font size='2'>© 2019 祁云信用贷商务顾问(长沙)有限公司  湖南硅谷软件公司</font><br />
+							<font size='1' color='gray'>长ICP证 100953号 长公网安备 11010502020657 长ICP备12025643号-1</font>
+						</div>
+						<div style="position: absolute;top: 150px;left: 530px;">
+							<img src="lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />
+							<img src="lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />						
+						</div>
+						<div style="position: absolute;top: 146px;left: 930px;">
+							<font size="3" color="gray">祁云信用贷财富客服：</font> <font size="5">85886</font><br><br>
+							<font size="3" color="gray">祁云信用贷借款客服：</font> <font size="5">632 133 4027</font><br><br>
+							<font size="3" color="gray">服务时间: 9:00-21:00</font>
+						</div><br><br><hr />
+						<div class="container" align="center"><br />
+							<img src="lxm/img/tu1.PNG" />
+							<img src="lxm/img/tu2.PNG" />
+							<img src="lxm/img/tu3.PNG" />
+							<img src="lxm/img/tu4.PNG" />
+							<img src="lxm/img/tu5.PNG" />
+							<img src="lxm/img/tu6.PNG" />
+						</div>
+					</div>
+			</div>
+			<!--模态-->
+			<div class="modal fade" id="myModal">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        <div class="modal-body" align="center">
+			       		<img src="lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />
+			        </div>			   
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+				        </div>
+			      </div>
+			    </div>
+			  </div>	
 	</body>
 	<script type="text/javascript">
 	
-	 $.ajax({
-			url:"zhanghu_xsr"
-		})
 	</script>
 	<script type="application/javascript" src="lxm/js/shouye.js"></script>
 </html>

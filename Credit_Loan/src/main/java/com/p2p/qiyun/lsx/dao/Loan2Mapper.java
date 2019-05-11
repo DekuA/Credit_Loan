@@ -8,5 +8,5 @@ public interface Loan2Mapper {
 
 	int AddLoans(Loan2 one);
 	
-	
+	Loan2 selLoansById(int loadid);
 }

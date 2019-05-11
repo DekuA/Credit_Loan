@@ -6,4 +6,8 @@
           (#{userid},#{loanrate},#{loanamount},#{repaymentperiod})
   	</insert>
   	
+  	
+  	<select id="selLoansById" parameterType="int" resultType="com.p2p.qiyun.lsx.entity.Loan2">
+  		select * from loan where loanid=#{loanid}
+  	</select>
 </mapper>

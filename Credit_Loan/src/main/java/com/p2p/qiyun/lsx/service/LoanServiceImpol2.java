@@ -18,5 +18,9 @@ public class LoanServiceImpol2 implements LoanService2 {
 		return loans;
 	}
 	
+	public Loan2 selLoansById(int loadid) {
+		Loan2 loan2 = loan.selLoansById(loadid);
+		return loan2;
+	}
 
 }

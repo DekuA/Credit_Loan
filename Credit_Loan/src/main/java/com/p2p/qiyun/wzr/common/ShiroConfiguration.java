@@ -74,6 +74,7 @@ public class ShiroConfiguration {
 		//放行login.html页面
         map.put("/findpwd", "anon");
         map.put("/shouye.html", "anon");
+        map.put("/lxm/*", "anon");
        //map.put("/NewFile.html", "anon");
         map.put("/zhaiquanzr.html", "anon");
         map.put("/xmxiangqing.html", "anon");

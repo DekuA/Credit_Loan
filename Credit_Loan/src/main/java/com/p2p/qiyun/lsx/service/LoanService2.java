@@ -7,4 +7,5 @@ public interface LoanService2 {
 	//借款新增
 	int AddLoans(Loan2 one);
 	
+	Loan2 selLoansById(int loadid);
 }

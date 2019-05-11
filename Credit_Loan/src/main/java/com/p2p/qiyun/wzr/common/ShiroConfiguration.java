@@ -79,10 +79,10 @@ public class ShiroConfiguration {
         map.put("/wzz_information.html", "anon");
 
         map.put("/login.html", "anon");
-
+        map.put("/findNews","anon");
         map.put("/loanone.html","anon");
-
-
+        map.put("/showNews","anon");
+        map.put("/showInfo","anon");;
         map.put("/loanone.html", "anon");
         map.put("/loanfalv.html", "anon");
         map.put("/userentry","anon");

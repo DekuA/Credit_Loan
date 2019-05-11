@@ -100,6 +100,8 @@ public class ShiroConfiguration {
         map.put("/loanone.html","anon");
 
         map.put("/loansAdd", "anon");
+        map.put("/panlog", "anon");
+        map.put("/panname", "anon");
         map.put("/infordata", "anon");
 
         

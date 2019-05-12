@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.dby.dao.accountMapper" >
+
+	<!--查询用户充值与提现记录  -->
+  	<select id="getRecord" resultType="com.p2p.qiyun.dby.dao.pojo" parameterType="com.p2p.qiyun.dby.pojo.account">
+  		select * from account where userid =#{userid} 
+  		
+  	</select>
+  	
+  	<!--查询用户提现记录  -->
+  	<select id="getRecordChongzhi" resultType="com.p2p.qiyun.dby.dao.pojo" parameterType="com.p2p.qiyun.dby.pojo.account">
+  		select * from account where userid =#{userid} and record like '"%"充值"%"'
+  		
+  	</select>
+  	
+  	<!--查询用户提现记录  -->
+  	<select id="getRecordTixian" resultType="com.p2p.qiyun.dby.dao.pojo" parameterType="com.p2p.qiyun.dby.pojo.account">
+  		select * from account where userid =#{userid} and record like '"%"提现"%"'
+  		
+  	</select>
+  	
+  	<!-- 添加充值记录 -->
+  	<insert id="recordChongzhi" parameterType="com.p2p.qiyun.dby.pojo.account" >
+		insert into account(accountid,userid,username,record,recordtime) values('',#{userid},#{username},#{record},'')
+	</insert>
+  	
+  	<!-- 添加提现记录 -->
+  	<insert id="recordTixian" parameterType="com.p2p.qiyun.dby.pojo.account" >
+		insert into account(accountid,userid,username,record,recordtime) values('',#{userid},#{username},#{record},'')
+	</insert>
+</mapper>

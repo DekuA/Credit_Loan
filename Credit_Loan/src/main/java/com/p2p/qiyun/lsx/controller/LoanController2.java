@@ -1,11 +1,15 @@
 package com.p2p.qiyun.lsx.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.p2p.qiyun.lsx.entity.Loan2;
+import com.p2p.qiyun.lsx.entity.Paymenthistory2;
+import com.p2p.qiyun.lsx.entity.Repayment2;
 import com.p2p.qiyun.lsx.service.LoanService2;
 import com.p2p.qiyun.lsx.service.VerificationService;
 import com.p2p.qiyun.wzr.domain.Userinfo;
@@ -39,7 +43,7 @@ public class LoanController2 {
 			attribute =  (int) attribute2;
 		}
 	
-	System.out.println("斤斤计较军"+attribute);
+	
 	 	if(attribute>0) {
 	 		return attribute;
 	 	}
@@ -57,4 +61,86 @@ public class LoanController2 {
 	       
 		return 0;
 	}
+	
+	@RequestMapping("loansMoney")
+	public List<Paymenthistory2> selectloansm(String userids) {
+		int uid = Integer.parseInt(userids);
+		System.out.println(uid+"ssss");
+		List<Paymenthistory2> list = loans.getDates(uid);
+		System.out.println(list);
+		return list;
+	}
+	
+	@RequestMapping("getDatetoday")
+	public Paymenthistory2 getDatetoday(String userid2s) {
+		int uid = Integer.parseInt(userid2s);
+		
+			try {
+				Paymenthistory2 datetoday = loans.getDatetoday(uid);
+				System.out.println(datetoday+"qqq");
+				
+				return datetoday;
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			return null;
+		
+	}
+	@RequestMapping("getDatenextmonth")
+	public Paymenthistory2 getDatenextmonth(String userid1s) {
+		int uid = Integer.parseInt(userid1s);
+		
+		Paymenthistory2 datetoday = null;
+	
+		try {
+			datetoday = loans.getDatenextmonth(uid);
+			 if(datetoday==null) {
+					return null;
+				 }
+		} catch (Exception e) {
+			
+		}
+		
+		
+		return datetoday;
+	}
+	//当月已还金额
+	@RequestMapping("Hasalso")
+	public double Hasalso(String uid1s,String lidss) {
+		
+		double monney=0;
+		int uid = Integer.parseInt(uid1s);
+		try {
+			Repayment2 selctRepayment = loans.selctRepayment(uid);
+			
+			if(selctRepayment!=null) {
+				monney=selctRepayment.getModmoney();
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		//}
+		return monney;
+	}
+	//次月已还金额
+		@RequestMapping("HasalsoNext")
+		public double HasalsoNext(String uid2s) {
+			double monney=0;
+			
+			int uid = Integer.parseInt(uid2s);
+
+			try {
+				Repayment2 selctRepayment = loans.selctRepaymentNext(uid);
+				if(selctRepayment==null) {
+					return 0;
+				}else {
+					monney=selctRepayment.getModmoney();
+				}
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+			
+			return monney;
+		}
 }

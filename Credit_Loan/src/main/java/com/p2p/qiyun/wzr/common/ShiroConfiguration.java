@@ -86,9 +86,9 @@ public class ShiroConfiguration {
         map.put("/login.html", "anon");
         map.put("/findNews","anon");
         map.put("/loanone.html","anon");
+        map.put("repayment.html", "anon"); //还款页面
         map.put("/showNews","anon");
-        map.put("/showInfo","anon");;
-        map.put("/loanone.html", "anon");
+        map.put("/showInfo","anon");
         map.put("/loanfalv.html", "anon");
         map.put("/userentry","anon");
         map.put("/loginout","logout");
@@ -103,7 +103,11 @@ public class ShiroConfiguration {
         map.put("/panlog", "anon");
         map.put("/panname", "anon");
         map.put("/infordata", "anon");
-
+        map.put("loansMoney", "anon");
+        map.put("/getDatetoday", "anon");
+        map.put("/getDatenextmonth", "anon");
+        map.put("/Hasalso", "anon");
+        map.put("/HasalsoNext", "anon");
         
         //xsr的请求
         map.put("/zhanghu_xsr", "anon");

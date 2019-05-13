@@ -22,7 +22,7 @@ public class LoanController2 {
 	@Autowired
 	private VerificationService ser;
 	
-	@RequestMapping("loansAdd")
+	@RequestMapping("loansAdd")   
 	public int addLoans(String uid,String amo,String aper,String lixis) {
 	
 	 	 int userid=Integer.parseInt(uid);

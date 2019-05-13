@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+		<script src="locale/easyui-lang-zh_CN.js"></script>
+		<script src="js/schedule.js"></script>
+		<link rel="stylesheet" href="https://at.alicdn.com/t/font_234130_nem7eskcrkpdgqfr.css">
+		<script type="text/javascript" src="js/TweenMax.min.js"></script>
+		<script type="text/javascript" src="js/index.js"></script>
+		<link rel="stylesheet" href="themes/icon.css" />
+		<link rel="stylesheet" href="themes/default/easyui.css" />
+		<link rel="stylesheet" href="css/schendule.css">
+	</head>
+<body>
+<table id="dg2" class="easyui-datagrid">
+	 <div style="padding: 0 0 0 7px;color:#333;" align="center" id="tt" >
+		用户名：<input type="text" class="textbox" id="user" name="user" style="width:100px;height:22px;"/>
+		姓名：<input type="text" class="textbox" id="name" name="name" style="width:100px;height:22px;"/>
+		电话：<input type="text" class="textbox" id="phone" name="phone" style="width:100px;height:22px;"/>
+		<a href="javascript:show()" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	</div>
+</table> 
+
+
+	<style>
+	.dialog-button {
+		text-align: center;
+	}
+</style>
+		<script>
+		
+			function show(){
+				var user=$("#user").val();
+				var name=$("#name").val();
+				var phone=$("#phone").val();
+				
+				//$("#userss").dialog('open');
+				$('#dg2').datagrid({  
+					//fit:true,
+					fitColumns:true,
+				    url:"find?nickname="+user+"&username="+name+"&Phone="+phone,   
+				    //title:"<div align='center'>新闻</div>",
+				    width:'auto',
+				    height:730,
+				    columns:[[    
+						{field:'userid',width:200,align:'center',checkbox:'true'},
+				        {field:'nickname',title:'用户名',width:200,align:'center'},    
+				        {field:'username',title:'姓名',width:200,align:'center'},
+				        {field:'idnumber',title:'身份证号',width:200,align:'center'},
+				        {field:'phone',title:'手机号',width:200,align:'center'}
+				    ]],
+				    pagination:true,
+				    pageSize:10,
+				    pageList:[10,15],
+				   
+				}); 
+			}
+			show();
+			
+		</script>
+</body>
+</html>

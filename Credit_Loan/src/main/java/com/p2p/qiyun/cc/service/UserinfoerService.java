@@ -7,15 +7,22 @@ import org.springframework.stereotype.Service;
 
 import com.p2p.qiyun.cc.dao.UserinfoerMapper;
 import com.p2p.qiyun.cc.pojo.Userinfo;
+import com.p2p.qiyun.cc.pojo.UserinfoQueryVO;
+
 
 @Service
 public class UserinfoerService {
 	@Autowired
 	private UserinfoerMapper mapper;
 	
-	public List<Userinfo> userinfo() {
-		List<Userinfo> userinfo = mapper.userinfo();
+	public List<Userinfo> userinfo(UserinfoQueryVO vo) {
+		List<Userinfo> userinfo = mapper.userinfo(vo);
 		return userinfo;
 		
 	}
+	public int count(UserinfoQueryVO vo) {
+		int count = mapper.count(vo);
+		return count;
+	}
+	
 }

@@ -9,6 +9,7 @@ import com.p2p.qiyun.dyj.dao.UsersMapper;
 import com.p2p.qiyun.dyj.pojo.DeptQuerVO;
 import com.p2p.qiyun.dyj.pojo.RoleQueryVO;
 import com.p2p.qiyun.dyj.pojo.Users;
+import com.p2p.qiyun.dyj.pojo.UsersQueryVO;
 
 @Service
 public class UsersService {
@@ -41,5 +42,17 @@ public class UsersService {
 	public int deptcount(DeptQuerVO vo){
 		int deptidcount = mapper.deptidcount(vo);
 		return deptidcount;
+	}
+	public List<Users> findUsers1(UsersQueryVO vo){
+		List<Users> list = mapper.findUsers1(vo);
+		return list;
+	}
+	public int userscount(UsersQueryVO vo){
+		int userscount = mapper.userscount(vo);
+		return userscount;
+	}
+	public int updateRid(Users u){
+		int updateRid = mapper.updateRid(u);
+		return updateRid;
 	}
 }

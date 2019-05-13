@@ -12,9 +12,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.p2p.qiyun.xsr.dao.liclass_usercoupon;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.p2p.qiyun.lsx.entity.Loan;
 import com.p2p.qiyun.xsr.domain.customer;
 import com.p2p.qiyun.xsr.domain.userinfo;
+import com.p2p.qiyun.xsr.domain.xiaoxi;
 import com.p2p.qiyun.xsr.service.CreditService_xsr;
 
 
@@ -125,13 +128,35 @@ public class MyController_xsr {
 			
 	}
 	
-	/*
-	 * @RequestMapping("xiaoxi_xsr") public List<liclass_usercoupon>
-	 * xiaoxi_xsr(HttpSession session) { String attribute = (String)
-	 * session.getAttribute("user"); userinfo us= im.phonechaxinxi(attribute);
-	 * List<liclass_usercoupon> xiaoxizhongxin = im.xiaoxizhongxin(us.getUserid());
-	 * return xiaoxizhongxin;
-	 * 
-	 * }
-	 */
+	@RequestMapping("xiaoxi_xsr")
+	public List<xiaoxi> xiaoxi_xsr(HttpSession session) {
+		String attribute = (String) session.getAttribute("user");
+		userinfo us= im.phonechaxinxi(attribute);
+		List<xiaoxi> xioxichaxun = im.xioxichaxun(us.getUserid());
+		return xioxichaxun;
+			
+	}
+	
+	@RequestMapping("chajie_xsr")
+	public Map chajie_xsr(int yeshu,HttpSession session) {
+		String attribute = (String) session.getAttribute("user");
+		userinfo us= im.phonechaxinxi(attribute);
+		PageHelper.startPage(yeshu, 5);
+		List<Loan> chajiekuan = im.chajiekuan(us.getUserid());
+		PageInfo<Loan> info = new PageInfo<>(chajiekuan);
+		int zonghang = (int) info.getTotal();
+		int num = 0;
+		if(zonghang%5==0){
+			num=zonghang/5;
+		}else{
+			num=zonghang/5+1;
+		}
+		Map map = new HashMap();
+		map.put("rows",chajiekuan);//存集合
+		map.put("total",num);//存总数据的行数
+		map.put("userphone",us.getNickname());//存总数据的行数
+		return map;
+			
+	}
+	
 }

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+		<link rel="stylesheet" href="../3.5js/bootstrap.min.css" />
+		<script type="text/javascript" src="../js_xsr/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap-paginator.js"></script>
+		<style>
+			th{
+				text-align: center;
+				height: 30px;
+			}
+			td{
+				text-align: center;
+				height: 30px;
+			}
+		</style>
+	<body>
+		<div class="container">
+							<a id='jiea' href="javascript:jiekuan()" style='color: blueviolet;text-decoration: none;'>借款记录</a >&nbsp;&nbsp;&nbsp;&nbsp;
+							<a id='huaa' href="javascript:huankuan()" style='color: gray;text-decoration: none;'>还款记录</a>
+						</div><hr>
+		<table id='jkuanbiao' border='1' class="table table-striped">
+				
+				
+		</table>
+		<div align="center">
+		<ul class="pagination"></ul></div>
+	</body>
+	<script type="text/javascript">
+	var yy=1;			
+	jiekuan();
+	function jiekuan(){
+		fenye(yy);
+		$("#jiea").css("color","blueviolet");
+		$("#huaa").css("color","gray");
+	}
+	
+	function huankuan(){
+		$("#jiea").css("color","gray");
+		$("#huaa").css("color","blueviolet");
+	}
+	function fenye(page){
+		$.ajax({
+			url:"../../../chajie_xsr",
+			data:{
+				yeshu:page
+			},
+			dataType:"json",
+			success:function(da){
+				if(da.total==0){
+					$("#jkuanbiao").html("<tr><td>暂时没有借款记录</td></tr>");
+					return;
+				}
+				var jiezifu="<tr><th>借款申请订单号</th><th>昵称</th><th>借款总利息</th><th>借款申请日期</th><th>借款总金额</th> <th>还款期数</th><th>审批状态</th> </tr>";
+				$("#jkuanbiao").html(jiezifu);
+				for(i=0;i<da.rows.length;i++){
+					var sh="";var co="red";
+					if(da.rows[i].approvalstatus=="0"){
+						sh="待审核";co="green";
+					}
+					if(da.rows[i].approvalstatus=="1"){
+						sh="通过";co="gray";					
+					}
+					if(da.rows[i].approvalstatus=="2"){
+						sh="未通过";co="red";					
+					}
+					$("#jkuanbiao").append("<tr><td>"+da.rows[i].loanid+"</td><td><font color='blue'>"+da.userphone+"</font></td><td>"+da.rows[i].loanrate+"</td><td>"+da.rows[i].applicationdate+"</td><td>"+da.rows[i].loanamount+"</td><td>"+da.rows[i].repaymentperiod+"</td><td><font color='"+co+"'>"+sh+"</font></td></tr>");
+				}
+				$(".pagination").bootstrapPaginator({
+			       	  bootstrapMajorVersion:1,    //版本
+			               currentPage:yy,    //当前页数
+			               numberOfPages:3,    //最多显示Page页
+			               totalPages:da.total,    //所有数据可以显示的页数
+			               itemTexts : function(type, page, current) {//设置分页按钮显示字体样式
+	                            switch (type) {
+	                            case "first":
+	                                return "首页";
+	                            case "prev":
+	                                return "上一页";
+	                            case "next":
+	                                return "下一页";
+	                            case "last":
+	                                return "末页";
+	                            case "page":
+	                                return page;
+	                            }
+	                        },
+			               onPageClicked:function(e,originalEvent,type,page){
+			            	   yy = page;
+			            	   fenye(page);
+			           	}
+			      });
+			}
+		}); 	
+	}
+	</script>
+</html>

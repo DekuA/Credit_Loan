@@ -8,6 +8,8 @@
 			<script type="text/javascript" src="xsr_wenjian/js_xsr/jquery-3.3.1.js"></script>
 			<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap.min.js"></script>
 			<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap-paginator.js"></script>
+			
+    
 	<body style="background-color: ghostwhite;">
 			<div id="kf_divding" style="height: 80px;background-color: white;">
 				<div style="width: 140px;height: 50px;position: relative;left: 60px;top: 5px;">
@@ -42,11 +44,16 @@
 		function liuyan(){
 			$("#bu1").css("background-color","gainsboro");
 			$("#bu2").css("background-color","#20C997");	
-		}		
-		window.onload=function(){
-			window.frames["ifmm"].document.body.scrollTop=window.frames["ifmm"].document.body.scrollHeight;
 		}
-		function fasong(){
+		function shijian1(){
+			var d1=new Date();
+			var shi = d1.getHours();
+			var fen = d1.getMinutes();
+			var miao = d1.getSeconds();
+			var dqdata = "("+shi+" : "+fen+" : "+miao+")";
+			return dqdata;
+		}	
+		 function fasong(){
 			if($("#test").val()==" "){
 				alert("输入不能为空");
 				return;
@@ -54,7 +61,8 @@
 			 $.ajax({
 					url:"../chatext_xsr",
 					data:{
-						kfnr:$("#test").val()
+						kfnr:$("#test").val(),
+						fasongdate:shijian1()
 					},
 					dataType : "text",
 					success:function(da){	
@@ -65,6 +73,6 @@
 					}
 				}) 
 			
-		}
+		} 
 	</script>
 </html>

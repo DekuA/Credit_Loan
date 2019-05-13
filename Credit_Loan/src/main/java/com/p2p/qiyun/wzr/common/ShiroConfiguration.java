@@ -153,7 +153,6 @@ public class ShiroConfiguration {
         advisor.setSecurityManager(securityManager);
         return advisor;
     }
-
     /**
      * lifecycleBeanPostProcessor是负责生命周期的 , 初始化和销毁的类
      * (可选)

@@ -15,7 +15,7 @@ public interface Loan2Mapper {
 
 	int AddLoans(Loan2 one);
 	
-	List<Loan2> selctloan(@Param("userid")int uid);
+	 Loan2 selctloan(@Param("userid")int uid);
 	
 	//Loan2 selctloan(@Param("userid")int uid,@Param("loanid")int lid);
 	

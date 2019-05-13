@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.p2p.qiyun.lsx.entity.Balance2;
 import com.p2p.qiyun.lsx.entity.Loan2;
 import com.p2p.qiyun.lsx.entity.Paymenthistory2;
 import com.p2p.qiyun.lsx.entity.Repayment2;
@@ -42,13 +44,24 @@ public class LoanController2 {
 		if(attribute2!=null) {
 			attribute =  (int) attribute2;
 		}
-	
+	    //System.out.println(attribute2+"ididid");
 	
 	 	if(attribute>0) {
 	 		return attribute;
 	 	}
 		return 0;
 	}
+	
+	@RequestMapping("gjloan")
+	public int getloancount(String uid) {
+		int uids=Integer.parseInt(uid);
+		Loan2 selctloan = loans.selctloan(uids);
+		if(selctloan==null) {
+			return 0;
+		}
+		return 1;
+	}
+	
 	@RequestMapping("panname")
 	public int panname(String uid) {
 	      int parseInt = Integer.parseInt(uid);
@@ -65,7 +78,7 @@ public class LoanController2 {
 	@RequestMapping("loansMoney")
 	public List<Paymenthistory2> selectloansm(String userids) {
 		int uid = Integer.parseInt(userids);
-		System.out.println(uid+"ssss");
+		//System.out.println(uid+"ssss");
 		List<Paymenthistory2> list = loans.getDates(uid);
 		System.out.println(list);
 		return list;
@@ -77,7 +90,7 @@ public class LoanController2 {
 		
 			try {
 				Paymenthistory2 datetoday = loans.getDatetoday(uid);
-				System.out.println(datetoday+"qqq");
+			//	System.out.println(datetoday+"qqq");
 				
 				return datetoday;
 			} catch (Exception e) {
@@ -142,5 +155,16 @@ public class LoanController2 {
 			}
 			
 			return monney;
+		}
+		
+		@RequestMapping("findsBalance")
+		public Balance2 findbalance(String uids22) {
+		    	System.out.println(uids22+"xxxmm");
+		     	int uid = Integer.parseInt(uids22);
+			
+			    Balance2 findBalance = ser.findBalance(uid);
+				//System.out.println(findBalance+"余额");
+				
+			return findBalance;
 		}
 }

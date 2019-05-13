@@ -23,9 +23,9 @@ public class LoanServiceImpol2 implements LoanService2 {
 	}
 
 	@Override
-	public List<Loan2> selctloan(int uid) {
+	public Loan2 selctloan(int uid) {
 		
-		List<Loan2> selctloan = loan.selctloan(uid);
+		Loan2 selctloan = loan.selctloan(uid);
 		
 		return selctloan;
 	}

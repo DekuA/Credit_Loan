@@ -15,7 +15,7 @@ public interface LoanService2 {
 	 
 	    //查询当月应还金额
 	    //Loan2 selctloan(int uid,int lid);
-    	List<Loan2> selctloan(int uid);
+    	Loan2 selctloan(int uid);
 	
 	    //根据当月时间查询
 		Paymenthistory2 getDatetoday(int uid);

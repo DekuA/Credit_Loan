@@ -122,9 +122,9 @@ public class ShiroConfiguration {
 		map.put("/helpcenter.html","anon");
 		map.put("/chatext_xsr","anon");
 		map.put("/chaxuntext_xsr","anon");
-		//修改调整的登录页面
+		map.put("/upload_Xsr","anon");
+		//修改调整的登录页面  
         bean.setLoginUrl("/login.html");
-		
         map.put("/login", "anon");
         //需要登录访问的资源 , 一般将/**放在最下边
         map.put("/*", "authc");
@@ -153,7 +153,6 @@ public class ShiroConfiguration {
         advisor.setSecurityManager(securityManager);
         return advisor;
     }
-
     /**
      * lifecycleBeanPostProcessor是负责生命周期的 , 初始化和销毁的类
      * (可选)

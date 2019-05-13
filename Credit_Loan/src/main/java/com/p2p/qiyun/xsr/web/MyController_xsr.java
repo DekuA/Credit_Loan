@@ -1,17 +1,24 @@
 package com.p2p.qiyun.xsr.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+import org.slf4j.Logger;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.web.multipart.MultipartFile;
+import javax.servlet.http.HttpServletRequest;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.p2p.qiyun.lsx.entity.Loan;
@@ -23,6 +30,7 @@ import com.p2p.qiyun.xsr.domain.xiaoxi;
 import com.p2p.qiyun.xsr.service.CreditService_xsr;
 
 
+@Controller
 @RestController
 public class MyController_xsr {
 	@Autowired
@@ -203,4 +211,23 @@ public class MyController_xsr {
 		return chatextuser;		
 	}
 	
+	@RequestMapping("upload_Xsr")
+	public  String upload(@RequestParam("file") MultipartFile file) {
+        if (file.isEmpty()) {
+            return "上传失败，请选择文件";
+        }
+
+        String fileName = file.getOriginalFilename();
+        String filePath = "C:\\Users\\Administrator\\git\\Credit_Loan\\Credit_Loan\\target\\classes\\static\\xsr_html\\xsr_wenjian\\img_xsr\\";
+        File dest = new File(filePath + fileName);
+        try {
+            file.transferTo(dest);
+            return "上传成功";
+        } catch (IOException e) {
+           System.out.println(e);
+        }
+        return "上传失败！";
+    }
+
+
 }

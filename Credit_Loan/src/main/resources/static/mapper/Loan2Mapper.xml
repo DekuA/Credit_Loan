@@ -6,8 +6,43 @@
           (#{userid},#{loanrate},#{loanamount},#{repaymentperiod})
   	</insert>
   	
+<<<<<<< HEAD
   	
   	<select id="selLoansById" parameterType="int" resultType="com.p2p.qiyun.lsx.entity.Loan2">
   		select * from loan where loanid=#{loanid}
+=======
+  	<select id="selctloan" parameterType="com.p2p.qiyun.lsx.entity.Loan2" resultType="com.p2p.qiyun.lsx.entity.Loan2">
+  	   SELECT *FROM loan  WHERE userid=#{userid}
+  	   <!-- and loanid=#{loanid} --> AND DATE_FORMAT(  applicationdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+  	   
+  	</select>
+  	<!-- 单月日期 -->
+  	<select id="getDatetoday" resultType="com.p2p.qiyun.lsx.entity.Paymenthistory2" parameterType="int" >
+  	   SELECT *FROM paymenthistory  WHERE userid=#{userid}  AND DATE_FORMAT(storydate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+  	   
+  	</select>
+  	
+  	<!-- 根据下个月 -->
+  	<select id="getDatenextmonth" resultType="com.p2p.qiyun.lsx.entity.Paymenthistory2" parameterType="int">
+  	   SELECT *FROM paymenthistory  WHERE userid=#{userid}  AND
+       DATE_FORMAT(  storydate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )+1
+  	   
+  	</select>
+  	
+  	<select id="getDates" resultType="com.p2p.qiyun.lsx.entity.Paymenthistory2" >
+  	   SELECT *FROM paymenthistory  WHERE userid=#{userid}
+  	   
+  	</select>
+  	<select id="selctRepayment" parameterType="com.p2p.qiyun.lsx.entity.Repayment2" resultType="com.p2p.qiyun.lsx.entity.Repayment2">
+  	   SELECT *FROM repayment  WHERE userid=#{userid}
+  	    <!-- and loanid=#{loanid} -->  AND DATE_FORMAT(rdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+  	   
+  	</select>
+  	
+  	<select id="selctRepaymentNext" parameterType="com.p2p.qiyun.lsx.entity.Repayment2" resultType="com.p2p.qiyun.lsx.entity.Repayment2">
+  	   SELECT *FROM repayment  WHERE userid=#{userid}
+  	  <!--   and loanid=#{loanid} -->  AND DATE_FORMAT(rdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )+1
+  	   
+>>>>>>> branch 'master' of https://github.com/DekuA/Credit_Loan.git
   	</select>
 </mapper>

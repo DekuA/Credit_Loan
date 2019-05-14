@@ -34,16 +34,71 @@
 	var yy=1;			
 	jiekuan();
 	function jiekuan(){
-		fenye(yy);
+		jiefenye(yy);
 		$("#jiea").css("color","blueviolet");
 		$("#huaa").css("color","gray");
 	}
-	
+	var huan=1;	
 	function huankuan(){
+		huanfenye(huan);
 		$("#jiea").css("color","gray");
 		$("#huaa").css("color","blueviolet");
 	}
-	function fenye(page){
+	function huanfenye(page){
+		$.ajax({
+			url:"../../../chahuanku_xsr",
+			data:{
+				yeshu:page
+			},
+			dataType:"json",
+			success:function(da){
+				if(da.total==0){
+					$("#jkuanbiao").html("<tr><td>暂时没有还款记录</td></tr>");
+					return;
+				}
+				var jiezifu="<tr><th>还款编号</th><th>借款编号</th><th>用户</th><th>每月还款金额</th><th>还款日期</th> <th>操作时间 </th><th>还款状态</th></tr>";
+				$("#jkuanbiao").html(jiezifu);
+				for(i=0;i<da.rows.length;i++){
+					var sh="";var co="red";var caozuo="";
+					if(da.rows[i].paymentstatus==0){
+						sh="待还";co="green";caozuo="NULL";
+					}
+					if(da.rows[i].paymentstatus==1){
+						sh="已还";co="gray";caozuo=da.rows[i].storydatep;
+					}
+					if(da.rows[i].paymentstatus==2){
+						sh="逾期";co="red";caozuo=da.rows[i].storydatep;
+					}
+					$("#jkuanbiao").append("<tr><td>"+da.rows[i].repaymentid+"</td><td>"+da.rows[i].loanid+"</td><td><font color='blue'>"+da.userphone+"</font></td><td>"+da.rows[i].currentrepayment+"</td><td>"+da.rows[i].storydate+"</td><td>"+caozuo+"</td><td><font color='"+co+"'>"+sh+"</font></td></tr>");
+				}
+				$(".pagination").bootstrapPaginator({
+			       	  bootstrapMajorVersion:1,    //版本
+			               currentPage:huan,    //当前页数
+			               numberOfPages:3,    //最多显示Page页
+			               totalPages:da.total,    //所有数据可以显示的页数
+			               itemTexts : function(type, page, current) {//设置分页按钮显示字体样式
+	                            switch (type) {
+	                            case "first":
+	                                return "首页";
+	                            case "prev":
+	                                return "上一页";
+	                            case "next":
+	                                return "下一页";
+	                            case "last":
+	                                return "末页";
+	                            case "page":
+	                                return page;
+	                            }
+	                        },
+			               onPageClicked:function(e,originalEvent,type,page){
+			            	   huan = page;
+			            	   huanfenye(page);
+			           	}
+			      });
+			}
+		}); 	
+	}
+	function jiefenye(page){		
 		$.ajax({
 			url:"../../../chajie_xsr",
 			data:{
@@ -91,7 +146,7 @@
 	                        },
 			               onPageClicked:function(e,originalEvent,type,page){
 			            	   yy = page;
-			            	   fenye(page);
+			            	   jiefenye(page);
 			           	}
 			      });
 			}

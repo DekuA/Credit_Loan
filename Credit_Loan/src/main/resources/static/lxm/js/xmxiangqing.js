@@ -29,7 +29,9 @@ $(function(){
 				$("#touzijine").val(project.pmoneysmall.toFixed(2));
 				$("#idxmxq-qixian").html(loan.repaymentperiod+"期");
 				$(".xmxq-syfs").html(project.pncome);
-				$(".other-info1").append("<div class='progress' style='color:green;height:12px;width:100px'><div class='progress-bar' style='width:"+project.pschedule+"%'>"+project.pschedule+"%</div></div><span>安全等级参考:</span> &nbsp;");
+				$(".other-info1").append("项目进度:<font style='margin-left: 200px;'"+
+						">"+project.pschedule+"%</font><div class='progress' style='text-align:center;height:12px;width:150px;margin-left: 80px;margin-top: -38px;'><div class='progress-bar bg-success'" +
+						"style='width:"+project.pschedule+"%'></div></div><span>安全等级参考:</span> &nbsp;");
 				for(i=0;i<project.pestimate;i++){
 					$(".other-info1").append("<i class='fa fa-star'></i>&nbsp;");
 				}

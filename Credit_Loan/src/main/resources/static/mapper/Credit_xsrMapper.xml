@@ -42,6 +42,33 @@
   	<select id="chajiekuan" parameterType="int" resultType="com.p2p.qiyun.lsx.entity.Loan">		
 		select * from loan where userid=#{userid}  		
   	</select>
+  	
+  	<select id="chahuankuan" parameterType="int" resultType="com.p2p.qiyun.xsr.domain.paymenthistory">
+			select * from paymenthistory where userid=#{userid}
+  	</select>
 
+	<insert id="chaduihuatext" parameterType="com.p2p.qiyun.xsr.domain.kefuinfo">
+		insert into kefuinfo(userid,uid,kfnr,qiuid) VALUES(#{userid},#{uid},#{kfnr},#{qiuid})
+	</insert>
+  	
+  	<select id="chatextuser" parameterType="int" resultType="com.p2p.qiyun.xsr.domain.kefuinfo">
+  		select a.* from kefuinfo a,yesnoqiu b where a.qiuid=b.qiuid and a.userid=#{userid} and b.yesno='yes'
+  	</select>
+  	
+  	<select id="chakfu" parameterType="int" resultType="com.p2p.qiyun.dyj.pojo.Users">
+  		select * from users where uid=#{uid}
+  	</select>
+  	
+  	<select id="setousrc" parameterType="int" resultType="String">
+  		select user_src from touxiang where userid = #{userid}
+  	</select>
+  	
+  	<update id="updasrc" parameterType="com.p2p.qiyun.xsr.domain.touxiang">
+  		update touxiang set user_src=#{user_src} where userid = #{userid}
+  	</update>
+  	
+  	<update id="xiunicheng" parameterType="com.p2p.qiyun.xsr.domain.userinfo">
+  		update userinfo set nickname=#{nickname} where userid=#{userid}
+  	</update>
   	
 </mapper>

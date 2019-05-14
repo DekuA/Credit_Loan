@@ -12,11 +12,15 @@
 			a{
 				text-decoration: none;
 			}
+			font{
+				size: 1;
+			}
 		</style>
 	<body>
+		<font size='1' >对话已经建立完成 , </font><font size='1' color='red' class='kfname'></font><font size='1' >正在与您对话</font>
 		<table id='kf_table' style='position: relative;left: 5px;'>
-			<tr><td><font size='1' color='blue'>小安</font> <font id='kf_font1' size='1' color='gray'></font></td></tr>
-			<tr><td><font id='kf_xx1' size='2' color='brown'>我是智能助手小安，回复以下编号以获得帮助：</font></td></tr>
+			
+			
 		</table>
 	</body>
 	<script>
@@ -27,58 +31,36 @@
 			var miao = d1.getSeconds();
 			var dqdata = "("+shi+" : "+fen+" : "+miao+")";
 			return dqdata;
+		}	
+		
+		diao();
+		
+		function diao(){
+				$("#kf_table").html("<tr><td><font size='1' color='blue' class='kfname'>小安</font> <font id='kf_font1' size='1' color='gray'></font></td></tr><tr><td> <font id='kf_nr1' size='1' color='blue'>您好，祁云贷客服-龙龙，很高兴为您服务。请问有什么可以帮您？</font></td></tr>");
+				$(".kfname").html("祁云贷客服-龙龙");
+				$("#kf_font1").html(shijian());
+				chaxunduihua();		
 		}
-		$("#kf_font1").html(shijian());
-		
-		var arr_kf = new Array();
-		arr_kf[0] = "常见问题";
-		arr_kf[1] = "注册登录";
-		arr_kf[2] = "开通银行存管账户";
-		arr_kf[3] = "绑卡充值及提现";
-		arr_kf[4] = "优选服务";
-		arr_kf[5] = "U享服务";
-		arr_kf[6] = "散标债权";
-		arr_kf[7] = "薪享服务";
-		arr_kf[8] = "优惠券";
-		for(i=0;i<arr_kf.length;i++){
-			$("#kf_xx1").append((1+i)+"."+arr_kf[i]+" ");
-		}		
-		$("#kf_xx1").append(" →如需人工服务请拨打客服电话：85886");
-		var arr_cj = new Array();
-		arr_cj[0]= "去哪里查询我的出借合同？点此查看<br>";
-		arr_cj[1]= "提现费用如何收取？点此查看<br>";
-		arr_cj[2]= "发起提现后什么时候可以到账，手续费如何收取？点此查看<br>";
-		arr_cj[3]= "散标什么时间发布？点此查看<br>";
-		arr_cj[4]= "线上合同没有电子章，是否有法律效力？点此查看<br>";
-		arr_cj[5]= "为什么出借后不立即显示利息？点此查看<br>";
-		arr_cj[6]= "U享服务到期资金什么时候能回到账户？点此查看<br>";
-		arr_cj[7]= "优选服务与U享服务的区别是什么？点此查看<br>";
-		arr_cj[8]= "手机收不到验证码怎么办？点此查看<br>";
-		arr_cj[9]= "如何开通银行存管账户？点此查看<br>";
-		
-		var arr_login = new Array();
-		arr_login[0]="注册有哪些条件？点此查看<br>";
-		arr_login[1]="我的手机号出现变更，该如何修改？点此查看<br>";
-		arr_login[2]="手机收不到验证码怎么办？点此查看<br>";
-		arr_login[3]="为什么注册时提示证件号或手机号已存在？点此查看<br>";
-		arr_login[4]="如何修改登录密码？点此查看<br>";
-		
-		var tab_num=1;
-		function bianhao(num){
-			tab_num++;
-			$("#kf_table").append("<tr><td><font size='1' color='black'>您</font> <font id='kf_font"+(tab_num)+"' size='1' color='gray'>"+shijian()+"</font></td></tr>");
-			$("#kf_table").append("<tr><td><font id='kf_xx"+(tab_num)+"' size='2' color='black'>"+num+"</font></td></tr>");
-			tab_num++;
-			$("#kf_table").append("<tr><td><font size='1' color='blue'>小安</font><font id='kf_font"+(tab_num)+"' size='1' color='gray'>"+shijian()+"</font></td></tr><tr><td><font id='kf_xx"+(tab_num)+"' size='2' color='blue'></font></td></tr>");				
-			if(num==1){
-				for(i=0;i<arr_cj.length;i++){
-					$("#kf_xx"+tab_num).append((i+1)+"."+arr_cj[i]);				
+		function chaxunduihua(){
+			$.ajax({
+				url:"../../../chaxuntext_xsr",
+				data:{
+					
+				},
+				dataType : "json",
+				success:function(da){	
+					for(i=0;i<da.length;i++){
+						if(da[i].uid!=0){		
+							$("#kf_table").append("<tr><td><font color='blue' size='1'>kefu</font> <font size='1' color='gray'>("+da[i].fasongdate+")</font></td></tr>");
+							$("#kf_table").append("<tr><td> <font size='1' color='blue'>"+da[i].kfnr+"</font></td></tr>");							
+						}else{
+							$("#kf_table").append("<tr><td><font size='1'>您</font> <font size='1' color='gray'>("+da[i].fasongdate+")</font></td></tr>");
+							$("#kf_table").append("<tr><td> <font size='1'>"+da[i].kfnr+"</font></td></tr>");
+						}
+					}
 				}
-			}else{
-				for(i=0;i<arr_login.length;i++){
-					$("#kf_xx"+tab_num).append((i+1)+"."+arr_login[i]);				
-				}
-			}
+			}) 
 		}
+		
 	</script>
 </html>

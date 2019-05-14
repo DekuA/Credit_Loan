@@ -73,6 +73,7 @@ public class ShiroConfiguration {
         map.put("/lg.html", "anon");
 		//放行login.html页面
         map.put("/findpwd", "anon");
+
         map.put("/shouye.html", "anon");
         map.put("/lxm/*", "anon");
         map.put("/*.lxm","anon");
@@ -82,13 +83,23 @@ public class ShiroConfiguration {
         map.put("/login.html", "anon");
         map.put("/loanone.html","anon");
 
+
+        map.put("/shouye.html", "anon");
+        map.put("/sendsms", "anon");
+        map.put("/smsselect", "anon");
+
         map.put("/login.html", "anon");
         map.put("/wzz_information.html", "anon");
 
+
         map.put("/login.html", "anon");
-
+        map.put("/findNews","anon");
         map.put("/loanone.html","anon");
+        map.put("/repayment.html","anon");
+        
+        map.put("/showNews","anon");
 
+        map.put("/showInfo","anon");;
 
         map.put("/loanone.html", "anon");
         map.put("/loanfalv.html", "anon");
@@ -100,12 +111,19 @@ public class ShiroConfiguration {
         map.put("/gotoindex","anon");
         map.put("/xsr_jisuanqi.html","anon");
         map.put("/loanone.html","anon");
-
+        
+        map.put("/gjloan", "anon");
         map.put("/loansAdd", "anon");
         map.put("/panlog", "anon");
         map.put("/panname", "anon");
         map.put("/infordata", "anon");
-
+        map.put("loansMoney", "anon");
+        map.put("/getDatetoday", "anon");
+        map.put("/getDatenextmonth", "anon");
+        map.put("/Hasalso", "anon");
+        map.put("/HasalsoNext", "anon");
+        map.put("/findsBalance", "anon"); 
+        
         
         //xsr的请求
         map.put("/zhanghu_xsr", "anon");
@@ -120,11 +138,14 @@ public class ShiroConfiguration {
         map.put("/panlogin_xsr","anon");
         map.put("/xiaoxi_xsr","anon");
 		map.put("/chajie_xsr","anon");
-
-
-		//修改调整的登录页面
+		map.put("/chahuanku_xsr","anon");
+		map.put("/helpcenter.html","anon");
+		map.put("/chatext_xsr","anon");
+		map.put("/chaxuntext_xsr","anon");
+		map.put("/upload_Xsr","anon");
+		map.put("/xiunicheg_xsr", "anon");
+		//修改调整的登录页面  
         bean.setLoginUrl("/login.html");
-		
         map.put("/login", "anon");
         //需要登录访问的资源 , 一般将/**放在最下边
         map.put("/*", "authc");
@@ -153,7 +174,6 @@ public class ShiroConfiguration {
         advisor.setSecurityManager(securityManager);
         return advisor;
     }
-
     /**
      * lifecycleBeanPostProcessor是负责生命周期的 , 初始化和销毁的类
      * (可选)

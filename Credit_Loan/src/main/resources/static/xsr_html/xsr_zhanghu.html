@@ -33,9 +33,6 @@
 						    <li class="nav-item">
 						      <a class="nav-link" href="#"><font size="1">关于我们</font></a>
 						    </li>
-						    <li class="nav-item">
-						      <a class="nav-link" href="#"><font size="1">人人学院</font></a>
-						    </li>
 						     <li class="nav-item">
 						      <a class="nav-link" href="#"><font size="1">出借人教育</font></a>
 						    </li>
@@ -46,7 +43,7 @@
 						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 						    <li class="nav-item">
 						    	 <li>
-						      	<a class="nav-link" href="#"><font size="1">昵称</font></a>						   
+						      	<a class="nav-link" href="#"><font id='nic' size="1">昵称</font></a>						   
 						    </li>
 						     <li>
 						      	<a class="nav-link" href="../logouttt">[<font size="1">退出 </font>]</a>						   
@@ -102,7 +99,7 @@
 					  		<a  class='nav-link' style='color: black;' href='xsr_jiehuanjilu.html'>借款/还款 记录</a>				  		
 				  		</li>
 				  		<li class='nav-item'>
-					  		<a  class='nav-link' style='color: black;' href='javacsript::'>p2p资产</a>				  		
+					  		<a  class='nav-link' style='color: black;' href='javacsript::'>余额资产</a>				  		
 				  		</li>
 				  		
 					 </ul>
@@ -202,6 +199,10 @@ $.ajax({
 		}
 	}
 });
+
+function dingnich(a){
+	$("#nic").html(a);
+}
 		function kefu(){
 				window.open("xsr_kefu.html");
 		}

@@ -71,4 +71,12 @@
   		update userinfo set nickname=#{nickname} where userid=#{userid}
   	</update>
   	
+  	<insert id="addtoux" parameterType="int" >
+  		insert into touxiang(userid,user_src) values(#{userid},'logo.png')
+  	</insert>
+  	
+  	<update id="addsfzzp" parameterType="com.p2p.qiyun.xsr.domain.usersfz">
+  		insert into usersfz(userid,user_srcz,user_srcf) values(#{userid},#{user_srcz},#{user_srcf})
+  	</update>
+  	
 </mapper>

@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import javax.servlet.http.HttpSession;
 
@@ -25,6 +27,7 @@ import com.p2p.qiyun.xsr.domain.kefuinfo;
 import com.p2p.qiyun.xsr.domain.paymenthistory;
 import com.p2p.qiyun.xsr.domain.touxiang;
 import com.p2p.qiyun.xsr.domain.userinfo;
+import com.p2p.qiyun.xsr.domain.usersfz;
 import com.p2p.qiyun.xsr.domain.xiaoxi;
 import com.p2p.qiyun.xsr.service.CreditService_xsr;
 
@@ -51,6 +54,7 @@ public class MyController_xsr {
 		map.put("customer_xsr",kehuxinxi.get(0));
 		map.put("logintime_xsr",scdenglu);
 		map.put("tou_src",setousrc);
+		map.put("nicheng_xsr",session.getAttribute("username"));
 		return map;
 	}
 	
@@ -219,11 +223,12 @@ public class MyController_xsr {
             return 0;
         }
         String fileName = file.getOriginalFilename();
-        String filePath = "F:\\git\\Credit_Loan\\Credit_Loan\\src\\main\\resources\\static\\xsr_html\\img_tou\\";
-        File dest = new File(filePath + fileName);
+        String filePath = "F:\\touxiang\\kehutou";     
+        String xinmingzi = UUID.randomUUID()+fileName;
+        File dest = new File(filePath , xinmingzi); 
         try {
             file.transferTo(dest);
-            touxiang tou = new touxiang(0,(int) session.getAttribute("useridss"), fileName);
+            touxiang tou = new touxiang(0,(int) session.getAttribute("useridss"), xinmingzi);
             int updasrc = im.updasrc(tou);
             return updasrc;
         } catch (IOException e) {
@@ -239,5 +244,33 @@ public class MyController_xsr {
 		int xiunicheng = im.xiunicheng(us);
 		return xiunicheng;
 	}
+	
+	@RequestMapping("shenfenzp_xsr")
+	public  int shenfenzp_xsr(MultipartFile filez,MultipartFile filef,HttpSession session)  {
+		int userid = (int) session.getAttribute("useridss");
+        if (filez==null) {
+            return 0;
+        }
+        if (filef==null) {
+            return 0;
+        }
+        String fileName1 = filez.getOriginalFilename();
+        String fileName2 = filef.getOriginalFilename();
+        String filePath = "F:\\touxiang\\kehutou";     
+        String xinmingzi = UUID.randomUUID()+fileName1;
+        String xinmingzi2 = UUID.randomUUID()+fileName2;
+        File dest = new File(filePath , xinmingzi); 
+        File dest2 = new File(filePath , xinmingzi2); 
+        try {
+            filez.transferTo(dest);
+            filef.transferTo(dest2);
+            usersfz sfzzpUsersfz = new usersfz(0, userid, xinmingzi, xinmingzi2);
+            int addsfzzp = im.addsfzzp(sfzzpUsersfz);
+            return addsfzzp;
+        } catch (IOException e) {
+           System.out.println(e);
+        }
+        return 0;
+    }
 	
 }

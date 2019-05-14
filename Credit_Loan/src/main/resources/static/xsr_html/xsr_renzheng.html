@@ -6,7 +6,7 @@
 	</head>
 		<link rel="stylesheet" href="xsr_wenjian/css_xsr/bootstrap.min.css" />
 		<script type="text/javascript" src="xsr_wenjian/js_xsr/jquery-3.3.1.js"></script>
-		<script type="text/javascript" src="xsr_wenjianxsr_wenjian/js_xsr/bootstrap.min.js"></script>
+		<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap.min.js"></script>
 		<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap-paginator.js"></script>
 		<style>
 			a{
@@ -14,8 +14,8 @@
 			}
 		</style>
 	<body>	
-		<div style='position: relative;height:350px;background-color: gainsboro;'>
-			<div class="container" style="position: relative;height: 300px;top: 25px;width: 80%;background-color: white;">
+		<div style='position: relative;height:550px;background-color: gainsboro;'>
+			<div class="container" style="position: relative;height: 500px;top: 25px;width: 80%;background-color: white;">
 				<h2>实名认证</h2><hr />
 				<div align="center" id='renzheng_1'>
 					<table align="center" >
@@ -23,22 +23,114 @@
 							<td>姓名：</td> <!--<input type="text" class="form-control" placeholder="Last Name">-->
 							<td><input id='username' class="form-control" placeholder="真实姓名" style='width: 300px;' /></td>
 						</tr>
-						<tr>
+						<tr align="right">
 							<td>身份证号：</td>
 							<td><input id='usernumber' class="form-control" placeholder="身份证号" style='width: 300px;' /></td>
 						</tr>
-					</table><br>
-					<button class="btn btn-warning" onclick="renzheng()" style="width: 120px;" >立即认证</button>
+						<tr align="center">
+							<td align="right">身份证正面</td>
+							<td >身份证反面<br></td>
+						</tr>
+						<tr >
+							<td align="right"><img id='img_sfzz' border="1" style="width:150px;height:150px"></td>
+							<td align="center"><img id='img_sfzf' border="1" style="width:150px;height:150px"><br></td>
+						</tr>
+						<tr>
+							<td align="right">
+								 <input id="photoCover_z" class="form-control" readonly type="text" style="width: 150px;">
+								<label class="input-group-btn">
+								<input id="filez" type="file" name="filez" style="left: -9999px; position: absolute;width: 100px">
+	                            <span class="btn btn-default" >选择身份证反面图片</span>
+	                            </label>
+                            </td>
+							<td align="center">
+								 <input id="photoCover_f" class="form-control" readonly type="text" style="width: 150px;">
+								<label class="input-group-btn">
+								<input id="filef" type="file" name="filef" style="left: -9999px; position: absolute;width: 100px">
+	                            <span class="btn btn-default">选择身份证反面图片</span>
+	                            </label>
+                            <br></td>
+						</tr>
+					</table><font color="red" size="2" id="sfzcwtishi"></font><br>
+					<button class="btn btn-warning" onclick="renzheng1()" style="width: 120px;" >立即认证</button>
 				</div>
 			</div>		
 		</div>
 			
 	</body>
 	<script>
-		function renzheng(){
+	//html5实现图片预览功能
+    $(function () {
+        $("#filez").change(function (e) {
+            var file = e.target.files[0] || e.dataTransfer.files[0];
+            $('#photoCover_z').val(document.getElementById("filez").files[0].name);
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $("#img_sfzz").attr("src", this.result);
+                }
+
+                reader.readAsDataURL(file);
+            }
+        });
+    })
+    $(function () {
+        $("#filef").change(function (e) {
+            var file = e.target.files[0] || e.dataTransfer.files[0];
+            $('#photoCover_f').val(document.getElementById("filef").files[0].name);
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $("#img_sfzf").attr("src", this.result);
+                }
+
+                reader.readAsDataURL(file);
+            }
+        });
+    })
+		function renzheng1(){
+		//异步上传图片组
+			 var filez = document.getElementById("filez").files[0]; 
+			var filef = document.getElementById("filef").files[0]; 
+            var formData = new FormData();
+            formData.append('filez', filez);
+            formData.append('filef', filef); 
+            
 			var name = $("#username").val();
 			var ber = $("#usernumber").val();
-			$.ajax({
+			if(name.length!=0){
+				//中文正则
+				var	reg=/^([\u4e00-\u9fa5]){2,7}$/;
+				if(!(reg.test(name))){
+					$("#sfzcwtishi").html("输入正确的中文名字");
+					return;
+				}		
+			}else{
+				$("#sfzcwtishi").html("姓名不能为空");
+				return;
+			}
+			
+			if(ber.length!=0){
+				// 身份证正则表达式：
+				var idcardReg = /^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/;
+				if(!(idcardReg.test(ber))) {
+					$("#sfzcwtishi").html("输入正确的身份证");
+					return;
+				}
+			}else{
+				$("#sfzcwtishi").html("身份证不能为空");
+				return;
+			}
+			if(document.getElementById("filez").files[0]==null){
+				$("#sfzcwtishi").html("请选择身份证真面图片");
+				return;
+			}
+			if(document.getElementById("filef").files[0]==null){
+				$("#sfzcwtishi").html("请选择身份证反面图片");
+				return;
+			}
+			$("#sfzcwtishi").html("");
+			 $.ajax({
 				url:"../../shimingname_xsr",
 				data:{
 					username:name,
@@ -47,13 +139,27 @@
 				dataType : "text",
 				success:function(da){
 					if(da=="1"){
-						alert("认证成功!!");
-						window.location.href="xsr_wenjian/ifm_xsr/zhanghu.html";
+							$.ajax({
+								url:"../../shenfenzp_xsr",
+								type: "post",
+								data: formData, 
+				                contentType: false,
+				                processData: false,
+				                mimeType: "multipart/form-data",
+								dataType : "text",
+								success:function(aa){
+									if(aa==1){										
+										window.location.href="xsr_wenjian/ifm_xsr/zhanghu.html";
+									}else{
+										alert("认证失败。。");
+									}
+								}
+							}) 
 					}else{
 						alert("认证失败。。");
 					}
 				}
-			})
+			}) 
 		}
 	</script>
 </html>

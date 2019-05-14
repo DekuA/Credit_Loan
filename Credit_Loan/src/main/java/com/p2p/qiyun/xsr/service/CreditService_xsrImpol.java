@@ -14,6 +14,7 @@ import com.p2p.qiyun.xsr.domain.kefuinfo;
 import com.p2p.qiyun.xsr.domain.paymenthistory;
 import com.p2p.qiyun.xsr.domain.touxiang;
 import com.p2p.qiyun.xsr.domain.userinfo;
+import com.p2p.qiyun.xsr.domain.usersfz;
 import com.p2p.qiyun.xsr.domain.xiaoxi;
 
 @Service
@@ -139,6 +140,18 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 	public int xiunicheng(userinfo us) {
 		int xiunicheng = dao.xiunicheng(us);
 		return xiunicheng;
+	}
+
+	@Override
+	public int addtoux(int usid) {
+		int addtoux = dao.addtoux(usid);
+		return addtoux;
+	}
+
+	@Override
+	public int addsfzzp(usersfz sfzzp) {
+		int addsfzzp = dao.addsfzzp(sfzzp);
+		return addsfzzp;
 	}
 
 	

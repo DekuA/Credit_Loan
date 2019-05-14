@@ -9,6 +9,7 @@ import com.p2p.qiyun.xsr.domain.kefuinfo;
 import com.p2p.qiyun.xsr.domain.paymenthistory;
 import com.p2p.qiyun.xsr.domain.touxiang;
 import com.p2p.qiyun.xsr.domain.userinfo;
+import com.p2p.qiyun.xsr.domain.usersfz;
 import com.p2p.qiyun.xsr.domain.xiaoxi;
 
 public interface CreditService_xsr {
@@ -31,5 +32,7 @@ public interface CreditService_xsr {
 	String setousrc(int userid);//查询头像路径
 	int updasrc(touxiang tou);//修改头像
 	int xiunicheng(userinfo us);//修改昵称;
+	int addtoux(int usid);
+	int addsfzzp(usersfz sfzzp);//上传身份证
 
 }

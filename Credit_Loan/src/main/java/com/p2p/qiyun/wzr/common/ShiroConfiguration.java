@@ -132,6 +132,11 @@ public class ShiroConfiguration {
 		map.put("/chaxuntext_xsr","anon");
 		map.put("/upload_Xsr","anon");
 		map.put("/xiunicheg_xsr", "anon");
+		map.put("/*.jpg", "anon");
+		map.put("/*.png", "anon");
+		map.put("/*.PNG", "anon");
+		map.put("/*.gif", "anon");
+		map.put("/shenfenzp_xsr", "anon");
 		//修改调整的登录页面  
         bean.setLoginUrl("/login.html");
         map.put("/login", "anon");

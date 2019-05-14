@@ -7,22 +7,48 @@
 	<table id="porrow1" class="easyui-datagrid">
 		
 	</table>
-		<div align="center" id="manager_tool">
-			<br>
-			电话号码:<input id="phone" class="textbox" />&nbsp;&nbsp;&nbsp;
+		<div id="manager_tool">
+			<div style="position:relative;left:10px;top:14px;">
+				<a href="javascript:xiangqin()" class="easyui-linkbutton" iconCls="icon-search">查看借款详情</a>
+			</div>
+			<div style="position:relative;left:100px;top:-10px;">
+				<select id="select2">
+					<option value="">-请选择-</option>
+					<option value="0">待审批</option>
+					<option value="1">通过</option>
+					<option value="2">驳回</option>
+				</select>&nbsp;&nbsp;
+				电话号码：<input id="phone" class="textbox" />&nbsp;&nbsp;
+				时间：<input id="date1"  required ="required"/>&nbsp;&nbsp;到&nbsp;&nbsp;
+					<input id="date2" required ="required">&nbsp;&nbsp;&nbsp;
 				<a href="javascript:porrow()" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+			</div>
+		</div>
+		<div id="manger_ppp" align="center">
+			
 		</div>
 	<script>
 	$(function() {
+		$("#date1").datebox();
+		$("#date2").datebox();
 		porrow();
+		$("#manger_ppp").dialog({
+			width: 400,
+			title: '查看贷款信息',
+			modal: true,
+			closed: true,
+		});
 	});
 	function porrow() {
+		var pay = $("#select2").val();
 		var phone = $("#phone").val();
+		var date1 = $("#date1").datebox("getValue");
+		var date2 = $("#date2").datebox("getValue");
 		$("#porrow1").datagrid({
 			modal : true,
 			fit : true,
 			fitColumns : true,
-			url : "borrowall?Phone=" + phone,
+			url : "borrowall?Phone=" + phone+"&pay="+pay+"&date1="+date1+"&date2="+date2,
 			width : 'auto',
 			height : 370,
 			toolbar: "#manager_tool",
@@ -31,63 +57,120 @@
 				width : 200,
 				align : 'center',
 				title : '编号',
-				checkbox:true,
-				formatter: function(value,row,index){
-					if (row.l){
-						return row.l.loanid;
-					} else {
-						return value;
-					}
-				}
-			}, {
-				field : 'nickname',
-				title : '昵称',
-				width : 200,
-				align : 'center'
+				checkbox:true
 			}, {
 				field : 'username',
 				title : '真实姓名',
 				width : 300,
-				align : 'center'
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.u){
+						return row.u.username;
+					} else {
+						return value;
+					}
+				}
 			}, {
 				field : 'phone',
 				title : '联系电话',
 				width : 200,
-				align : 'center'
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.u){
+						return row.u.phone;
+					} else {
+						return value;
+					}
+				}
 			}, {
 				field : 'idnumber',
 				title : '身份证',
 				width : 200,
-				align : 'center'
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.u){
+						return row.u.idnumber;
+					} else {
+						return value;
+					}
+				}
 			},{
 				field : 'applicationdate',
 				title : '借款时间',
 				width : 200,
-				align : 'center',
-				formatter: function(value,row,index){
-					if (row.l){
-						return row.l.applicationdate;
-					} else {
-						return value;
-					}
-				}
+				align : 'center'
 			},{
 				field : 'loanamount',
 				title : '借款金额(￥/元)',
 				width : 200,
-				align : 'center',
-				formatter: function(value,row,index){
-					if (row.l){
-						return row.l.loanamount;
-					} else {
-						return value;
-					}
-				}
-			} ] ],
+				align : 'center'
+			},{
+				field : 'approvalstatus',
+				title : '状态',
+				width : 200,
+				align : 'center'
+			}] ],
 			pagination : true,
 			pageSize : 5,
 			pageList : [ 5, 10, 15 ]
 		});
+	}
+	
+	function xiangqin(){
+		var rows = $('#porrow1').datagrid('getSelections');
+		if(rows.length > 1) {
+			$.messager.alert('警告操作', '编辑记录只能选定一条数据！', 'warning');
+		} else if(rows.length == 1) {
+			$.ajax({
+				type: "post",
+				url: "loanstatus",
+				data: {
+					loanid:rows[0].loanid
+				},
+				beforeSend: function() {
+					$.messager.progress({
+						text: '正在尝试获取数据...',
+					});
+				},
+				success: function(date) {
+					alert(date)
+					if(date==2){
+						$.messager.alert('温馨提示', '该用户借款未通过审核！', 'warning');
+						$.messager.progress('close');
+					}else if(date==0){
+						$.messager.alert('温馨提示', '该用户借款尚未审核！', 'warning');
+						$.messager.progress('close');
+					}else{
+						$.ajax({
+							type: "post",
+							url: "borrowdetail",
+							data: {
+								loanid:rows[0].loanid
+							},
+							success:function(data){
+									$("#manger_ppp").dialog('open');
+									$("#manger_ppp").empty();
+									var input="<table style='font-size: 16px'>"+
+									"<tr align='right'><th>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</th><th>"+data.username+"</th></tr>"+
+									"<tr align='right'><th>已&nbsp;还&nbsp;期&nbsp;数：</th><th>"+data.returnperiod+"</th></tr>"+
+									"<tr align='right'><th>剩余还款期数：</th><th>"+data.returnperiodp+"</th></tr>"+
+									"<tr align='right'><th>剩余还款金额：</th><th>"+data.modmoney+"</th></tr>"+
+									"<tr align='right'><th>还&nbsp;款&nbsp;利&nbsp;息：</th><th>"+data.rterest+"</th></tr>"+
+									"<tr align='right'><th>本&nbsp;金&nbsp;+&nbsp;利&nbsp;息：</th><th>"+data.returnallmoney+"</th></tr></table>";
+									$("#manger_ppp").append(input);
+									$.messager.progress('close');
+								}
+							});
+					}
+				},
+				error: function() {
+					$.messager.alert('警告操作', '服务器返回数据失败', 'warning');
+				}
+
+			});
+		} else {
+			$.messager.alert('警告操作', '编辑记录至少选定一条数据！', 'warning');
+		}
 	}
 </script>
 </body>

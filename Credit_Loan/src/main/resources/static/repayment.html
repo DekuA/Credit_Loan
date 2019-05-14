@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
 <meta charset="utf-8" />
 <title>我要还款</title>
@@ -519,4 +518,119 @@
 	})
 </script>
 
+=======
+<head>
+<meta charset="UTF-8">
+<title>还款记录查询</title>
+</head>
+<body>
+	<table id="ment1" class="easyui-datagrid">
+		
+	</table>
+		<div id="ment_tool">
+			<div align="center">
+				<br>
+				<select id="select1">
+					<option value="">-请选择-</option>
+					<option value="0">未还</option>
+					<option value="1">逾期</option>
+					<option value="2">已还</option>
+				</select>&nbsp;&nbsp;&nbsp;
+				姓名:<input id="name" class="textbox" />&nbsp;&nbsp;&nbsp;
+					<a href="javascript:ment()" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+			</div>
+		</div>
+	<script>
+	$(function() {
+		ment();
+	});
+	function ment() {
+		var name = $("#name").val();
+		var pay = $("#select1").val();
+		$("#ment1").datagrid({
+			modal : true,
+			fit : true,
+			fitColumns : true,
+			url : "storyall?username=" + name +"&paymentstatus="+pay,
+			width : 'auto',
+			height : 370,
+			toolbar: "#ment_tool",
+			columns : [ [ {
+				field : 'recordid',
+				width : 200,
+				align : 'center',
+				title : '还款编号',
+				checkbox:true
+			}, {
+				field : 'username',
+				title : '真实姓名',
+				width : 300,
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.u){
+						return row.u.username;
+					} else {
+						return value;
+					}
+				}
+			}, {
+				field : 'currentrepayment',
+				title : '每期还款金额',
+				width : 200,
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.p){
+						return row.p.currentrepayment;
+					} else {
+						return value;
+					}
+				}
+			}, {
+				field : 'repaymentperiod',
+				title : '贷款期数',
+				width : 200,
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.l){
+						return row.l.repaymentperiod;
+					} else {
+						return value;
+					}
+				}
+			},{
+				field : 'returnallmoney',
+				title : '本金+利息',
+				width : 200,
+				align : 'center',
+				formatter: function(value,row,index){
+					if (row.r){
+						return row.r.returnallmoney;
+					} else {
+						return value;
+					}
+				}
+			},{
+				field : 'storydate',
+				title : '还款期限',
+				width : 200,
+				align : 'center'
+			},{
+				field : 'storydatep',
+				title : '还款时间',
+				width : 200,
+				align : 'center'
+			},{
+				field : 'paymentstatus',
+				title : '状态',
+				width : 200,
+				align : 'center'
+			}] ],
+			pagination : true,
+			pageSize : 5,
+			pageList : [ 5, 10, 15 ]
+		});
+	}
+</script>
+</body>
+>>>>>>> branch 'master' of https://github.com/DekuA/Credit_Loan.git
 </html>

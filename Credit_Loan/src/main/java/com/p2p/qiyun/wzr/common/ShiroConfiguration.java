@@ -73,22 +73,33 @@ public class ShiroConfiguration {
         map.put("/lg.html", "anon");
 		//放行login.html页面
         map.put("/findpwd", "anon");
+
         map.put("/shouye.html", "anon");
        //map.put("/NewFile.html", "anon");
         map.put("/zhaiquanzr.html", "anon");
         map.put("/xmxiangqing.html", "anon");
         map.put("/login.html", "anon");
         map.put("/loanone.html","anon");
-        map.put("/repayment.html", "anon"); //还款页面
+
+
+        map.put("/shouye.html", "anon");
+        map.put("/sendsms", "anon");
+        map.put("/smsselect", "anon");
+
         map.put("/login.html", "anon");
         map.put("/wzz_information.html", "anon");
+
 
         map.put("/login.html", "anon");
         map.put("/findNews","anon");
         map.put("/loanone.html","anon");
+        map.put("/repayment.html","anon");
         
         map.put("/showNews","anon");
-        map.put("/showInfo","anon");
+
+        map.put("/showInfo","anon");;
+
+        map.put("/loanone.html", "anon");
         map.put("/loanfalv.html", "anon");
         map.put("/userentry","anon");
         map.put("/loginout","logout");
@@ -130,6 +141,7 @@ public class ShiroConfiguration {
 		map.put("/chatext_xsr","anon");
 		map.put("/chaxuntext_xsr","anon");
 		map.put("/upload_Xsr","anon");
+		map.put("/xiunicheg_xsr", "anon");
 		//修改调整的登录页面  
         bean.setLoginUrl("/login.html");
         map.put("/login", "anon");

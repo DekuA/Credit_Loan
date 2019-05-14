@@ -1,6 +1,10 @@
 package com.p2p.qiyun.wzr.web;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,10 +19,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.p2p.qiyun.wzr.common.SmsAO;
 import com.p2p.qiyun.wzr.common.cn.com.webxml.ArrayOfString;
 import com.p2p.qiyun.wzr.common.cn.com.webxml.WeatherWSSoap;
 import com.p2p.qiyun.wzr.common.cn.com.webxml.WeatherWS;
 import com.p2p.qiyun.wzr.domain.Userinfo;
+import com.p2p.qiyun.wzr.domain.Usersms;
 import com.p2p.qiyun.wzr.service.UserinfoService;
 import com.p2p.qiyun.xsr.domain.customer;
 import com.p2p.qiyun.xsr.service.CreditService_xsr;
@@ -31,8 +37,56 @@ public class UserinfoController {
 	@Autowired
 	private CreditService_xsr im;
 	
+
+
+	@RequestMapping("sendsms")
+	public int sendsms(String mobile,int smstype) throws Exception {
+		SmsAO ao = new SmsAO();
+		String code = "";
+		for(int t = 0; t < 6; t++){
+			int a = (int) Math.floor(Math.random()*10);
+			code += a;
+		}
+		int send = ao.send(mobile, code);
+		if(send>0) {
+			Date now = new Date();
+			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Usersms sms = new Usersms();
+			sms.setMobile(mobile);
+			sms.setSmscode(code);
+			sms.setSmstype(smstype);
+			sms.setExpiredtime(df.format(now.getTime()));
+			service.smsinsert(sms);
+			return 1;
+		}
+		return 0;
+	}
+	
+	@RequestMapping("smsselect")
+	public String smsselect(String mobile) throws ParseException {
+		Usersms usersms = service.smsselect(mobile);
+		String time = usersms.getExpiredtime();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar c1=Calendar.getInstance();
+		Calendar c2=Calendar.getInstance();
+		Calendar c3=Calendar.getInstance();
+		Date date = df.parse(time);
+		c1.setTime(date);//要判断的日期
+		c2.setTime(new Date());//初始日期
+		c3.setTime(new Date());//也给初始日期 把分钟加五
+		c3.add(c3.MINUTE, 5);
+		c2.add(c2.MINUTE,-5);//减去五分钟
+			if(c1.after(c2)&&c1.before(c3)){
+				System.out.println(usersms.getSmscode());
+				return usersms.getSmscode();
+			}
+		return ""+0;
+	}
+		
 	@RequestMapping("userentry")
 	public int userentry(Userinfo user,HttpSession session){
+		
+
 		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
 		SimpleHash hash = new SimpleHash("MD5",user.getPassword(),bytes,1234);
 		user.setPassword(hash.toString());

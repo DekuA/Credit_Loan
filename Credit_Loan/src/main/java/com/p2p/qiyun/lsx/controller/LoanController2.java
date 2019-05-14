@@ -44,7 +44,6 @@ public class LoanController2 {
 		if(attribute2!=null) {
 			attribute =  (int) attribute2;
 		}
-	    //System.out.println(attribute2+"ididid");
 	
 	 	if(attribute>0) {
 	 		return attribute;
@@ -61,6 +60,17 @@ public class LoanController2 {
 		}
 		return 1;
 	}
+	//判断年龄
+	@RequestMapping("pdAge")
+	public int gjAge(String uid) {
+		int uids=Integer.parseInt(uid);
+		Loan2 selctloan = loans.SelectAge(uids);
+		if(selctloan==null) {
+			return 0;
+		}
+		return 1;
+	}
+	
 	
 	@RequestMapping("panname")
 	public int panname(String uid) {
@@ -159,7 +169,7 @@ public class LoanController2 {
 		
 		@RequestMapping("findsBalance")
 		public Balance2 findbalance(String uids22) {
-		    	System.out.println(uids22+"xxxmm");
+		    	
 		     	int uid = Integer.parseInt(uids22);
 			
 			    Balance2 findBalance = ser.findBalance(uid);

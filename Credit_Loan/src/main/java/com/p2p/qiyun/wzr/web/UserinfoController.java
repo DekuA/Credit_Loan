@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -172,5 +173,20 @@ public class UserinfoController {
 		map.put("test2", list.get(7));
 		map.put("test3", list.get(8));
 		return map;
+	}
+	@RequestMapping("forgetPwd2")
+	public int forgetPwd2(HttpServletResponse response,HttpServletSession session,int phone) throws IOException {
+		if(phone>0) {
+		}else {
+			session.setAttribute("forget", phone);
+			return 1;
+		}
+		return 0;
+	}
+	
+	@RequestMapping("pwd3")
+	public String pwd3(HttpServletSession session) {
+		
+		return (String) session.getAttribute("forget");
 	}
 }

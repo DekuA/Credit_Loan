@@ -17,9 +17,10 @@ public interface LoanService2 {
 	    //Loan2 selctloan(int uid,int lid);
     	Loan2 selctloan(int uid);
 	
-<<<<<<< HEAD
-	Loan2 selLoansById(int loadid);
-=======
+    	Loan2 SelectAge (int uid);
+    	
+	    Loan2 selLoansById(int loadid);
+
 	    //根据当月时间查询
 		Paymenthistory2 getDatetoday(int uid);
 		//根据下个月
@@ -31,5 +32,4 @@ public interface LoanService2 {
 		Repayment2 selctRepayment(int userid);
 		
 		Repayment2 selctRepaymentNext(int userid);
->>>>>>> branch 'master' of https://github.com/DekuA/Credit_Loan.git
 }

@@ -68,4 +68,10 @@ public class LoanServiceImpol2 implements LoanService2 {
 		return loan2;
 	}
 
+	@Override
+	public Loan2 SelectAge(int uid) {
+		Loan2 age = loan.SelectAge(uid);
+		return age;
+	}
+
 }

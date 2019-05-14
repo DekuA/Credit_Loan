@@ -84,6 +84,44 @@
 	position: absolute;
 	left: 10px;
 }
+#ddxx2{
+  position: absolute;
+  left: 400px;
+  top: 100px;
+}
+#ddxx1s{
+  position: absolute;
+  left: 400px;
+  top: 100px;
+}
+#ddxx3{
+  position: absolute; 
+  top: 151px;
+}
+#ddxx2s{
+  position: absolute; 
+  top: 151px;
+}
+#ddxx{
+  position: absolute;
+  top: 100px;
+}
+#ddxxs{
+  position: absolute;
+  top: 100px;
+}
+#fkfs{
+ position: absolute;
+ left: 380px;
+  top: 141px;
+
+}
+#fkfs1{
+ position: absolute;
+ left: 380px;
+  top: 141px;
+
+}
 
 #yh2 {
 	position: absolute;
@@ -167,6 +205,11 @@
 #huankk {
 	position: absolute;
 	top: 160px;
+}
+#xgje{
+   position: absolute;
+	top: 10px;
+   left: 250px;
 }
 
 #lijihk {
@@ -278,8 +321,8 @@
 						<ul class="nav nav-pills flex-column">
 							<li class="nav-item"><a class="nav-link active"
 								href="#section1"><p id="reids">月应还</p></a></li>
-							<li class="nav-item"><a class="nav-link" href="#section2"><p
-										id="reids2">月应还</p></a></li>
+							<li class="nav-item"><a class="nav-link" href="#section2">
+							<p id="reids2">月应还</p></a></li>
 
 						</ul>
 					</nav>
@@ -306,7 +349,7 @@
 
 								</table>
 
-								<a class="btn " id="lijihk">立即还款</a>
+								<a class="btn btn-primary" data-target="#myModal" id="lijihk"  >立即还款</a>
 							</div>
 						</div>
 						<div id="section2">
@@ -328,17 +371,16 @@
 
 
 									</table>
-									<a class="btn btn-primary" data-toggle="modal" data-target="#myModal" id="lijihk2">立即还款</a>
+									<a class="btn btn-primary" data-target="#myModal"  id="lijihk2">立即还款</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</div>
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	 <div class="modal fade" id="example1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -346,22 +388,110 @@
 					&times;
 				</button>
 				<h4 class="modal-title" id="myModalLabel">
-					还款
+					立即还款
 				</h4>
 			</div>
 			<div class="modal-body">
-				<input type="text" id="monneys"><small id="xgje"><a href="#">修改金额</a></small><br>
-				<small></small>
+				<input type="text" id="hkje1" style="width: 360px;"><small id="xgje"><a href="#">修改金额</a></small><br>
+				<small id="hkjee1" ></small>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-				<button id="ddqr" type="button" class="btn btn-primary">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" id="qrss1" class="btn btn-primary">
 					确认还款
 				</button>
 			</div>
-		</div><!-- /.modal-content -->
-	</div><!-- /.modal -->
-</div>
+		</div>
+	</div></div>
+	 <div class="modal fade" id="example" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel" align="center">
+					立即还款
+				</h4>
+			</div>
+			<div class="modal-body">
+				<input type="text" id="hkje" style="width: 360px;"><small id="xgje"><a href="#">修改金额</a></small><br>
+				<small id="hkjee" ></small>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" id="qrss" class="btn btn-primary">
+					确认还款
+				</button>
+			</div>
+		</div>
+	  </div>
+	</div>
+	 <div class="modal fade" id="querhk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<div align="center"><h4 class="modal-title" id="myModalLabel" align="center">
+					确认还款
+				</h4></div>
+			</div>
+			<div class="modal-body">
+				<div align="center"><h2><b id="qrmoney"></b></h2></div><hr><br>
+				<small id="ddxx" >订单信息</small><small id="ddxx2" >祁云借贷</small>
+				<hr><br>
+				<small id="ddxx3" >付款方式</small><small><select id="fkfs" style="width: 100px; height: 30px;" >
+                                    <option value="3">支付宝</option>
+                                     <option value="2">账户余额</option>
+                         </select></small>
+				<hr>
+			</div>
+			<div class="modal-footer" align="center">
+				
+				<button type="button" id="qrss1s" class="btn btn-primary">
+					立即付款
+				</button>
+			</div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="querhk1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<div align="center"><h4 class="modal-title" id="myModalLabel" align="center">
+					确认还款
+				</h4></div>
+			</div>
+			<div class="modal-body">
+				<div align="center"><h2><b id="qrmoney1"></b></h2></div><hr><br>
+				<small id="ddxxs" >订单信息</small><small id="ddxx1s" >祁云借贷</small>
+				<hr><br>
+				<small id="ddxx2s" >付款方式</small>
+				<small>
+				<select id="fkfs1" style="width: 100px; height: 20px;" >
+                                    <option value="1" >支付宝</option>
+                                    <option value="2">账户余额</option>
+                         </select>
+                         </small>
+				<hr>
+			</div>
+			<div class="modal-footer" align="center">
+				
+				<button type="button" id="qrss2s" class="btn btn-primary">
+					立即付款
+				</button>
+			</div>
+		</div>
+	  </div>
+	</div>
 </body>
 
 <script type="text/javascript">
@@ -401,7 +531,6 @@
 											} else if (data != null) {
 												$('#num1').text(data.currentrepayment+ "元");
 
-												// alert(x);
 												$.ajax({
 															url : 'Hasalso',
 															data : {
@@ -431,8 +560,48 @@
 																} else {
 																	$('#sysy').text("剩余待还（元）");
 																	$('#xx').text($('#num1').text());
-																	$('#xx').val($('#num1').text())
-																	$('#glgl').text("最后还款日期"+ moth+ "月10日")
+																	$('#xx').val($('#num1').text());
+																	$('#glgl').text("最后还款日期"+ moth+ "月10日");
+																	$('#lijihk').click(function() { //点击第一个立即付款按钮
+																		if ($('#num1').text() == $('#nums').text() && !$('#num1').text() == "00元") {
+																				alert("您的当月账号已还清啦！");
+																			} else if ($('#num1').text() == "00元" && $('#nums').text() == "00元") {
+																				alert("您本月无分期借款！")
+																			} else {
+                                                                              $('#example1').modal();
+                                                                              $('#hkje1').val($('#num2').text());
+                                                                              $('#hkjee1').text("可还"+$('#num2').text());
+																				var tmoney=0;
+																				$('#qrss1').click(function() { //点击确认付款按钮
+																					$('#qrmoney1').text($('#num1').text());
+																					$('#querhk1').modal();
+																					$('#qrss2s').click(function() { //立即付款按钮
+																						alert("qss")
+																						 if($("#fkfs1").val()==2){
+																								$.ajax({
+																									url : 'findsBalance',
+																									data : {
+																										uids22 : userid
+																									},
+																									success : function(te) {
+																										tmoney=te.balance;
+																										
+																										if(tmoney<data.currentrepayment){
+																											alert("您的余额不足，请充值");
+																											
+																										}else{
+																											
+																										}
+																									}
+																								})
+																							} 
+																					})
+																			
+																				})
+																				
+																						
+																			}
+																		})
 																}
 
 															}
@@ -455,7 +624,7 @@
 												$('#glgl2').text("无需还款！");
 											} else if (data != null) {
 												$('#num2').text(data.currentrepayment+ "元");
-
+                                               
 												$.ajax({
 															url : 'HasalsoNext',
 															data : {
@@ -464,31 +633,8 @@
 															},
 															success : function(da) {
 																$('#num3').text(da+ "元");
-																$('#lijihk2').click(function() {
-																					if ($('#num2').text() == $('#num3').text() && !$('#num2').text() == "00元") {
-																						alert("您的当月账号已还清啦！");
-																					} else if ($('#num2').text() == "00元" && $('#num3').text() == "00元") {
-																						alert("您本月无分期借款！")
-																					} else {
-
-																						var tmoney=0;
-																						$.ajax({
-																									url : 'findsBalance',
-																									data : {
-																										uids22 : userid
-																									},
-																									success : function(te) {
-																										tmoney=te.balance;
-																									}
-																								})
-																								$('#ddqr').click(function(){
-																									if($('#num2').text()==tmoney){
-																										alert("您的余额不足，请充值");
-																									}
-																								})
-																								
-																					}
-																				})
+																
+																
 																if (data.paymentstatus == 1) {
 																	$('#xx2').text("本月账单已还清！！");
 																	$('#glgl2').text("好棒！点个赞！");
@@ -497,10 +643,53 @@
 																} else if (data.paymentstatus == 2) {
 																	$('#xx2').text("您本月还款已逾期！！");
 																	$('#glgl2').text("请尽快完成还款，逾期每日利息按2.5%计算");
+																	
 																} else {
 																	$('#sysy2').text("剩余待还（元）");
 																	$('#xx2').text($('#num2').text());
-																	$('#glgl2').text("最后还款日期"+ moth2+ "月10日")
+																	$('#glgl2').text("最后还款日期"+ moth2+ "月10日");
+																	
+																	$('#lijihk2').click(function() {
+																				if ($('#num2').text() == $('#num3').text() && !$('#num2').text() == "00元") {
+																						alert("您的当月账号已还清啦！");
+																					} else if ($('#num2').text() == "00元" && $('#num3').text() == "00元") {
+																						alert("您本月无分期借款！")
+																					} else {
+                                                                                      $('#example').modal();
+                                                                                      $('#hkje').val($('#num2').text());
+                                                                                      $('#hkjee').text("可还"+$('#num2').text());
+																						var tmoney=0;
+																						$('#qrss').click(function() {
+																							$('#qrmoney').text($('#num2').text());
+																							
+																							$('#querhk').modal();
+																							$('#qrss1s').click(function() { //立即付款按钮
+																								//alert("qss")
+																							alert($("#fkfs").val())
+																								 if($("#fkfs").val()==2){
+																									$.ajax({
+																										url : 'findsBalance',
+																										data : {
+																											uids22 : userid
+																										},
+																										success : function(te) {
+																											tmoney=te.balance;
+																											
+																											if(tmoney<data.currentrepayment){
+																												alert("您的余额不足，请充值");
+																												
+																											}else{
+																												
+																											}
+																										}
+																									})
+																								} 
+																							})
+																						})
+																						
+																								
+																					}
+																				})
 																}
 															}
 														})

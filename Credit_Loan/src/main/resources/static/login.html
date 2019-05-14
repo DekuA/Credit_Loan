@@ -50,7 +50,7 @@
 					</div>
 					<div class="denglufg">
 						<div style="font-size: 11px;margin-top: 11px;">
-							<a style="font-size: 11px;color:#2C66AB;" href="javascript:wangji()">忘记密码?</a>
+							<a style="font-size: 11px;color:#2C66AB;" href="demo.html">忘记密码?</a>
 						</div>
 					</div>
 					<div class="fg">
@@ -183,35 +183,41 @@
 		function settime(val) {
 			var phone = $("#zhuceuser").val();
 			if (/^((13[0-9])|(14[0-9])|(15[0-9])|(17[0-9])|(18[0-9]))\d{8}$/.test(phone)) {
-				if(countdown == 60){
-					$.ajax({
-						url:"sendsms",
-						data:{
-							mobile:phone,
-							smstype:1
-						},
-						success:function(date){
-							if(date>0){
-								//发送验证码成功！！
-							}else{
-								$("#zhucediv1").show();
-								$("#zhucediv1").empty();
-								$("#zhucediv1").append("您填写的号码不存在！");
-							}
-						}
-					});
-				}
-				if (countdown == 0) {
-					val.removeAttribute("disabled");
-					val.value = "获取验证码";
-					countdown = 60;
-				}else {
-					val.setAttribute("disabled", true);
-					val.value = "重新发送(" + countdown + ")";
-					countdown--;
-					setTimeout(function() {
-						settime(val)
-					}, 1000);
+				if(b>0){
+					$("#zhucediv1").show();
+					$("#zhucediv1").empty();
+					$("#zhucediv1").append("该手机号已注册!");
+				}else{
+					if(countdown == 60){
+							$.ajax({
+								url:"sendsms",
+								data:{
+									mobile:phone,
+									smstype:1
+								},
+								success:function(date){
+									if(date>0){
+										//发送验证码成功！！
+									}else{
+										$("#zhucediv1").show();
+										$("#zhucediv1").empty();
+										$("#zhucediv1").append("您填写的号码不存在！");
+									}
+								}
+							});
+					}
+					if (countdown == 0) {
+						val.removeAttribute("disabled");
+						val.value = "获取验证码";
+						countdown = 60;
+					}else {
+						val.setAttribute("disabled", true);
+						val.value = "重新发送(" + countdown + ")";
+						countdown--;
+						setTimeout(function() {
+							settime(val)
+						}, 1000);
+					}
 				}
 			} else {
 				$("#zhucediv1").show();
@@ -233,7 +239,6 @@
 						},
 						success:function(date){
 							if(date>0){
-								alert("登录成功！");
 								location.href="shouye.html";
 							}else{
 								alert("您的账号或密码不正确!");

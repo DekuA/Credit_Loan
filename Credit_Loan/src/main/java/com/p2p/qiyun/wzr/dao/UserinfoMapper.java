@@ -23,4 +23,8 @@ public interface UserinfoMapper {
 	int UserTime(String phone);
 	//注册成功插入客户信息表
 	int charukuhuxinxi(int userid);
+	//忘记密码
+	Usersms smsselect2(String mobile);
+	Userinfo forgetphone(String Phone);
+	int forgetupdate(Userinfo user);
 }

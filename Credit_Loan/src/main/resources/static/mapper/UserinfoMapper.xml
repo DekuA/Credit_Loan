@@ -10,6 +10,9 @@
 	<select id="smsselect" parameterType="String" resultType="com.p2p.qiyun.wzr.domain.Usersms">
 		select * from usersms where mobile=#{mobile} and smstype=1 ORDER BY expiredtime DESC limit 1
 	</select>
+	<select id="smsselect2" parameterType="String" resultType="com.p2p.qiyun.wzr.domain.Usersms">
+		select * from usersms where mobile=#{mobile} and smstype=2 ORDER BY expiredtime DESC limit 1
+	</select>
   	<select id="UserEntry" parameterType="String" resultType="com.p2p.qiyun.wzr.domain.Userinfo">
   		select * from userinfo where Phone=#{phone}
   	</select>
@@ -29,4 +32,11 @@
   	<insert id="charukuhuxinxi" parameterType="int">
   		insert into customer(userid,custometype) values(#{userid},'个人')
   	</insert>
+  	
+  	<select id="forgetphone" parameterType="String" resultType="com.p2p.qiyun.wzr.domain.Userinfo">
+  		select * from userinfo where Phone=#{Phone}
+  	</select>
+  	<update id="forgetupdate" parameterType="com.p2p.qiyun.wzr.domain.Userinfo">
+  			update userinfo set password=#{password} where Phone=#{Phone}
+  	</update>
 </mapper>

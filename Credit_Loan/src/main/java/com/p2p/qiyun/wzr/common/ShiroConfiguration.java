@@ -103,7 +103,15 @@ public class ShiroConfiguration {
         map.put("/panlog", "anon");
         map.put("/panname", "anon");
         map.put("/infordata", "anon");
-
+        
+        //戴柏禹的请求
+        map.put("/account.html", "anon");
+        map.put("/tixian_dby", "anon");
+        map.put("/getYue_dby", "anon");
+        map.put("/chongzhi_dby", "anon");
+        map.put("/gettixian_dby", "anon");
+        map.put("/getchongzhi_dby", "anon");
+        map.put("/getRecord_dby", "anon");
         
         //xsr的请求
         map.put("/zhanghu_xsr", "anon");

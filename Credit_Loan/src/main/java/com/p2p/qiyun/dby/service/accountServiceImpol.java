@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.p2p.qiyun.dby.dao.accountMapper;
 import com.p2p.qiyun.dby.pojo.account;
+import com.p2p.qiyun.dby.pojo.balance;
 
 @Service
 public class accountServiceImpol implements accountService {
@@ -39,20 +40,57 @@ public class accountServiceImpol implements accountService {
 	}
 
 	
+	
 	//添加用户充值记录
 	@Override
-	public int addRecrodChongzhi(account ac) {
+	public int recordChongzhi(account ac) {
 		// TODO Auto-generated method stub
-		return acc.addRecrodChongzhi(ac);
+		return acc.recordChongzhi(ac);
 	}
+
 
 	
 	//添加用户提现记录
 	@Override
-	public int addRecrodTixian(account ac) {
+	public int recordTixian(account ac) {
 		// TODO Auto-generated method stub
-		return acc.addRecrodTixian(ac);
+		return acc.recordTixian(ac);
 	}
+
+
+	@Override
+	public int tianjiayue(balance ba) {
+		// TODO Auto-generated method stub
+		return acc.tianjiayue(ba);
+	}
+
+
+	@Override
+	public int jianshaoyue(balance ba) {
+		// TODO Auto-generated method stub
+		return acc.jianshaoyue(ba);
+	}
+
+
+	@Override
+	public account getUserName(account ac) {
+		// TODO Auto-generated method stub
+		return acc.getUserName(ac);
+	}
+
+
+	@Override
+	public balance getPayPwd(balance ba) {
+		// TODO Auto-generated method stub
+		return acc.getPayPwd(ba);
+	}
+
+	
+
+
+	
+
+	
 	
 
 

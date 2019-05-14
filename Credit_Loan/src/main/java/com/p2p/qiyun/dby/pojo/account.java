@@ -1,25 +1,13 @@
 package com.p2p.qiyun.dby.pojo;
 
 public class account {
-	public account(int accountid, int userid, String username, String record, String recordtime) {
-		super();
-		this.accountid = accountid;
-		this.userid = userid;
-		this.username = username;
-		this.record = record;
-		this.recordtime = recordtime;
-	}
+
 	@Override
 	public String toString() {
 		return "account [accountid=" + accountid + ", userid=" + userid + ", username=" + username + ", record="
-				+ record + ", recordtime=" + recordtime + "]";
+				+ record + ", recordtime=" + recordtime + ", startTime=" + startTime + ", endTime=" + endTime + "]";
 	}
-	public int getAccountid() {
-		return accountid;
-	}
-	public void setAccountid(int accountid) {
-		this.accountid = accountid;
-	}
+
 	public int getUserid() {
 		return userid;
 	}
@@ -46,9 +34,44 @@ public class account {
 	}
 	
 	public account() {};
+
+
+	public String getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(String startTime) {
+		this.startTime = startTime;
+	}
+	public String getEndTime() {
+		return endTime;
+	}
+	public void setEndTime(String endTime) {
+		this.endTime = endTime;
+	}
+	public account(int accountid, int userid, String username, String record, String recordtime, String startTime,
+			String endTime) {
+		super();
+		this.accountid = accountid;
+		this.userid = userid;
+		this.username = username;
+		this.record = record;
+		this.recordtime = recordtime;
+		this.startTime = startTime;
+		this.endTime = endTime;
+	}
+
+	public int getAccountid() {
+		return accountid;
+	}
+
+	public void setAccountid(int accountid) {
+		this.accountid = accountid;
+	}
 	private int accountid;
 	private int userid;
 	private String username;
 	private String record;
 	private String recordtime;
+	private String startTime;
+	private String endTime;
 }

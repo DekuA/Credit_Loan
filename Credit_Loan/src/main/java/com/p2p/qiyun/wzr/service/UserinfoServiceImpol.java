@@ -15,6 +15,11 @@ public class UserinfoServiceImpol implements UserinfoService {
 	@Autowired
 	private UserinfoMapper Mapper;
 
+	public Userinfo seluserById(int userid) {
+		Userinfo userinfo = Mapper.seluserById(userid);
+		return userinfo;
+	}
+	
 	@Override
 	public Userinfo UserEntry(String phone) {
 		Userinfo entry = Mapper.UserEntry(phone);

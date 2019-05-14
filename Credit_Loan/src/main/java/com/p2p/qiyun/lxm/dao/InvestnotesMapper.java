@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface InvestnotesMapper {
+	List<Investnotes> selByPid(int pid);
+	
     int countByExample(InvestnotesExample example);
 
     int deleteByExample(InvestnotesExample example);

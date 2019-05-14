@@ -8,7 +8,7 @@ import com.p2p.qiyun.wzr.domain.Userinfo;
 import com.p2p.qiyun.wzr.domain.Usersms;
 @Mapper
 public interface UserinfoMapper {
-
+	Userinfo seluserById(int userid);
 	//添加验证码
 	int smsinsert(Usersms sms);
 	Usersms smsselect(String mobile);

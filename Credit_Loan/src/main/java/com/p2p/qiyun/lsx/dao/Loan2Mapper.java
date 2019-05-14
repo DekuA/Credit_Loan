@@ -15,9 +15,9 @@ public interface Loan2Mapper {
 
 	int AddLoans(Loan2 one);
 	
-<<<<<<< HEAD
+
 	Loan2 selLoansById(int loadid);
-=======
+
 	 Loan2 selctloan(@Param("userid")int uid);
 	
 	//Loan2 selctloan(@Param("userid")int uid,@Param("loanid")int lid);
@@ -35,5 +35,5 @@ public interface Loan2Mapper {
 	
 	Repayment2 selctRepaymentNext(@Param("userid")int userid);
 	
->>>>>>> branch 'master' of https://github.com/DekuA/Credit_Loan.git
+
 }

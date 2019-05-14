@@ -225,4 +225,9 @@
       ptrans = #{ptrans,jdbcType=INTEGER}
     where iid = #{iid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selByPid" parameterType="int" resultType="com.p2p.qiyun.lxm.domain.Investnotes">
+  	select * from investnotes where pid=#{pid}
+  </select>
+  
 </mapper>

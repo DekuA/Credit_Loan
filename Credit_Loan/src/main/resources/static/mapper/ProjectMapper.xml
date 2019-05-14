@@ -524,4 +524,20 @@
       Risktaking = #{risktaking,jdbcType=INTEGER}
     where pid = #{pid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selsumloan" parameterType="int" resultType="String">
+  		select sum(loanamount) from loan where userid=#{userid} and approvalstatus=1
+  	</select>
+  	
+  	<select id="selcountloan" parameterType="int" resultType="int">
+  		select count(*) from loan where userid=#{userid} and approvalstatus=1
+  	</select>
+  	
+  	<select id="selCountloanPay" parameterType="int" resultType="int">
+  		select count(*) from paymenthistory where userid=#{userid}
+  	</select>
+  	
+  	<select id="selPayMoney" parameterType="int" resultType="String">
+  		select sum(currentrepayment) from paymenthistory where userid=#{userid} and paymentstatus=2
+  	</select>
 </mapper>

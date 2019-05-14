@@ -4,6 +4,9 @@
 	<insert id="smsinsert" parameterType="com.p2p.qiyun.wzr.domain.Usersms">
 		insert into usersms(mobile,smscode,expiredtime,smstype) values(#{mobile},#{smscode},#{expiredtime},#{smstype})
 	</insert>
+	<select id="seluserById" parameterType="int" resultType="com.p2p.qiyun.wzr.domain.Userinfo">
+		select * from userinfo where userid=#{userid}
+	</select>
 	<select id="smsselect" parameterType="String" resultType="com.p2p.qiyun.wzr.domain.Usersms">
 		select * from usersms where mobile=#{mobile} and smstype=1 ORDER BY expiredtime DESC limit 1
 	</select>

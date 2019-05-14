@@ -6,11 +6,10 @@
           (#{userid},#{loanrate},#{loanamount},#{repaymentperiod})
   	</insert>
   	
-<<<<<<< HEAD
-  	
   	<select id="selLoansById" parameterType="int" resultType="com.p2p.qiyun.lsx.entity.Loan2">
   		select * from loan where loanid=#{loanid}
-=======
+  		
+  		</select>
   	<select id="selctloan" parameterType="com.p2p.qiyun.lsx.entity.Loan2" resultType="com.p2p.qiyun.lsx.entity.Loan2">
   	   SELECT *FROM loan  WHERE userid=#{userid}
   	   <!-- and loanid=#{loanid} --> AND DATE_FORMAT(  applicationdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
@@ -42,7 +41,6 @@
   	<select id="selctRepaymentNext" parameterType="com.p2p.qiyun.lsx.entity.Repayment2" resultType="com.p2p.qiyun.lsx.entity.Repayment2">
   	   SELECT *FROM repayment  WHERE userid=#{userid}
   	  <!--   and loanid=#{loanid} -->  AND DATE_FORMAT(rdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )+1
-  	   
->>>>>>> branch 'master' of https://github.com/DekuA/Credit_Loan.git
   	</select>
+  	
 </mapper>

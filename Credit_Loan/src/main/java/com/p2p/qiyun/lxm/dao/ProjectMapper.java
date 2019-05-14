@@ -9,6 +9,14 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface ProjectMapper {
+	int selCountloanPay(int userid);
+	
+	int selcountloan(int userid);
+	
+	String selsumloan(int userid);
+	
+	String selPayMoney(int userid);
+	
     int countByExample(ProjectExample example);
 
     int deleteByExample(ProjectExample example);

@@ -6,6 +6,7 @@ $(function(){
 			var project=data.projectlist;
 			var loan=data.loanlist;
 			for(i=0;i<project.length;i++){
+				var smallmoney=loan[i].loanamount/100;
 				$("#xmxstab").append("<tr><td colspan='5'><hr><h3 style='float:left;color: #666;font-size: 15px;font-weight: 400;'>"+
 						project[i].pname+" "+project[i].pnumber+" <span class='tag-discount-orange'>信息服务费率7.5折</span>"+
 							"</h3></td></tr>"+
@@ -17,7 +18,7 @@ $(function(){
 								"<tr><td style='font-size:18px;color:red'><b>"+project[i].plcure.toFixed(2)+"%</b></td>"+
 								"	<td>"+loan[i].repaymentperiod+"个月 <font style='font-size:12px;color:orange;'>"+project[i].ptransfer+"天可转</font></td>"+
 									"<td>"+project[i].pncome+"</td>"+
-									"<td style='font-size:18px;color:orange'>"+abs(project[i].pmoneysmall+"00")+"元</td>"+
+									"<td style='font-size:18px;color:orange'>"+abs(smallmoney+"00")+"元</td>"+
 									"<td><button class='btn btn-group' style='background-color: orange;' onclick='xmxiangqing("+project[i].pid+")'>投资</button></td>"+
 								"</tr>");
 			}

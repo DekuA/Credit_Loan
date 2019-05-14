@@ -18,11 +18,13 @@ import com.p2p.qiyun.cjz.service.kahaoxxService;
 import com.p2p.qiyun.lsx.entity.Loan2;
 import com.p2p.qiyun.lsx.service.LoanService2;
 import com.p2p.qiyun.lxm.domain.Balancelxm;
+import com.p2p.qiyun.lxm.domain.Investnotes;
 import com.p2p.qiyun.lxm.domain.Project;
 import com.p2p.qiyun.lxm.domain.ddd;
 import com.p2p.qiyun.lxm.service.ProjectService;
 import com.p2p.qiyun.lxm.service.dddService;
 import com.p2p.qiyun.wzr.domain.Userinfo;
+import com.p2p.qiyun.wzr.service.UserinfoService;
 
 @RestController
 public class MyController {
@@ -35,10 +37,49 @@ public class MyController {
 	@Autowired
 	private ProjectService proser;
 	
+	@Autowired
+	private UserinfoService user;
+	
+	@RequestMapping("lxm/selInvestnotes")
+	public Map selInvestnotes(String pid){
+		Map map = new HashMap();
+		List<Investnotes> list = proser.selByPid(Integer.parseInt(pid));
+		List u = new ArrayList();
+		for (Investnotes investnotes : list) {
+			Userinfo userinfo = user.seluserById(investnotes.getUserid());
+			u.add(userinfo.getNickname());
+		}
+		map.put("inves", list);
+		map.put("uname", u);
+		return map;
+	}
+	
+	@RequestMapping("lxm/selCountLoan")
+	public Map selCountLoan(String userid) {
+		//System.out.println(userid);
+		Map map=new HashMap();
+		map.put("countloan", proser.selcountloan(Integer.parseInt(userid)));
+		map.put("countloanpay", proser.selCountloanPay(Integer.parseInt(userid)));
+		//System.out.println(map);
+		String sumloanmoney=proser.selsumloan(Integer.parseInt(userid));
+		String sumpaymoney=proser.selPayMoney(Integer.parseInt(userid));
+		sumloanmoney=sumloanmoney==null?"0.00":sumloanmoney;
+		sumpaymoney=sumpaymoney==null?"0.00":sumpaymoney;
+		map.put("sumloanmoney",sumloanmoney);
+		map.put("sumpaymoney",sumpaymoney);
+		//System.out.println(map);
+		return map;
+	}
+	
+	@RequestMapping("lxm/seluserById")
+	public Userinfo seluserById(String userid) {
+		Userinfo userinfo = user.seluserById(Integer.parseInt(userid));
+		return userinfo;
+	}
+	
 	@RequestMapping("lxm/seluserbalance")
 	public String selUserBalance(String userid) {
 		Balancelxm balance = proser.selBalance(Integer.parseInt(userid));
-		System.out.println(balance.getBalance());
 		return balance.getBalance()+"";
 	}
 	
@@ -48,10 +89,12 @@ public class MyController {
 		Map map = new HashMap();
 		Project project = (Project)session.getAttribute("projectxq");
 		if(project!=null) {
+			Balancelxm balance = proser.selBalance(userinfo.getUserid());
 			map.put("userinfo", userinfo);
 			Loan2 loan2 = loanser.selLoansById(project.getLenderid());
 			map.put("project",project);
 			map.put("loan2",loan2);
+			map.put("usermoney",balance.getBalance());
 			return map;
 		}
 		return null;

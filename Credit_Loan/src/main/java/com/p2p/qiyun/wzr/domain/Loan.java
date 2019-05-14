@@ -10,6 +10,7 @@ public class Loan {
 	private double repaymentperiod;
 	private String approvalstatus;
 	private int approver;
+	private Userinfo u;
 	public int getLoanid() {
 		return loanid;
 	}
@@ -58,8 +59,14 @@ public class Loan {
 	public void setApprover(int approver) {
 		this.approver = approver;
 	}
+	public Userinfo getU() {
+		return u;
+	}
+	public void setU(Userinfo u) {
+		this.u = u;
+	}
 	public Loan(int loanid, int userid, double loanrate, String applicationdate, double loanamount,
-			double repaymentperiod, String approvalstatus, int approver) {
+			double repaymentperiod, String approvalstatus, int approver, Userinfo u) {
 		super();
 		this.loanid = loanid;
 		this.userid = userid;
@@ -69,6 +76,7 @@ public class Loan {
 		this.repaymentperiod = repaymentperiod;
 		this.approvalstatus = approvalstatus;
 		this.approver = approver;
+		this.u = u;
 	}
 	public Loan() {
 		super();
@@ -76,8 +84,8 @@ public class Loan {
 	}
 	@Override
 	public String toString() {
-		return "loan [loanid=" + loanid + ", userid=" + userid + ", loanrate=" + loanrate + ", applicationdate="
+		return "Loan [loanid=" + loanid + ", userid=" + userid + ", loanrate=" + loanrate + ", applicationdate="
 				+ applicationdate + ", loanamount=" + loanamount + ", repaymentperiod=" + repaymentperiod
-				+ ", approvalstatus=" + approvalstatus + ", approver=" + approver + "]";
+				+ ", approvalstatus=" + approvalstatus + ", approver=" + approver + ", u=" + u + "]";
 	}
 }

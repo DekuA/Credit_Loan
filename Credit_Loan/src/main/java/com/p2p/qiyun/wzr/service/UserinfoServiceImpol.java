@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.p2p.qiyun.wzr.dao.UserinfoMapper;
 import com.p2p.qiyun.wzr.domain.Userinfo;
+import com.p2p.qiyun.wzr.domain.Usersms;
 
 @Service
 public class UserinfoServiceImpol implements UserinfoService {
@@ -48,5 +49,17 @@ public class UserinfoServiceImpol implements UserinfoService {
 	public List<Userinfo> userlogin(Userinfo user) {
 		List<Userinfo> list = Mapper.userlogin(user);
 		return list;
+	}
+
+	@Override
+	public int smsinsert(Usersms sms) {
+		int i = Mapper.smsinsert(sms);
+		return i;
+	}
+
+	@Override
+	public Usersms smsselect(String mobile) {
+		Usersms usersms = Mapper.smsselect(mobile);
+		return usersms;
 	}
 }

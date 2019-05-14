@@ -5,9 +5,13 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.p2p.qiyun.wzr.domain.Userinfo;
+import com.p2p.qiyun.wzr.domain.Usersms;
 @Mapper
 public interface UserinfoMapper {
 
+	//添加验证码
+	int smsinsert(Usersms sms);
+	Usersms smsselect(String mobile);
 	//用户登录
 	Userinfo UserEntry(String user);
 	List<Userinfo> userlogin(Userinfo user);

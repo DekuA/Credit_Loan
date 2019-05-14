@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>忘记密码</title>
+		<link type="text/css" href="css/css.css" rel="stylesheet" />
+		<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+</head>
+
+<body>
+ 
+  <div class="content">
+   <div class="web-width">
+     <div class="for-liucheng">
+      <div class="liulist for-cur"></div>
+      <div class="liulist"></div>
+      <div class="liulist"></div>
+      <div class="liutextbox">
+       <div class="liutext for-cur"><em>1</em><br /><strong>填写手机号</strong></div>
+       <div class="liutext"><em>2</em><br /><strong>验证身份</strong></div>
+       <div class="liutext"><em>3</em><br /><strong>设置新密码</strong></div>
+      </div>
+     </div><!--for-liucheng/-->
+     <div class="forget-pwd">
+       <dl>
+        <dt>手机号：</dt>
+        <dd><input id="phone" type="text" /></dd>
+        <div class="clears"></div>
+       </dl> 
+       <div class="subtijiao"><input type="button" onclick="tijiao()" value="提交" /></div> 
+      </div><!--forget-pwd/-->
+   </div><!--web-width/-->
+  </div><!--content/-->
+  <script>
+  	function tijiao(){
+  		var phone = $("#phone").val();
+  		alert(phone)
+  		$.ajax({
+  			url:"forgetPwd2",
+  			data:{
+  				Phone:phone
+  			},
+  			success:function(date){
+  				alert(date)
+  				if(date>0){
+  					location.href="forgetPwd2.html";
+  				}
+  			}
+  		});
+  	}
+  </script>
+</body>
+</html>

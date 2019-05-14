@@ -1,116 +1,708 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>还款记录查询</title>
+<meta charset="utf-8" />
+<title>我要还款</title>
 </head>
+<link rel="stylesheet" href="css/bootstrap.min.css" />
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script
+	src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+
+<style>
+#lunbo {
+	height: 1000px;
+}
+
+#erdiv {
+	top: 5%;
+	left: 8%;
+	height: 70%;
+}
+
+#xxcol {
+	height: 90%;
+	border: 1px solid darkgrey;
+}
+
+#divsxx {
+	height: 100%;
+}
+
+#loanjk {
+	width: 100%;
+	border-color: burlywood;
+	background-color: #171A1D;
+}
+
+.cc {
+	position: relative;
+	line-height: 16px;
+	color: #ccc;
+}
+
+#mathdiv {
+	border: 1px solid salmon;
+	height: 30px;
+	width: 100%;
+	background-color: cornflowerblue;
+}
+
+#section1 {
+	position: absolute;
+	top: -110px;
+	left: 220px;
+	width: 100%;
+	height: 310px;
+	border: 1px solid darkgrey;
+}
+#myModalLabel{
+
+  position: absolute;
+  left: 10px;
+}
+#section2 {
+	position: absolute;
+	top: 202px;
+	height: 310px;
+	left: 220px;
+	width: 100%;
+	border: 1px solid darkgrey;
+}
+
+#reids3 {
+	position: absolute;
+	left: 10px;
+}
+
+#yh {
+	position: absolute;
+	left: 10px;
+}
+#ddxx2{
+  position: absolute;
+  left: 400px;
+  top: 100px;
+}
+#ddxx1s{
+  position: absolute;
+  left: 400px;
+  top: 100px;
+}
+#ddxx3{
+  position: absolute; 
+  top: 151px;
+}
+#ddxx2s{
+  position: absolute; 
+  top: 151px;
+}
+#ddxx{
+  position: absolute;
+  top: 100px;
+}
+#ddxxs{
+  position: absolute;
+  top: 100px;
+}
+#fkfs{
+ position: absolute;
+ left: 380px;
+  top: 141px;
+
+}
+#fkfs1{
+ position: absolute;
+ left: 380px;
+  top: 141px;
+
+}
+
+#yh2 {
+	position: absolute;
+	left: 10px;
+	top: 20px;
+}
+
+#reids4 {
+	position: absolute;
+	left: 10px;
+}
+
+#zdze {
+	position: absolute;
+	left: 10%;
+	width: 80%;
+	height: 50%;
+	border: 1px solid #4E555B;
+}
+
+#zdze2 {
+	position: absolute;
+	left: 10%;
+	width: 80%;
+	height: 50%;
+	border: 1px solid #4E555B;
+}
+
+#zong {
+	position: absolute;
+	left: 15px;
+	width: 95%;
+	border-radius: 6px;
+}
+
+#zong2 {
+	position: absolute;
+	top: 4px;
+	left: 15px;
+	width: 95%;
+}
+
+#num1 {
+	position: absolute;
+	top: 0px;
+	left: 400px;
+}
+
+#num2 {
+	position: absolute;
+	top: 0px;
+	left: 400px;
+}
+
+#nums {
+	position: absolute;
+	top: 25px;
+	left: 400px;
+}
+
+#num3 {
+	position: absolute;
+	top: 25px;
+	left: 400px;
+}
+
+#hkhk {
+	position: absolute;
+	top: 50px;
+	left: 30px;
+	width: 100%;
+}
+
+#hkhk2 {
+	position: absolute;
+	top: 50px;
+	left: 30px;
+	width: 100%;
+}
+
+#huankk {
+	position: absolute;
+	top: 160px;
+}
+#xgje{
+   position: absolute;
+	top: 10px;
+   left: 250px;
+}
+
+#lijihk {
+	width: 300px;
+	position: absolute;
+	top: 230px;
+	left: 90px;
+	background-color: dodgerblue;
+}
+
+#lijihk2 {
+	width: 300px;
+	position: absolute;
+	top: 230px;
+	left: 90px;
+	background-color: dodgerblue;
+}
+
+#axq {
+	position: absolute;
+	top: 75px;
+	left: 250px;
+}
+
+#axq2 {
+	position: absolute;
+	top: 75px;
+	left: 250px;
+}
+#xgje{
+   position: absolute;
+   top:29px;
+   left: 390px;
+}
+#monneys{
+  width: 330px;
+  height: 30px;
+}
+</style>
+
 <body>
-	<table id="ment1" class="easyui-datagrid">
-		
-	</table>
-		<div id="ment_tool">
-			<div align="center">
-				<br>
-				<select id="select1">
-					<option value="">-请选择-</option>
-					<option value="0">未还</option>
-					<option value="1">逾期</option>
-					<option value="2">已还</option>
-				</select>&nbsp;&nbsp;&nbsp;
-				姓名:<input id="name" class="textbox" />&nbsp;&nbsp;&nbsp;
-					<a href="javascript:ment()" class="easyui-linkbutton" iconCls="icon-search">查询</a>
+	<div style="background-color: gray;">
+		<nav class="navbar navbar-expand-sm bg-light" style="height: 30px;">
+			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link" href="#"> <font
+						size="1">用户论坛</font>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"> <font
+						size="1">帮助中心</font>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"> <font
+						size="1">关于我们</font>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"> <font
+						size="1">人人学院</font>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="#"> <font
+						size="1">出借人教育</font>
+				</a></li>
+				<li class="nav-item">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+					&nbsp;</li>
+				<li class="nav-item">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+					&nbsp;
+				<li class="nav-item">
+				<li><a class="nav-link" href="#"> <font size="1">昵称</font>
+				</a></li>
+				<li><a class="nav-link" href="#">[ <font size="1">退出
+					</font>
+				</a></li>
+			</ul>
+		</nav>
+		<div style="position: absolute; right: 40px; top: 3px;">
+			<font size="1">客服电话: 38383</font>
+		</div>
+	</div>
+	<div style="height: 60px;">
+		<div style="position: absolute; top: 40px;">
+			<ul class="nav">
+				<li class="nav-item">&nbsp; &nbsp; &nbsp;</li>
+				<li class="nav-item"><a class="nav-link" href="#"> <img
+						src="lsx_html/img/q11.jpg"
+						style="height: 30px; width: 30px; border-radius: 30px; border: 1px solid black;" /></a>
+				</li>
+				<li class="nav-item"><a class="nav-link" href="#">我的账户</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">信息披露</a></li>
+				<li class="nav-item"><a class="nav-link" href="loanone.html">我要借款/还款</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">我要出借</a></li>
+				<li class="nav-item"><a class="nav-link" href="#">首页</a></li>
+			</ul>
+		</div>
+		<div style="position: absolute; right: 180px; top: 35px;">
+			<img src="img/logo.png" style="height: 50px; width: 140px;" />
+		</div>
+	</div>
+	<div id="lunbo" class="col-*-12" style="background-color: gainsboro;">
+		<div id="erdiv" class="col-lg-10 " style="background-color: white;">
+			<div id="loanjk">
+
+				<ul class="nav nav-tabs">
+					<li class="nav-item"><a class="nav-link" style="color: white;"
+						href="loanone.html">我要借款</a></li>
+					<li class="nav-item"><a class="nav-link" style="color: white;"
+						href="repayment.html">还款</a></li>
+				</ul>
+			</div>
+			<div id="xxcol" class="col-lg-14">
+				<div id="divsxx">
+					<nav class="col-sm-3 col-4" id="myScrollspy">
+						<ul class="nav nav-pills flex-column">
+							<li class="nav-item"><a class="nav-link active"
+								href="#section1"><p id="reids">月应还</p></a></li>
+							<li class="nav-item"><a class="nav-link" href="#section2">
+							<p id="reids2">月应还</p></a></li>
+
+						</ul>
+					</nav>
+					<div class="col-sm-9 col-10">
+						<div id="section1">
+							<div id="zdze">
+								<div id="zong">
+									<p id="reids3">月应还</p>
+									<p id="num1">00元</p>
+									<br>
+									<p id="yh">已还</p>
+									<p id="nums">00元</p>
+									<br>
+									<div id="hkhk">
+										<small id="sysy"></small>
+										<h2 id="xx"></h2>
+										<small id="glgl"></small> <small><a id="axq"
+											href="/xsr_html/xsr_jiehuanjilu.html">详情></a></small>
+
+									</div>
+								</div>
+								<table id='huankk' border='1' class="table table-striped">
+
+
+								</table>
+
+								<a class="btn btn-primary" data-target="#myModal" id="lijihk"  >立即还款</a>
+							</div>
+						</div>
+						<div id="section2">
+							<div id="zdze2">
+								<div id="zong2">
+									<p id="reids4">月应还</p>
+									<p id="num2">00元</p>
+									<p id="yh2">已还</p>
+									<p id="num3">00元</p>
+									<br>
+									<div id="hkhk2">
+										<small id="sysy2"></small>
+										<h2 id="xx2"></h2>
+										<small id="glgl2"></small> <small><a id="axq2"
+											href="/xsr_html/xsr_jiehuanjilu.html">详情></a></small>
+
+									</div>
+									<table id='huankk2' border='1' class="table table-striped">
+
+
+									</table>
+									<a class="btn btn-primary" data-target="#myModal"  id="lijihk2">立即还款</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
-	<script>
-	$(function() {
-		ment();
-	});
-	function ment() {
-		var name = $("#name").val();
-		var pay = $("#select1").val();
-		$("#ment1").datagrid({
-			modal : true,
-			fit : true,
-			fitColumns : true,
-			url : "storyall?username=" + name +"&paymentstatus="+pay,
-			width : 'auto',
-			height : 370,
-			toolbar: "#ment_tool",
-			columns : [ [ {
-				field : 'recordid',
-				width : 200,
-				align : 'center',
-				title : '还款编号',
-				checkbox:true
-			}, {
-				field : 'username',
-				title : '真实姓名',
-				width : 300,
-				align : 'center',
-				formatter: function(value,row,index){
-					if (row.u){
-						return row.u.username;
-					} else {
-						return value;
-					}
-				}
-			}, {
-				field : 'currentrepayment',
-				title : '每期还款金额',
-				width : 200,
-				align : 'center',
-				formatter: function(value,row,index){
-					if (row.p){
-						return row.p.currentrepayment;
-					} else {
-						return value;
-					}
-				}
-			}, {
-				field : 'repaymentperiod',
-				title : '贷款期数',
-				width : 200,
-				align : 'center',
-				formatter: function(value,row,index){
-					if (row.l){
-						return row.l.repaymentperiod;
-					} else {
-						return value;
-					}
-				}
-			},{
-				field : 'returnallmoney',
-				title : '本金+利息',
-				width : 200,
-				align : 'center',
-				formatter: function(value,row,index){
-					if (row.r){
-						return row.r.returnallmoney;
-					} else {
-						return value;
-					}
-				}
-			},{
-				field : 'storydate',
-				title : '还款期限',
-				width : 200,
-				align : 'center'
-			},{
-				field : 'storydatep',
-				title : '还款时间',
-				width : 200,
-				align : 'center'
-			},{
-				field : 'paymentstatus',
-				title : '状态',
-				width : 200,
-				align : 'center'
-			}] ],
-			pagination : true,
-			pageSize : 5,
-			pageList : [ 5, 10, 15 ]
-		});
-	}
-</script>
+	</div>
+	 <div class="modal fade" id="example1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel">
+					立即还款
+				</h4>
+			</div>
+			<div class="modal-body">
+				<input type="text" id="hkje1" style="width: 360px;"><small id="xgje"><a href="#">修改金额</a></small><br>
+				<small id="hkjee1" ></small>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" id="qrss1" class="btn btn-primary">
+					确认还款
+				</button>
+			</div>
+		</div>
+	</div></div>
+	 <div class="modal fade" id="example" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<h4 class="modal-title" id="myModalLabel" align="center">
+					立即还款
+				</h4>
+			</div>
+			<div class="modal-body">
+				<input type="text" id="hkje" style="width: 360px;"><small id="xgje"><a href="#">修改金额</a></small><br>
+				<small id="hkjee" ></small>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+				<button type="button" id="qrss" class="btn btn-primary">
+					确认还款
+				</button>
+			</div>
+		</div>
+	  </div>
+	</div>
+	 <div class="modal fade" id="querhk" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<div align="center"><h4 class="modal-title" id="myModalLabel" align="center">
+					确认还款
+				</h4></div>
+			</div>
+			<div class="modal-body">
+				<div align="center"><h2><b id="qrmoney"></b></h2></div><hr><br>
+				<small id="ddxx" >订单信息</small><small id="ddxx2" >祁云借贷</small>
+				<hr><br>
+				<small id="ddxx3" >付款方式</small><small><select id="fkfs" style="width: 100px; height: 30px;" >
+                                    <option value="3">支付宝</option>
+                                     <option value="2">账户余额</option>
+                         </select></small>
+				<hr>
+			</div>
+			<div class="modal-footer" align="center">
+				
+				<button type="button" id="qrss1s" class="btn btn-primary">
+					立即付款
+				</button>
+			</div>
+		</div>
+	  </div>
+	</div>
+	<div class="modal fade" id="querhk1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<div align="center"><h4 class="modal-title" id="myModalLabel" align="center">
+					确认还款
+				</h4></div>
+			</div>
+			<div class="modal-body">
+				<div align="center"><h2><b id="qrmoney1"></b></h2></div><hr><br>
+				<small id="ddxxs" >订单信息</small><small id="ddxx1s" >祁云借贷</small>
+				<hr><br>
+				<small id="ddxx2s" >付款方式</small>
+				<small>
+				<select id="fkfs1" style="width: 100px; height: 20px;" >
+                                    <option value="1" >支付宝</option>
+                                    <option value="2">账户余额</option>
+                         </select>
+                         </small>
+				<hr>
+			</div>
+			<div class="modal-footer" align="center">
+				
+				<button type="button" id="qrss2s" class="btn btn-primary">
+					立即付款
+				</button>
+			</div>
+		</div>
+	  </div>
+	</div>
 </body>
+
+<script type="text/javascript">
+	$(function() {
+
+		var myDate = new Date();
+		var moth = myDate.getMonth() + 1;
+		//alert(moth);
+		var moth2 = myDate.getMonth() + 2;
+
+		$('#reids').text(moth + "月应还");
+		$('#reids2').text(moth2 + "月待还");
+		$('#reids3').text(moth + "月账单");
+		$('#reids4').text(moth2 + "月账单");
+
+		var userid = 0;
+
+		$.ajax({
+					url : 'panlog',
+					success : function(data) {
+						if (data == 0) {
+							alert("请先登录，再来查看账单！！");
+							location.href = "login.html";
+						} else {
+							userid = data;
+
+							$.ajax({
+										url : 'getDatetoday',
+										data : {
+											userid2s : userid,
+										},
+										success : function(data) {
+											if (data.currentrepayment == undefined) {
+												$('#num1').text("00元");
+												$('#xx').text("您本月无分期借款！！");
+												$('#glgl').text("无需还款！");
+											} else if (data != null) {
+												$('#num1').text(data.currentrepayment+ "元");
+
+												$.ajax({
+															url : 'Hasalso',
+															data : {
+																uid1s : userid,
+
+															},
+															success : function(da) {
+																$('#nums').text(da+ "元");
+																$('#lijihk').click(function() {
+																	if (data.paymentstatus == 1 && !$('#num1').text() == "00元") {
+																		alert("您的当月账号已还清啦！");
+																	} else if ($('#num1').text() == "00元" && $('#nums').text() == "00元") {
+																		alert("您本月无分期借款！")
+																	} else {
+
+																		
+																	}
+																})
+																if (data.paymentstatus == 1) {
+																	$('#xx').text("本月账单已还清！！");
+																	$('#glgl').text("好棒！点个赞！");
+																	$('#lijihk').text('已                  还');
+																	document.getElementById("lijihk").disabled = true;
+																} else if (data.paymentstatus == 2) {
+																	$('#xx').text("您本月还款已逾期！！");
+																	$('#glgl').text("请尽快完成还款，逾期每日利息按2.5%计算");
+																} else {
+																	$('#sysy').text("剩余待还（元）");
+																	$('#xx').text($('#num1').text());
+																	$('#xx').val($('#num1').text());
+																	$('#glgl').text("最后还款日期"+ moth+ "月10日");
+																	$('#lijihk').click(function() { //点击第一个立即付款按钮
+																		if ($('#num1').text() == $('#nums').text() && !$('#num1').text() == "00元") {
+																				alert("您的当月账号已还清啦！");
+																			} else if ($('#num1').text() == "00元" && $('#nums').text() == "00元") {
+																				alert("您本月无分期借款！")
+																			} else {
+                                                                              $('#example1').modal();
+                                                                              $('#hkje1').val($('#num2').text());
+                                                                              $('#hkjee1').text("可还"+$('#num2').text());
+																				var tmoney=0;
+																				$('#qrss1').click(function() { //点击确认付款按钮
+																					$('#qrmoney1').text($('#num1').text());
+																					$('#querhk1').modal();
+																					$('#qrss2s').click(function() { //立即付款按钮
+																						alert("qss")
+																						 if($("#fkfs1").val()==2){
+																								$.ajax({
+																									url : 'findsBalance',
+																									data : {
+																										uids22 : userid
+																									},
+																									success : function(te) {
+																										tmoney=te.balance;
+																										
+																										if(tmoney<data.currentrepayment){
+																											alert("您的余额不足，请充值");
+																											
+																										}else{
+																											
+																										}
+																									}
+																								})
+																							} 
+																					})
+																			
+																				})
+																				
+																						
+																			}
+																		})
+																}
+
+															}
+														})
+											}
+
+										}
+
+									})
+
+							$.ajax({
+										url : 'getDatenextmonth',
+										data : {
+											userid1s : userid
+										},
+										success : function(data) {
+											if (data.currentrepayment == undefined) {
+												$('#num2').text("00元");
+												$('#xx2').text("您本月无分期借款！！");
+												$('#glgl2').text("无需还款！");
+											} else if (data != null) {
+												$('#num2').text(data.currentrepayment+ "元");
+                                               
+												$.ajax({
+															url : 'HasalsoNext',
+															data : {
+																uid2s : userid,
+
+															},
+															success : function(da) {
+																$('#num3').text(da+ "元");
+																
+																
+																if (data.paymentstatus == 1) {
+																	$('#xx2').text("本月账单已还清！！");
+																	$('#glgl2').text("好棒！点个赞！");
+																	$('#lijihk2').text('已                  还');
+																	document.getElementById("lijihk2").disabled = true;
+																} else if (data.paymentstatus == 2) {
+																	$('#xx2').text("您本月还款已逾期！！");
+																	$('#glgl2').text("请尽快完成还款，逾期每日利息按2.5%计算");
+																	
+																} else {
+																	$('#sysy2').text("剩余待还（元）");
+																	$('#xx2').text($('#num2').text());
+																	$('#glgl2').text("最后还款日期"+ moth2+ "月10日");
+																	
+																	$('#lijihk2').click(function() {
+																				if ($('#num2').text() == $('#num3').text() && !$('#num2').text() == "00元") {
+																						alert("您的当月账号已还清啦！");
+																					} else if ($('#num2').text() == "00元" && $('#num3').text() == "00元") {
+																						alert("您本月无分期借款！")
+																					} else {
+                                                                                      $('#example').modal();
+                                                                                      $('#hkje').val($('#num2').text());
+                                                                                      $('#hkjee').text("可还"+$('#num2').text());
+																						var tmoney=0;
+																						$('#qrss').click(function() {
+																							$('#qrmoney').text($('#num2').text());
+																							
+																							$('#querhk').modal();
+																							$('#qrss1s').click(function() { //立即付款按钮
+																								//alert("qss")
+																							alert($("#fkfs").val())
+																								 if($("#fkfs").val()==2){
+																									$.ajax({
+																										url : 'findsBalance',
+																										data : {
+																											uids22 : userid
+																										},
+																										success : function(te) {
+																											tmoney=te.balance;
+																											
+																											if(tmoney<data.currentrepayment){
+																												alert("您的余额不足，请充值");
+																												
+																											}else{
+																												
+																											}
+																										}
+																									})
+																								} 
+																							})
+																						})
+																						
+																								
+																					}
+																				})
+																}
+															}
+														})
+											}
+
+										}
+									})
+						}
+					}
+				})
+
+	})
+</script>
+
+
 </html>

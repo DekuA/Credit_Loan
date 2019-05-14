@@ -108,15 +108,27 @@
 		<div style="position: absolute; top: 40px;">
 			<ul class="nav">
 				<li class="nav-item">&nbsp; &nbsp; &nbsp;</li>
-				<li class="nav-item"><a class="nav-link" href="#"> <img
-						src="lsx_html/img/q11.jpg"
-						style="height: 30px; width: 30px; border-radius: 30px; border: 1px solid black;" /></a>
-				</li>
-				<li class="nav-item"><a class="nav-link" href="#">我的账户</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">信息披露</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">我要借款</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">我要出借</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">首页</a></li>
+				<li class="nav-item"><a class="nav-link" href="xsr_html/xsr_zhanghu.html">
+					      <img src="img/q11.jpg" style="height: 30px;width: 30px;border-radius: 30px;border: 1px solid black;" /></a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="xsr_html/xsr_zhanghu.html">我的账户</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="wzz_information.html">信息披露</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="javascript::" onclick="touzi()">我要投资</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="loanone.html">我要借款/还款</a>
+					    </li>
+					     <li class="nav-item">
+					      <a class="nav-link" href="zhaiquanzr.html">债权转让</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="shouye.html">首页</a>
+					    </li>
 			</ul>
 		</div>
 		<div style="position: absolute; right: 180px; top: 35px;">
@@ -131,7 +143,7 @@
 					<li class="nav-item"><a class="nav-link"
 						style="color: #000000;" href="loanone.html">我要借款</a></li>
 					<li class="nav-item"><a class="nav-link"
-						style="color: #000000;" href="#">还款</a></li>
+						style="color: #000000;" href="repayment.html">还款</a></li>
 				</ul>
 			</div>
 			<div id="xxcol" class="col-lg-12">
@@ -193,8 +205,14 @@
 						</div>
 						<div class="input-group mb-2"
 							style="position: absolute; top: 120px; left: 20px;">
-							<span>借款期限&nbsp;:&nbsp;&nbsp;</span> <input id="amperiods"
-								style="width: 200px; height: 30px;" />
+							<span>借款期限&nbsp;:&nbsp;&nbsp;</span>
+							<select id="amperiods" style="width: 200px; height: 30px;" >
+                                    <option value="3">3</option>
+                                    <option value="6">6</option>
+                                    <option value="12">12</option>
+                                    <option value="24">24</option>
+                                    <option value="36">36</option>
+                         </select>
 							<div class="input-group-append" style="height: 30px;">
 								<span class="input-group-text">月</span>
 							</div>
@@ -203,7 +221,7 @@
 						 <p  class="cc">
 						 <small> 
 						    <input type="checkbox" id="checkbox-id"> 
-						              <a href="helpcenter.html">我已阅读并同意 </a>
+						              <a href="loanfalv.html">我已阅读并同意 </a>
 						                  《祁云服务协议》等相关法律法规</small>
 						                </p>
 						</div>
@@ -237,6 +255,7 @@
 						      <th>借款期限</th>
 						      <th>每期还款金额</th>
 						      <th>每期还款利息</th>
+						      <th>总利息</th>
 						     <th>手续费</th>
 						  </tr>
 						</table>
@@ -277,10 +296,10 @@
     		    			}else{
     		    				 
     			    			var autonym=0;
-    			    			alert("222ss"+userid)
+    			    			
     		    				if(userid>0){
     		    					var uuid=userid;
-    		    					alert(userid+"用户idbbbbbbb");
+    		    					
     		      	    						if(autonym==0){
     		      	    							$.ajax({
     		      	    								url:'panname',
@@ -300,30 +319,58 @@
     		      	    	      	    	    				  }else{
     		      	    	      	    	    					lixi=(amount*0.12).toFixed(2);
     		      	    	      	    	    				  }
-    		      	    										 alert("111111111")
-    		      	    	      	    	    				$.ajax({
-    		      	    	      	    	    					type : "post",
-    		      	    	      	    	    					url : "loansAdd",
-    		      	    	      	    	    					data : {
-    		      	    	      	    	    					    uid : uuid,
-    		      	    	      	    	    						amo : amount,
-    		      	    	      	    	    						aper : amperiods,
-    		      	    	      	    	    						lixis:lixi,
-    		      	    	      	    	    					},
-    		      	    	      	    	    					async : true,
-    		      	    	      	    	    					success : function(data) {
-    		      	    	      	    	    						if (data > 0) {
-    		      	    	      	    	    							alert("借款申请提交成功，请等待客户经理联系")
-    		      	    	      	    	    						}
-    		      	    	      	    	    					}
-    		      	    	      	    	    				})
+    		      	    								$.ajax({
+    		      	    									url:'pdAge',
+    		      	    									data:{
+    		      	    										uid:userid
+    		      	    									},
+    		      	    									success:function(cc){
+    		      	    										if(cc>0){
+    		      	    											$.ajax({
+    	    		      	    										url:'gjloan',
+    	    		      	    										data:{uid : uuid,},
+    	    		      	    										success:function(test){
+    	    		      	    											if(test>0){
+    	    		      	    												alert("您已经提交过1次申请哦！！");
+    	    		      	    												window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	    		      	    											}else{
+    	    		      	    												$.ajax({
+    	    	    		      	    	      	    	    					type : "post",
+    	    	    		      	    	      	    	    					url : "loansAdd",
+    	    	    		      	    	      	    	    					data : {
+    	    	    		      	    	      	    	    					    uid : uuid,
+    	    	    		      	    	      	    	    						amo : amount,
+    	    	    		      	    	      	    	    						aper : amperiods,
+    	    	    		      	    	      	    	    						lixis:lixi,
+    	    	    		      	    	      	    	    					},
+    	    	    		      	    	      	    	    					async : true,
+    	    	    		      	    	      	    	    					success : function(data) {
+    	    	    		      	    	      	    	    						if (data > 0) {
+    	    	    		      	    	      	    	    							alert("借款申请提交成功，请等待客户经理联系")
+    	    	    		      	    	      	    	    							alert("请耐心等待3-2个工作日");
+    	    	    		      	    	      	    	    						window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	    	    		      	    	      	    	    						}
+    	    	    		      	    	      	    	    					}
+    	    	    		      	    	      	    	    				})
+    	    		      	    											}
+    	    		      	    										}
+    	    		      	    									})
+    		      	    										}else{
+    		      	    											alert("")
+    		      	    										}
+    		      	    										
+    		      	    									}
+    		      	    								})
+    		      	    										 
+    		      	    								
+    		      	    	      	    	    				
     		      	    	      	    						
     		      	    	      	    					}
     		      	    	      	    				}
     		      	    	      	    			})
     		      	    									
     		      	    						
-    		      	    								}
+    		      	    						}
     		      	    				
     		      	    						 
     		    				
@@ -343,80 +390,7 @@
     			})
       })
 
-	/* function loan() {
-		//alert("111")
-		var userid=0;
-		$.ajax({
-			url:'panlog',
-			success:function(data){
-				if(data==0){
-					alert("请登录！！");
-					location.href="login.html";
-				}else{
-					 userid=data;
-				}
-			}
-		})
-		var autonym = 0; //实名
-		$.ajax({
-			url:'panname',
-			success:function(data){
-				if(data==0){
-					alert("您没有实名,请实名后申请！！");
-					location.href="xsr_html/xsr_zhanghu.html";
-				}else{
-					autonym=data;
-				}
-			}
-		})
-		var lixi=0; //总利息
-		var creditscore = 650; //信用评分
-		var gg=$("#checkbox-id").get(0).checked;//是否勾选同意合同
-		var reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-		var amount = $("#amount").val();
-		var amperiods = $("#amperiods").val();
-		if (!amount) {
-			alert("请填写您的借款金额！！");
-		} else if (!amperiods) {
-			alert("请填写您的借款期限！！");
-		}  else if(gg==false){
-			alert("请勾选签订合同！！");
-		}else if (creditscore < 550) {
-			alert("您的信用没有达到申请要求！！");
-		} else {
-			if(amperiods>0 && amperiods<4){
-				lixi=(amount*0.025).toFixed(2);
-			}else if(amperiods>3 && amperiods<7){
-				lixi=(amount*0.045).toFixed(2);
-			}else if(amperiods>6 && amperiods<13){
-				lixi=(amount*0.088).toFixed(2);
-			}else{
-				lixi=(amount*0.12).toFixed(2);
-			}
-			//判断用户是否登录
-		 // if(userid>0 && autonym>0 && creditscore >=550){
-			  
-			$.ajax({
-				type : "post",
-				url : "loansAdd",
-				data : {
-					uid : userid,
-					amo : amount,
-					aper : amperiods,
-					lixis:lixi,
-				},
-				async : true,
-				success : function(data) {
-					if (data > 0) {
-						alert("借款申请提交成功，请等待客户经理联系")
-					}
-				}
-			})
-		   }
 
-	//	}
-
-	} */
 	function lixi() {
 		var amount = $("#amount").val();
 		var amperiods = $("#amperiods").val();
@@ -425,30 +399,42 @@
 		} else if (!amperiods) {
 			alert("请填写您的借款期限！！");
 		} else {
-			if(amperiods>0 && amperiods<4){
+			if(amperiods==3){
 				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
 				+((amount*0.025)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
+				+(amount*0.025).toFixed(2)+'</td><td>'+
 				((amount*0.025)/amperiods).toFixed(2)+'</td><td>'
 				+'2.5%</td></tr>';
 				$("#tablx").append(str);
-			}else if(amperiods>3 && amperiods<7){
+			}else if(amperiods==6){
 				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
 				+((amount*0.045)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
+				+(amount*0.045).toFixed(2)+'</td><td>'+
 				((amount*0.045)/amperiods).toFixed(2)+'</td><td>'
 				+'4.5%</td></tr>';
 				$("#tablx").append(str);
-			}else if(amperiods>6 && amperiods<13){
+			}else if(amperiods==12){
 				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
 				+((amount*0.088)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
+				+(amount*0.088).toFixed(2)+'</td><td>'+
 				((amount*0.088)/amperiods).toFixed(2)+'</td><td>'
 				+'8.8%</td></tr>';
 				$("#tablx").append(str);
-			}else {
+			}else if(amperiods==24){
 				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
 				+((amount*0.12)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
+				+(amount*0.12).toFixed(2)+'</td><td>'+
 				((amount*0.12)/amperiods).toFixed(2)+'</td><td>'
 				+'12%</td></tr>';
 				$("#tablx").append(str);
+			}else{
+				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
+				+((amount*0.18)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
+				+(amount*0.018).toFixed(2)+'</td><td>'+
+				((amount*0.18)/amperiods).toFixed(2)+'</td><td>'
+				+'18%</td></tr>';
+				$("#tablx").append(str);
+				
 			}
 			$('#myModal').modal();
 		}

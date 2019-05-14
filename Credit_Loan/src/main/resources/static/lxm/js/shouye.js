@@ -60,7 +60,8 @@ function xmxiangqing(xmid){
 	if(user==null){
 		window.location.href="login.html";
 	}else{
-		window.location.href="xmxiangqing.html";
+		window.location.href="xmxiangqing.lxm?xmid="+xmid;
+		//xmxiangqing.html
 	}
 
 }

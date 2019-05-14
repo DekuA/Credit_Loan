@@ -123,6 +123,7 @@ public class ShiroConfiguration {
 		map.put("/chatext_xsr","anon");
 		map.put("/chaxuntext_xsr","anon");
 		map.put("/upload_Xsr","anon");
+		map.put("/xiunicheg_xsr", "anon");
 		//修改调整的登录页面  
         bean.setLoginUrl("/login.html");
         map.put("/login", "anon");

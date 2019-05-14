@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.lxm.dao.ProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.qiyun.lxm.domain.Project" >
+    <id column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="pname" property="pname" jdbcType="VARCHAR" />
+    <result column="Pmoneybig" property="pmoneybig" jdbcType="DOUBLE" />
+    <result column="Pmoneysmall" property="pmoneysmall" jdbcType="DOUBLE" />
+    <result column="Pbudget" property="pbudget" jdbcType="DOUBLE" />
+    <result column="Pclosing" property="pclosing" jdbcType="VARCHAR" />
+    <result column="Pstatus" property="pstatus" jdbcType="INTEGER" />
+    <result column="plcure" property="plcure" jdbcType="DOUBLE" />
+    <result column="Pncome" property="pncome" jdbcType="VARCHAR" />
+    <result column="Pdate" property="pdate" jdbcType="VARCHAR" />
+    <result column="Ptransfer" property="ptransfer" jdbcType="INTEGER" />
+    <result column="Pnmoney" property="pnmoney" jdbcType="DOUBLE" />
+    <result column="Pnterest" property="pnterest" jdbcType="DOUBLE" />
+    <result column="Psurplus" property="psurplus" jdbcType="DOUBLE" />
+    <result column="Pinfo" property="pinfo" jdbcType="DOUBLE" />
+    <result column="Pattorn" property="pattorn" jdbcType="DOUBLE" />
+    <result column="Ppublish" property="ppublish" jdbcType="VARCHAR" />
+    <result column="Pnumber" property="pnumber" jdbcType="VARCHAR" />
+    <result column="Pschedule" property="pschedule" jdbcType="DOUBLE" />
+    <result column="Pestimate" property="pestimate" jdbcType="INTEGER" />
+    <result column="pStartTime" property="pstarttime" jdbcType="VARCHAR" />
+    <result column="pPerson" property="pperson" jdbcType="INTEGER" />
+    <result column="pAssessor" property="passessor" jdbcType="INTEGER" />
+    <result column="lenderId" property="lenderid" jdbcType="INTEGER" />
+    <result column="Risktaking" property="risktaking" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    pid, pname, Pmoneybig, Pmoneysmall, Pbudget, Pclosing, Pstatus, plcure, Pncome, Pdate, 
+    Ptransfer, Pnmoney, Pnterest, Psurplus, Pinfo, Pattorn, Ppublish, Pnumber, Pschedule, 
+    Pestimate, pStartTime, pPerson, pAssessor, lenderId, Risktaking
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.p2p.qiyun.lxm.domain.ProjectExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from project
+    where pid = #{pid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from project
+    where pid = #{pid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.p2p.qiyun.lxm.domain.ProjectExample" >
+    delete from project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.p2p.qiyun.lxm.domain.Project" >
+    insert into project (pid, pname, Pmoneybig, 
+      Pmoneysmall, Pbudget, Pclosing, 
+      Pstatus, plcure, Pncome, 
+      Pdate, Ptransfer, Pnmoney, 
+      Pnterest, Psurplus, Pinfo, 
+      Pattorn, Ppublish, Pnumber, 
+      Pschedule, Pestimate, pStartTime, 
+      pPerson, pAssessor, lenderId, 
+      Risktaking)
+    values (#{pid,jdbcType=INTEGER}, #{pname,jdbcType=VARCHAR}, #{pmoneybig,jdbcType=DOUBLE}, 
+      #{pmoneysmall,jdbcType=DOUBLE}, #{pbudget,jdbcType=DOUBLE}, #{pclosing,jdbcType=VARCHAR}, 
+      #{pstatus,jdbcType=INTEGER}, #{plcure,jdbcType=DOUBLE}, #{pncome,jdbcType=VARCHAR}, 
+      #{pdate,jdbcType=VARCHAR}, #{ptransfer,jdbcType=INTEGER}, #{pnmoney,jdbcType=DOUBLE}, 
+      #{pnterest,jdbcType=DOUBLE}, #{psurplus,jdbcType=DOUBLE}, #{pinfo,jdbcType=DOUBLE}, 
+      #{pattorn,jdbcType=DOUBLE}, #{ppublish,jdbcType=VARCHAR}, #{pnumber,jdbcType=VARCHAR}, 
+      #{pschedule,jdbcType=DOUBLE}, #{pestimate,jdbcType=INTEGER}, #{pstarttime,jdbcType=VARCHAR}, 
+      #{pperson,jdbcType=INTEGER}, #{passessor,jdbcType=INTEGER}, #{lenderid,jdbcType=INTEGER}, 
+      #{risktaking,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.qiyun.lxm.domain.Project" >
+    insert into project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="pname != null" >
+        pname,
+      </if>
+      <if test="pmoneybig != null" >
+        Pmoneybig,
+      </if>
+      <if test="pmoneysmall != null" >
+        Pmoneysmall,
+      </if>
+      <if test="pbudget != null" >
+        Pbudget,
+      </if>
+      <if test="pclosing != null" >
+        Pclosing,
+      </if>
+      <if test="pstatus != null" >
+        Pstatus,
+      </if>
+      <if test="plcure != null" >
+        plcure,
+      </if>
+      <if test="pncome != null" >
+        Pncome,
+      </if>
+      <if test="pdate != null" >
+        Pdate,
+      </if>
+      <if test="ptransfer != null" >
+        Ptransfer,
+      </if>
+      <if test="pnmoney != null" >
+        Pnmoney,
+      </if>
+      <if test="pnterest != null" >
+        Pnterest,
+      </if>
+      <if test="psurplus != null" >
+        Psurplus,
+      </if>
+      <if test="pinfo != null" >
+        Pinfo,
+      </if>
+      <if test="pattorn != null" >
+        Pattorn,
+      </if>
+      <if test="ppublish != null" >
+        Ppublish,
+      </if>
+      <if test="pnumber != null" >
+        Pnumber,
+      </if>
+      <if test="pschedule != null" >
+        Pschedule,
+      </if>
+      <if test="pestimate != null" >
+        Pestimate,
+      </if>
+      <if test="pstarttime != null" >
+        pStartTime,
+      </if>
+      <if test="pperson != null" >
+        pPerson,
+      </if>
+      <if test="passessor != null" >
+        pAssessor,
+      </if>
+      <if test="lenderid != null" >
+        lenderId,
+      </if>
+      <if test="risktaking != null" >
+        Risktaking,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="pname != null" >
+        #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="pmoneybig != null" >
+        #{pmoneybig,jdbcType=DOUBLE},
+      </if>
+      <if test="pmoneysmall != null" >
+        #{pmoneysmall,jdbcType=DOUBLE},
+      </if>
+      <if test="pbudget != null" >
+        #{pbudget,jdbcType=DOUBLE},
+      </if>
+      <if test="pclosing != null" >
+        #{pclosing,jdbcType=VARCHAR},
+      </if>
+      <if test="pstatus != null" >
+        #{pstatus,jdbcType=INTEGER},
+      </if>
+      <if test="plcure != null" >
+        #{plcure,jdbcType=DOUBLE},
+      </if>
+      <if test="pncome != null" >
+        #{pncome,jdbcType=VARCHAR},
+      </if>
+      <if test="pdate != null" >
+        #{pdate,jdbcType=VARCHAR},
+      </if>
+      <if test="ptransfer != null" >
+        #{ptransfer,jdbcType=INTEGER},
+      </if>
+      <if test="pnmoney != null" >
+        #{pnmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="pnterest != null" >
+        #{pnterest,jdbcType=DOUBLE},
+      </if>
+      <if test="psurplus != null" >
+        #{psurplus,jdbcType=DOUBLE},
+      </if>
+      <if test="pinfo != null" >
+        #{pinfo,jdbcType=DOUBLE},
+      </if>
+      <if test="pattorn != null" >
+        #{pattorn,jdbcType=DOUBLE},
+      </if>
+      <if test="ppublish != null" >
+        #{ppublish,jdbcType=VARCHAR},
+      </if>
+      <if test="pnumber != null" >
+        #{pnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="pschedule != null" >
+        #{pschedule,jdbcType=DOUBLE},
+      </if>
+      <if test="pestimate != null" >
+        #{pestimate,jdbcType=INTEGER},
+      </if>
+      <if test="pstarttime != null" >
+        #{pstarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="pperson != null" >
+        #{pperson,jdbcType=INTEGER},
+      </if>
+      <if test="passessor != null" >
+        #{passessor,jdbcType=INTEGER},
+      </if>
+      <if test="lenderid != null" >
+        #{lenderid,jdbcType=INTEGER},
+      </if>
+      <if test="risktaking != null" >
+        #{risktaking,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.p2p.qiyun.lxm.domain.ProjectExample" resultType="java.lang.Integer" >
+    select count(*) from project
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update project
+    <set >
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.pname != null" >
+        pname = #{record.pname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pmoneybig != null" >
+        Pmoneybig = #{record.pmoneybig,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pmoneysmall != null" >
+        Pmoneysmall = #{record.pmoneysmall,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pbudget != null" >
+        Pbudget = #{record.pbudget,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pclosing != null" >
+        Pclosing = #{record.pclosing,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pstatus != null" >
+        Pstatus = #{record.pstatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.plcure != null" >
+        plcure = #{record.plcure,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pncome != null" >
+        Pncome = #{record.pncome,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pdate != null" >
+        Pdate = #{record.pdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ptransfer != null" >
+        Ptransfer = #{record.ptransfer,jdbcType=INTEGER},
+      </if>
+      <if test="record.pnmoney != null" >
+        Pnmoney = #{record.pnmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pnterest != null" >
+        Pnterest = #{record.pnterest,jdbcType=DOUBLE},
+      </if>
+      <if test="record.psurplus != null" >
+        Psurplus = #{record.psurplus,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pinfo != null" >
+        Pinfo = #{record.pinfo,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pattorn != null" >
+        Pattorn = #{record.pattorn,jdbcType=DOUBLE},
+      </if>
+      <if test="record.ppublish != null" >
+        Ppublish = #{record.ppublish,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pnumber != null" >
+        Pnumber = #{record.pnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pschedule != null" >
+        Pschedule = #{record.pschedule,jdbcType=DOUBLE},
+      </if>
+      <if test="record.pestimate != null" >
+        Pestimate = #{record.pestimate,jdbcType=INTEGER},
+      </if>
+      <if test="record.pstarttime != null" >
+        pStartTime = #{record.pstarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.pperson != null" >
+        pPerson = #{record.pperson,jdbcType=INTEGER},
+      </if>
+      <if test="record.passessor != null" >
+        pAssessor = #{record.passessor,jdbcType=INTEGER},
+      </if>
+      <if test="record.lenderid != null" >
+        lenderId = #{record.lenderid,jdbcType=INTEGER},
+      </if>
+      <if test="record.risktaking != null" >
+        Risktaking = #{record.risktaking,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update project
+    set pid = #{record.pid,jdbcType=INTEGER},
+      pname = #{record.pname,jdbcType=VARCHAR},
+      Pmoneybig = #{record.pmoneybig,jdbcType=DOUBLE},
+      Pmoneysmall = #{record.pmoneysmall,jdbcType=DOUBLE},
+      Pbudget = #{record.pbudget,jdbcType=DOUBLE},
+      Pclosing = #{record.pclosing,jdbcType=VARCHAR},
+      Pstatus = #{record.pstatus,jdbcType=INTEGER},
+      plcure = #{record.plcure,jdbcType=DOUBLE},
+      Pncome = #{record.pncome,jdbcType=VARCHAR},
+      Pdate = #{record.pdate,jdbcType=VARCHAR},
+      Ptransfer = #{record.ptransfer,jdbcType=INTEGER},
+      Pnmoney = #{record.pnmoney,jdbcType=DOUBLE},
+      Pnterest = #{record.pnterest,jdbcType=DOUBLE},
+      Psurplus = #{record.psurplus,jdbcType=DOUBLE},
+      Pinfo = #{record.pinfo,jdbcType=DOUBLE},
+      Pattorn = #{record.pattorn,jdbcType=DOUBLE},
+      Ppublish = #{record.ppublish,jdbcType=VARCHAR},
+      Pnumber = #{record.pnumber,jdbcType=VARCHAR},
+      Pschedule = #{record.pschedule,jdbcType=DOUBLE},
+      Pestimate = #{record.pestimate,jdbcType=INTEGER},
+      pStartTime = #{record.pstarttime,jdbcType=VARCHAR},
+      pPerson = #{record.pperson,jdbcType=INTEGER},
+      pAssessor = #{record.passessor,jdbcType=INTEGER},
+      lenderId = #{record.lenderid,jdbcType=INTEGER},
+      Risktaking = #{record.risktaking,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.p2p.qiyun.lxm.domain.Project" >
+    update project
+    <set >
+      <if test="pname != null" >
+        pname = #{pname,jdbcType=VARCHAR},
+      </if>
+      <if test="pmoneybig != null" >
+        Pmoneybig = #{pmoneybig,jdbcType=DOUBLE},
+      </if>
+      <if test="pmoneysmall != null" >
+        Pmoneysmall = #{pmoneysmall,jdbcType=DOUBLE},
+      </if>
+      <if test="pbudget != null" >
+        Pbudget = #{pbudget,jdbcType=DOUBLE},
+      </if>
+      <if test="pclosing != null" >
+        Pclosing = #{pclosing,jdbcType=VARCHAR},
+      </if>
+      <if test="pstatus != null" >
+        Pstatus = #{pstatus,jdbcType=INTEGER},
+      </if>
+      <if test="plcure != null" >
+        plcure = #{plcure,jdbcType=DOUBLE},
+      </if>
+      <if test="pncome != null" >
+        Pncome = #{pncome,jdbcType=VARCHAR},
+      </if>
+      <if test="pdate != null" >
+        Pdate = #{pdate,jdbcType=VARCHAR},
+      </if>
+      <if test="ptransfer != null" >
+        Ptransfer = #{ptransfer,jdbcType=INTEGER},
+      </if>
+      <if test="pnmoney != null" >
+        Pnmoney = #{pnmoney,jdbcType=DOUBLE},
+      </if>
+      <if test="pnterest != null" >
+        Pnterest = #{pnterest,jdbcType=DOUBLE},
+      </if>
+      <if test="psurplus != null" >
+        Psurplus = #{psurplus,jdbcType=DOUBLE},
+      </if>
+      <if test="pinfo != null" >
+        Pinfo = #{pinfo,jdbcType=DOUBLE},
+      </if>
+      <if test="pattorn != null" >
+        Pattorn = #{pattorn,jdbcType=DOUBLE},
+      </if>
+      <if test="ppublish != null" >
+        Ppublish = #{ppublish,jdbcType=VARCHAR},
+      </if>
+      <if test="pnumber != null" >
+        Pnumber = #{pnumber,jdbcType=VARCHAR},
+      </if>
+      <if test="pschedule != null" >
+        Pschedule = #{pschedule,jdbcType=DOUBLE},
+      </if>
+      <if test="pestimate != null" >
+        Pestimate = #{pestimate,jdbcType=INTEGER},
+      </if>
+      <if test="pstarttime != null" >
+        pStartTime = #{pstarttime,jdbcType=VARCHAR},
+      </if>
+      <if test="pperson != null" >
+        pPerson = #{pperson,jdbcType=INTEGER},
+      </if>
+      <if test="passessor != null" >
+        pAssessor = #{passessor,jdbcType=INTEGER},
+      </if>
+      <if test="lenderid != null" >
+        lenderId = #{lenderid,jdbcType=INTEGER},
+      </if>
+      <if test="risktaking != null" >
+        Risktaking = #{risktaking,jdbcType=INTEGER},
+      </if>
+    </set>
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.p2p.qiyun.lxm.domain.Project" >
+    update project
+    set pname = #{pname,jdbcType=VARCHAR},
+      Pmoneybig = #{pmoneybig,jdbcType=DOUBLE},
+      Pmoneysmall = #{pmoneysmall,jdbcType=DOUBLE},
+      Pbudget = #{pbudget,jdbcType=DOUBLE},
+      Pclosing = #{pclosing,jdbcType=VARCHAR},
+      Pstatus = #{pstatus,jdbcType=INTEGER},
+      plcure = #{plcure,jdbcType=DOUBLE},
+      Pncome = #{pncome,jdbcType=VARCHAR},
+      Pdate = #{pdate,jdbcType=VARCHAR},
+      Ptransfer = #{ptransfer,jdbcType=INTEGER},
+      Pnmoney = #{pnmoney,jdbcType=DOUBLE},
+      Pnterest = #{pnterest,jdbcType=DOUBLE},
+      Psurplus = #{psurplus,jdbcType=DOUBLE},
+      Pinfo = #{pinfo,jdbcType=DOUBLE},
+      Pattorn = #{pattorn,jdbcType=DOUBLE},
+      Ppublish = #{ppublish,jdbcType=VARCHAR},
+      Pnumber = #{pnumber,jdbcType=VARCHAR},
+      Pschedule = #{pschedule,jdbcType=DOUBLE},
+      Pestimate = #{pestimate,jdbcType=INTEGER},
+      pStartTime = #{pstarttime,jdbcType=VARCHAR},
+      pPerson = #{pperson,jdbcType=INTEGER},
+      pAssessor = #{passessor,jdbcType=INTEGER},
+      lenderId = #{lenderid,jdbcType=INTEGER},
+      Risktaking = #{risktaking,jdbcType=INTEGER}
+    where pid = #{pid,jdbcType=INTEGER}
+  </update>
+</mapper>

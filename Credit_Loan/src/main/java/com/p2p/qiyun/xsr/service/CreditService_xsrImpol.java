@@ -11,7 +11,8 @@ import com.p2p.qiyun.xsr.dao.CreditMapper_xsr;
 
 import com.p2p.qiyun.xsr.domain.customer;
 import com.p2p.qiyun.xsr.domain.kefuinfo;
-import com.p2p.qiyun.xsr.domain.repayment;
+import com.p2p.qiyun.xsr.domain.paymenthistory;
+import com.p2p.qiyun.xsr.domain.touxiang;
 import com.p2p.qiyun.xsr.domain.userinfo;
 import com.p2p.qiyun.xsr.domain.xiaoxi;
 
@@ -99,8 +100,8 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 	}
 
 	@Override
-	public List<repayment> chahuankuan(int userid) {
-		List<repayment> chahuankuan = dao.chahuankuan(userid);
+	public List<paymenthistory> chahuankuan(int userid) {
+		List<paymenthistory> chahuankuan = dao.chahuankuan(userid);
 		return chahuankuan;
 	}
 
@@ -120,6 +121,24 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 	public Users chakfu(int uid) {
 		Users chakfu = dao.chakfu(uid);
 		return chakfu;
+	}
+
+	@Override
+	public String setousrc(int userid) {
+		String setousrc = dao.setousrc(userid);
+		return setousrc;
+	}
+
+	@Override
+	public int updasrc(touxiang tou) {
+		int updasrc = dao.updasrc(tou);
+		return updasrc;
+	}
+
+	@Override
+	public int xiunicheng(userinfo us) {
+		int xiunicheng = dao.xiunicheng(us);
+		return xiunicheng;
 	}
 
 	

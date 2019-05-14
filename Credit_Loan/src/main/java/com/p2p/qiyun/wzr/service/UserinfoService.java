@@ -5,9 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import com.p2p.qiyun.wzr.domain.Userinfo;
+import com.p2p.qiyun.wzr.domain.Usersms;
 
 public interface UserinfoService {
-
+	
+	
+	int smsinsert(Usersms sms);
+	Usersms smsselect(String mobile);
+	
 	Userinfo UserEntry(String phone);
 	List<Userinfo> userlogin(Userinfo user);
 	

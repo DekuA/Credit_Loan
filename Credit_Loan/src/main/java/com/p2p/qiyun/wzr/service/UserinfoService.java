@@ -12,6 +12,7 @@ public interface UserinfoService {
 	
 	int smsinsert(Usersms sms);
 	Usersms smsselect(String mobile);
+	Usersms smsselect2(String mobile);
 	
 	Userinfo UserEntry(String phone);
 	List<Userinfo> userlogin(Userinfo user);
@@ -22,4 +23,7 @@ public interface UserinfoService {
 	
 	int UserTime(String phone);
 	int charukuhuxinxi(int userid);
+	
+	Userinfo forgetphone(String Phone);
+	int forgetupdate(Userinfo user);
 }

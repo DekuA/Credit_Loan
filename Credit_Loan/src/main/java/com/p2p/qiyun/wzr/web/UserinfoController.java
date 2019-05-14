@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -80,6 +81,27 @@ public class UserinfoController {
 			}
 		return ""+0;
 	}
+	
+	@RequestMapping("smsselect2")
+	public String smsselect2(String mobile) throws ParseException {
+		Usersms usersms = service.smsselect2(mobile);
+		String time = usersms.getExpiredtime();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar c1=Calendar.getInstance();
+		Calendar c2=Calendar.getInstance();
+		Calendar c3=Calendar.getInstance();
+		Date date = df.parse(time);
+		c1.setTime(date);//要判断的日期
+		c2.setTime(new Date());//初始日期
+		c3.setTime(new Date());//也给初始日期 把分钟加五
+		c3.add(c3.MINUTE, 5);
+		c2.add(c2.MINUTE,-5);//减去五分钟
+			if(c1.after(c2)&&c1.before(c3)){
+				System.out.println(usersms.getSmscode());
+				return usersms.getSmscode();
+			}
+		return ""+0;
+	}
 		
 	@RequestMapping("userentry")
 	public int userentry(Userinfo user,HttpSession session){
@@ -115,7 +137,12 @@ public class UserinfoController {
 	@RequestMapping("userenroll")
 	public int userenroll(Userinfo user){
 		String yonghu = "祁云用户";
-		user.setNickname(yonghu+user.getPhone());
+		String m = "";
+		for(int q=0;q<10;q++) {
+			int a = (int) Math.floor(Math.random()*10);
+			m += a;
+		}
+		user.setNickname(yonghu+m);
 		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
 		SimpleHash hash = new SimpleHash("MD5",user.getPassword(),bytes,1234);
 		user.setPassword(hash.toString());
@@ -153,18 +180,35 @@ public class UserinfoController {
 		return map;
 	}
 	@RequestMapping("forgetPwd2")
-	public int forgetPwd2(HttpServletResponse response,HttpServletSession session,int phone) throws IOException {
-		if(phone>0) {
-		}else {
-			session.setAttribute("forget", phone);
+	public int forgetPwd2(String Phone,HttpServletResponse response,HttpServletRequest request) throws IOException {
+		if(!Phone.equals("null")) {
+			request.getSession().setAttribute("forget", Phone);
 			return 1;
 		}
 		return 0;
 	}
 	
 	@RequestMapping("pwd3")
-	public String pwd3(HttpServletSession session) {
+	public String pwd3(HttpServletRequest request) {
 		
-		return (String) session.getAttribute("forget");
+		return (String) request.getSession().getAttribute("forget");
+	}
+	
+	@RequestMapping("forgetphone")
+	public int forgetphone(String Phone,String pwd) {
+		ByteSource bytes = ByteSource.Util.bytes(Phone);
+		String hash = new SimpleHash("MD5",pwd,bytes,1234).toString();
+		Userinfo userinfo = service.forgetphone(Phone);
+		if(userinfo.getPassword().equals(hash)) {
+			return 1;
+		}
+		return 0;
+	}
+	
+	@RequestMapping("forgetupdate")
+	public int forgetupdate(Userinfo user) {
+		int i = service.forgetupdate(user);
+		
+		return i;
 	}
 }

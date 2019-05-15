@@ -229,8 +229,12 @@ public class MyController_xsr {
         if (file==null) {
             return 0;
         }
-        String fileName = file.getOriginalFilename();
-        String filePath = "F:\\touxiang\\kehutou";     
+        String filePath = "E:\\touxiang\\kehutou"; 
+        File f=new File(filePath);       
+        if(f.exists()==false) {
+        	f.mkdirs();
+        }
+        String fileName = file.getOriginalFilename();          
         String xinmingzi = UUID.randomUUID()+fileName;
         File dest = new File(filePath , xinmingzi); 
         try {
@@ -263,7 +267,11 @@ public class MyController_xsr {
         }
         String fileName1 = filez.getOriginalFilename();
         String fileName2 = filef.getOriginalFilename();
-        String filePath = "F:\\touxiang\\kehutou";     
+        String filePath = "E:\\touxiang\\kehutou";    
+        File f=new File(filePath); 
+        if(f.exists()==false) {
+        	f.mkdirs();
+        }
         String xinmingzi = UUID.randomUUID()+fileName1;
         String xinmingzi2 = UUID.randomUUID()+fileName2;
         File dest = new File(filePath , xinmingzi); 

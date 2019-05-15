@@ -101,7 +101,11 @@ public class UserinfoController {
 			session.setAttribute("useridss", userEntry.getUserid());
 			if(im.setousrc(userEntry.getUserid())==null) {
 				im.addtoux(userEntry.getUserid());
-			}			
+			}	
+			if(im.sebalance(userEntry.getUserid())==null) {				
+				System.out.println(1);
+				im.addbalance(userEntry.getUserid());
+			}
 			service.charukuhuxinxi(userEntry.getUserid());
 			List<customer> kehuxinxi = im.kehuxinxi(userEntry.getUserid());
 			for (int i = 1; i < kehuxinxi.size(); i++) {

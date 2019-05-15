@@ -530,7 +530,9 @@
 												$('#glgl').text("无需还款！");
 											} else if (data != null) {
 												$('#num1').text(data.currentrepayment+ "元");
-
+												var datas=data.storydate;
+												var dateEnd = new Date(datas);
+												//alert(dateEnd.getDate()-1+"日期");
 												$.ajax({
 															url : 'Hasalso',
 															data : {
@@ -561,7 +563,8 @@
 																	$('#sysy').text("剩余待还（元）");
 																	$('#xx').text($('#num1').text());
 																	$('#xx').val($('#num1').text());
-																	$('#glgl').text("最后还款日期"+ moth+ "月10日");
+																	
+																	$('#glgl').text("最后还款日期"+ (dataEnd.getMonth() + 1)+ "月"+(dateEnd.getDate()-1)+"日");
 																	$('#lijihk').click(function() { //点击第一个立即付款按钮
 																		if ($('#num1').text() == $('#nums').text() && !$('#num1').text() == "00元") {
 																				alert("您的当月账号已还清啦！");
@@ -618,6 +621,8 @@
 											userid1s : userid
 										},
 										success : function(data) {
+											var nest=data.storydate;
+											var dateEnd2 = new Date(nest);
 											if (data.currentrepayment == undefined) {
 												$('#num2').text("00元");
 												$('#xx2').text("您本月无分期借款！！");
@@ -645,9 +650,10 @@
 																	$('#glgl2').text("请尽快完成还款，逾期每日利息按2.5%计算");
 																	
 																} else {
+																	//alert(dateEnd2.getMonth()+"ccc")
 																	$('#sysy2').text("剩余待还（元）");
 																	$('#xx2').text($('#num2').text());
-																	$('#glgl2').text("最后还款日期"+ moth2+ "月10日");
+																	$('#glgl2').text("最后还款日期"+(dateEnd2.getMonth()+1)+ "月"+(dateEnd2.getDate()-1)+"日");
 																	
 																	$('#lijihk2').click(function() {
 																				if ($('#num2').text() == $('#num3').text() && !$('#num2').text() == "00元") {

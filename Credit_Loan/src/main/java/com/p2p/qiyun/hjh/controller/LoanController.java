@@ -39,7 +39,7 @@ public class LoanController {
 	@RequestMapping("auditingtos")
 	public Map<String, Object> auditingtos(Integer page, String name) {
 		
-		System.out.println(page);
+		
 		int pag = (page - 1) * 5;
 		Query q = new Query(name, pag, 5);
 

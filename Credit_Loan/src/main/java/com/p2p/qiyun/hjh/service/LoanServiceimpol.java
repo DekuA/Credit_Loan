@@ -42,7 +42,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 		if (u.getDid() == 1) {
 			selStatus = lomapper.selStatus1(page);
 
-		} else {
+		} else if(u.getDid() == 2){
 			selStatus = lomapper.selStatus(page);
 		}
 
@@ -69,8 +69,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 			String idnumber = selloan.getUserinfo().getIdnumber();
 
 			int age = DateAge.getAge(idnumber);
-			System.out.println("se=" + selloan);
-			System.out.println("年龄=" + age);
+			
 			if (age >= 18) {
 
 				if (selloan.getApprovalstatus().equals("0")) {

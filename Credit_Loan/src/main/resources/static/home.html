@@ -126,10 +126,9 @@ a:hover {
 					<ul class="pagination">
 						<li class="page-item"><a class="page-link" href="#"
 							onclick="lastpage()">上一页</a></li>
-						<li class="page-item"><a class="page-link" href="#"
-							onclick="zhiding(1)">1</a></li>
+						<li class="page-item"><a class="page-link" href="#" id="uu1">0</a></li>
 
-
+						<li class="page-item"><a class="page-link" href="#" id="uu2">0</a></li>
 						<li class="page-item"><a class="page-link" href="#"
 							onclick="nextpage()">下一页</a></li>
 					</ul>
@@ -267,6 +266,9 @@ var ye=1;
 var rows=1;
 $(function (){
 	daiban(ye);
+suns();
+})
+function suns(){
 	$.ajax({
 		url:"count",
 		type:"post",
@@ -275,10 +277,12 @@ $(function (){
 		success:function(data){
 		
 			rows=data;
+			document.getElementById("uu2").innerText = data;
 		}
 	})
-})
-
+	
+	
+}
 function zhiding(s){
 	ye=s;
 	daiban(ye);
@@ -305,7 +309,7 @@ function lastpage(){
 
 
 function daiban(ye){
-
+	suns();
 	$.ajax({
 		url:"selStatus",
 		type:"post",
@@ -353,6 +357,7 @@ function daiban(ye){
 				document.getElementById("t").innerHTML+=tr;
 			}
 			}	
+			document.getElementById("uu1").innerText = ye;
 		}
 		
 		

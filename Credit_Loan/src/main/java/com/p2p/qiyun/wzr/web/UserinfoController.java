@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Timer;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -80,7 +81,26 @@ public class UserinfoController {
 		c3.add(c3.MINUTE, 5);
 		c2.add(c2.MINUTE,-5);//减去五分钟
 			if(c1.after(c2)&&c1.before(c3)){
-				System.out.println(usersms.getSmscode());
+				return usersms.getSmscode();
+			}
+		return ""+0;
+	}
+	
+	@RequestMapping("smsselect2")
+	public String smsselect2(String mobile) throws ParseException {
+		Usersms usersms = service.smsselect2(mobile);
+		String time = usersms.getExpiredtime();
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Calendar c1=Calendar.getInstance();
+		Calendar c2=Calendar.getInstance();
+		Calendar c3=Calendar.getInstance();
+		Date date = df.parse(time);
+		c1.setTime(date);//要判断的日期
+		c2.setTime(new Date());//初始日期
+		c3.setTime(new Date());//也给初始日期 把分钟加五
+		c3.add(c3.MINUTE, 5);
+		c2.add(c2.MINUTE,-5);//减去五分钟
+			if(c1.after(c2)&&c1.before(c3)){
 				return usersms.getSmscode();
 			}
 		return ""+0;
@@ -103,7 +123,11 @@ public class UserinfoController {
 			session.setAttribute("useridss", userEntry.getUserid());
 			if(im.setousrc(userEntry.getUserid())==null) {
 				im.addtoux(userEntry.getUserid());
-			}			
+			}	
+			if(im.sebalance(userEntry.getUserid())==null) {				
+				System.out.println(1);
+				im.addbalance(userEntry.getUserid());
+			}
 			service.charukuhuxinxi(userEntry.getUserid());
 			List<customer> kehuxinxi = im.kehuxinxi(userEntry.getUserid());
 			for (int i = 1; i < kehuxinxi.size(); i++) {
@@ -180,19 +204,38 @@ public class UserinfoController {
 		return map;
 	}
 	@RequestMapping("forgetPwd2")
-	public int forgetPwd2(HttpServletResponse response,HttpServletSession session,int phone) throws IOException {
-		if(phone>0) {
-		}else {
-			session.setAttribute("forget", phone);
+	public int forgetPwd2(HttpServletResponse response,HttpServletRequest request,String phone) throws IOException {
+		if(!phone.equals("null")) {
+			request.getSession().setAttribute("forget", phone);
 			return 1;
 		}
 		return 0;
 	}
 	
 	@RequestMapping("pwd3")
-	public String pwd3(HttpServletSession session) {
+	public String pwd3(HttpServletRequest request) {
 		
-		return (String) session.getAttribute("forget");
+		return (String) request.getSession().getAttribute("forget");
+	}
+	
+	@RequestMapping("forgetselect")
+	public int forgetselect(String phone,String pwd) {
+		ByteSource bytes = ByteSource.Util.bytes(phone);
+		String hash = new SimpleHash("MD5",pwd,bytes,1234).toString();
+		Userinfo entry = service.UserEntry(phone);
+		if(entry.getPassword().equals(hash)) {
+			return 1;
+		}
+		return 0;
+	}
+	
+	@RequestMapping("forgetupdate")
+	public int forgetupdate(Userinfo user) {
+		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
+		String hash = new SimpleHash("MD5",user.getPassword(),bytes,1234).toString();
+		user.setPassword(hash);
+		int forgetupdate = service.forgetupdate(user);
+		return forgetupdate;
 	}
 	
 	//时间间隔(一天)  

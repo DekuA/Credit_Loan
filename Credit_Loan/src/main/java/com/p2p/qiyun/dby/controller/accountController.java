@@ -130,6 +130,8 @@ public class accountController {
 	//获取用户充值与提现记录
 	@RequestMapping("getRecord_dby")
 	public Map addRecrod(int yeshu,HttpSession hs,account ac) {
+		String attribute = (String) hs.getAttribute("user");
+		userinfo us= xs.phonechaxinxi(attribute);
 		PageHelper.startPage(yeshu, 5);
 		int dd = (int) hs.getAttribute("useridss");
 		ac.setUserid(dd);
@@ -146,13 +148,15 @@ public class accountController {
 		Map map = new HashMap();
 		map.put("total",num);//存页数
 		map.put("rows",record);//把集合存入map
-
+		map.put("nicheng",us.getNickname());//把集合存入map
 		return map;
 	}
 
 	//获取充值记录
 	@RequestMapping("getchongzhi_dby")
 	public  Map getRecordChongzhi(int yeshu,HttpSession hs,account ac) {
+		String attribute = (String) hs.getAttribute("user");
+		userinfo us= xs.phonechaxinxi(attribute);
 		PageHelper.startPage(yeshu, 5);
 		int dd = (int) hs.getAttribute("useridss");
 		ac.setUserid(dd);
@@ -169,13 +173,15 @@ public class accountController {
 		Map map = new HashMap();
 		map.put("total",num);//存页数
 		map.put("rows",record);//把集合存入map
-		
+		map.put("nicheng",us.getNickname());//把集合存入map
 		return map;			
 	}
 
 	//获取提现记录
 	@RequestMapping("gettixian_dby")
 	public Map getRecordTixian(int yeshu,HttpSession hs,account ac) {
+		String attribute = (String) hs.getAttribute("user");
+		userinfo us= xs.phonechaxinxi(attribute);
 		PageHelper.startPage(yeshu, 5);
 		int dd = (int) hs.getAttribute("useridss");
 		ac.setUserid(dd);
@@ -192,7 +198,7 @@ public class accountController {
 		Map map = new HashMap();
 		map.put("total",num);//存页数
 		map.put("rows",record);//把集合存入map
-
+		map.put("nicheng",us.getNickname());//把集合存入map
 		return map;
 	}
 
@@ -212,7 +218,7 @@ public class accountController {
 		//判断实名验证
 		account acc = as.getUserName(ac);
 		String username = acc.getUsername();
-		if(username.length()<2) {
+		if(username==null) {
 			return 2;
 		}else if(b.getPayPwd().equals(payPwd)) {
 			//添加充值记录
@@ -257,7 +263,7 @@ public class accountController {
 		
 		System.out.println(payPwd);
 		System.out.println(b.getPayPwd());
-		if(username.length()<2) {
+		if(username==null) {
 			return 2;
 		}else if(b.getPayPwd().equals(payPwd)){
 			System.out.println("密码正确");

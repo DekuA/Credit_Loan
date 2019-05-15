@@ -78,5 +78,13 @@
   	<update id="addsfzzp" parameterType="com.p2p.qiyun.xsr.domain.usersfz">
   		insert into usersfz(userid,user_srcz,user_srcf) values(#{userid},#{user_srcz},#{user_srcf})
   	</update>
+
+	<insert id="addbalance" parameterType="int">
+		insert into balance(userid,payPwd) values(#{userid},'123456')
+	</insert>
+	
+	<select id="sebalance" parameterType="int" resultType="com.p2p.qiyun.dby.pojo.balance">
+		select * from balance where userid=#{userid}
+	</select>
   	
 </mapper>

@@ -164,6 +164,8 @@ public class ShiroConfiguration {
 		map.put("/chajie_xsr","anon");
 		map.put("/chahuanku_xsr","anon");
 		map.put("/helpcenter.html","anon");
+		map.put("/SelQuestionType","anon");
+		map.put("/Selquestion","anon");
 		map.put("/chatext_xsr","anon");
 
 		map.put("/chaxuntext_xsr","anon");
@@ -180,7 +182,7 @@ public class ShiroConfiguration {
 		map.put("/*.gif", "anon");
 		map.put("/shenfenzp_xsr", "anon");
 		//修改调整的登录页面  
-        bean.setLoginUrl("/login.html");
+        bean.setLoginUrl("/lg.html");
 
         map.put("/login", "anon");
         //需要登录访问的资源 , 一般将/**放在最下边

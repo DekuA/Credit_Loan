@@ -3,9 +3,12 @@ package com.p2p.qiyun.hjh.dao;
 import com.p2p.qiyun.hjh.entity.Userinfo;
 import com.p2p.qiyun.hjh.entity.UserinfoExample;
 import java.util.List;
+
+
 import org.apache.ibatis.annotations.Param;
 
 public interface UserinfoMapper {
+	
     int countByExample(UserinfoExample example);
 
     int deleteByExample(UserinfoExample example);

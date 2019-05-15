@@ -62,4 +62,16 @@ public class UserinfoServiceImpol implements UserinfoService {
 		Usersms usersms = Mapper.smsselect(mobile);
 		return usersms;
 	}
+	
+	@Override
+	public Usersms smsselect2(String mobile) {
+		Usersms usersms = Mapper.smsselect2(mobile);
+		return usersms;
+	}
+
+	@Override
+	public int forgetupdate(Userinfo user) {
+		int i = Mapper.forgetupdate(user);
+		return i;
+	}
 }

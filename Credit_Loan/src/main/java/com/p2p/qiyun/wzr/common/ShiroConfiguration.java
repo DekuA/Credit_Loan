@@ -86,18 +86,15 @@ public class ShiroConfiguration {
 
         map.put("/shouye.html", "anon");
         map.put("/sendsms", "anon");
-
         map.put("/smsselect", "anon");
-
-
-        map.put("/smsselect", "anon");
-        
+        map.put("/smsselect2", "anon");
+        map.put("/forgetselect","anon");
+        map.put("/forgetupdate", "anon");
         map.put("/demo.html", "anon");
         map.put("/forgetPwd2", "anon");
         map.put("/pwd3", "anon");
         map.put("/forgetPwd2.html", "anon");
         map.put("/forgetPwd3.html", "anon");
-        map.put("/forgetPwd4.html", "anon");
         map.put("/login.html", "anon");
         map.put("/wzz_information.html", "anon");
 

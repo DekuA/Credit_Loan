@@ -5,11 +5,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.p2p.qiyun.dby.pojo.balance;
+import com.p2p.qiyun.dyj.pojo.Users;
 import com.p2p.qiyun.lsx.entity.Loan;
 import com.p2p.qiyun.xsr.dao.CreditMapper_xsr;
 
 import com.p2p.qiyun.xsr.domain.customer;
+import com.p2p.qiyun.xsr.domain.kefuinfo;
+import com.p2p.qiyun.xsr.domain.paymenthistory;
+import com.p2p.qiyun.xsr.domain.touxiang;
 import com.p2p.qiyun.xsr.domain.userinfo;
+import com.p2p.qiyun.xsr.domain.usersfz;
 import com.p2p.qiyun.xsr.domain.xiaoxi;
 
 @Service
@@ -93,6 +99,72 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 	public List<Loan> chajiekuan(int userid) {
 		List<Loan> chajiekuan = dao.chajiekuan(userid);
 		return chajiekuan;
+	}
+
+	@Override
+	public List<paymenthistory> chahuankuan(int userid) {
+		List<paymenthistory> chahuankuan = dao.chahuankuan(userid);
+		return chahuankuan;
+	}
+
+	@Override
+	public int chaduihuatext(kefuinfo kf) {
+		int chaduihuatext = dao.chaduihuatext(kf);
+		return chaduihuatext;
+	}
+
+	@Override
+	public List<kefuinfo> chatextuser(int userid) {
+		List<kefuinfo> chatextuser = dao.chatextuser(userid);
+		return chatextuser;
+	}
+
+	@Override
+	public Users chakfu(int uid) {
+		Users chakfu = dao.chakfu(uid);
+		return chakfu;
+	}
+
+	@Override
+	public String setousrc(int userid) {
+		String setousrc = dao.setousrc(userid);
+		return setousrc;
+	}
+
+	@Override
+	public int updasrc(touxiang tou) {
+		int updasrc = dao.updasrc(tou);
+		return updasrc;
+	}
+
+	@Override
+	public int xiunicheng(userinfo us) {
+		int xiunicheng = dao.xiunicheng(us);
+		return xiunicheng;
+	}
+
+	@Override
+	public int addtoux(int usid) {
+		int addtoux = dao.addtoux(usid);
+		return addtoux;
+	}
+
+	@Override
+	public int addsfzzp(usersfz sfzzp) {
+		int addsfzzp = dao.addsfzzp(sfzzp);
+		return addsfzzp;
+	}
+
+	@Override
+	public int addbalance(int userid) {
+		int addbalance = dao.addbalance(userid);
+		return addbalance;
+	}
+
+	@Override
+	public balance sebalance(int userid) {
+		balance sebalance = dao.sebalance(userid);
+		return sebalance;
 	}
 
 	

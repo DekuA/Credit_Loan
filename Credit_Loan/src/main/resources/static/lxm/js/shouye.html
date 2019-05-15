@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>祁云信用贷</title>
+	</head>
+		<link rel="stylesheet" href="../static/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../static/css/font-awesome-4.7.0/css/font-awesome.min.css">
+		<script type="text/javascript" src="../static/js/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../static/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../static/js/bootstrap-paginator.js"></script>
+		<link rel="stylesheet" href="../static/lxm/css/shouye.css" />
+	<body style="background-color: #f1eff1;">
+			<div style="background-color: gray;">				
+				<nav class="navbar navbar-expand-sm bg-light" style="height: 30px;">
+					  <ul class="navbar-nav">					  	
+						    <li class="nav-item">
+						     <a class="nav-link" href="#"> <font size="1">用户论坛</font></a>
+						    </li>
+						    <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">帮助中心</font></a>
+						    </li>
+						    <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">关于我们</font></a>
+						    </li>
+						     <li class="nav-item">
+						      <a class="nav-link" href="#"><font size="1">出借人教育</font></a>
+						    </li>
+						    <li class="nav-item">
+						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						    </li>
+						    <li class="nav-item">
+						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+						    </li>
+						     <li class="nav-item">
+						      	<a th:if="${UserInfo == null}" class="nav-link" href="logouttt">[<font size="1">退出 </font>]</a>						   
+						    </li>
+					  </ul>
+				</nav>
+				<div style="position: absolute;right: 40px;top:3px;"><font size="1" >客服电话: 38383</font></div>
+			</div>
+			<div style="height: 60px;">
+				<div style="position: absolute;top: 40px;">
+					<ul class="nav">
+						<li class="nav-item">
+					     &nbsp; &nbsp; &nbsp; 
+					    </li>
+						<li class="nav-item"><a class="nav-link" href="../static/xsr_html/xsr_zhanghu.html">
+					      <img src="img/q11.jpg" style="height: 30px;width: 30px;border-radius: 30px;border: 1px solid black;" /></a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="xsr_html/xsr_zhanghu.html">我的账户</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="../static/wzz_information.html">信息披露</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="javascript::" onclick="touzi()">我要投资</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="../static/loanone.html">我要借款/还款</a>
+					    </li>
+					     <li class="nav-item">
+					      <a class="nav-link" href="../static/zhaiquanzr.html">债权转让</a>
+					    </li>
+					    <li class="nav-item">
+					      <a class="nav-link" href="javascript::" onclick="shouye()">首页</a>
+					    </li>
+					  </ul>
+				</div> 
+				<div class="container" style="float:right;position: absolute;right: -580px;top:35px;">
+					<img src="../static/img/logo.png" style="height: 50px;width: 140px;" />
+				</div>
+			</div>
+			<!--<div id="lunbo" style="height: 231px;position: relative;">
+				<a href='javascript::' onclick='fang()' ><img id='img1'  src='img/q11.jpg' style='height: 229px;width: 100%;' /></a>
+			</div>-->
+		<div id="woyaotouzi" class="container" style="height: 550px;width:1250px;position:relative;"> 
+			<div class="main-wide-wrap">
+			<div class="main-body">
+				<div class="p2p-slider">
+					<img src="../static/lxm/img/20190427091136.png" style="width: 100%;height: 100%;" />
+				</div>
+				<div class="touzixm">
+					<div class="touzixm-xilei" style="position: absolute;width: 100%;height: 45px;">
+                        <h3 style="float:left;color: #666;font-size: 14px;font-weight: 400;margin-top: 18px;margin-left: 15px;">慧盈系列</h3>
+                    </div>
+					<div style="position: absolute;top:60px;width: 100%;height: 90px;">
+						<h3 style="float:left;color: #666;font-size: 15px;font-weight: 400;margin-left: 15px;">
+							慧盈-安e+ 184242899239924 <span class="tag-discount-orange">信息服务费率7.5折</span>
+						</h3><br><br>
+						<table class="table table-hover" style="margin-left: 15px;width: 865px;">
+							<tr>
+								<td class="tttddd1">历史参考收益率</td>
+								<td class="tttddd1">投资期限</td>
+								<td class="tttddd1">收益方式</td>
+								<td class="tttddd1">投资金额</td>
+								<td></td>
+							</tr>
+							
+							<tr>
+								<td>8.40%</td>
+								<td>36个月</td>
+								<td>每月等额本息</td>
+								<td>34,000.00 元</td>
+								<td><button class="btn btn-group" style="background-color: orange;" onclick="xmxiangqing(1)">投资</button></td>
+							</tr>
+							
+							<tr>
+								<td>8.51%</td>
+								<td>24个月</td>
+								<td>每月等额本息</td>
+								<td>18,800.00 元</td>
+								<td><button class="btn btn-group" disabled>已售完</button></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div class="right-box-touzi">
+				<div class="week-data-box">
+                    <div class="head">
+                        <span class="title">一周转让数据 </span><i class="fa fa-bar-chart"></i><br>
+                    </div>
+                    <span>   &nbsp; &nbsp;
+                        <i class="fa fa-genderless"></i>&nbsp;最近7天转让成功率<span class="week-data">99%</span>
+                    </span>
+                </div>
+                <div class="product-introduce-div">
+                	<dl>
+                		<dt>项目介绍</dt>
+                		<dd><p>慧盈-安e</p><p>保险保障 每月收款</p><hr></dd>
+                		<dd><p>优选-安心e</p><p>等额本息 保险保障</p><hr></dd>
+                		<dd><p>慧盈-安e+</p><p>保险保障 每月收款</p><hr></dd>
+                		<dd><p>立盈-聚信</p><p>起投更低 收益更高</p></dd>
+                	</dl>
+                	
+                </div>
+			</div>
+			
+			<div class="right-box-shouye">
+				<div class="sider-blk">
+                    <div class="head">
+                        <span class="title">风险提示</span>
+                    </div>
+                    <div class="about-content">   &nbsp; &nbsp;
+                        一、政策风险
+
+网络借贷所属行业是基于当前的国家宏观政策及相关法律法规设计，因国家宏观政策和相关法律法规发生变化，影响网络借贷服务的正常提供。
+
+二、信用风险
+
+网络借贷中介机构不对融资项目本金和收益提供任何保证或承诺。在发生最不利情况下（可能但并不一定...
+                    </div>
+            	</div>
+            <div class="sider-blk">
+                	<div class="head">
+                		<span class="title">关于我们           ></span>
+                	</div>
+                	<div class="about-content"> 
+湖南祁云贷互联网金融信息服务有限公司，是湖南祁云贷国际金融资产交易市场股份有限公司全资子公司，专注于提供网络借贷中介信息服务的平台。2014年10月在湖南注册成立，注册资本金1亿元。公司致力于普惠金融发展与信息技术创新，以健全...
+                </div>
+			</div>
+			
+			<div class="sider-blk">
+                <div class="head">
+                	<span class="title">客服热线</span>
+                </div>
+                	<div class="about-content" style="display: block;margin-block-start: 1em;margin-block-end: 1em;margin-inline-start: 0px;margin-inline-end: 0px;"> 
+                		人工电话服务时间：每日9:00-18:00；人工在线服务时间：每日8:00-22:00
+               		</div>
+			</div>
+			</div>
+		</div>
+		</div>	<br /><br />
+		
+		<!--底部代码-->
+			<div id='didiv' style='position: relative;height: 450px;top:20px;'><br />
+				<div class='container' ><font size='2' >客服服务</font></div><br />
+					<div class='container'>
+						<a href='javascript::' data-toggle="modal" data-target="#myModal"><font size='2' color='gray' >客服微信</font></a> |
+						<a href='#'><font size='2' color='gray' >在线客服</font></a> |
+						<a href='#'><font size='2' color='gray' >新浪微博</font></a> <br /><br />
+						<hr  /><br />
+					</div>
+					<div class="container">
+						<div class='container' ><br />
+							<font size='2'>© 2019 祁云信用贷商务顾问(长沙)有限公司  湖南硅谷软件公司</font><br />
+							<font size='1' color='gray'>长ICP证 100953号 长公网安备 11010502020657 长ICP备12025643号-1</font>
+						</div>
+						<div style="position: absolute;top: 150px;left: 530px;">
+							<img src="../static/lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />
+							<img src="../static/lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />						
+						</div>
+						<div style="position: absolute;top: 146px;left: 930px;">
+							<font size="3" color="gray">祁云信用贷财富客服：</font> <font size="5">85886</font><br><br>
+							<font size="3" color="gray">祁云信用贷借款客服：</font> <font size="5">632 133 4027</font><br><br>
+							<font size="3" color="gray">服务时间: 9:00-21:00</font>
+						</div><br><br><hr />
+						<div class="container" align="center"><br />
+							<img src="../static/lxm/img/tu1.PNG" />
+							<img src="../static/lxm/img/tu2.PNG" />
+							<img src="../static/lxm/img/tu3.PNG" />
+							<img src="../static/lxm/img/tu4.PNG" />
+							<img src="../static/lxm/img/tu5.PNG" />
+							<img src="../static/lxm/img/tu6.PNG" />
+						</div>
+					</div>
+			</div>
+			<!--模态-->
+			<div class="modal fade" id="myModal">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        <div class="modal-body" align="center">
+			       		<img src="../static/lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />
+			        </div>			   
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+				        </div>
+			      </div>
+			    </div>
+			  </div>	
+	</body>
+	<script type="text/javascript">
+	
+	</script>
+	<script type="application/javascript" src="../static/lxm/js/shouye.js"></script>
+</html>

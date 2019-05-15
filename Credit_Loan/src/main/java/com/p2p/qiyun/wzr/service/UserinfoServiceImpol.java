@@ -70,12 +70,6 @@ public class UserinfoServiceImpol implements UserinfoService {
 	}
 
 	@Override
-	public Userinfo forgetphone(String Phone) {
-		Userinfo userinfo = Mapper.forgetphone(Phone);
-		return userinfo;
-	}
-
-	@Override
 	public int forgetupdate(Userinfo user) {
 		int i = Mapper.forgetupdate(user);
 		return i;

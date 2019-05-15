@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.p2p.qiyun.lsx.dao.LoanMapper2" >
-  	<insert id="addLoans" parameterType="com.p2p.qiyun.lsx.entity.Loan" >
-  	      INSERT into loan (userid,loanrate,loanamount,repaymentperiod) VALUES
-          (#{userid},#{loanrate},#{loanamount},#{repaymentperiod})
-  	</insert>
-</mapper>

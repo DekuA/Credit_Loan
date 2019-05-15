@@ -1,30 +1,49 @@
 package com.p2p.qiyun.xsr.web;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import org.slf4j.Logger;
 import javax.servlet.http.HttpSession;
 
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.p2p.qiyun.lsx.entity.Loan;
 import com.p2p.qiyun.xsr.domain.customer;
+import com.p2p.qiyun.xsr.domain.kefuinfo;
+import com.p2p.qiyun.xsr.domain.paymenthistory;
+import com.p2p.qiyun.xsr.domain.touxiang;
 import com.p2p.qiyun.xsr.domain.userinfo;
+import com.p2p.qiyun.xsr.domain.usersfz;
 import com.p2p.qiyun.xsr.domain.xiaoxi;
 import com.p2p.qiyun.xsr.service.CreditService_xsr;
 
 
+@Controller
 @RestController
 public class MyController_xsr {
 	@Autowired
 	private CreditService_xsr im;
+
+	@RequestMapping("nicheng_xsr")
+	public String nicheng_xsr(HttpSession session) { 
+		String attribute = (String) session.getAttribute("user");
+		userinfo us= im.phonechaxinxi(attribute);
+		return us.getNickname();
+	}
 	
 	@RequestMapping("zhanghu_xsr")
 	public Map kehuxx(HttpSession session) {
@@ -36,10 +55,13 @@ public class MyController_xsr {
 		}	
 		session.setAttribute("Customerid_xsr", kehuxinxi.get(0).getCustomerid());
 		String scdenglu = im.scdenglu(us.getPhone());
+		String setousrc = im.setousrc(us.getUserid());
 		Map map = new HashMap();
 		map.put("userinfo_xsr",us);
 		map.put("customer_xsr",kehuxinxi.get(0));
 		map.put("logintime_xsr",scdenglu);
+		map.put("tou_src",setousrc);
+		map.put("nicheng_xsr",session.getAttribute("username"));
 		return map;
 	}
 	
@@ -158,5 +180,112 @@ public class MyController_xsr {
 		return map;
 			
 	}
+	
+	@RequestMapping("chahuanku_xsr")
+	public Map chahuanku_xsr(int yeshu,HttpSession session) {
+		String attribute = (String) session.getAttribute("user");
+		userinfo us= im.phonechaxinxi(attribute);
+		PageHelper.startPage(yeshu, 5);
+		List<paymenthistory> chahuankuan = im.chahuankuan(us.getUserid());
+		PageInfo<paymenthistory> info = new PageInfo<>(chahuankuan);
+		int zonghang = (int) info.getTotal();
+		int num = 0;
+		if(zonghang%5==0){
+			num=zonghang/5;
+		}else{
+			num=zonghang/5+1;
+		}
+		Map map = new HashMap();
+		map.put("rows",chahuankuan);//存集合
+		map.put("total",num);//存总数据的行数
+		map.put("userphone",us.getNickname());
+		return map;			
+	}
+	
+	@RequestMapping("chatext_xsr")
+	public String chatext_xsr(kefuinfo kf,HttpSession session) {
+		String attribute = (String) session.getAttribute("user");
+		userinfo us= im.phonechaxinxi(attribute);
+		kf.setUserid(us.getUserid());
+		kf.setUid(0);
+		kf.setQiuid(1);
+		System.out.println(kf);
+		int chaduihuatext = im.chaduihuatext(kf);
+		return chaduihuatext+"";
+			
+	}
+
+	@RequestMapping("chaxuntext_xsr")
+	public List<kefuinfo> chaxuntext_xsr(HttpSession session) {
+		String attribute = (String) session.getAttribute("user");
+		userinfo c= im.phonechaxinxi(attribute);
+		List<kefuinfo> chatextuser = im.chatextuser(c.getUserid());
+		return chatextuser;		
+	}
+	
+	@RequestMapping("upload_Xsr")
+	public  int upload(MultipartFile file,HttpSession session)  {
+		int userid = (int) session.getAttribute("useridss");
+        if (file==null) {
+            return 0;
+        }
+        String filePath = "E:\\touxiang\\kehutou"; 
+        File f=new File(filePath);       
+        if(f.exists()==false) {
+        	f.mkdirs();
+        }
+        String fileName = file.getOriginalFilename();          
+        String xinmingzi = UUID.randomUUID()+fileName;
+        File dest = new File(filePath , xinmingzi); 
+        try {
+            file.transferTo(dest);
+            touxiang tou = new touxiang(0,(int) session.getAttribute("useridss"), xinmingzi);
+            int updasrc = im.updasrc(tou);
+            return updasrc;
+        } catch (IOException e) {
+           System.out.println(e);
+        }
+        return 0;
+    }
+
+	@RequestMapping("xiunicheg_xsr")
+	public int xiunicheg_xsr(userinfo us,HttpSession session) {
+		int attribute = (int) session.getAttribute("useridss");		
+		us.setUserid(attribute);
+		int xiunicheng = im.xiunicheng(us);
+		return xiunicheng;
+	}
+	
+	@RequestMapping("shenfenzp_xsr")
+	public  int shenfenzp_xsr(MultipartFile filez,MultipartFile filef,HttpSession session)  {
+		int userid = (int) session.getAttribute("useridss");
+        if (filez==null) {
+            return 0;
+        }
+        if (filef==null) {
+            return 0;
+        }
+        String fileName1 = filez.getOriginalFilename();
+        String fileName2 = filef.getOriginalFilename();
+        String filePath = "E:\\touxiang\\kehutou";    
+        File f=new File(filePath); 
+        if(f.exists()==false) {
+        	f.mkdirs();
+        }
+        String xinmingzi = UUID.randomUUID()+fileName1;
+        String xinmingzi2 = UUID.randomUUID()+fileName2;
+        File dest = new File(filePath , xinmingzi); 
+        File dest2 = new File(filePath , xinmingzi2); 
+        try {
+            filez.transferTo(dest);
+            filef.transferTo(dest2);
+            usersfz sfzzpUsersfz = new usersfz(0, userid, xinmingzi, xinmingzi2);
+            int addsfzzp = im.addsfzzp(sfzzpUsersfz);
+            return addsfzzp;
+        } catch (IOException e) {
+           System.out.println(e);
+        }
+        return 0;
+    }
 	
 }

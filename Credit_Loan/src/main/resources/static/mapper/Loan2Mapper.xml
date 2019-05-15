@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.lsx.dao.Loan2Mapper" >
+  	<insert id="AddLoans" parameterType="com.p2p.qiyun.lsx.entity.Loan2">
+  	      INSERT into loan(userid,loanrate,loanamount,repaymentperiod) VALUES
+          (#{userid},#{loanrate},#{loanamount},#{repaymentperiod})
+  	</insert>
+ 
+  	<select id="selLoansById" parameterType="int" resultType="com.p2p.qiyun.lsx.entity.Loan2">
+  		select * from loan where loanid=#{loanid}
+  		</select>
+  	<select id="selctloan" parameterType="com.p2p.qiyun.lsx.entity.Loan2" resultType="com.p2p.qiyun.lsx.entity.Loan2">
+  	   SELECT *FROM loan  WHERE userid=#{userid}
+  	   <!-- and loanid=#{loanid} --><!--  AND DATE_FORMAT(  applicationdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) -->
+  	   
+  	</select>
+  	<!-- 判断年龄 -->
+  	<select id="SelectAge"  resultType="com.p2p.qiyun.lsx.entity.Loan2" parameterType="int">
+  	 SELECT * FROM  userinfo u  
+     where  u.userid=#{userid} and ( YEAR  (now()) - YEAR (substring(u.idnumber, 7, 8)) >18 OR
+     YEAR (now()) - YEAR (substring(u.idnumber, 7, 8)) =18 )
+
+  	 
+  	</select>
+  	
+  	<!-- 单月日期 -->
+  	<select id="getDatetoday" resultType="com.p2p.qiyun.lsx.entity.Paymenthistory2" parameterType="int" >
+  	   SELECT *FROM paymenthistory  WHERE userid=#{userid}  AND DATE_FORMAT(storydate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+  	   
+  	</select>
+  	
+  	<!-- 根据下个月 -->
+  	<select id="getDatenextmonth" resultType="com.p2p.qiyun.lsx.entity.Paymenthistory2" parameterType="int">
+  	   SELECT *FROM paymenthistory  WHERE userid=#{userid}  AND
+       DATE_FORMAT(  storydate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )+1
+  	   
+  	</select>
+  	
+  	<select id="getDates" resultType="com.p2p.qiyun.lsx.entity.Paymenthistory2" >
+  	   SELECT *FROM paymenthistory  WHERE userid=#{userid}
+  	   
+  	</select>
+  	<select id="selctRepayment" parameterType="com.p2p.qiyun.lsx.entity.Repayment2" resultType="com.p2p.qiyun.lsx.entity.Repayment2">
+  	   SELECT *FROM repayment  WHERE userid=#{userid}
+  	    <!-- and loanid=#{loanid} -->  AND DATE_FORMAT(rdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+  	   
+  	</select>
+  	
+  	<select id="selctRepaymentNext" parameterType="com.p2p.qiyun.lsx.entity.Repayment2" resultType="com.p2p.qiyun.lsx.entity.Repayment2">
+  	   SELECT *FROM repayment  WHERE userid=#{userid}
+  	  <!--   and loanid=#{loanid} -->  AND DATE_FORMAT(rdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )+1
+  	   
+  	</select>
+</mapper>

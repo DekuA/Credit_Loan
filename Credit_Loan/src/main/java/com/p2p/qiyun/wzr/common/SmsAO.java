@@ -17,7 +17,6 @@ import com.aliyuncs.profile.IClientProfile;
  *短信验证码接口
  */
 public class SmsAO {
-	
 	private static Logger logger = LogManager.getLogger(SmsAO.class);
 	private static final String product = "Dysmsapi";// 短信API产品名称（短信产品名固定，无需修改）
 	private static final String domain = "dysmsapi.aliyuncs.com";// 短信API产品域名（接口地址固定，无需修改）

@@ -30,10 +30,7 @@
   		insert into customer(userid,custometype) values(#{userid},'个人')
   	</insert>
   	
-  	<select id="forgetphone" parameterType="String" resultType="com.p2p.qiyun.wzr.domain.Userinfo">
-  		select * from userinfo where Phone=#{Phone}
-  	</select>
   	<update id="forgetupdate" parameterType="com.p2p.qiyun.wzr.domain.Userinfo">
-  			update userinfo set password=#{password} where Phone=#{Phone}
+  		update userinfo set password=#{password} where Phone=#{Phone}
   	</update>
 </mapper>

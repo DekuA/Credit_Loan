@@ -23,7 +23,5 @@ public interface UserinfoService {
 	
 	int UserTime(String phone);
 	int charukuhuxinxi(int userid);
-	
-	Userinfo forgetphone(String Phone);
 	int forgetupdate(Userinfo user);
 }

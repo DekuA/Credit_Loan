@@ -18,6 +18,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 import org.apache.shiro.web.session.HttpServletSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -40,6 +41,8 @@ public class UserinfoController {
 	@Autowired
 	private CreditService_xsr im;
 	
+
+
 	@RequestMapping("sendsms")
 	public int sendsms(String mobile,int smstype) throws Exception {
 		SmsAO ao = new SmsAO();
@@ -78,7 +81,6 @@ public class UserinfoController {
 		c3.add(c3.MINUTE, 5);
 		c2.add(c2.MINUTE,-5);//减去五分钟
 			if(c1.after(c2)&&c1.before(c3)){
-				System.out.println(usersms.getSmscode());
 				return usersms.getSmscode();
 			}
 		return ""+0;
@@ -99,7 +101,6 @@ public class UserinfoController {
 		c3.add(c3.MINUTE, 5);
 		c2.add(c2.MINUTE,-5);//减去五分钟
 			if(c1.after(c2)&&c1.before(c3)){
-				System.out.println(usersms.getSmscode());
 				return usersms.getSmscode();
 			}
 		return ""+0;
@@ -108,6 +109,7 @@ public class UserinfoController {
 	@RequestMapping("userentry")
 	public int userentry(Userinfo user,HttpSession session){
 		
+
 		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
 		SimpleHash hash = new SimpleHash("MD5",user.getPassword(),bytes,1234);
 		user.setPassword(hash.toString());
@@ -116,7 +118,16 @@ public class UserinfoController {
 			session.setAttribute("user", user.getPhone());
 			service.UserTime(user.getPhone());
 			Userinfo userEntry = service.UserEntry(user.getPhone());
+			session.setAttribute("UserInfo",userEntry);
 			session.setAttribute("username", user.getNickname());
+			session.setAttribute("useridss", userEntry.getUserid());
+			if(im.setousrc(userEntry.getUserid())==null) {
+				im.addtoux(userEntry.getUserid());
+			}	
+			if(im.sebalance(userEntry.getUserid())==null) {				
+				System.out.println(1);
+				im.addbalance(userEntry.getUserid());
+			}
 			service.charukuhuxinxi(userEntry.getUserid());
 			List<customer> kehuxinxi = im.kehuxinxi(userEntry.getUserid());
 			for (int i = 1; i < kehuxinxi.size(); i++) {
@@ -126,6 +137,22 @@ public class UserinfoController {
 		}
 		return 0;
 	}
+	
+	
+	@RequestMapping("gotoindex")
+	public Userinfo gotoIndex(Model model,HttpSession session,HttpServletResponse response) {
+		//System.out.println(userEntry);
+		Userinfo user = (Userinfo) session.getAttribute("UserInfo");
+		if(user!=null) {
+			Userinfo userEntry = service.UserEntry(user.getPhone());
+			session.setAttribute("UserInfo",userEntry);
+			return userEntry;
+		}
+		//System.out.println(userEntry);
+		return user;
+	} 
+	
+	
 	
 	@RequestMapping("usercode")
 	public int usercode(Userinfo user){
@@ -139,12 +166,7 @@ public class UserinfoController {
 	@RequestMapping("userenroll")
 	public int userenroll(Userinfo user){
 		String yonghu = "祁云用户";
-		String m = "";
-		for(int q=0;q<10;q++) {
-			int a = (int) Math.floor(Math.random()*10);
-			m += a;
-		}
-		user.setNickname(yonghu+m);
+		user.setNickname(yonghu+user.getPhone());
 		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
 		SimpleHash hash = new SimpleHash("MD5",user.getPassword(),bytes,1234);
 		user.setPassword(hash.toString());
@@ -158,7 +180,7 @@ public class UserinfoController {
 	@RequestMapping("logouttt")
 	public String logout(HttpServletResponse response,HttpSession session) throws IOException{
 		session.removeAttribute("user");
-
+		session.removeAttribute("UserInfo");
 		try {
 			response.sendRedirect("login.html");
 		} catch (IOException e) {
@@ -182,9 +204,9 @@ public class UserinfoController {
 		return map;
 	}
 	@RequestMapping("forgetPwd2")
-	public int forgetPwd2(String Phone,HttpServletResponse response,HttpServletRequest request) throws IOException {
-		if(!Phone.equals("null")) {
-			request.getSession().setAttribute("forget", Phone);
+	public int forgetPwd2(HttpServletResponse response,HttpServletRequest request,String phone) throws IOException {
+		if(!phone.equals("null")) {
+			request.getSession().setAttribute("forget", phone);
 			return 1;
 		}
 		return 0;
@@ -196,12 +218,12 @@ public class UserinfoController {
 		return (String) request.getSession().getAttribute("forget");
 	}
 	
-	@RequestMapping("forgetphone")
-	public int forgetphone(String Phone,String pwd) {
-		ByteSource bytes = ByteSource.Util.bytes(Phone);
+	@RequestMapping("forgetselect")
+	public int forgetselect(String phone,String pwd) {
+		ByteSource bytes = ByteSource.Util.bytes(phone);
 		String hash = new SimpleHash("MD5",pwd,bytes,1234).toString();
-		Userinfo userinfo = service.forgetphone(Phone);
-		if(userinfo.getPassword().equals(hash)) {
+		Userinfo entry = service.UserEntry(phone);
+		if(entry.getPassword().equals(hash)) {
 			return 1;
 		}
 		return 0;
@@ -209,9 +231,11 @@ public class UserinfoController {
 	
 	@RequestMapping("forgetupdate")
 	public int forgetupdate(Userinfo user) {
-		int i = service.forgetupdate(user);
-		
-		return i;
+		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
+		String hash = new SimpleHash("MD5",user.getPassword(),bytes,1234).toString();
+		user.setPassword(hash);
+		int forgetupdate = service.forgetupdate(user);
+		return forgetupdate;
 	}
 	
 	//时间间隔(一天)  

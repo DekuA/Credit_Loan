@@ -18,10 +18,10 @@
 				}
 				#tdt2{
 					text-align: right;
-				}	
+				}
 			</style>
 <body>
-		<div >				
+		<div>				
 				<nav class="navbar navbar-expand-sm bg-light" style="height: 30px;">
 					  <ul class="navbar-nav">					  	
 						    <li class="nav-item">
@@ -33,9 +33,6 @@
 						    <li class="nav-item">
 						      <a class="nav-link" href="#"><font size="1">关于我们</font></a>
 						    </li>
-						    <li class="nav-item">
-						      <a class="nav-link" href="#"><font size="1">人人学院</font></a>
-						    </li>
 						     <li class="nav-item">
 						      <a class="nav-link" href="#"><font size="1">出借人教育</font></a>
 						    </li>
@@ -46,7 +43,7 @@
 						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 						    <li class="nav-item">
 						    	 <li>
-						      	<a class="nav-link" href="#"><font size="1">昵称</font></a>						   
+						      	<a class="nav-link" href="#"><font id='nic' size="1">昵称</font></a>						   
 						    </li>
 						     <li>
 						      	<a class="nav-link" href="../logouttt">[<font size="1">退出 </font>]</a>						   
@@ -61,23 +58,23 @@
 						<li class="nav-item">
 					     &nbsp; &nbsp; &nbsp; 
 					    </li>
-						<li class="nav-item"><a class="nav-link" href="#">
-					      <img src="xsr_wenjian/img_xsr/kefu.jpg" style="height: 30px;width: 30px;border-radius: 30px;border: 1px solid black;" /></a>
+					    <li class="nav-item">
+					      <a class="nav-link" href="xsr_zhanghu.html">我的账户</a>
 					    </li>
 					    <li class="nav-item">
-					      <a class="nav-link" href="#">我的账户</a>
+					      <a class="nav-link" href="../wzz_information.html">信息披露</a>
 					    </li>
 					    <li class="nav-item">
-					      <a class="nav-link" href="#">信息披露</a>
+					      <a class="nav-link" href="javascript::" onclick="touzi()">我要投资</a>
 					    </li>
 					    <li class="nav-item">
-					      <a class="nav-link" href="#">我要借款/还款</a>
+					      <a class="nav-link" href="../loanone.html">我要借款/还款</a>
 					    </li>
 					     <li class="nav-item">
-					      <a class="nav-link" href="#">我要出借</a>
+					      <a class="nav-link" href="../zhaiquanzr.html">债权转让</a>
 					    </li>
 					    <li class="nav-item">
-					      <a class="nav-link" href="#">首页</a>
+					      <a class="nav-link" href="../shouye.html" >首页</a>
 					    </li>
 					  </ul>
 				</div> 
@@ -102,7 +99,7 @@
 					  		<a  class='nav-link' style='color: black;' href='xsr_jiehuanjilu.html'>借款/还款 记录</a>				  		
 				  		</li>
 				  		<li class='nav-item'>
-					  		<a  class='nav-link' style='color: black;' href='javacsript::'>p2p资产</a>				  		
+					  		<a  class='nav-link' style='color: black;' href='xsr_yue.html'>余额管理</a>				  		
 				  		</li>
 				  		
 					 </ul>
@@ -145,11 +142,11 @@
 							<font size='2'>© 2019 祁云信用贷商务顾问(长沙)有限公司  湖南硅谷软件公司</font><br />
 							<font size='1' color='gray'>长ICP证 100953号 长公网安备 11010502020657 长ICP备12025643号-1</font>
 						</div>
-						<div style="position: absolute;top: 150px;left: 530px;">
+						<div style="position: absolute;top: 150px;left: 43%;">
 							<img src="xsr_wenjian/img_xsr/kefu.jpg" style="width: 150px;height: 150px;" />
 							<img src="xsr_wenjian/img_xsr/kefu.jpg" style="width: 150px;height: 150px;" />						
 						</div>
-						<div style="position: absolute;top: 146px;left: 930px;">
+						<div style="position: absolute;top: 146px;left: 63%;">
 							<font size="3" color="gray">祁云信用贷财富客服：</font> <font size="5">85886</font><br><br>
 							<font size="3" color="gray">祁云信用贷借款客服：</font> <font size="5">632 133 4027</font><br><br>
 							<font size="3" color="gray">服务时间: 9:00-21:00</font>
@@ -179,11 +176,11 @@
 			  </div>
 
 <!-- 浮动 -->
-		<div style="float: left;width: 50px;height: 160px;position: fixed;top: 400px;right: 15px;background-color: white;">
-					<a href="xsr_jisuanqi.html" target="_blank"><div id='jisuan_div1' style="height: 80px;border: 1px solid gainsboro;" align="center" onmouseout="likai(1)" onmouseover="fangs(1)">
+		<div style="float: left;width: 50px;height: 160px;position: fixed;top: 400px;right: 15px;background-color: ghostwhite;">
+					<!-- <a href="xsr_jisuanqi.html" target="_blank"><div id='jisuan_div1' style="height: 80px;border: 1px solid gainsboro;" align="center" onmouseout="likai(1)" onmouseover="fangs(1)">
 							<img style="width: 30px;height: 30px;top: 5px;position: relative;" src="xsr_wenjian/img_xsr/jisuanqi.PNG" /><br>
 							<font size="2" color="gray">收益<br>计算器</font>
-						</div></a>	
+						</div></a>	 -->
 					<a href="javascript::" onclick="kefu()" ><div id='jisuan_div2' style="height: 80px;border: 1px solid gainsboro;" align="center" onmouseout="likai(2)" onmouseover="fangs(2)">
 							<img style="width: 30px;height: 30px;top: 5px;position: relative;" src="xsr_wenjian/img_xsr/zxkf.PNG" /><br>
 							<font size="2" color="gray">在线<br>客服</font>
@@ -192,9 +189,9 @@
 		</div>
 			
 </body>
-<script>
+<script> 
 $.ajax({
-	url:"../panlogin_xsr",
+	url:"../panlogin_xsr", 
 	dataType:"text",
 	success:function(data){
 		if(data=="0"){
@@ -202,6 +199,10 @@ $.ajax({
 		}
 	}
 });
+
+function dingnich(a){
+	$("#nic").html(a);
+}
 		function kefu(){
 				window.open("xsr_kefu.html");
 		}

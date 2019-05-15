@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+<script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+<script
+	src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+	<div class="container">
+
+
+		<form class="form-inline" role="form">
+
+
+			<p>
+				<input type="text" class="form-control" id="yyyyy"
+					placeholder="请输入名称" style="height: 30px; width: 500px" />
+				<button type="submit" class="btn btn-default" style="height: 30px;"
+					onclick="auditing(1)">查询</button>
+			</p>
+		</form>
+
+
+
+
+
+		<table class="table  table-bordered table-sm small" id="tableauditing">
+
+
+		</table>
+		<div class="container small"
+			style="position: fixed; left: 500px; top: 400px">
+			<ul class="pagination">
+				<li class="page-item"><a class="page-link" href="#"
+					onclick="lastpage1()">上一页</a></li>
+				<li class="page-item"><a class="page-link" href="#" id="a1">1</a></li>
+				<li class="page-item"><a class="page-link" href="#" id="a3">3</a></li>
+				<li class="page-item"><a class="page-link" href="#"
+					onclick="nextpage1()">下一页</a></li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+	var yes = 1;
+	var count = 1;
+		$(function() {
+
+			auditing(yes);
+
+		})
+		
+		function nextpage1() {
+
+			if (yes < count) {
+				yes++;
+				auditing(yes);
+			}
+		}
+		function lastpage1() {
+
+			if (yes > 1) {
+				yes--;
+			}
+			auditing(yes);
+		}
+
+		function auditing(yes) {
+
+			$
+					.ajax({
+						type : "post",
+						url : "auditingtos",
+						data : {
+							page : yes,
+							name : $("#yyyyy").val(),
+						},
+						dataType : "json",
+						success : function(data) {
+							document.getElementById("tableauditing").innerHTML = "";
+							var th = "<tr>" + "<th>姓名</th>" + "<th>身份證</th>"
+									+ "<th>號碼</th>" + "<th>時間</th>"
+									+ "<th>金額</th>" + "<th>結果</th>" + "</tr>";
+							document.getElementById("tableauditing").innerHTML += th;
+
+							for (var i = 0; i < data.list.length; i++) {
+
+								var tr = "<tr class='table-primary'>"
+										+ "<td>"
+										+ data.list[i].userinfo.username
+										+ "</td>"
+										+ "<td>"
+										+ data.list[i].userinfo.idnumber
+										+ "</td>"
+										+ "<td>"
+										+ data.list[i].userinfo.phone
+										+ "</td>"
+										+ "<td>"
+										+ data.list[i].adate
+										+ "</td>"
+										+ "<td>"
+										+ data.list[i].amoney
+										+ "</td>"
+										+ "<td><font size='1' id='y"+i+"'></font></td>"
+										+ "</tr>";
+								document.getElementById("tableauditing").innerHTML += tr;
+
+								if (data.list[i].astatus == 2) {
+
+									document.getElementById("y"+i).innerText = "成功";
+									document.getElementById("y"+i).style.color = "green";
+								} else if (data.list[i].astatus == 1) {
+									document.getElementById("y"+i).innerText = "审核中.。。。。";
+									document.getElementById("y"+i).style.color = "pink";
+								} else {
+									document.getElementById("y"+i).innerText = "失敗";
+									document.getElementById("y"+i).style.color = "red";
+
+								}
+
+							}
+							count = data.sum;
+							document.getElementById("a1").innerText = yes;
+							document.getElementById("a3").innerText = data.sum;
+
+						}
+
+					})
+		}
+	</script>
+</body>
+</html>

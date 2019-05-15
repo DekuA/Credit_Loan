@@ -19,15 +19,31 @@
 							<td><input id='usereiml' class="form-control" placeholder="正确邮箱" style='width: 300px;' /></td>
 						</tr>
 					</table><br>
+						<font color="red" size="3" id='youzz'>
+							
+						</font>
+					<br>
 					<button class="btn btn-warning" onclick="bangyou()" style="width: 120px;" >立即绑定</button>
 				</div>
 			</div>		
 		</div>
 	</body>
 	<script>
+
 		function bangyou(){
+			 var re = /^[A-Za-z\d]+([-_.][A-Za-z\d]+)*@([A-Za-z\d]+[-.])+[A-Za-z\d]{2,4}$/; 
 			var name = $("#usereiml").val();
-			 $.ajax({
+			if(name.length!=0){
+				if(!(re.test(name))){
+					$("#youzz").html("输入正确的邮箱！！！");
+					return;
+				}
+			}else{
+				$("#youzz").html("邮箱不能为空！！！");
+				return;
+			}
+			$("#youzz").html("");
+			  $.ajax({
 				url:"../../bangyou_xsr",
 				data:{
 					email:name,
@@ -35,13 +51,12 @@
 				dataType : "text",
 				success:function(da){
 					if(da=="1"){
-						alert("邮箱绑定成功!!");
 						window.location.href="xsr_wenjian/ifm_xsr/zhanghu.html";
 					}else{
 						alert("邮箱绑定失败。。");
 					}
 				}
-			}) 
+			})   
 		}
 	</script>
 </html>

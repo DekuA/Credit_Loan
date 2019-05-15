@@ -5,5 +5,7 @@
   	SELECT * from userinfo where userid=#{userid}
   	
   	</select>
-  	
+  	<select id="findBalance" resultType="com.p2p.qiyun.lsx.entity.Balance2" parameterType="java.lang.Integer">
+     	select * from Balance where userid=#{userid}
+  	</select>
 </mapper>

@@ -22,11 +22,15 @@
 			</style>
 	<body>
 		<div class='container'>
-					<div style='top: 5px;position: absolute;'>
-						<img style='width: 150px;height: 150px;' src="../img_xsr/kefu.jpg" />
+					<div style='top: 5px;position: absolute;border-radius: 150px'>
+						<a href='javascript::' data-toggle="modal" data-target="#upload_xsr">
+							<img id='tou_src1' src="../img_xsr/logo.png" style='width: 150px;height: 150px;border-radius: 150px'  />
+						</a>
 					</div>
 					<div  style='top: 70px;position: absolute;left: 250px;'>
-						昵称：<font id='nicheng' color="blue">手机号码</font>
+						昵称：<a id='nicheng' style="color: blue;" data-toggle="tooltip" title="双击修改昵称" ondblclick="xiuni()">昵称</a>
+						 <input  class="form-control" placeholder="昵称" id="email" style="display: none;top: -30px;position: relative;left: 40px;">
+						 <button id='buttonxiuni' onclick="xiunicheng()" class="btn btn-primary" style="display: none;top: -68px;position: relative;left: 280px;" >修改</button>
 					</div>
 				</div>
 				<!--具体信息 table-->
@@ -90,8 +94,111 @@
 					    	</tr>
 					    </table>
 				</div>
+				
+				<!--模态-->
+			<div class="modal fade" id="upload_xsr">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			      
+			      <div align="center" >
+			        <div class="control-group">
+                        <label class="col-md-3 control-label span3"></label>
+                        <div class="col-md-9" >
+                            <img id='img_tou' border="1" style="width:150px;height:150px"><br>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+
+                        <label for="requirement" class="col-md-3 control-label span3">新头像预览</label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <input id="photoCover" class="form-control" readonly type="text">
+                                <label class="input-group-btn">
+                                    <input id="file" type="file" name="file" style="left: -9999px; position: absolute;width: 100px">
+                                    <span class="btn btn-default">点击选择图片</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>    
+                    <input type="button" class="btn btn-info" onclick="saveUser2()" data-dismiss="modal" value="上传" style="width: 68%;">    <br><br>          	
+				</div>	
+				 				          	   
+			      </div>
+			    </div>
+			  </div>
 	</body>
 	<script>
+	$(document).ready(function(){
+	    $('[data-toggle="tooltip"]').tooltip();   
+	});
+	function xiuni(){buttonxiuni
+		$("#email").val($("#nicheng").html());
+		$("#email").css("display","");
+		$("#buttonxiuni").css("display","");
+	}
+	 //html5实现图片预览功能
+    $(function () {
+        $("#file").change(function (e) {
+            var file = e.target.files[0] || e.dataTransfer.files[0];
+            $('#photoCover').val(document.getElementById("file").files[0].name);
+            if (file) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $("#img_tou").attr("src", this.result);
+                }
+
+                reader.readAsDataURL(file);
+            }
+        });
+    })
+	 
+	 //异步上传图片
+	 function saveUser2() {
+            var file = document.getElementById("file").files[0]; 
+            var formData = new FormData();
+            formData.append('file', file);
+            $.ajax({
+                url: "../../../upload_Xsr",
+                type: "post",
+                data: formData, 
+                contentType: false,
+                processData: false,
+                mimeType: "multipart/form-data",
+                success: function (da) {
+                   if(da==1){   
+                	   document.getElementById("tou_src1").src="../img_xsr/jiazai.gif";
+                	   setTimeout(function(){ window.location.href='zhanghu.html'},2000);               	  
+                   }else{
+                	   alert("头像修改失败");
+                   }
+                },
+                error: function (data) {
+                    console.log(data);
+                }
+               
+            });
+        }
+	 //修改昵称
+	 function xiunicheng(){
+		 if($("#email").val()==$("#nicheng").html()){
+			 alert("不能与修改之前的昵称一样");
+			 return;
+		 }
+		 
+		 $.ajax({
+				url:"../../../xiunicheg_xsr",
+				data:{
+					nickname:$("#email").val()
+				},
+				dataType : "text",
+				success:function(da){	
+					window.location.href='zhanghu.html'
+				}
+			}) 
+		 
+	 }
+	 
 		$.ajax({
 			url:"../../../zhanghu_xsr",
 			data:{
@@ -99,7 +206,9 @@
 			},
 			dataType : "json",
 			success:function(da){
+				window.parent.dingnich(da.userinfo_xsr.nickname);
 				$("#nicheng").html(da.userinfo_xsr.nickname);
+				document.getElementById("tou_src1").src="../../../"+da.tou_src;
 				if(da.userinfo_xsr.idnumber!=null){
 						var name = da.userinfo_xsr.username;
 						var le = name.length;
@@ -113,9 +222,9 @@
 						$("#renzhengqueding").css("color","gray");
 				}else{
 						$("#renzheng").html("未认证");
-						$("#renzhengqueding").html("<a href='../../xsr_renzheng.html' target='_self' >立即认证</a>");
+						$("#renzhengqueding").html("<a href='../../xsr_renzheng.html' target='_self' >立即认证</a>");						
 				}
-				var phone = da.userinfo_xsr.phone
+				var phone = da.userinfo_xsr.phone;
 				phone = phone.substring(0,3)+"****"+phone.substring(7);
 				$("#phone").html(phone);
 				$("#bdsj").html("已绑定");

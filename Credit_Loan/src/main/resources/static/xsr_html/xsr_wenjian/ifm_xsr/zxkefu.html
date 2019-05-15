@@ -32,16 +32,14 @@
 			var dqdata = "("+shi+" : "+fen+" : "+miao+")";
 			return dqdata;
 		}	
-		var num=2;
-		diao();	
+		
+		diao();
+		
 		function diao(){
-			if(num==2){
 				$("#kf_table").html("<tr><td><font size='1' color='blue' class='kfname'>小安</font> <font id='kf_font1' size='1' color='gray'></font></td></tr><tr><td> <font id='kf_nr1' size='1' color='blue'>您好，祁云贷客服-龙龙，很高兴为您服务。请问有什么可以帮您？</font></td></tr>");
 				$(".kfname").html("祁云贷客服-龙龙");
 				$("#kf_font1").html(shijian());
-			}
-				chaxunduihua();
-						
+				chaxunduihua();		
 		}
 		function chaxunduihua(){
 			$.ajax({

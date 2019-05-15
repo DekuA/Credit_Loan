@@ -79,4 +79,8 @@
   		insert into usersfz(userid,user_srcz,user_srcf) values(#{userid},#{user_srcz},#{user_srcf})
   	</update>
   	
+  	<update id="">
+  		
+  	</update>
+  	
 </mapper>

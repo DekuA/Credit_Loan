@@ -49,9 +49,6 @@
 						<li class="nav-item">
 					     &nbsp; &nbsp; &nbsp; 
 					    </li>
-						<li class="nav-item"><a class="nav-link" href="#">
-					      <img src="xsr_wenjian/img_xsr/kefu.jpg" style="height: 30px;width: 30px;border-radius: 30px;border: 1px solid black;" /></a>
-					    </li>
 					    <li class="nav-item">
 					      <a class="nav-link" href="#">我的账户</a>
 					    </li>
@@ -97,11 +94,11 @@
 			</div>
 		</div>
 		<!--我的账户页面-->
-		<div id='xxdakuang' style='position: relative;height:750px;background-color: ghostwhite;'>
-			<div id='xxerkuang' class='container' style="position: relative;height: 700px;top: 30px;width: 80%;background-color: white;">
+		<div id='xxdakuang' style='position: relative;height:550px;background-color: ghostwhite;'>
+			<div id='xxerkuang' class='container' style="position: relative;height: 500px;top: 30px;width: 80%;background-color: white;">
 				<br>
 				<div class="container">余额管理</div>			<hr />	
-				<iframe id='iframeyue' frameborder='no' src='../account.html' style='height: 620px;width: 100%;position: relative;'  ></iframe>
+				<iframe id='iframeyue' frameborder='no' scrolling="no"  src='../account.html' style='height: 420px;width: 100%;position: relative;'  ></iframe>
 				
 			</div>
 		</div>
@@ -168,7 +165,15 @@
 			
 	</body> 
 	<script> 	
-		 
+	$.ajax({
+		url:"../panlogin_xsr",
+		dataType:"text",
+		success:function(data){
+			if(data=="0"){
+				location.href="../login.html";
+			}
+		}
+	});
 		function kefu(){
 			window.open("xsr_kefu.html");
 		}

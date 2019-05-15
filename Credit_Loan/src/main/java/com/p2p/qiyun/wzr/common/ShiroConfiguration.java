@@ -145,7 +145,7 @@ public class ShiroConfiguration {
         map.put("/Hasalso", "anon");
         map.put("/HasalsoNext", "anon");
         map.put("/findsBalance", "anon"); 
-        
+        map.put("/account_yue.html", "anon");
 
         
         //xsr的请求

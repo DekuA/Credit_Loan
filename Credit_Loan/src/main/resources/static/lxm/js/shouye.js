@@ -5,22 +5,27 @@ $(function(){
 		success:function(data){
 			var project=data.projectlist;
 			var loan=data.loanlist;
+			var myDate=new Date();
 			for(i=0;i<project.length;i++){
+				var arr=project[i].pclosing.split("-");
 				var smallmoney=loan[i].loanamount/100;
-				$("#xmxstab").append("<tr><td colspan='5'><hr><h3 style='float:left;color: #666;font-size: 15px;font-weight: 400;'>"+
-						project[i].pname+" "+project[i].pnumber+" <span class='tag-discount-orange'>信息服务费率7.5折</span>"+
-							"</h3></td></tr>"+
-								"<tr><td class='tttddd1' rowspan='1'>历史参考收益率</td>"+
-									"<td class='tttddd1' rowspan='1'>投资期限</td>"+
-									"<td class='tttddd1' rowspan='1'>收益方式</td>"+
-									"<td class='tttddd1' rowspan='1'>投资金额</td>"+
-									"<td rowspan='1'></td></tr>"+
-								"<tr><td style='font-size:18px;color:red'><b>"+project[i].plcure.toFixed(2)+"%</b></td>"+
-								"	<td>"+loan[i].repaymentperiod+"个月 <font style='font-size:12px;color:orange;'>"+project[i].ptransfer+"天可转</font></td>"+
-									"<td>"+project[i].pncome+"</td>"+
-									"<td style='font-size:18px;color:orange'>"+abs(smallmoney+"00")+"元</td>"+
-									"<td><button class='btn btn-group' style='background-color: orange;' onclick='xmxiangqing("+project[i].pid+")'>投资</button></td>"+
-								"</tr>");
+				var birthDate = new Date(arr[0]+"/"+arr[1]+"/"+arr[2]);
+				if (myDate.getMonth() < birthDate.getMonth() || (myDate.getMonth() == birthDate.getMonth() && myDate.getDate() < birthDate.getDate())) {
+					$("#xmxstab").append("<tr><td colspan='5'><hr><h3 style='float:left;color: #666;font-size: 15px;font-weight: 400;'>"+
+							project[i].pname+" 项目编号:"+project[i].pnumber+" <span class='tag-discount-orange'>信息服务费率7.5折</span>"+
+								"</h3></td></tr>"+
+									"<tr><td class='tttddd1' rowspan='1'>历史参考收益率</td>"+
+										"<td class='tttddd1' rowspan='1'>投资期限</td>"+
+										"<td class='tttddd1' rowspan='1'>收益方式</td>"+
+										"<td class='tttddd1' rowspan='1'>投资金额</td>"+
+										"<td rowspan='1'></td></tr>"+
+									"<tr><td style='font-size:18px;color:red'><b>"+project[i].plcure.toFixed(2)+"%</b></td>"+
+									"	<td>"+loan[i].repaymentperiod+"个月 <font style='font-size:12px;color:orange;'>"+project[i].ptransfer+"天可转</font></td>"+
+										"<td>"+project[i].pncome+"</td>"+
+										"<td style='font-size:18px;color:orange'>"+abs(smallmoney+"00")+"元 起</td>"+
+										"<td><button class='btn btn-group' style='background-color: orange;' onclick='xmxiangqing("+project[i].pid+")'>投资</button></td>"+
+									"</tr>");
+			    }
 			}
 			$("#xmxstab tr td").css("border","none");
 			$("#xmxstab").css("background-color","white");

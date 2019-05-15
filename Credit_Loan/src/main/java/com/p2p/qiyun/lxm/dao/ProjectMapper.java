@@ -2,6 +2,8 @@ package com.p2p.qiyun.lxm.dao;
 
 import com.p2p.qiyun.lxm.domain.Project;
 import com.p2p.qiyun.lxm.domain.ProjectExample;
+import com.p2p.qiyun.lxm.domain.SelZhaiQuan;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -9,6 +11,8 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface ProjectMapper {
+	int selYuqicishu(SelZhaiQuan selzq);
+	
 	int selCountloanPay(int userid);
 	
 	int selcountloan(int userid);

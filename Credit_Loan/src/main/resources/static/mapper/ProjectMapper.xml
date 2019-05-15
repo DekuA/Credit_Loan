@@ -540,4 +540,11 @@
   	<select id="selPayMoney" parameterType="int" resultType="String">
   		select sum(currentrepayment) from paymenthistory where userid=#{userid} and paymentstatus=2
   	</select>
+  	
+  	<select id="selYuqicishu" parameterType="com.p2p.qiyun.lxm.domain.SelZhaiQuan" resultType="int">
+  		select count(*) from paymenthistory where loanid=#{month1} 
+  		<if test="month2==2">and paymentstatus=#{month2}</if> 
+  		<if test="month2==1">and paymentstatus=#{month2}</if> 
+  		<if test="month2==3"></if> 
+  	</select>
 </mapper>

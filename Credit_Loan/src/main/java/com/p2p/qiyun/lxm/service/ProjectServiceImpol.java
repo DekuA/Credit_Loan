@@ -12,6 +12,7 @@ import com.p2p.qiyun.lxm.domain.Balancelxm;
 import com.p2p.qiyun.lxm.domain.Investnotes;
 import com.p2p.qiyun.lxm.domain.Project;
 import com.p2p.qiyun.lxm.domain.ProjectExample;
+import com.p2p.qiyun.lxm.domain.SelZhaiQuan;
 
 @Service
 public class ProjectServiceImpol implements ProjectService {
@@ -24,12 +25,20 @@ public class ProjectServiceImpol implements ProjectService {
 	@Autowired
 	private InvestnotesMapper inmap;
 	
+	public int selYuqicishu(SelZhaiQuan zq) {
+		int selYuqicishu = promap.selYuqicishu(zq);
+		return selYuqicishu;
+	}
+	
 	public Balancelxm selBalance(int uid) {
 		Balancelxm balance = bamap.selectBalanceByUid(uid);
 		return balance;
 	}
 	
-	
+	public List<Investnotes> selZhaiqzr(SelZhaiQuan selzq){
+		List<Investnotes> list = inmap.selZhaiqzr(selzq);
+		return list;
+	}
 	
 	public List<Project> selProject(){
 		List<Project> list = promap.selectByExample(new ProjectExample());

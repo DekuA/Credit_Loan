@@ -11,7 +11,6 @@
   	<!--根据时间查询用户充值记录  -->
   	<select id="getRecordChongzhi" resultType="com.p2p.qiyun.dby.pojo.account" parameterType="com.p2p.qiyun.dby.pojo.account">
   		select * from account where userid=#{userid} and record like CONCAT('%',#{record},'%') and recordtime BETWEEN #{startTime} and #{endTime}
-  		
   	</select>
   	
   	<!--根据时间查询用户提现记录  -->
@@ -50,4 +49,33 @@
   	<insert id="recordTixian" parameterType="com.p2p.qiyun.dby.pojo.account" >
 		insert into account(userid,username,record,recordtime) values(#{userid},#{username},#{record},DEFAULT)
 	</insert>
+	
+	<!-- 分页查询 -->
+	<select id="getAll" parameterType="com.p2p.qiyun.dby.pojo.rows1" resultType="com.p2p.qiyun.dby.pojo.account">
+		select * from account  limit #{a},#{rows}
+	</select>
+	
+	<!-- 查询总数 -->
+	<select id="getCount"  resultType="int">
+		select count(*) from account
+	</select>
+	
+	<!--后台模糊查询用户记录 有userid -->
+  	<select id="houtaiCha" resultType="com.p2p.qiyun.dby.pojo.account" parameterType="com.p2p.qiyun.dby.pojo.account">
+  		select * from account where userid like CONCAT('%',#{userid},'%') and record like CONCAT('%',#{record},'%') and recordtime BETWEEN #{startTime} and #{endTime} limit #{a},#{rows}
+  	</select>
+  	<!--后台模糊查询用户记录  -->
+  	<select id="houtaiCha1" resultType="com.p2p.qiyun.dby.pojo.account" parameterType="com.p2p.qiyun.dby.pojo.account">
+  		select * from account where  record like CONCAT('%',#{record},'%') and recordtime BETWEEN #{startTime} and #{endTime} limit #{a},#{rows}
+  	</select>
+  	
+  	<!-- 后台模糊查询总数有userid -->
+	<select id="getCount1"  resultType="int" parameterType="com.p2p.qiyun.dby.pojo.account" >
+		select count(*) from account where userid like CONCAT('%',#{userid},'%') and record like CONCAT('%',#{record},'%') and recordtime BETWEEN #{startTime} and #{endTime}
+	</select>
+	
+	<!--后台模糊查询用户记录总数 -->
+  	<select id="getCount2" resultType="int" parameterType="com.p2p.qiyun.dby.pojo.account">
+  		select count(*) from account where  record like CONCAT('%',#{record},'%') and recordtime BETWEEN #{startTime} and #{endTime}
+  	</select>
 </mapper>

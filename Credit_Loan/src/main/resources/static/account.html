@@ -14,22 +14,21 @@
 
 <style type="text/css">
 #main {
-	border: 1px solid black;
-	width: 1100px;
+
+	width: 830px;
 	height: 500px;
 }
 
 #div1 {
-	width: 270px;
-	border: 1px solid black;
+	width: 170px;
 	height: 500px;
+
 	float: left;
 }
 
 #div2 {
-	width: 800px;
+	width: 600px;
 	height: 500px;
-	border: 1px solid red;
 	float: right;
 }
 
@@ -55,9 +54,9 @@ td {
 }
 </style>
 </head>
-<body style="width: 800px;">	
+<body >	
 	<!-- 中间DIV -->
-	<div id="main">
+	<div id="main" >
 		<!-- 中间左边DIV -->
 		<div id="div1" align="center">
 			<p style="position: relative;top:5px">
@@ -219,7 +218,6 @@ td {
 		$.ajax({
 			url:"../../../getYue_dby",
 			success:function(da){
-				alert(da);
 				$("#yue").text(da);
 			     },
 				 });

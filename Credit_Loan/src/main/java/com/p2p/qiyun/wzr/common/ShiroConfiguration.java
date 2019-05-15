@@ -163,6 +163,8 @@ public class ShiroConfiguration {
 		map.put("/chajie_xsr","anon");
 		map.put("/chahuanku_xsr","anon");
 		map.put("/helpcenter.html","anon");
+		map.put("/SelQuestionType","anon");
+		map.put("/Selquestion","anon");
 		map.put("/chatext_xsr","anon");
 
 		map.put("/chaxuntext_xsr","anon");

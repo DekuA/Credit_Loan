@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.cjz.dao.touziMapper" >
+  	 <select id="listtouzi"  resultType="com.p2p.qiyun.cjz.domain.investnotes">
+		select * from investnotes	LIMIT #{page},#{rows}
+		</select>
+		<select id="counttouzi"  resultType="int">
+		select count(*) from investnotes	
+		</select>	
+		<!-- 	<delete id="deletenews" parameterType="int">
+	  	 delete from news where newsId in 
+	  	 <foreach collection="array" open="(" close=")" item="k" separator=",">
+	    	#{k}
+		 </foreach>
+		  </delete>
+		  <insert id="newsadd" parameterType="com.p2p.qiyun.cjz.domain.news">
+		 INSERT INTO news(ntitle,ncontent,ncreatedate) VALUES(#{ntitle},#{ncontent},#{ncreatedate})
+		  </insert>
+		  	<update id="updatenews" parameterType="com.p2p.qiyun.cjz.domain.news">
+		update news set ntitle=#{ntitle},ncontent=#{ncreatedate}, ncreatedate=#{ncreatedate} where newsid=#{newsid}
+	</update>
+	<select id="selid" parameterType="com.p2p.qiyun.cjz.domain.news" resultType="com.p2p.qiyun.cjz.domain.news">
+	select * from news  where newsid=#{newsid}
+	</select> -->
+</mapper>

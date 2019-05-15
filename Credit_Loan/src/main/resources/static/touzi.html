@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+</head>
+<script src="easyui/jquery.min.js"></script>
+<script src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" href="easyui/themes/default/easyui.css" />
+<link rel="stylesheet" href="easyui/themes/icon.css" />
+<body>
+	<!-- <div align="center" style="width:100%;height:100%;">
+
+	<table id="tabID1" class="easyui-datagrid" >
+	</table>
+</div> -->
+	<div align="center" style="width: 100%; height: 100%;">
+		<table id="dg" class="easyui-datagrid">
+		</table>	
+	</div>
+	<script type="text/javascript"> 
+	show();
+	function show(){
+	$("#dg").datagrid({
+		title : '投資',
+		width : 750,
+		height: 450,
+		url : "listtouzi",
+			 columns:[[    
+					{field:'iid',width:100,align:'center',title:'ID' ,checkbox:true },
+					{field:'iMoney',title:'投资金额',width:100,align:'center'},    
+					{field:'idate',width:100,align:'center',title:'投資時間'},
+					{field:'userid',title:'投资用户id',width:100,align:'center'}, 
+					{field:'pid',title:'项目id',width:100,align:'center'},
+					{field:'ptrans',title:'時間',width:100,align:'center'},
+					{field:'ptransmoney',title:'转让价格',width:100,align:'center'},
+			    ]],
+		 fitColumns:true,
+		pagination:true,
+		pageList:[5,10,15,20],
+		pageSize:10
+	});
+	}
+	</script>
+</body>
+</html>

@@ -10,3 +10,4 @@ public class CreditLoanApplication {
 		SpringApplication.run(CreditLoanApplication.class, args); 
 	}
 }
+/* 127.0.0.1:8080/lg.html */

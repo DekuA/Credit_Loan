@@ -55,6 +55,15 @@ public class kahaoxxController {
 		return selkahao;
 		
 	}
-	
+	/*
+	 * @RequestMapping("listinfo") public Map listinfo(HttpServletRequest request) {
+	 * int page = Integer.parseInt(request.getParameter("page")); int rows =
+	 * Integer.parseInt(request.getParameter("rows")); int first = rows * (page -
+	 * 1); Map map = new HashMap(); List<info> listinfo = ser.listinfo(new
+	 * info(first, rows)); int countinfo = ser.countinfo(); map.put("total",
+	 * countinfo); map.put("rows", listinfo); return map;
+	 * 
+	 * }
+	 */
 	}
 

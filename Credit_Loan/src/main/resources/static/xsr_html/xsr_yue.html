@@ -21,9 +21,6 @@
 						    <li class="nav-item">
 						      <a class="nav-link" href="#"><font size="1">关于我们</font></a>
 						    </li>
-						    <li class="nav-item">
-						      <a class="nav-link" href="#"><font size="1">人人学院</font></a>
-						    </li>
 						     <li class="nav-item">
 						      <a class="nav-link" href="#"><font size="1">出借人教育</font></a>
 						    </li>
@@ -34,10 +31,10 @@
 						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 						    <li class="nav-item">
 						    	 <li>
-						      	<a class="nav-link" href="#"><font size="1">昵称</font></a>						   
+						      	<a class="nav-link" href="#"><font id='nic' size="1">昵称</font></a>						   
 						    </li>
 						     <li>
-						      	<a class="nav-link" href="../logouttt">[<font size="1">退出 </font>]</a>						   
+						      	<a class="nav-link" href="../logouttt">[<font  size="1">退出 </font>]</a>						   
 						    </li>
 					  </ul>
 				</nav>
@@ -151,7 +148,7 @@
 			  </div>
 
 <!-- 浮动 -->
-		<div style="float: left;width: 50px;height: 160px;position: fixed;top: 400px;right: 15px;background-color: white;">
+		<!-- <div style="float: left;width: 50px;height: 160px;position: fixed;top: 400px;right: 15px;background-color: white;">
 					<a href="xsr_jisuanqi.html" target="_blank"><div id='jisuan_div1' style="height: 80px;border: 1px solid gainsboro;" align="center" onmouseout="likai(1)" onmouseover="fangs(1)">
 							<img style="width: 30px;height: 30px;top: 5px;position: relative;" src="xsr_wenjian/img_xsr/jisuanqi.PNG" /><br>
 							<font size="2" color="gray">收益<br>计算器</font>
@@ -161,7 +158,7 @@
 							<font size="2" color="gray">在线<br>客服</font>
 						</div></a>
 							
-		</div>
+		</div> -->
 			
 	</body> 
 	<script> 	
@@ -174,6 +171,13 @@
 			}
 		}
 	});
+	$.ajax({
+		url:"../nicheng_xsr",
+		dataType:"text",
+		success:function(da){
+			$("#nic").html(da);
+		}
+	})
 		function kefu(){
 			window.open("xsr_kefu.html");
 		}

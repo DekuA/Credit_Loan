@@ -37,6 +37,13 @@ import com.p2p.qiyun.xsr.service.CreditService_xsr;
 public class MyController_xsr {
 	@Autowired
 	private CreditService_xsr im;
+
+	@RequestMapping("nicheng_xsr")
+	public String nicheng_xsr(HttpSession session) { 
+		String attribute = (String) session.getAttribute("user");
+		userinfo us= im.phonechaxinxi(attribute);
+		return us.getNickname();
+	}
 	
 	@RequestMapping("zhanghu_xsr")
 	public Map kehuxx(HttpSession session) {

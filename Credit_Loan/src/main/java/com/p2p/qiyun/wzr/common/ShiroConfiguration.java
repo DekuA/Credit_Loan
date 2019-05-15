@@ -149,6 +149,7 @@ public class ShiroConfiguration {
 
         
         //xsr的请求
+        map.put("/nicheng_xsr", "anon");
         map.put("/zhanghu_xsr", "anon");
         map.put("/shimingname_xsr", "anon");
         map.put("/bangyou_xsr", "anon");

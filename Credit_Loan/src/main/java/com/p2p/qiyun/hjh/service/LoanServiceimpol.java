@@ -109,7 +109,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 								aud.insertSelective(a);
 								Balance b = ba.selectBalanceBy(id);
-								b.setBalance(selloan.getLoanamount());
+								b.setBalance(b.getBalance()+selloan.getLoanamount());
 
 								if (ba.updateBalace(b) > 0) {
 									
@@ -137,7 +137,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 						aud.insertSelective(a);
 						Balance b = ba.selectBalanceBy(id);
-						b.setBalance(selloan.getLoanamount());
+						b.setBalance(b.getBalance()+selloan.getLoanamount());
 
 						if (ba.updateBalace(b) > 0) {
 						

@@ -26,4 +26,6 @@ public interface UserinfoMapper {
 	int charukuhuxinxi(int userid);
 	
 	int forgetupdate(Userinfo user);
+	
+	Userinfo seluserById(int uid);
 }

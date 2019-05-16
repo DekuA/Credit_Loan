@@ -112,7 +112,7 @@
 							</ul>
 							
 							<div class="other-info1">
-								<span> &nbsp;</span><!-- <i class="fa fa-star"></i>&nbsp;<i class="fa fa-star"></i>
+								<!-- <i class="fa fa-star"></i>&nbsp;<i class="fa fa-star"></i>
 								<i class="fa fa-star"></i>&nbsp;<i class="fa fa-star"></i>&nbsp;<i class="fa fa-star"></i>
 								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>低风险（内部评级，仅供参考）</span>
 								<p>投资人条件： 1. 身份：非护照注册会员； 2. 风险承受能力“保守型” 及以上</p> -->
@@ -127,7 +127,7 @@
 										<div class="input-group-prepend">
 									      	<button class="input-group-text" onclick="jianjine()">-</button>
 									    </div>
-									    <input type="text" class="form-control" id="touzijine" value="0">
+									    <input type="text" class="form-control" onchange="touzimoney()" id="touzijine" value="0">
 									    <div class="input-group-append">
 									      	<button class="input-group-text" onclick="jiajine()">+</button>
 									    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -152,13 +152,13 @@
 				        <a class="nav-link active" data-toggle="tab" href="#home">项目介绍</a>
 				    </li>
 				    <li class="nav-item">
-				        <a class="nav-link" data-toggle="tab" href="#menu1">借款人信息</a>
+				        <a class="nav-link" data-toggle="tab" href="#menu1" onclick="jiekuanrenxinxi()">借款人信息</a>
 				    </li>
 				    <li class="nav-item">
 				        <a class="nav-link" data-toggle="tab" href="#menu2">预保单</a>
 				    </li>
 				    <li class="nav-item">
-				        <a class="nav-link" data-toggle="tab" href="#menu3">投资记录</a>
+				        <a class="nav-link" data-toggle="tab" href="#menu3" onclick="touzijilucx()" >投资记录</a>
 				    </li>
 				    <li class="nav-item">
 				        <a class="nav-link" data-toggle="tab" href="#menu4">常见问题</a>
@@ -258,23 +258,18 @@
 				        <hr>
 				        <div class="loanee-info">
 					        <ul class="loanee-basic">
-					            <li><span class="loanee-basic-title">姓名：</span>张**</li>
+					            <li><span class="loanee-basic-title">姓名：</span><strong id="jkr-name">张**</strong></li>
 					
-					            <li><span class="loanee-basic-title">身份证号：</span>******19830*****43</li>
+					            <li><span class="loanee-basic-title">身份证号：</span><strong id="jkr-sfz">******19830*****43</strong></li>
+					            
+					             <li><span class="loanee-basic-title">电话：</span><strong id="jkr-phone"></strong></li>
 					
-					            <li><span class="loanee-basic-title">年龄：</span>35岁</li>
+					            <li><span class="loanee-basic-title">年龄：</span><strong id="jkr-age">35</strong>岁</li>
 					
-					            <li><span class="loanee-basic-title">性别：</span>女</li>
+					            <li><span class="loanee-basic-title">性别：</span><strong id="jkr-sex">女</strong></li>
 					
-					            <li><span class="loanee-basic-title">工作性质：</span>--</li>
+					            <li><span class="loanee-basic-title">负债：</span><strong id="jkr-fuzhai">20000</strong>(不含)以上</li>
 					
-					            <li><span class="loanee-basic-title">单位：</span>****区天鸿木业</li>
-					
-					            <li><span class="loanee-basic-title">收入：</span>10000~20000元</li>
-					
-					            <li><span class="loanee-basic-title">负债：</span>20000(不含)以上</li>
-					
-					            <li><span class="loanee-basic-title">借款用途：</span>装修房屋</li>
 					        </ul>
 					    </div><br>&nbsp;<br>
 					    <strong>保障措施</strong>
@@ -296,11 +291,11 @@
 					    <hr>
 					    <div class="loanee-info4">
 					        <ul>
-					            <li><span>借款笔数：</span>1</li>
+					            <li><span>借款笔数：</span><strong id="jkr-countloan">1</strong></li>
 					
-					            <li><span>逾期次数：</span>0</li>
+					            <li><span>逾期次数：</span><strong id="jkr-countloanpay">0</strong></li>
 					
-					            <li><span>逾期总金额：</span>0.00元</li>
+					            <li><span>逾期总金额：</span><strong id="jkr-sumloanmoney">0.00</strong>元</li>
 					        </ul>
 					    </div>
 					    <br>

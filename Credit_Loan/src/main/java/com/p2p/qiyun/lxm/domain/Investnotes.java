@@ -12,52 +12,87 @@ public class Investnotes {
     private Integer pid;
 
     private Integer ptrans;
+    
+    private Double ptransmoney;
 
-    public Integer getIid() {
-        return iid;
-    }
+	public Integer getIid() {
+		return iid;
+	}
 
-    public void setIid(Integer iid) {
-        this.iid = iid;
-    }
+	public void setIid(Integer iid) {
+		this.iid = iid;
+	}
 
-    public Double getImoney() {
-        return imoney;
-    }
+	public Double getImoney() {
+		return imoney;
+	}
 
-    public void setImoney(Double imoney) {
-        this.imoney = imoney;
-    }
+	public void setImoney(Double imoney) {
+		this.imoney = imoney;
+	}
 
-    public String getIdate() {
-        return idate;
-    }
+	public String getIdate() {
+		return idate;
+	}
 
-    public void setIdate(String idate) {
-        this.idate = idate == null ? null : idate.trim();
-    }
+	public void setIdate(String idate) {
+		this.idate = idate;
+	}
 
-    public Integer getUserid() {
-        return userid;
-    }
+	public Integer getUserid() {
+		return userid;
+	}
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
+	public void setUserid(Integer userid) {
+		this.userid = userid;
+	}
 
-    public Integer getPid() {
-        return pid;
-    }
+	public Integer getPid() {
+		return pid;
+	}
 
-    public void setPid(Integer pid) {
-        this.pid = pid;
-    }
+	public void setPid(Integer pid) {
+		this.pid = pid;
+	}
 
-    public Integer getPtrans() {
-        return ptrans;
-    }
+	public Integer getPtrans() {
+		return ptrans;
+	}
 
-    public void setPtrans(Integer ptrans) {
-        this.ptrans = ptrans;
-    }
+	public void setPtrans(Integer ptrans) {
+		this.ptrans = ptrans;
+	}
+
+	public Double getPtransmoney() {
+		return ptransmoney;
+	}
+
+	public void setPtransmoney(Double ptransmoney) {
+		this.ptransmoney = ptransmoney;
+	}
+
+	public Investnotes(Integer iid, Double imoney, String idate, Integer userid, Integer pid, Integer ptrans,
+			Double ptransmoney) {
+		super();
+		this.iid = iid;
+		this.imoney = imoney;
+		this.idate = idate;
+		this.userid = userid;
+		this.pid = pid;
+		this.ptrans = ptrans;
+		this.ptransmoney = ptransmoney;
+	}
+
+	public Investnotes() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Investnotes [iid=" + iid + ", imoney=" + imoney + ", idate=" + idate + ", userid=" + userid + ", pid="
+				+ pid + ", ptrans=" + ptrans + ", ptransmoney=" + ptransmoney + "]";
+	}
+
+    
 }

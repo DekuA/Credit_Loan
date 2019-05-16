@@ -2,6 +2,8 @@ package com.p2p.qiyun.lxm.dao;
 
 import com.p2p.qiyun.lxm.domain.Investnotes;
 import com.p2p.qiyun.lxm.domain.InvestnotesExample;
+import com.p2p.qiyun.lxm.domain.SelZhaiQuan;
+
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -9,6 +11,11 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface InvestnotesMapper {
+
+	List<Investnotes> selZhaiqzr(SelZhaiQuan selzq);
+	
+	List<Investnotes> selByPid(int pid);
+	
     int countByExample(InvestnotesExample example);
 
     int deleteByExample(InvestnotesExample example);

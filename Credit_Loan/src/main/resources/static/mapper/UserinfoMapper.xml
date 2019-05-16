@@ -33,4 +33,8 @@
   	<update id="forgetupdate" parameterType="com.p2p.qiyun.wzr.domain.Userinfo">
   		update userinfo set password=#{password} where Phone=#{Phone}
   	</update>
+  	
+  	<select id="seluserById" parameterType="int" resultType="com.p2p.qiyun.wzr.domain.Userinfo">
+  		select * from userinfo where userid=#{userid}
+  	</select>
 </mapper>

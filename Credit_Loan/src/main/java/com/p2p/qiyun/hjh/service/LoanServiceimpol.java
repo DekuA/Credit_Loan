@@ -1,6 +1,7 @@
 package com.p2p.qiyun.hjh.service;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -23,9 +24,13 @@ import com.p2p.qiyun.hjh.entity.Balance;
 import com.p2p.qiyun.hjh.entity.Customer;
 import com.p2p.qiyun.hjh.entity.Loan;
 import com.p2p.qiyun.hjh.entity.Query;
+import com.p2p.qiyun.lsx.dao.Loan2Mapper;
+import com.p2p.qiyun.lsx.entity.Paymenthistory2;
+import com.p2p.qiyun.lsx.entity.Repayment2;
 
 @Service
 public class LoanServiceimpol extends Thread implements LoanService {
+	
 	@Autowired
 	private LoanMapper lomapper;
 	@Autowired
@@ -37,6 +42,9 @@ public class LoanServiceimpol extends Thread implements LoanService {
 
 	private BalanceMapper ba;
 
+	@Autowired
+	private Loan2Mapper loan2s;
+	
 	private Users u = null;
 
 	@Override
@@ -142,6 +150,28 @@ public class LoanServiceimpol extends Thread implements LoanService {
 						
 						if (ba.updateBalace(b) > 0) {
 						
+							Loan loan2 = lomapper.selloan(id);  //id 是用户id
+							int  Loanid=loan2.getLoanid();  //借款编号
+							Date date2 = new Date(); //当前时间
+							double mm=(loan2.getLoanamount()+loan2.getLoanrate());//借款金额加利息总金额
+							Double loanrate = loan2.getLoanrate(); //总利息
+							int qix = loan2.getRepaymentperiod();  //期限
+							Calendar cal = Calendar.getInstance();
+							
+							Repayment2 repayment2=new Repayment2(Loanid, id, loanrate, mm, qix);
+							int addRepayment2 = loan2s.AddRepayment2(repayment2);
+							if(addRepayment2>0) {
+								Repayment2 finds = loan2s.selctRepayment(id);
+								for (int i = 0; i < qix; i++) {
+									String storydate=cal.get(Calendar.YEAR)+"-"+(cal.get(Calendar.MONTH)+i)+"-"+cal.get(Calendar.DATE); 
+									Paymenthistory2 pay=new Paymenthistory2(finds.getRepaymentid(), id, Loanid, mm/qix, storydate);
+									int addPaymenthistory2 = loan2s.AddPaymenthistory2(pay);
+									System.out.println(addPaymenthistory2+"新增记录表成功！！");
+								}
+								
+							}
+							
+							
 							return 2;
 
 						} else {

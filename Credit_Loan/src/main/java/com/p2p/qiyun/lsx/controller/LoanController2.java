@@ -194,21 +194,23 @@ public class LoanController2 {
 			double money2 = ba.getBalance()-Double.parseDouble(modmoney);
 			balance2.setBalance(money2);
 			int upbalace = loans.Upbalace(balance2);
-			System.out.println(upbalace+"删除");
+			//System.out.println(upbalace+"删除");
 			
 			Timestamp times=new java.sql.Timestamp(System.currentTimeMillis());
-			System.out.println(times);
+			//System.out.println(times);
 			if(upbalace>0) {
 				double moneys = Double.parseDouble(modmoney);
 				System.out.println("传进来的还款金额"+moneys);
 				System.out.println(modmoney+"momomomo");
 				Paymenthistory2 paymenthistory=new Paymenthistory2(times.toString(), uid,moneys,jiluid);
 				Repayment2 selctRepayment = loans.selctRepayment(uid);
-				double num=selctRepayment.getModmoney()+moneys;
-				Repayment2 repay=new Repayment2(times, num, uid);
-				
+			 double num=(selctRepayment.getModmoney()+moneys);
+			 //System.out.println(num+"钱");
+			
+				Repayment2 repay=new Repayment2(times, moneys, uid);
+				repay.setModmoney(num);
 					int upRepayment = loans.upRepayment(repay);
-					System.out.println("还款表"+upRepayment);
+					//System.out.println("还款表"+upRepayment);
 					if(upRepayment>0) {
 						int upthis = loans.upthis(paymenthistory);
 						

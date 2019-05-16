@@ -16,6 +16,16 @@ public class Paymenthistory2 {
 	private double todayMoneys;
 	
 	
+	public Paymenthistory2(int repaymentid, int userid, int loanid, double currentrepayment,
+			String storydate) {
+		super();
+		this.repaymentid = repaymentid;
+		this.userid = userid;
+		this.loanid = loanid;
+		this.currentrepayment = currentrepayment;
+		this.storydate = storydate;
+	}
+
 	public Paymenthistory2(int recordid, int repaymentid, int userid, int loanid, double currentrepayment,
 			String storydate, String storydatep, String paymentstatus, double todayMoneys) {
 		super();

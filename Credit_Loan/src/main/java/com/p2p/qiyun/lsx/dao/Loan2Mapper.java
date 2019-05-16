@@ -16,6 +16,10 @@ public interface Loan2Mapper {
 
 	int AddLoans(Loan2 one);
 
+	int AddRepayment2(Repayment2 repayment2); //新增还款
+	
+	int AddPaymenthistory2(Paymenthistory2 paymenthistory2);
+	
 	int upReturnperiod(@Param("userid")int uid);
 	
 	//修改成已还款

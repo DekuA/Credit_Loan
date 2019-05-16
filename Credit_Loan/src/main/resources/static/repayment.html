@@ -597,14 +597,7 @@
 												$('#num1').text(data.currentrepayment+ "元");
 												var datas=data.storydate;
 												var dateEnd = new Date(datas);
-										/* 		
-												$.ajax({
-															url : 'Hasalso',
-															data : {
-																uid1s : userid,
-
-															},
-															success : function(da) { */
+						
 																
 																$('#lijihk').click(function() {
 																	if (data.paymentstatus == 1 && !$('#num1').text() == "00元") {
@@ -706,8 +699,6 @@
 																				})
 																}
 
-														/* 	}
-														}) */
 											   }
 
 										}
@@ -730,15 +721,7 @@
 												$('#glgl2').text("无需还款！");
 											} else if (data != null) {
 												
-                                             
-								/* 				$.ajax({
-															url : 'HasalsoNext',
-															data : {
-																uid2s : userid,
-
-															},
-															success : function(da) {
-																$('#num3').text(da+"元"); */
+                                        
 																$('#num2').text(data.currentrepayment+ "元");
 																if (data.paymentstatus == 1) {
 																	$('#xx2').text("本月账单已还清！！");
@@ -767,9 +750,7 @@
 																						$('#qrss').click(function() {
 																							var datess = new Date();
 				                                                                               var s=datess.getFullYear()+"-"+(datess.getMonth()+1)+"-"+datess.getDate()+""
-																						//	if(s!=(data.storydate).substring(0,10)){
-																								//alert("还没到规定还款日期")
-																						//	}else{
+																						
 																								 $('#qrmoney').text( $('#hkje').val());
 																								//alert($('#qrmoney').text())
 																								$('#querhk').modal();
@@ -828,7 +809,7 @@
 																							}) 
 																							
 																							
-																							//}
+																						
 				                                                                               
 																						})
 																						
@@ -836,8 +817,7 @@
 																					}
 																				})
 																}
-														/* 	}
-														}) */
+													
 											}
 
 										}

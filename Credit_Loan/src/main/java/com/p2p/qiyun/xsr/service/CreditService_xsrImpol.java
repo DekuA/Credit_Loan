@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.p2p.qiyun.dby.pojo.balance;
 import com.p2p.qiyun.dyj.pojo.Users;
 import com.p2p.qiyun.lsx.entity.Loan;
 import com.p2p.qiyun.xsr.dao.CreditMapper_xsr;
@@ -14,6 +15,7 @@ import com.p2p.qiyun.xsr.domain.kefuinfo;
 import com.p2p.qiyun.xsr.domain.paymenthistory;
 import com.p2p.qiyun.xsr.domain.touxiang;
 import com.p2p.qiyun.xsr.domain.userinfo;
+import com.p2p.qiyun.xsr.domain.usersfz;
 import com.p2p.qiyun.xsr.domain.xiaoxi;
 
 @Service
@@ -139,6 +141,30 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 	public int xiunicheng(userinfo us) {
 		int xiunicheng = dao.xiunicheng(us);
 		return xiunicheng;
+	}
+
+	@Override
+	public int addtoux(int usid) {
+		int addtoux = dao.addtoux(usid);
+		return addtoux;
+	}
+
+	@Override
+	public int addsfzzp(usersfz sfzzp) {
+		int addsfzzp = dao.addsfzzp(sfzzp);
+		return addsfzzp;
+	}
+
+	@Override
+	public int addbalance(int userid) {
+		int addbalance = dao.addbalance(userid);
+		return addbalance;
+	}
+
+	@Override
+	public balance sebalance(int userid) {
+		balance sebalance = dao.sebalance(userid);
+		return sebalance;
 	}
 
 	

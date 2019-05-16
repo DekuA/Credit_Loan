@@ -1,5 +1,8 @@
 package com.p2p.qiyun.lsx.controller;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.p2p.qiyun.dby.pojo.balance;
 import com.p2p.qiyun.lsx.entity.Balance2;
 import com.p2p.qiyun.lsx.entity.Loan2;
 import com.p2p.qiyun.lsx.entity.Paymenthistory2;
@@ -137,7 +141,7 @@ public class LoanController2 {
 			Repayment2 selctRepayment = loans.selctRepayment(uid);
 			
 			if(selctRepayment!=null) {
-				monney=selctRepayment.getModmoney();
+				monney=selctRepayment.getTodayMoney();
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -158,7 +162,7 @@ public class LoanController2 {
 				if(selctRepayment==null) {
 					return 0;
 				}else {
-					monney=selctRepayment.getModmoney();
+					monney=selctRepayment.getTodayMoney();
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -177,4 +181,42 @@ public class LoanController2 {
 				
 			return findBalance;
 		}
+		
+		@RequestMapping("upbalance")
+		public int upbalace(String uids,String mima,String modmoney,String storydate,String   jlid){
+			int bnum = Integer.parseInt(mima);
+			int uid=Integer.parseInt(uids);
+			Balance2 balance2=new Balance2(1, uid, bnum);
+			int jiluid=Integer.parseInt(jlid);
+			Balance2 ba = ser.findBalance(uid);
+			double money2 = ba.getBalance()-Double.parseDouble(modmoney);
+			balance2.setBalance(money2);
+			int upbalace = loans.Upbalace(balance2);
+			System.out.println(upbalace+"删除");
+			
+			Timestamp times=new java.sql.Timestamp(System.currentTimeMillis());
+			System.out.println(times);
+			if(upbalace>0) {
+				double moneys = Double.parseDouble(modmoney);
+				System.out.println(modmoney+"momomomo");
+				Paymenthistory2 paymenthistory=new Paymenthistory2(times.toString(), uid,jiluid);
+				Repayment2 repay=new Repayment2(times, moneys, uid);
+				//int upthis = loans.upthis(paymenthistory);
+			//	if(upthis>0) {
+					int upRepayment = loans.upRepayment(repay);
+					System.out.println("还款表"+upRepayment);
+					if(upRepayment>0) {
+						int upthis = loans.upthis(paymenthistory);
+						System.out.println("修还记录表"+upthis);
+					}
+				//}
+			
+				//System.out.println("修还记录表"+upthis);
+				
+				
+			}
+			return upbalace;
+		}		
+		
+		
 }

@@ -24,7 +24,7 @@
 		<div class='container'>
 					<div style='top: 5px;position: absolute;border-radius: 150px'>
 						<a href='javascript::' data-toggle="modal" data-target="#upload_xsr">
-							<img id='tou_src1'  style='width: 150px;height: 150px;border-radius: 150px'  />
+							<img id='tou_src1' src="../img_xsr/logo.png" style='width: 150px;height: 150px;border-radius: 150px'  />
 						</a>
 					</div>
 					<div  style='top: 70px;position: absolute;left: 250px;'>
@@ -168,7 +168,7 @@
                 success: function (da) {
                    if(da==1){   
                 	   document.getElementById("tou_src1").src="../img_xsr/jiazai.gif";
-                	   setTimeout(function(){ window.location.href='zhanghu.html'},4000);               	  
+                	   setTimeout(function(){ window.location.href='zhanghu.html'},2000);               	  
                    }else{
                 	   alert("头像修改失败");
                    }
@@ -206,8 +206,9 @@
 			},
 			dataType : "json",
 			success:function(da){
+				window.parent.dingnich(da.userinfo_xsr.nickname);
 				$("#nicheng").html(da.userinfo_xsr.nickname);
-				document.getElementById("tou_src1").src="../../img_tou/"+da.tou_src;
+				document.getElementById("tou_src1").src="../../../"+da.tou_src;
 				if(da.userinfo_xsr.idnumber!=null){
 						var name = da.userinfo_xsr.username;
 						var le = name.length;

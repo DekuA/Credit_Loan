@@ -33,7 +33,7 @@ public class kahaoxxController {
 		int rows = Integer.parseInt(request.getParameter("rows"));
 		int first = rows * (page - 1);// 第几个记录数 
 		Map map = new HashMap(); 
-		List<customer> list = ser.seluser(new customer(page,rows,username));
+		List<customer> list = ser.seluser(new customer(first,rows,username));
 		int ccount = ser.ccount(username);
 		map.put("total", ccount);
 		map.put("rows", list);

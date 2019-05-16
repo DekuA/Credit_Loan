@@ -3,6 +3,8 @@ var money;
 var zuidatouzi;
 var project;
 var loan;
+var touzimy1;
+var userbalance;
 $(function(){
 	$.ajax({
 		url:"lxm/xmxiangqingxs",
@@ -15,6 +17,7 @@ $(function(){
 				loan = data.loan2;
 				user = data.userinfo;
 				money=loan.loanamount/100;
+				userbalance=data.balance;
 				zuidatouzi=loan.loanamount-(loan.loanamount*1)*(project.pschedule/100);
 				$(".navbar-nav").append("<li class='nav-item'><a class='nav-link' href='#'><font size='1'>"+user.nickname+"</font></a></li>"+
 				"<li class='nav-item'><a class='nav-link' href='logouttt'>[<font size='1'>退出 </font>]</a></li>");
@@ -27,7 +30,7 @@ $(function(){
 				$(".xmxq-cksyl").html(project.plcure.toFixed(2)+"%");
 				$(".xmxq-qixian").html(loan.repaymentperiod+"个月");
 				$("#right-dizengjine").html(money.toFixed(2));
-				$("#touzijine").val(project.pmoneysmall.toFixed(2));
+				$("#touzijine").val(money.toFixed(2));
 				$("#idxmxq-qixian").html(loan.repaymentperiod+"期");
 				$(".xmxq-syfs").html(project.pncome);
 				$(".other-info1").append("项目进度:<font style='margin-left: 200px;'>"+project.pschedule+"%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;剩余可投资金额:"+abs(zuidatouzi*100)+"元</font>"+
@@ -55,8 +58,6 @@ $(function(){
 	});
 });
 var num1=0;
-
-var xsje=0;
 
 function counters(repaymentperiod,loanamount,plcure,pinfo){
 	$("#fengqitab").html("");
@@ -139,21 +140,7 @@ function touzijilucx(){
 	})
 }
 
-function lijitouzi(){
-	$.ajax({
-		url:"lxm/selsfbk?userid="+user.userid,
-		success:function(data){
-			if(data>0){
-				alert("投资成功！");
-			}else{
-				alert("您还未绑定银行卡,请绑定银行卡后再进行投资!");
-				window.location.href="xsr_html/xsr_zhanghu.html";
-			}
-		}
-	})
-}
-
-var userbalance;
+var xsje=0;
 function chakanyue(){
 	xsje++;
 	if(xsje%2!=0){
@@ -182,11 +169,11 @@ function jiajine(){
 
 function jianjine(){
 	var jine=$("#touzijine").val();
+	jine=eval(jine*1-money);
 	if(jine<money){
 		jine=money;
 	}
-	jine=eval(jine*1-money).toFixed(2);
-	$("#touzijine").val(jine);
+	$("#touzijine").val(jine.toFixed(2));
 }
 
 function touzimoney(){
@@ -224,6 +211,49 @@ function jiekuanrenxinxi(){
 			$("#jkr-sumloanmoney").html(abs(data.sumpaymoney));
 		}
 	})
+}
+
+function zhifumoney(){
+	var mpwd=$("#moneypwd").val();
+	if(!/^\d{6}$/.test(mpwd)){
+		alert("请输入正确的支付密码！");
+	}else{
+		$.ajax({
+			url:"lxm/selBalancepwd?userid="+user.userid+"&pwd="+mpwd+"&userbalance="+touzimy1+"&pid="+project.pid+"&loanid="+loan.loanid,
+			success:function(data){
+				if(data==1){
+					alert("投资成功！");
+					window.location.href="xmxiangqing.lxm?xmid="+project.pid;
+				}else if(data==2){
+					alert("订单数据错误！");
+				}else if(data==0){
+					alert("支付密码错误！");
+				}
+			}
+		})
+	}
+}
+
+function lijitouzi(){
+	if(userbalance*1>=$("#touzijine").val()*1){
+		$.ajax({
+			url:"lxm/selsfbk?userid="+user.userid,
+			success:function(data){
+				if(data>0){
+					touzimy1=$("#touzijine").val();
+					//touzimy1=;
+					$("#zhifukuang").modal();
+					//alert("投资成功！");
+				}else{
+					alert("您还未绑定银行卡,请绑定银行卡后再进行投资!");
+					window.location.href="xsr_html/xsr_zhanghu.html";
+				}
+			}
+		})
+	}else{
+		alert("账户余额不足，请充值后再进行投资");
+	}
+	
 }
 
 abs = function(val){

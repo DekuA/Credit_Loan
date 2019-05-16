@@ -11,6 +11,8 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface ProjectMapper {
+	int updatePschedule(int pschedule,String pid);
+	
 	int selYuqicishu(SelZhaiQuan selzq);
 	
 	int selCountloanPay(int userid);

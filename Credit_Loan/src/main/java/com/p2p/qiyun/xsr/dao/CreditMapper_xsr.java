@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.p2p.qiyun.dby.pojo.balance;
 import com.p2p.qiyun.dyj.pojo.Users;
 import com.p2p.qiyun.lsx.entity.Loan;
 import com.p2p.qiyun.xsr.domain.customer;
@@ -38,4 +39,6 @@ public interface CreditMapper_xsr {
 	int xiunicheng(userinfo us);//修改昵称
 	int addtoux(int usid);
 	int addsfzzp(usersfz sfzzp);//上传身份证
+	int addbalance(int userid);//添加余额信息
+	balance sebalance(int userid);//查询余额信息存不存在
 }

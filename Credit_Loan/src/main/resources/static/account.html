@@ -6,299 +6,79 @@
 
 
 
-<link rel="stylesheet" href="xsr_html/xsr_wenjian/css_xsr/bootstrap.min.css" />
 
+<link rel="stylesheet" href="xsr_html/xsr_wenjian/3.5js/bootstrap.min.css" />
 <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-paginator.js"></script>
 
 <style type="text/css">
-#main {
 
-	width: 830px;
-	height: 500px;
-}
 
-#div1 {
-	width: 170px;
-	height: 500px;
-
-	float: left;
-}
-
-#div2 {
-	width: 600px;
-	height: 500px;
-	float: right;
-}
-
-#balance {
-	width: 100% float: left;
-	height: 150px;
-}
-
-#qian {
-	width: 100%;
-	height: 100%;
-	float: left;
-}
+html { overflow-x:hidden; }
 
 th {
+	width: 165px;
 	text-align: center;
 	height: 30px;
 }
 
-td {
-	text-align: center;
-	height: 30px;
-}
 </style>
 </head>
 <body >	
-	<!-- 中间DIV -->
-	<div id="main" >
-		<!-- 中间左边DIV -->
-		<div id="div1" align="center">
-			<p style="position: relative;top:5px">
-				<font  size="5">账户余额管理</font>
-			</p>
-			<div id="balance1" align="center">
-				余额&nbsp;&nbsp;<font id="yue" size="5" color="red"></font> 元<br />
-			</div>
+		
+		<!-- --------------------->
 
-			<div id="qian" align="center">
-				<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target="#chongzhiModal" >充值</button>
-				<br> <br>
-				<button type="button" class="btn btn-primary" data-toggle="modal"
-					data-target="#tixianModal" >提现</button>
-				<br> <br>
-			</div>
-		</div>
-		<!-- 中间左边DIV  end-->
+<div style="border: 1px solid gray;height: 360px;position: relative;top: -30px;width: 1px;left: 250px;"></div>
 
-
-		<!-- 中间右边DIV -->
-		<div id="div2" align="center">
-			<p style="position: relative; top: 5px">
-				<font size="5">用户充值与提现记录</font>
-			</p>
+<div style="position: relative;top: -350px;left: 300px;width: 700px;height: 355px;"  align="center">
+			 <p style="position: relative; top: 5px">
+				<font size="3"><div style="background-color: gainsboro;width: 645px">用户充值与提现记录</div></font>
+			</p> 
 			<!-- 充值提现记录 -->
-			<div>
-				<font size="4" color="blue" style="position: relative; top: 5px">根据条件查询：<font>
-						<select id="jilu">
+				 <font  style="position: relative;">条件查询：<font>
+						<select id="jilu" style="height: 30px;">
 							<option value="1">所有记录</option>
 							<option value="2">充值记录</option>
 							<option value="3">提现记录</option>
-					</select> 从<input id="startTime" type="date" value="2019-05-01" />到<input
-						id="endTime" type="date" value="2020-05-01" /> <input
-						type="button" value="查询" onclick="chaxun()" /> <br> <br>
-			</div>
+					</select> 从<input id="startTime" type="date" value="2019-05-01" style="height: 30px;" />到<input
+						id="endTime" type="date" value="2020-05-01" style="height: 30px;" /> 
+						<input type="button"  style="width: 100px;height: 30px;" value="查询" onclick="chaxun()" /> <br> <br> 
 
 
-			<!-- 记录分页 -->
-			<table id='jkuanbiao' border='1' class="table table-striped">
-				<tr>
-					<th>记录编号</th>
-					<th>用户姓名</th>
-					<th>充值或提现详情</th>
-					<th>时间</th>
-				</tr>
+		 <!-- 记录分页 -->
+			<table id='jkuanbiao' border='1' >
+				
 			</table>
-			<div style="position: relative;left:250px">
-				<ul class="pagination"></ul>
-			</div>
-		</div>
-		<!-- 中间右边DIV end -->
+				<ul class="pagination"></ul> 
+
 	</div>
-	<!-- 中间DIV  end-->
 
-	<!-- 充值 -->
-	<div class="modal fade" id="chongzhiModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-
-				<!-- 充值头部 -->
-				<div class="modal-header">
-					<h4 class="modal-title">充值</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-
-				<!-- 充值主体 -->
-					<div style="position: relative; left: 80px;top:10px">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text">充值金额</span>
-							</div>
-							<input type="number" class="input-group-text" placeholder="0"
-								id="record" name="record">
-							<div class="input-group-prepend">
-								<span class="input-group-text">元</span>
-							</div>
-						</div>
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text">支付密码</span>
-							</div>
-							<input type="password" class="input-group-text" id="pwd" name="pwd">
-						</div>
-						
-					</div>
-
-
-					<!-- 充值底部 -->
-					<div class="modal-footer">
-
-						<button type="button" class="btn btn-primary" onclick="chongzhi()">提交</button>
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">关闭</button>
-					</div>
-			</div>
-		</div>
-	</div>
-	<!-- 充值 end-->
-
-	<!-- 提现 -->
-	<div class="modal fade" id="tixianModal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-
-				<!-- 提现头部 -->
-				<div class="modal-header">
-					<h4 class="modal-title">提现</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
-				</div>
-
-				<!-- 提现主体 -->
-				<form action="tixian">
-					<div style="position: relative; left: 30px;top:10px">
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text">提现金额</span>
-							</div>
-							<input type="number" class="input-group-text" placeholder="0" id="tixianyue1" name="record" onchange="tixian1()">
-							<div class="input-group-prepend">
-								<span class="input-group-text">元</span>
-							</div>&nbsp;
-							<button type="button" class="btn btn-primary" onclick="alltixian()" >全部提现</button>
-						</div>
-						
-						<div class="input-group mb-3">
-							<div class="input-group-prepend">
-								<span class="input-group-text">支付密码</span>
-							</div>
-							<input type="password" class="input-group-text" id="pwd1" name="pwd">
-						</div>
-					</div>
-
-
-					<!-- 提现底部 -->
-					<div class="modal-footer">
-
-						<button type="button" class="btn btn-primary" onclick="tixian()">提交</button>
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">关闭</button>
-					</div>
-
-				</form>
-
-
-			</div>
-		</div>
-	</div>
-	<!-- 提现 end-->
-
-		
+			<div style="position: relative;left: 30px;top: -705px;width: 150px;height: 200px;">
+				<iframe id='ifyuee' src="account_yue.html" frameborder='no' scrolling="no" style='height: 200px;width: 150px;position: relative;'>
+					
+				</iframe>
 			
+			</div>
 </body>
 <script type="text/javascript">
-	//刷新余额
-	getYue();
-	function getYue(){
-		$.ajax({
-			url:"../../../getYue_dby",
-			success:function(da){
-				$("#yue").text(da);
-			     },
-				 });
-			}
-	
-	
-	
-	
-	
-	//充值
-	function chongzhi(){
-		var pwd1=$("#pwd").val();
-		alert("密码"+pwd1);
-		
-		$.ajax({
-			url:"../../../chongzhi_dby?pwd="+pwd1,
-			type : "post",
-			data:{
-				record:$("#record").val(),
-			},
-			success:function(da){
-				alert(da);
-				if(da==0){
-					alert("后台出错了！");
-				}
-				else if(da==1){
-					alert("充值成功");
-					window.location.href="account.html"
-				}
-				else if(da==2){
-					alert("请先实名认证之后再充值！");
-				}
-				else{
-					alert("支付密码错误！");
-				}
-			     },
-				 });
+	function czgaibian(num){
+		var c=1000;
+		var b=1000;
+		if(num==1){
+			c=1000;
+			b=1000;
+			$("#pagination").html("");
+		}else{
+			c=200;
+			b=150;
+		}		
+		$("#ifyuee").css("height",c+"px");
+		$("#ifyuee").css("width",b+"px");
 	}
-	
-	
-	
-	
-	
-	//提现
-	function tixian(){
-		var pwd1=$("#pwd1").val();
-		alert("密码"+pwd1);
-		$.ajax({
-			url:"../../../tixian_dby?pwd="+pwd1,
-			type : "post",
-			data:{ 
-				record:$("#tixianyue1").val(),
-			}, 
-			success:function(da){
-				alert(da);
-				if(da==0){ 
-					alert("后台出错了！");
-				}
-				else if(da==1){
-					alert("提现成功");
-					window.location.href="account.html"
-				}
-				else if(da==2){
-					alert("请先实名认证之后再提现！");
-				}
-				else{
-					alert("支付密码错误！");
-				}
-			     },
-				 });
-	}
-
-	
-	
-	
-	
-	
 	//查询
 	var yy=1
 	function chaxun(){
-		alert(yy);
 		chaxun1(yy);
 	}
 	function chaxun1(page){
@@ -324,55 +104,45 @@ td {
 			},
 			dataType:"json",
 			success:function(da){
+				$("#jkuanbiao").html("<tr align='center'><th>记录编号</th><th>用户</th><th>充值或提现详情</th><th>时间</th></tr>");
 				if(da.total==0){
 					$("#jkuanbiao").html("<tr><td>暂时没有记录</td></tr>");
+					$(".pagination").html("");
 					return;
 				}
 				for(i=0;i<da.rows.length;i++){
-					$("#jkuanbiao").append("<tr><td>"+da.rows[i].accountid+"</td><td>"+
-							da.rows[i].username+"</td><td><font color='blue'>"+da.rows[i].record+"</font></td><td>"+
+					$("#jkuanbiao").append("<tr style='height:30px;' align='center'><td>"+da.rows[i].accountid+"</td><td><font color='blue'>"+
+							da.nicheng+"</font></td><td>"+da.rows[i].record+"</td><td>"+
 							da.rows[i].recordtime+"</td></tr>");
 				}
-				$(".pagination").bootstrapPaginator({
-			       	  bootstrapMajorVersion:1,    //版本
-			               currentPage:yy,    //当前页数
-			               numberOfPages:5,    //最多显示Page页
-			               totalPages:da.total,    //所有数据可以显示的页数
-			               itemTexts : function(type, page, current) {//设置分页按钮显示字体样式
-	                            switch (type) {
-	                            case "first":
-	                                return "首页";
-	                            case "prev":
-	                                return "上一页";
-	                            case "next":
-	                                return "下一页";
-	                            case "last":
-	                                return "末页";
-	                            case "page":
-	                                return page;
-	                            }
-	                        },
-			               onPageClicked:function(e,originalEvent,type,page){
-			            	   yy = page;
-			            	   chaxun(page);
-			           	}
-			      });
+					$(".pagination").bootstrapPaginator({
+				       	  bootstrapMajorVersion:1,    //版本
+				               currentPage:yy,    //当前页数
+				               numberOfPages:5,    //最多显示Page页
+				               totalPages:da.total,    //所有数据可以显示的页数
+				               itemTexts : function(type, page, current) {//设置分页按钮显示字体样式
+		                            switch (type) {
+		                            case "first":
+		                                return "首页";
+		                            case "prev":
+		                                return "上一页";
+		                            case "next":
+		                                return "下一页";
+		                            case "last":
+		                                return "末页";
+		                            case "page":
+		                                return page;
+		                            }
+		                        },
+				               onPageClicked:function(e,originalEvent,type,page){
+				            	   yy = page;
+				            	   chaxun(page);
+				           	}
+				      });
+				
+				
 			}
 		}); 	
-	}
-
-	
-	function alltixian() {
-		var yue1 = $("#yue").text();
-		document.getElementById("tixianyue1").value = yue1;
-	}
-
-	function tixian1(){
-		var yue1 = $("#yue").text();
-		var tixian=document.getElementById("tixianyue1").value;
-		if(parseInt(tixian)>parseInt(yue1)){
-			document.getElementById("tixianyue1").value = yue1;
-		}
 	}
 </script>
 

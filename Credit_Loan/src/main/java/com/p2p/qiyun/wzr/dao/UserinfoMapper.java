@@ -12,6 +12,7 @@ public interface UserinfoMapper {
 	//添加验证码
 	int smsinsert(Usersms sms);
 	Usersms smsselect(String mobile);
+	Usersms smsselect2(String mobile);
 	//用户登录
 	Userinfo UserEntry(String user);
 	List<Userinfo> userlogin(Userinfo user);
@@ -23,4 +24,6 @@ public interface UserinfoMapper {
 	int UserTime(String phone);
 	//注册成功插入客户信息表
 	int charukuhuxinxi(int userid);
+	
+	int forgetupdate(Userinfo user);
 }

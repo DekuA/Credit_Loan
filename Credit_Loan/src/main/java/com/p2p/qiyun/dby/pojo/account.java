@@ -5,7 +5,8 @@ public class account {
 	@Override
 	public String toString() {
 		return "account [accountid=" + accountid + ", userid=" + userid + ", username=" + username + ", record="
-				+ record + ", recordtime=" + recordtime + ", startTime=" + startTime + ", endTime=" + endTime + "]";
+				+ record + ", recordtime=" + recordtime + ", startTime=" + startTime + ", endTime=" + endTime + ", a="
+				+ a + ", rows=" + rows + "]";
 	}
 
 	public int getUserid() {
@@ -48,17 +49,7 @@ public class account {
 	public void setEndTime(String endTime) {
 		this.endTime = endTime;
 	}
-	public account(int accountid, int userid, String username, String record, String recordtime, String startTime,
-			String endTime) {
-		super();
-		this.accountid = accountid;
-		this.userid = userid;
-		this.username = username;
-		this.record = record;
-		this.recordtime = recordtime;
-		this.startTime = startTime;
-		this.endTime = endTime;
-	}
+
 
 	public int getAccountid() {
 		return accountid;
@@ -74,4 +65,35 @@ public class account {
 	private String recordtime;
 	private String startTime;
 	private String endTime;
+	public account(int accountid, int userid, String username, String record, String recordtime, String startTime,
+			String endTime, int a, int rows) {
+		super();
+		this.accountid = accountid;
+		this.userid = userid;
+		this.username = username;
+		this.record = record;
+		this.recordtime = recordtime;
+		this.startTime = startTime;
+		this.endTime = endTime;
+		this.a = a;
+		this.rows = rows;
+	}
+
+	public int getA() {
+		return a;
+	}
+
+	public void setA(int a) {
+		this.a = a;
+	}
+
+	public int getRows() {
+		return rows;
+	}
+
+	public void setRows(int rows) {
+		this.rows = rows;
+	}
+	private int a;
+	private int rows;
 }

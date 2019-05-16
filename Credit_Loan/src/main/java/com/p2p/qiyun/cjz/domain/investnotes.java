@@ -63,10 +63,30 @@ public class investnotes {
 	public void setPtrans(int ptrans) {
 		this.ptrans = ptrans;
 	}
+	public investnotes(int iid, String iMoney, String idate, String userid, String pid, int ptrans, double ptransmoney,
+			int page, int rows) {
+		super();
+		this.iid = iid;
+		this.iMoney = iMoney;
+		this.idate = idate;
+		this.userid = userid;
+		this.pid = pid;
+		this.ptrans = ptrans;
+		this.ptransmoney = ptransmoney;
+		this.page = page;
+		this.rows = rows;
+	}
+	public double getPtransmoney() {
+		return ptransmoney;
+	}
+	public void setPtransmoney(double ptransmoney) {
+		this.ptransmoney = ptransmoney;
+	}
 	@Override
 	public String toString() {
 		return "investnotes [iid=" + iid + ", iMoney=" + iMoney + ", idate=" + idate + ", userid=" + userid + ", pid="
-				+ pid + ", ptrans=" + ptrans + ", page=" + page + ", rows=" + rows + "]";
+				+ pid + ", ptrans=" + ptrans + ", ptransmoney=" + ptransmoney + ", page=" + page + ", rows=" + rows
+				+ "]";
 	}
 	public investnotes() {}
 	public investnotes(int iid, String iMoney, String idate, String userid, String pid, int ptrans,double ptransmoney) {

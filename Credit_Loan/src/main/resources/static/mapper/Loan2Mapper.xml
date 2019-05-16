@@ -6,9 +6,41 @@
           (#{userid},#{loanrate},#{loanamount},#{repaymentperiod})
   	</insert>
  
+    <update id="Upbalace" parameterType="com.p2p.qiyun.lsx.entity.Balance2" >
+      UPDATE  balance set balance=#{balance} where userid=#{userid}
+    </update>
+    <!-- 还款表修改 -->
+   <update id="upRepayment" parameterType="com.p2p.qiyun.lsx.entity.Repayment2"  >
+    UPDATE  repayment set
+    rdate=#{rdate},modmoney=#{modmoney} 
+    WHERE userid=#{userid} and 
+   </update>
+   <!-- 修改还款期数-->
+   <update id="upReturnperiod" parameterType="int">
+      UPDATE  repayment set returnperiod=(returnperiod+1),
+    returnperiodp=(returnperiodp-1) WHERE userid=#{userid} 
+   </update>
+   
+ 
+   <!-- 显示已还款 -->
+   <update id="upthis" parameterType="com.p2p.qiyun.lsx.entity.Paymenthistory2" >
+      UPDATE  paymenthistory set storydatep=#{storydatep},todayMoneys=todayMoneys+#{todayMoneys}
+      WHERE userid=#{userid}  AND recordid=#{recordid}<!-- storydate=#{storydate} -->
+   </update>
+   
+   <!-- 修改成已还 -->
+   <update id="upPaymentstatus" parameterType="com.p2p.qiyun.lsx.entity.Paymenthistory2" >
+      UPDATE  paymenthistory set paymentstatus=1
+      WHERE userid=#{userid}  AND recordid=#{recordid}
+   </update>
+   
+     <select id="findJine" parameterType="com.p2p.qiyun.lsx.entity.Paymenthistory2" resultType="com.p2p.qiyun.lsx.entity.Paymenthistory2">
+       select * from paymenthistory where userid=#{userid}  AND recordid=#{recordid}
+     </select>
+     
   	<select id="selLoansById" parameterType="int" resultType="com.p2p.qiyun.lsx.entity.Loan2">
   		select * from loan where loanid=#{loanid}
-  		</select>
+  		</select> 
   	<select id="selctloan" parameterType="com.p2p.qiyun.lsx.entity.Loan2" resultType="com.p2p.qiyun.lsx.entity.Loan2">
   	   SELECT *FROM loan  WHERE userid=#{userid}
   	   <!-- and loanid=#{loanid} --><!--  AND DATE_FORMAT(  applicationdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) -->
@@ -42,13 +74,13 @@
   	</select>
   	<select id="selctRepayment" parameterType="com.p2p.qiyun.lsx.entity.Repayment2" resultType="com.p2p.qiyun.lsx.entity.Repayment2">
   	   SELECT *FROM repayment  WHERE userid=#{userid}
-  	    <!-- and loanid=#{loanid} -->  AND DATE_FORMAT(rdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+  	    <!-- and loanid=#{loanid} --> <!--  AND DATE_FORMAT(rdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' ) -->
   	   
   	</select>
   	
   	<select id="selctRepaymentNext" parameterType="com.p2p.qiyun.lsx.entity.Repayment2" resultType="com.p2p.qiyun.lsx.entity.Repayment2">
   	   SELECT *FROM repayment  WHERE userid=#{userid}
-  	  <!--   and loanid=#{loanid} -->  AND DATE_FORMAT(rdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )+1
+  	  <!--   and loanid=#{loanid} --> <!--  AND DATE_FORMAT(rdate, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )+1 -->
   	   
   	</select>
 </mapper>

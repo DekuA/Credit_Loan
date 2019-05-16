@@ -12,7 +12,9 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -117,5 +119,26 @@ public class UsersController {
 	public int updateRid(Users u){
 		int updateRid = us.updateRid(u);
 		return updateRid;
+	}
+	@RequestMapping("/getPwd")
+	public String getpwd(String pwd,HttpSession session){
+		Users u =(Users) session.getAttribute("user");
+		ByteSource bytes = ByteSource.Util.bytes(u.getLoginname());
+		SimpleHash hash = new SimpleHash("MD5",pwd,bytes,1234);
+		if(u.getPwd().equals(hash.toString())){
+			return "1";
+		}else{
+			return "0";
+		}
+	}
+	@RequestMapping("/updatePwd")
+	public int updatePwd(Users u,HttpSession session){
+		Users uu =(Users) session.getAttribute("user");
+		ByteSource bytes = ByteSource.Util.bytes(uu.getLoginname());
+		SimpleHash hash = new SimpleHash("MD5",u.getPwd(),bytes,1234);
+		u.setUid(uu.getUid());
+		u.setPwd(hash.toString());
+		int updatePwd = us.updatePwd(u);
+		return updatePwd;
 	}
 }

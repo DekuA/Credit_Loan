@@ -1,19 +1,21 @@
 var user;
 var money;
 var zuidatouzi;
+var project;
+var loan;
 $(function(){
 	$.ajax({
 		url:"lxm/xmxiangqingxs",
 		success:function(data){
 			//var userinfo = data.userinfo;
-			var project;
-			var loan;
 			if(data==""){
 				window.location.href="login.html";
 			}else{
 				project = data.project;
 				loan = data.loan2;
 				user = data.userinfo;
+				money=loan.loanamount/100;
+				zuidatouzi=loan.loanamount-(loan.loanamount*1)*(project.pschedule/100);
 				$(".navbar-nav").append("<li class='nav-item'><a class='nav-link' href='#'><font size='1'>"+user.nickname+"</font></a></li>"+
 				"<li class='nav-item'><a class='nav-link' href='logouttt'>[<font size='1'>退出 </font>]</a></li>");
 				if(user.idnumber==null){
@@ -24,13 +26,12 @@ $(function(){
 				$(".xmxq-detail-head-fbsj").html(project.pstarttime);
 				$(".xmxq-cksyl").html(project.plcure.toFixed(2)+"%");
 				$(".xmxq-qixian").html(loan.repaymentperiod+"个月");
-				$("#right-dizengjine").html(project.pmoneysmall.toFixed(2));
-				money=project.pmoneysmall;
+				$("#right-dizengjine").html(money.toFixed(2));
 				$("#touzijine").val(project.pmoneysmall.toFixed(2));
 				$("#idxmxq-qixian").html(loan.repaymentperiod+"期");
 				$(".xmxq-syfs").html(project.pncome);
-				$(".other-info1").append("项目进度:<font style='margin-left: 200px;'"+
-						">"+project.pschedule+"%</font><div class='progress' style='text-align:center;height:12px;width:150px;margin-left: 80px;margin-top: -38px;'><div class='progress-bar bg-success'" +
+				$(".other-info1").append("项目进度:<font style='margin-left: 200px;'>"+project.pschedule+"%&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;剩余可投资金额:"+abs(zuidatouzi*100)+"元</font>"+
+						"<div class='progress' style='text-align:center;height:12px;width:150px;margin-left: 80px;margin-top: -38px;'><div class='progress-bar bg-success'" +
 						"style='width:"+project.pschedule+"%'></div></div><span>安全等级参考:</span> &nbsp;");
 				for(i=0;i<project.pestimate;i++){
 					$(".other-info1").append("<i class='fa fa-star'></i>&nbsp;");
@@ -48,8 +49,6 @@ $(function(){
 				$(".xmxq-xxfwl").html(project.pinfo.toFixed(4)+"%/月");
 				$(".xmxq-zr").html("持有"+project.ptransfer+"天后可转让，最近7天转让成功率99%");
 				$(".xmxq-zxtz").html(abs(loan.loanamount+"00"));
-				zuidatouzi=loan.loanamount-(loan.loanamount*1)*(project.pschedule/100);
-				//alert(zuidatouzi);
 				counters(loan.repaymentperiod,loan.loanamount,project.plcure,project.pinfo.toFixed(4));
 			}
 		}
@@ -85,10 +84,6 @@ function counters(repaymentperiod,loanamount,plcure,pinfo){
 			yue=01;
  			nian = parseInt(nian)+1;
 		}
-		//var month=yue;
-        //curDate.setMonth(month);
-        //curDate.setDate(0);
-		//var dates = curDate.getDate();
 		var lixi = ResidualPrincipal*(cksyl/100)/12;
 		ResidualPrincipal = ResidualPrincipal-ysbx+lixi;
 		if(i==dkqs){
@@ -96,8 +91,6 @@ function counters(repaymentperiod,loanamount,plcure,pinfo){
 		}
 		var bqysbj=(ysbx-lixi).toFixed(2)*1;
 		var bqsybj=ResidualPrincipal.toFixed(2)*1;
-		//var benjin=eval(bqysbj+bqsybj);
-		//var xxfwl=benjin*pinfo;
 		var riqi=nian+"-"+yue+"-"+ri;
 		if(yue<10){
 			riqi=nian+"-0"+yue+"-"+ri;
@@ -120,15 +113,30 @@ function counters(repaymentperiod,loanamount,plcure,pinfo){
 	$(".idxmxq-ysbx").html(abs(aaa));
 	$("#xmxq-ysbj").html(abs(bbb));
 	$("#xmxq-fwxxf").html(abs(ccc)+"元");
-	/*$("#xmxq-fwxxf").html(abs(ccc)+"元");*/
-	/*var ss="<tr id='trs' style='text-align: center;'>"
-		   +"<td class='text-danger' >合计</td>"
-		   +"<td>"+(ysbx*dkqs).toFixed(2)+"</td>"
-		   +"<td>"+dkbj+"</td>"
-		   +"<td>"+((ysbx*dkqs)-dkbj).toFixed(2)+"</td>"
-		   +"<td></td>"
-		+"</tr>";
-	$("#fengqitab").append(ss);*/
+}
+
+function touzijilucx(){
+	$.ajax({
+		url:"lxm/selInvestnotes?pid="+project.pid,
+		success:function(data){
+			var inves=data.inves;
+			var uname=data.uname;
+			$("#menu3-tab2").empty();
+			$("#menu3-tab2").append("<tr><th></th><th></th><th></th></tr>");
+			for(i=0;i<inves.length;i++){
+				if(uname[i].length<3){
+					$("#menu3-tab2").append("<tr><td>"+plusXing(uname[i],1,0)+"</td><td>"+abs(inves[i].imoney*100)+"</td><td>"+inves[i].idate+"</td></tr>");
+				}else if(uname[i].length<8){
+					$("#menu3-tab2").append("<tr><td>"+plusXing(uname[i],2,2)+"</td><td>"+abs(inves[i].imoney*100)+"</td><td>"+inves[i].idate+"</td></tr>");
+				}else if(uname[i].length<13){
+					$("#menu3-tab2").append("<tr><td>"+plusXing(uname[i],4,2)+"</td><td>"+abs(inves[i].imoney*100)+"</td><td>"+inves[i].idate+"</td></tr>");
+				}else {
+					$("#menu3-tab2").append("<tr><td>"+plusXing(uname[i],5,3)+"</td><td>"+abs(inves[i].imoney*100)+"</td><td>"+inves[i].idate+"</td></tr>");
+				}
+				
+			}
+		}
+	})
 }
 
 function lijitouzi(){
@@ -181,6 +189,42 @@ function jianjine(){
 	$("#touzijine").val(jine);
 }
 
+function touzimoney(){
+	var my11 = $("#touzijine").val();
+	if(!/^(([1-9][0-9]*)|(([0]\.\d{1,2}|[1-9][0-9]*\.\d{1,2})))$/.test(my11)){
+		$("#touzijine").val("");
+	}
+	if(my11>zuidatouzi){
+		$("#touzijine").val(zuidatouzi);
+	}
+}
+
+function jiekuanrenxinxi(){
+	$.ajax({
+		url:"lxm/seluserById?userid="+loan.userid,
+		success:function(data){
+			if(data.username.length>3){
+				$("#jkr-name").html(plusXing(data.username,2,0));
+			}else{
+				$("#jkr-name").html(plusXing(data.username,1,0));
+			}
+			$("#jkr-sfz").html(plusXing(data.idnumber,5,3));
+			$("#jkr-phone").html(plusXing(data.phone,3,4));
+			$("#jkr-age").html(IdCard(data.idnumber,3));
+			$("#jkr-sex").html(IdCard(data.idnumber,2));
+		}
+	})
+	
+	$.ajax({
+		url:"lxm/selCountLoan?userid="+loan.userid,
+		success:function(data){
+			$("#jkr-fuzhai").html(abs(data.sumloanmoney*100));
+			$("#jkr-countloan").html(data.countloan);
+			$("#jkr-countloanpay").html(data.countloanpay);
+			$("#jkr-sumloanmoney").html(abs(data.sumpaymoney));
+		}
+	})
+}
 
 abs = function(val){
 	//金额转换 分->元 保留2位小数 并每隔3位用逗号分开 1,234.56
@@ -190,3 +234,42 @@ abs = function(val){
 	var ret = intSum + dot;
 	return ret;
 	}
+
+function plusXing (str,frontLen,endLen) { 
+	var len = str.length-frontLen-endLen;
+	var xing = '';
+	for (var i=0;i<len;i++) {
+	xing+='*';
+	}
+	return str.substring(0,frontLen)+xing+str.substring(str.length-endLen);
+	}
+
+
+function IdCard(UUserCard, num) {
+    if (num == 1) {
+        //获取出生日期
+        birth = UUserCard.substring(6, 10) + "-" + UUserCard.substring(10, 12) + "-" + UUserCard.substring(12, 14);
+        return birth;
+    }
+    if (num == 2) {
+        //获取性别
+        if (parseInt(UUserCard.substr(16, 1)) % 2 == 1) {
+            //男
+            return "男";
+        } else {
+            //女
+            return "女";
+        }
+    }
+    if (num == 3) {
+        //获取年龄
+        var myDate = new Date();
+        var month = myDate.getMonth() + 1;
+        var day = myDate.getDate();
+        var age = myDate.getFullYear() - UUserCard.substring(6, 10) - 1;
+        if (UUserCard.substring(10, 12) < month || UUserCard.substring(10, 12) == month && UUserCard.substring(12, 14) <= day) {
+            age++;
+        }
+        return age;
+    }
+}

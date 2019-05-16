@@ -26,20 +26,5 @@
   	<select id="count" parameterType="com.p2p.qiyun.cc.pojo.UserinfoQueryVO" resultType="java.lang.Integer" >
     	select count(*) from userinfo
   </select>
-  <!-- <select id="select" resultMap="BaseResultMap" parameterType="String">
-  	select * from userinfo where nickname LIKE "%"#{nickname}"%"
-  	<where>
-  	
-  		<if test="nickname != null">
-  		 nickname LIKE "%"#{nickname}"%"
-  		</if>
-  		<if test="username != null">
-  		 username LIKE "%"#{username}"%"
-  		</if>
-  		<if test="Phone != null">
-  		 Phone LIKE "%"#{Phone}"%"
-  		</if>
-  	
-  	</where>
-  </select> -->
+  
 </mapper>

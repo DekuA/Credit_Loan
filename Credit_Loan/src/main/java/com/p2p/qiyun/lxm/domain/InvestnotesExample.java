@@ -473,6 +473,66 @@ public class InvestnotesExample {
             addCriterion("ptrans not between", value1, value2, "ptrans");
             return (Criteria) this;
         }
+
+        public Criteria andPtransmoneyIsNull() {
+            addCriterion("ptransmoney is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtransmoneyIsNotNull() {
+            addCriterion("ptransmoney is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtransmoneyEqualTo(Double value) {
+            addCriterion("ptransmoney =", value, "ptransmoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtransmoneyNotEqualTo(Double value) {
+            addCriterion("ptransmoney <>", value, "ptransmoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtransmoneyGreaterThan(Double value) {
+            addCriterion("ptransmoney >", value, "ptransmoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtransmoneyGreaterThanOrEqualTo(Double value) {
+            addCriterion("ptransmoney >=", value, "ptransmoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtransmoneyLessThan(Double value) {
+            addCriterion("ptransmoney <", value, "ptransmoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtransmoneyLessThanOrEqualTo(Double value) {
+            addCriterion("ptransmoney <=", value, "ptransmoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtransmoneyIn(List<Double> values) {
+            addCriterion("ptransmoney in", values, "ptransmoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtransmoneyNotIn(List<Double> values) {
+            addCriterion("ptransmoney not in", values, "ptransmoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtransmoneyBetween(Double value1, Double value2) {
+            addCriterion("ptransmoney between", value1, value2, "ptransmoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andPtransmoneyNotBetween(Double value1, Double value2) {
+            addCriterion("ptransmoney not between", value1, value2, "ptransmoney");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

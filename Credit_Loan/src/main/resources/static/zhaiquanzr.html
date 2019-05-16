@@ -5,7 +5,7 @@
 		<title></title>
 	</head>
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
@@ -80,30 +80,34 @@
 			<div id="zaiquanzhuanr" class="container" style="height: 750px;width:1450px;position:relative;">
 				
 				<div id="seltiaojian">
-					<table class="table table-striped" style="font;">
-						<tr  id="tr1">
+					<table class="table table-striped">
+						<tr id="tr1">
 							<th>剩余期限：</th>
-							<td style="color: orange;" onclick="seltiaojian1(this,'tr1')">不限</td>
-							<td onclick="seltiaojian1(this,'tr1','12')">12个月以下</td>
+							<td style="color: orange;" onclick="seltiaojian1(this,'tr1','')">不限</td>
+							<td onclick="seltiaojian1(this,'tr1','0','12')">12个月以下</td>
 							<td onclick="seltiaojian1(this,'tr1','12','18')">12个~18个月</td>
 							<td onclick="seltiaojian1(this,'tr1','18','24')">18~24个月</td>
-							<td onclick="seltiaojian1(this,'tr1','24')">24个月以上</td>
-							<td><input class="input-group-sm"/>个月-<input class="input-group-sm"/>个月</td>
+							<td onclick="seltiaojian1(this,'tr1','24','0')">24个月以上</td>
+							<td onclick="seltiaojian11(this,'tr1')">
+							<input class="input-group-sm" onchange="yueshu(this,'tr1')" id="month1" style="width:30px;"/>个月-
+							<input class="input-group-sm" style="width:30px;" onchange="yueshu(this,'tr1')" id="month2"/>个月</td>
 						</tr>
 						<tr  id="tr2">
 							<th>转让价格：</th>
-							<td style="color: orange;" onclick="seltiaojian2(this,'tr2')">不限</td>
-							<td onclick="seltiaojian2(this,'tr2','5000')">5千元以下</td>
+							<td style="color: orange;" onclick="seltiaojian2(this,'tr2','')">不限</td>
+							<td onclick="seltiaojian2(this,'tr2','0','5000')">5千元以下</td>
 							<td onclick="seltiaojian2(this,'tr2','5000','10000')">5千元~1万元</td>
 							<td onclick="seltiaojian2(this,'tr2','10000','30000')">1万~3万元</td>
-							<td onclick="seltiaojian2(this,'tr2','30000')">3万元以上</td>
-							<td><input class="input-group-sm"/>万元-<input class="input-group-sm"/>万元</td>
+							<td onclick="seltiaojian2(this,'tr2','30000','0')">3万元以上</td>
+							<td onclick="seltiaojian22(this,'tr2')">
+							<input class="input-group-sm" onchange="moneyshu(this,'tr2')" id="money1" style="width:50px;"/>元-
+							<input class="input-group-sm" onchange="moneyshu(this,'tr2')" id="money2" style="width:50px;"/>元</td>
 						</tr>
 						<tr id="tr3">
 							<th>是否预期：</th>
-							<td style="color: orange;" onclick="seltiaojian3(this,'tr3')">不限</td>
-							<td onclick="seltiaojian3(this,'tr3','0')">非逾期</td>
-							<td onclick="seltiaojian3(this,'tr3','1')">已逾期</td>
+							<td style="color: orange;" onclick="seltiaojian3(this,'tr3','3')">不限</td>
+							<td onclick="seltiaojian3(this,'tr3','1')">非逾期</td>
+							<td onclick="seltiaojian3(this,'tr3','2')">已逾期</td>
 							<td></td>
 							<td></td>
 							<td></td>
@@ -112,11 +116,11 @@
 				</div>
 				<br><br>
 				<div id="zrxiangmu" class="container" style="background-color: white;">
-					<h3>慧盈-安e+ 1904280330944</h3>
-					<span class="tag-title" title="该项目为转让项目"><span class="tag-discount-blue">转</span></span>
+					<!-- <h3>慧盈-安e+ 1904280330944</h3>
+					<span class="tag-title" title="该项目为转让项目"><span class="tag-discount-blue">转</span></span> -->
 					<br><br>
 					<table id="zrxm" class="table table-hover" style="margin-left: 15px;width: 865px;">
-							<tr>
+							<!-- <tr>
 								<td class="tttddd1">历史参考收益率</td>
 								<td class="tttddd1">剩余期限</td>
 								<td class="tttddd1">项目价值</td>
@@ -141,16 +145,16 @@
 								<td>0.00 元</td>
 								<th class="td-syl">6,998.44元</th>
 								<td><button class="btn btn-group" disabled>已卖</button></td>
-							</tr>
+							</tr> -->
 						</table>
 					
 				</div>
 				
-			</div><br /><br />
+			</div><br /><br /><br /><br />
 			
 			
 			<!--底部代码-->
-			<div id='didiv' style='position: relative;height: 450px;top:20px;'><br />
+			<!-- <div id='didiv' style='position: relative;height: 450px;top:20px;'><br />
 				<div class='container' ><font size='2' >客服服务</font></div><br />
 					<div class='container'>
 						<a href='javascript::' data-toggle="modal" data-target="#myModal"><font size='2' color='gray' >客服微信</font></a> |
@@ -182,7 +186,7 @@
 						</div>
 					</div>
 			</div>
-			<!--模态-->
+			模态
 			<div class="modal fade" id="myModal">
 			    <div class="modal-dialog">
 			      <div class="modal-content">
@@ -194,7 +198,7 @@
 				        </div>
 			      </div>
 			    </div>
-			  </div>
+			  </div> -->
 			<script src="lxm/js/zqzr.js">
 				
 			</script>

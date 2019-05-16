@@ -10,7 +10,7 @@ public class Paymenthistory2 {
 	private int userid;
 	private int loanid;
 	private double currentrepayment;
-	private Timestamp storydate;
+	private String storydate;
 	private String  storydatep;
 	private String paymentstatus;
 	
@@ -22,9 +22,15 @@ public class Paymenthistory2 {
 				+ ", loanid=" + loanid + ", currentrepayment=" + currentrepayment + ", storydate=" + storydate
 				+ ", storydatep=" + storydatep + ", paymentstatus=" + paymentstatus + "]";
 	}
-
+    public Paymenthistory2(String storydatep,int userid,int recordid) {
+    	this.userid = userid;
+    	this.storydatep = storydatep;
+    	this.recordid = recordid;
+    	this.storydate = storydate;
+    }
+    
 	public Paymenthistory2(int recordid, int repaymentid, int userid, int loanid, double currentrepayment,
-			Timestamp storydate, String storydatep, String paymentstatus) {
+			String storydate, String storydatep, String paymentstatus) {
 		super();
 		this.recordid = recordid;
 		this.repaymentid = repaymentid;
@@ -65,10 +71,10 @@ public class Paymenthistory2 {
 	public void setCurrentrepayment(double currentrepayment) {
 		this.currentrepayment = currentrepayment;
 	}
-	public Timestamp getStorydate() {
+	public String getStorydate() {
 		return storydate;
 	}
-	public void setStorydate(Timestamp storydate) {
+	public void setStorydate(String storydate) {
 		this.storydate = storydate;
 	}
 	public String getStorydatep() {

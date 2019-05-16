@@ -54,7 +54,7 @@
 				    height:'auto',
 				    toolbar: [{
 				    	iconCls: 'icon-edit',
-						text:'查询会员借款',
+						text:'查询会员详细信息',
 						handler: function(){
 							var rows = $('#dg2').datagrid('getSelections');
 							
@@ -110,7 +110,7 @@
 											
 										$("#manage_edit").append(input);
 										}else{
-											alert("该会员没有借款");
+											alert("该会员没有添加详细信息");
 											$.messager.progress('close');
 										}
 									},

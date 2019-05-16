@@ -53,12 +53,12 @@
 	</select>
 	<select id="loancount1" resultType="java.lang.Integer" parameterType="com.p2p.qiyun.hjh.entity.LoanExample" >
 	SELECT count(*)from loan l INNER
-		JOIN userinfo u on l.userid=u.userid where approvalstatus =1
+		JOIN userinfo u on l.userid=u.userid where approvalstatus =3
 	
 	</select>
 	<select id="selStatus1" resultMap="sel" parameterType="java.lang.Integer">
 		SELECT l.loanid,u.nickname,l.loanamount,l.repaymentperiod ,l.loanrate , l.approvalstatus,u.userid from loan l INNER
-		JOIN userinfo u on l.userid=u.userid where approvalstatus =1 LIMIT #{page},3
+		JOIN userinfo u on l.userid=u.userid where approvalstatus =3 LIMIT #{page},3
 
 	</select>
 	<select id="selloan" resultMap="sel" parameterType="java.lang.Integer">

@@ -80,90 +80,100 @@ public class LoanServiceimpol extends Thread implements LoanService {
 
 				if (selloan.getApprovalstatus().equals("0")) {
 					if (parseInt < 500) {
-						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 0);
+						selloan.setApprovalstatus(String.valueOf(2));
+						lomapper.updateByPrimaryKeySelective(selloan);
+						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 						aud.insertSelective(a);
 
-						return 0;
+						return 2;
 
 					} else {
 
 						if (selloan.getLoanamount() > 10000) {
 
-							selloan.setApprovalstatus(String.valueOf(1));
+							selloan.setApprovalstatus(String.valueOf(3));
 							if (lomapper.updateByPrimaryKeySelective(selloan) > 0) {
-								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 1);
+								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 3);
 								aud.insertSelective(a);
-								return 1;
+								return 3;
 							} else {
-
-								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 0);
+								selloan.setApprovalstatus(String.valueOf(2));
+								lomapper.updateByPrimaryKeySelective(selloan);
+								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 								aud.insertSelective(a);
-								return 0;
+								return 2;
 							}
 
 						} else {
 
-							selloan.setApprovalstatus(String.valueOf(2));
+							selloan.setApprovalstatus(String.valueOf(1));
 							if (lomapper.updateByPrimaryKeySelective(selloan) > 0) {
 
-								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
+								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 1);
 								aud.insertSelective(a);
 								Balance b = ba.selectBalanceBy(id);
-								b.setBalance(b.getBalance()+selloan.getLoanamount());
+							
+								b.setBalance(b.getBalance() + selloan.getLoanamount());
 
 								if (ba.updateBalace(b) > 0) {
-									
-									return 2;
+
+									return 1;
 
 								} else {
-
-									return 0;
+									
+									return 2;
 								}
 
 							} else {
-
-								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 0);
+								selloan.setApprovalstatus(String.valueOf(2));
+								lomapper.updateByPrimaryKeySelective(selloan);
+								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 								aud.insertSelective(a);
-								return 0;
+								return 2;
 							}
 						}
 
 					}
 				} else {
 
-					selloan.setApprovalstatus(String.valueOf(2));
+					selloan.setApprovalstatus(String.valueOf(1));
 					if (lomapper.updateByPrimaryKeySelective(selloan) > 0) {
 
-						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
+						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 1);
 						aud.insertSelective(a);
 						Balance b = ba.selectBalanceBy(id);
-						b.setBalance(b.getBalance()+selloan.getLoanamount());
+						
+						b.setBalance(b.getBalance() + selloan.getLoanamount());
 
 						if (ba.updateBalace(b) > 0) {
-						
-							return 2;
+
+							return 1;
 
 						} else {
-
-							return 0;
+							
+							return 2;
 						}
 					} else {
-
-						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 0);
+						selloan.setApprovalstatus(String.valueOf(2));
+						lomapper.updateByPrimaryKeySelective(selloan);
+						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 						aud.insertSelective(a);
-						return 0;
+						return 2;
 					}
 
 				}
 			} else {
-				Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 0);
+				selloan.setApprovalstatus(String.valueOf(2));
+				lomapper.updateByPrimaryKeySelective(selloan);
+				Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 				aud.insertSelective(a);
-				return 3;
+				return 4;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			
 			System.out.println(e);
-			return 0;
+			return 2;
 		}
 
 	}

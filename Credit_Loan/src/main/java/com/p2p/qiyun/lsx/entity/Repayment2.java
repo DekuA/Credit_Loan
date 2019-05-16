@@ -13,8 +13,10 @@ public class Repayment2 {
     private int returnperiod;
     private int returnperiodp;
     private double modmoney;
+   
     
-    public Repayment2() {}
+
+	public Repayment2() {}
     
 	@Override
 	public String toString() {
@@ -23,6 +25,11 @@ public class Repayment2 {
 				+ ", returnperiodp=" + returnperiodp + ", modmoney=" + modmoney + "]";
 	}
 
+	public Repayment2(Timestamp rdate,Double modmoney,int userid) {
+		this.modmoney = modmoney;
+		this.userid = userid;
+		this.rdate = rdate;
+	}
 	public Repayment2(int repaymentid, int loanid, int userid, double rterest, double returnallmoney, Timestamp rdate,
 			int returnperiod, int returnperiodp, double modmoney) {
 		super();

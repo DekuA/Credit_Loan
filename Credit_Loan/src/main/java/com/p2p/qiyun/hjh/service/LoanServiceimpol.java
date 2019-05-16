@@ -9,15 +9,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.p2p.qiyun.dyj.pojo.Users;
 import com.p2p.qiyun.hjh.dao.AuditingMapper;
+import com.p2p.qiyun.hjh.dao.BalanceMapper;
 import com.p2p.qiyun.hjh.dao.CustomerMapper;
 import com.p2p.qiyun.hjh.entity.DateAge;
 import com.p2p.qiyun.hjh.dao.LoanMapper;
 
 import com.p2p.qiyun.hjh.entity.Auditing;
-
+import com.p2p.qiyun.hjh.entity.Balance;
 import com.p2p.qiyun.hjh.entity.Customer;
 import com.p2p.qiyun.hjh.entity.Loan;
 import com.p2p.qiyun.hjh.entity.Query;
@@ -31,6 +33,9 @@ public class LoanServiceimpol extends Thread implements LoanService {
 	@Autowired
 
 	private AuditingMapper aud;
+	@Autowired
+
+	private BalanceMapper ba;
 
 	private Users u = null;
 
@@ -42,13 +47,14 @@ public class LoanServiceimpol extends Thread implements LoanService {
 		if (u.getDid() == 1) {
 			selStatus = lomapper.selStatus1(page);
 
-		} else if(u.getDid() == 2){
+		} else if (u.getDid() == 2) {
 			selStatus = lomapper.selStatus(page);
 		}
 
 		return selStatus;
 	}
 
+	@Transactional
 	@Override
 	public int selectByPrimaryKeys(Integer id, HttpSession session) {
 
@@ -69,76 +75,106 @@ public class LoanServiceimpol extends Thread implements LoanService {
 			String idnumber = selloan.getUserinfo().getIdnumber();
 
 			int age = DateAge.getAge(idnumber);
-			
+
 			if (age >= 18) {
 
 				if (selloan.getApprovalstatus().equals("0")) {
 					if (parseInt < 500) {
-						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 0);
+						selloan.setApprovalstatus(String.valueOf(2));
+						lomapper.updateByPrimaryKeySelective(selloan);
+						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 						aud.insertSelective(a);
 
-						return 0;
+						return 2;
 
 					} else {
 
 						if (selloan.getLoanamount() > 10000) {
 
-							selloan.setApprovalstatus(String.valueOf(1));
+							selloan.setApprovalstatus(String.valueOf(3));
 							if (lomapper.updateByPrimaryKeySelective(selloan) > 0) {
-								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 1);
+								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 3);
 								aud.insertSelective(a);
-								return 1;
+								return 3;
 							} else {
-
-								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 0);
+								selloan.setApprovalstatus(String.valueOf(2));
+								lomapper.updateByPrimaryKeySelective(selloan);
+								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 								aud.insertSelective(a);
-								return 0;
+								return 2;
 							}
 
 						} else {
 
-							selloan.setApprovalstatus(String.valueOf(2));
+							selloan.setApprovalstatus(String.valueOf(1));
 							if (lomapper.updateByPrimaryKeySelective(selloan) > 0) {
 
-								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
+								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 1);
 								aud.insertSelective(a);
+								Balance b = ba.selectBalanceBy(id);
+							
+								b.setBalance(b.getBalance() + selloan.getLoanamount());
 
-								return 2;
+								if (ba.updateBalace(b) > 0) {
+
+									return 1;
+
+								} else {
+									
+									return 2;
+								}
 
 							} else {
-
-								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 0);
+								selloan.setApprovalstatus(String.valueOf(2));
+								lomapper.updateByPrimaryKeySelective(selloan);
+								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 								aud.insertSelective(a);
-								return 0;
+								return 2;
 							}
 						}
 
 					}
 				} else {
 
-					selloan.setApprovalstatus(String.valueOf(2));
+					selloan.setApprovalstatus(String.valueOf(1));
 					if (lomapper.updateByPrimaryKeySelective(selloan) > 0) {
 
+						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 1);
+						aud.insertSelective(a);
+						Balance b = ba.selectBalanceBy(id);
+						
+						b.setBalance(b.getBalance() + selloan.getLoanamount());
+
+						
+						if (ba.updateBalace(b) > 0) {
+
+							return 1;
+
+						} else {
+							
+							return 2;
+						}
+					} else {
+						selloan.setApprovalstatus(String.valueOf(2));
+						lomapper.updateByPrimaryKeySelective(selloan);
 						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 						aud.insertSelective(a);
 						return 2;
-					} else {
-
-						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 0);
-						aud.insertSelective(a);
-						return 0;
 					}
 
 				}
 			} else {
-				Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 0);
+				selloan.setApprovalstatus(String.valueOf(2));
+				lomapper.updateByPrimaryKeySelective(selloan);
+				Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 				aud.insertSelective(a);
-				return 3;
+				return 4;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
+			
 			System.out.println(e);
-			return 0;
+			return 2;
 		}
 
 	}

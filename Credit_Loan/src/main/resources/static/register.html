@@ -16,11 +16,14 @@
 		<link rel="stylesheet" href="css/schendule.css">
 	</head>
 <body>
+<form id="manage_edit" style="margin:0;padding:10px 10px 10px 10px;color:#333;">
+		
+</form>
 <table id="dg2" class="easyui-datagrid">
 	 <div style="padding: 0 0 0 7px;color:#333;" align="center" id="tt" >
 		用户名：<input type="text" class="textbox" id="user" name="user" style="width:100px;height:22px;"/>
 		姓名：<input type="text" class="textbox" id="name" name="name" style="width:100px;height:22px;"/>
-		电话：<input type="text" class="textbox" id="phone" name="phone" style="width:100px;height:22px;"/>
+		手机号：<input type="text" class="textbox" id="phone" name="phone" style="width:100px;height:22px;"/>
 		<a href="javascript:show()" class="easyui-linkbutton" iconCls="icon-search">查询</a>
 	</div>
 </table> 
@@ -37,7 +40,9 @@
 				var user=$("#user").val();
 				var name=$("#name").val();
 				var phone=$("#phone").val();
-				
+				var a;
+				var aa;
+				var substring;
 				//$("#userss").dialog('open');
 				$('#dg2').datagrid({  
 					//fit:true,
@@ -46,6 +51,85 @@
 				    //title:"<div align='center'>新闻</div>",
 				    width:'auto',
 				    height:730,
+				    toolbar: [{
+				    	iconCls: 'icon-edit',
+						text:'查询会员借款',
+						handler: function(){
+							var rows = $('#dg2').datagrid('getSelections');
+							
+							if(rows.length > 1) {
+								$.messager.alert('警告操作', '编辑记录只能选定一条数据！', 'warning');
+							} else if(rows.length == 1) {
+								$.ajax({
+									type: "post",
+									url: "findloan",
+									async: true,
+									data: {
+										id: rows[0].userid,
+									},
+									beforeSend: function() {
+										$.messager.progress({
+											text: '正在尝试获取数据...',
+										});
+									},
+									success: function(data) {
+										
+										if(data.length!=0){
+										$.messager.progress('close');
+										$('#manage_edit').dialog('open');
+										$("#manage_edit").empty();
+										if(data[0].approvalstatus==0){
+											a="待审批";
+										}else if(data[0].approvalstatus==1){
+											a="通过";
+										}else if(data[0].approvalstatus==2){
+											a="驳回";
+										}else{
+											
+										}
+										aa=data[0].u.idnumber;
+										
+										
+										if(aa[16]==1 || aa[16]==3  || aa[16]==5 || aa[16]==7 || aa[16]==9){
+											
+											substring="男";
+											
+										}else{
+											
+											substring="女";
+										}
+										
+										var input = "<input name='font' style='display: none;' value='"+data[0].loanid+"'></input>"+
+										"<p>用户id:<input readonly='readonly' disabled='disabled' id='num' name='num' value='"+data[0].userid+"' class='textbox' style='width:auto;'></p>"+
+										"<p>贷款月利息:<input type='text' id='name' disabled='disabled' name='name' class='textbox' value='"+data[0].loanrate+"' style='width:auto;'></p>"+
+										"<p>性&nbsp;&nbsp;别:<input type='text' disabled='disabled' class='textbox' name='radio' value='"+substring+"' style='width:auto;'></p>"+
+										"<p>申请日期:<input type='text' name='day' disabled='disabled' class='textbox' required ='required' value='"+data[0].applicationdate+"' style='width:auto;'></p>"+
+										"<p>贷款总金额:<input type='text' name='phone1' disabled='disabled' class='textbox' value='"+data[0].loanamount+"' style='width:auto;'></p>"+
+										"<p>还款期数:<input type='text' name='cuty' disabled='disabled' class='textbox' value='"+data[0].repaymentperiod+"' style='width:auto;'></p>"+
+										"<p>审批状态:<input type='text' name='zhiwu' disabled='disabled' id='zhiwu' class='textbox' value='"+a+"' style='width:auto;'></p>"+
+										"<p>审批人:<input type='text' name='zhiwu' disabled='disabled' class='textbox' value='"+data[0].uu.username+"' style='width:auto;'></p>"+
+										"<p>身份证正面:<img alt='' src='"+data[0].uuu.usersrcz+"' style='width:200px;'></p>"+
+										"<p>身份证反面:<img alt='' src='"+data[0].uuu.usersrcf+"' style='width:200px;'></p>"
+											
+										$("#manage_edit").append(input);
+										}else{
+											alert("该会员没有借款");
+											$.messager.progress('close');
+										}
+									},
+									error: function() {
+										$.messager.alert('警告操作', '服务器返回数据失败', 'warning');
+									}
+
+								});
+
+							} else {
+								$.messager.alert('警告操作', '编辑记录至少选定一条数据！', 'warning');
+							}
+						}
+					
+				    	
+				    }],
 				    columns:[[    
 						{field:'userid',width:200,align:'center',checkbox:'true'},
 				        {field:'nickname',title:'用户名',width:200,align:'center'},    
@@ -60,7 +144,59 @@
 				}); 
 			}
 			show();
-			
+			//修改弹出框
+			$("#manage_edit").dialog({
+				width: 600,
+				height:650,
+				title: '查询信息',
+				modal: true,
+				closed: true
+				/* buttons: [{
+					
+					handler: function() {
+						$.ajax({
+							url: "updatedept",
+							type: "post",
+							data: {
+								 id:$("input[name='font']").val(),
+								empnum:$("input[name='num']").val(),
+								empname:$("input[name='name']").val(),
+								gender:$("input[name='radio']:checked").val(),
+								birthday:$("input[name='day']").val(),
+								phone:$("input[name='phone1']").val(),
+								address:$("input[name='cuty']").val(),
+								duty:$("input[name='zhiwu']").val(), 
+								
+							},
+							beforeSend: function() {
+								$.messager.progress({
+									text: '正在尝试提交...',
+								});
+							},
+							success: function(data) {
+								$.messager.progress('close');
+								if(data > 0) {
+									$.messager.show({
+										title: '提示',
+										msg: '修改管理成功！',
+									});
+									$('#manage_edit').dialog('close').form('reset');
+									$('#dg').datagrid('reload');
+								} else {
+									$.messager.alert('警告操作', '未知操作或无任何修改，请重 新提交！', 'warning');
+								}
+							}
+						})
+
+					},
+				}, {
+					text: '取消',
+
+					handler: function() {
+						$('#manage_edit').dialog('close').form('reset');
+					},
+				}],*/
+			}) 
 		</script>
 </body>
 </html>

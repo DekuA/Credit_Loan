@@ -139,6 +139,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 						Balance b = ba.selectBalanceBy(id);
 						b.setBalance(b.getBalance()+selloan.getLoanamount());
 
+						
 						if (ba.updateBalace(b) > 0) {
 						
 							return 2;

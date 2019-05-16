@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.p2p.qiyun.lsx.entity.Balance2;
 import com.p2p.qiyun.lsx.entity.Loan2;
 import com.p2p.qiyun.lsx.entity.Paymenthistory2;
 import com.p2p.qiyun.lsx.entity.Repayment2;
@@ -14,9 +15,26 @@ import com.p2p.qiyun.lsx.entity.Repayment2;
 public interface Loan2Mapper {
 
 	int AddLoans(Loan2 one);
-	
 
-	Loan2 selLoansById(int loadid);
+	int upReturnperiod(@Param("userid")int uid);
+	
+	//修改成已还款
+	int upPaymentstatus(@Param("userid")int uid,@Param("recordid")int recordid);
+	
+	//查询金额
+	Paymenthistory2 findJine(@Param("userid")int uid,@Param("recordid")int recordid);
+	
+	//还款扣余额
+	int Upbalace(Balance2 balance2);
+	
+	//还款表
+	int upRepayment(Repayment2 repay);
+	
+	//还款记录
+	int upthis(Paymenthistory2 paymenthistory);
+	
+	
+	 Loan2 selLoansById(int loadid);
 
 	 Loan2 selctloan(@Param("userid")int uid);
 	

@@ -125,7 +125,7 @@ public class ShiroConfiguration {
         map.put("/panlog", "anon");
         map.put("/panname", "anon");
         map.put("/infordata", "anon");
-
+        map.put("/upbalance", "anon");
         
         //戴柏禹的请求
         map.put("/account.html", "anon");

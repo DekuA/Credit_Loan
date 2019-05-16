@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.cc.dao.LoanerMapper" >
+	<resultMap id="BaseResultMap" type="com.p2p.qiyun.cc.pojo.Loan">
+		<id column="loanid" property="loanid" jdbcType="INTEGER" />
+    	<result column="userid" property="userid" jdbcType="INTEGER" />
+    	<result column="loanrate" property="loanrate" jdbcType="DOUBLE" />
+    	<result column="applicationdate" property="applicationdate" jdbcType="VARCHAR" />
+    	<result column="loanamount" property="loanamount" jdbcType="DOUBLE" />
+    	<result column="repaymentperiod" property="repaymentperiod" jdbcType="DOUBLE" />
+    	<result column="approvalstatus" property="approvalstatus" jdbcType="INTEGER" />
+    	<result column="approver" property="approver" jdbcType="INTEGER" />
+    	<association property="u" javaType="com.p2p.qiyun.cc.pojo.Userinfo">
+    		<id column="userid" property="userid" jdbcType="INTEGER" />
+    		<result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    		<result column="username" property="username" jdbcType="VARCHAR" />
+    		<result column="idnumber" property="idnumber" jdbcType="VARCHAR" />
+    		<result column="Phone" property="Phone" jdbcType="VARCHAR" />
+    		<result column="password" property="password" jdbcType="VARCHAR" />
+    	</association>
+    	<association property="uu" javaType="com.p2p.qiyun.cc.pojo.Users">
+    		<id column="uid" property="uid" jdbcType="INTEGER" />
+    		<result column="loginname" property="loginname" jdbcType="VARCHAR" />
+    		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    		<result column="username" property="username" jdbcType="VARCHAR" />
+    		<result column="sex" property="sex" jdbcType="VARCHAR" />
+    		<result column="datebirth" property="datebirth" jdbcType="VARCHAR" />
+    		<result column="xueli" property="xueli" jdbcType="VARCHAR" />
+    		<result column="job" property="job" jdbcType="VARCHAR" />
+    		<result column="did" property="did" jdbcType="INTEGER" />
+    		<result column="rid" property="rid" jdbcType="INTEGER" />
+    	</association>
+    	<association property="uuu" javaType="com.p2p.qiyun.cc.pojo.Usersfz">
+    		<id column="sfztu" property="sfztu" jdbcType="INTEGER" />
+    		<result column="userid" property="userid" jdbcType="INTEGER" />
+    		<result column="pwd" property="pwd" jdbcType="VARCHAR" />
+    		<result column="user_srcz" property="usersrcz" jdbcType="VARCHAR" />
+    		<result column="user_srcf" property="usersrcf" jdbcType="VARCHAR" />
+    		<result column="yesno" property="yesno" jdbcType="INTEGER" />
+    	</association>
+	</resultMap>
+  	<select id="selectLoan" resultMap="BaseResultMap" parameterType="INTEGER" >
+  	    select uuu.*,u.userid,u.idnumber,l.*,uu.username from usersfz uuu,userinfo u,loan l,users uu where u.userid = l.userid and l.userid = #{userid} and l.approver=uu.uid and uuu.userid=u.userid
+  	</select>
+</mapper>

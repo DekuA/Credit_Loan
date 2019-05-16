@@ -50,15 +50,11 @@ public class ProjectServiceImpol implements ProjectService {
 		return project;
 	}
 
-
-
 	@Override
 	public int selCountloanPay(int userid) {
 		int i = promap.selCountloanPay(userid);
 		return i;
 	}
-
-
 
 	@Override
 	public int selcountloan(int userid) {
@@ -66,19 +62,23 @@ public class ProjectServiceImpol implements ProjectService {
 		return i;
 	}
 
-	public List<Investnotes> selByPid(int pid){
-		List<Investnotes> list = inmap.selByPid(pid);
-		return list;
+	@Override
+	public String selsumloan(int userid) {
+		String selsumloan = promap.selsumloan(userid);
+		return selsumloan;
 	}
 
 	@Override
-	public String selsumloan(int userid) {
-		String d = promap.selsumloan(userid);
-		return d;
+	public String selPayMoney(int userid) {
+		String money = promap.selPayMoney(userid);
+		return money;
+	}
+
+	@Override
+	public List<Investnotes> selByPid(int pid) {
+		List<Investnotes> list = inmap.selByPid(pid);
+		return list;
 	}
 	
-	public String selPayMoney(int userid) {
-		String d = promap.selPayMoney(userid);
-		return d;
-	}
+	
 }

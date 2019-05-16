@@ -43,11 +43,11 @@ public class BorrowServiceImpol implements BorrowService {
 		List<Paymenthistory> list = Mapper.storyall(vo);
 		for(int a = 0;a<list.size();a++){
 			if(list.get(a).getPaymentstatus().equals("0")){
-				list.get(a).setPaymentstatus("未还款");
+				list.get(a).setPaymentstatus("待还款");
 			}else if(list.get(a).getPaymentstatus().equals("1")){
-				list.get(a).setPaymentstatus("逾期");
-			}else if(list.get(a).getPaymentstatus().equals("2")){
 				list.get(a).setPaymentstatus("已还款");
+			}else if(list.get(a).getPaymentstatus().equals("2")){
+				list.get(a).setPaymentstatus("逾期");
 			}
 		}
 		int i = Mapper.storyallcount(vo);

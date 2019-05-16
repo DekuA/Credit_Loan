@@ -296,10 +296,10 @@
     		    			}else{
     		    				 
     			    			var autonym=0;
-    			    			//alert("222ss"+userid)
+    			    			
     		    				if(userid>0){
     		    					var uuid=userid;
-    		    					//alert(userid+"用户idbbbbbbb");
+    		    					
     		      	    						if(autonym==0){
     		      	    							$.ajax({
     		      	    								url:'panname',
@@ -319,36 +319,50 @@
     		      	    	      	    	    				  }else{
     		      	    	      	    	    					lixi=(amount*0.12).toFixed(2);
     		      	    	      	    	    				  }
-    		      	    									//	 alert("111111111")
-    		      	    									$.ajax({
-    		      	    										url:'gjloan',
-    		      	    										data:{uid : uuid,},
-    		      	    										success:function(test){
-    		      	    											if(test>0){
-    		      	    												alert("您已经提交过1次申请哦！！");
-    		      	    												window.location.href="/xsr_html/xsr_jiehuanjilu.html";
-    		      	    											}else{
-    		      	    												$.ajax({
-    	    		      	    	      	    	    					type : "post",
-    	    		      	    	      	    	    					url : "loansAdd",
-    	    		      	    	      	    	    					data : {
-    	    		      	    	      	    	    					    uid : uuid,
-    	    		      	    	      	    	    						amo : amount,
-    	    		      	    	      	    	    						aper : amperiods,
-    	    		      	    	      	    	    						lixis:lixi,
-    	    		      	    	      	    	    					},
-    	    		      	    	      	    	    					async : true,
-    	    		      	    	      	    	    					success : function(data) {
-    	    		      	    	      	    	    						if (data > 0) {
-    	    		      	    	      	    	    							alert("借款申请提交成功，请等待客户经理联系")
-    	    		      	    	      	    	    							alert("请耐心等待3-2个工作日");
-    	    		      	    	      	    	    						window.location.href="/xsr_html/xsr_jiehuanjilu.html";
-    	    		      	    	      	    	    						}
-    	    		      	    	      	    	    					}
-    	    		      	    	      	    	    				})
-    		      	    											}
+    		      	    								$.ajax({
+    		      	    									url:'pdAge',
+    		      	    									data:{
+    		      	    										uid:userid
+    		      	    									},
+    		      	    									success:function(cc){
+    		      	    										if(cc>0){
+    		      	    											$.ajax({
+    	    		      	    										url:'gjloan',
+    	    		      	    										data:{uid : uuid,},
+    	    		      	    										success:function(test){
+    	    		      	    											if(test>0){
+    	    		      	    												alert("您已经提交过1次申请哦！！");
+    	    		      	    												window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	    		      	    											}else{
+    	    		      	    												$.ajax({
+    	    	    		      	    	      	    	    					type : "post",
+    	    	    		      	    	      	    	    					url : "loansAdd",
+    	    	    		      	    	      	    	    					data : {
+    	    	    		      	    	      	    	    					    uid : uuid,
+    	    	    		      	    	      	    	    						amo : amount,
+    	    	    		      	    	      	    	    						aper : amperiods,
+    	    	    		      	    	      	    	    						lixis:lixi,
+    	    	    		      	    	      	    	    					},
+    	    	    		      	    	      	    	    					async : true,
+    	    	    		      	    	      	    	    					success : function(data) {
+    	    	    		      	    	      	    	    						if (data > 0) {
+    	    	    		      	    	      	    	    							alert("借款申请提交成功，请等待客户经理联系")
+    	    	    		      	    	      	    	    							alert("请耐心等待3-2个工作日");
+    	    	    		      	    	      	    	    						window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	    	    		      	    	      	    	    						}
+    	    	    		      	    	      	    	    					}
+    	    	    		      	    	      	    	    				})
+    	    		      	    											}
+    	    		      	    										}
+    	    		      	    									})
+    		      	    										}else{
+    		      	    											alert("")
     		      	    										}
-    		      	    									})
+    		      	    										
+    		      	    									}
+    		      	    								})
+    		      	    										 
+    		      	    								
     		      	    	      	    	    				
     		      	    	      	    						
     		      	    	      	    					}

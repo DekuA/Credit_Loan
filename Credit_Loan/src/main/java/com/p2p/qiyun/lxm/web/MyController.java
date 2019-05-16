@@ -154,6 +154,7 @@ public class MyController {
 	@RequestMapping("lxm/seluserbalance")
 	public String selUserBalance(String userid) {
 		Balancelxm balance = proser.selBalance(Integer.parseInt(userid));
+		System.out.println(balance.getBalance());
 		return balance.getBalance()+"";
 	}
 	
@@ -163,12 +164,10 @@ public class MyController {
 		Map map = new HashMap();
 		Project project = (Project)session.getAttribute("projectxq");
 		if(project!=null) {
-			Balancelxm balance = proser.selBalance(userinfo.getUserid());
 			map.put("userinfo", userinfo);
 			Loan2 loan2 = loanser.selLoansById(project.getLenderid());
 			map.put("project",project);
 			map.put("loan2",loan2);
-			map.put("usermoney",balance.getBalance());
 			return map;
 		}
 		return null;

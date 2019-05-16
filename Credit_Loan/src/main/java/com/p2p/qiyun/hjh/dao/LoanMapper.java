@@ -8,7 +8,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface LoanMapper {
-	List<Loan> selStatus();
+	 int loancount();
+	 int loancount1();
+	 Loan selloan(Integer userid);
+	List<Loan> selStatus(Integer page);
+	List<Loan> selStatus1(Integer page);
     int countByExample(LoanExample example);
 
     int deleteByExample(LoanExample example);

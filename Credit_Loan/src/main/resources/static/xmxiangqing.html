@@ -127,7 +127,7 @@
 										<div class="input-group-prepend">
 									      	<button class="input-group-text" onclick="jianjine()">-</button>
 									    </div>
-									    <input type="text" class="form-control" id="touzijine" onchange="jinebianhua(this)" value="0">
+									    <input type="text" class="form-control" onchange="touzimoney()" id="touzijine" value="0">
 									    <div class="input-group-append">
 									      	<button class="input-group-text" onclick="jiajine()">+</button>
 									    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -158,7 +158,7 @@
 				        <a class="nav-link" data-toggle="tab" href="#menu2">预保单</a>
 				    </li>
 				    <li class="nav-item">
-				        <a class="nav-link" data-toggle="tab" href="#menu3" onclick="touzijilu()">投资记录</a>
+				        <a class="nav-link" data-toggle="tab" href="#menu3" onclick="touzijilucx()" >投资记录</a>
 				    </li>
 				    <li class="nav-item">
 				        <a class="nav-link" data-toggle="tab" href="#menu4">常见问题</a>
@@ -258,23 +258,17 @@
 				        <hr>
 				        <div class="loanee-info">
 					        <ul class="loanee-basic">
-					            <li><span class="loanee-basic-title">姓名：</span><strong id="jkrxm">张**</strong></li>
+					            <li><span class="loanee-basic-title">姓名：</span><strong id="jkr-name">张**</strong></li>
 					
-					            <li><span class="loanee-basic-title">身份证号：</span><strong id="jkrsfzh">******19830*****43</strong></li>
+					            <li><span class="loanee-basic-title">身份证号：</span><strong id="jkr-sfz">******19830*****43</strong></li>
 					            
-					            <li><span class="loanee-basic-title">电话号码：<!-- 借款用途： --></span><strong id="jkrphone"></strong></li>
+					             <li><span class="loanee-basic-title">电话：</span><strong id="jkr-phone"></strong></li>
 					
-					            <li><span class="loanee-basic-title">年龄：</span><strong id="jkrnl">35岁</strong></li>
+					            <li><span class="loanee-basic-title">年龄：</span><strong id="jkr-age">35</strong>岁</li>
 					
-					            <li><span class="loanee-basic-title">性别：</span><strong id="jkrxb">女</strong></li>
+					            <li><span class="loanee-basic-title">性别：</span><strong id="jkr-sex">女</strong></li>
 					
-					            <!-- <li><span class="loanee-basic-title">工作性质：</span>--</li> -->
-					
-					            <!-- <li><span class="loanee-basic-title">单位：</span>****区天鸿木业</li> -->
-					
-					            <!-- <li><span class="loanee-basic-title">收入：</span>10000~20000元</li> -->
-					
-					            <li><span class="loanee-basic-title">负债：</span><strong id="jkrfz">20000</strong>(不含)以上</li>
+					            <li><span class="loanee-basic-title">负债：</span><strong id="jkr-fuzhai">20000</strong>(不含)以上</li>
 					
 					        </ul>
 					    </div><br>&nbsp;<br>
@@ -297,11 +291,11 @@
 					    <hr>
 					    <div class="loanee-info4">
 					        <ul>
-					            <li><span>借款笔数：</span>1</li>
+					            <li><span>借款笔数：</span><strong id="jkr-countloan">1</strong></li>
 					
-					            <li><span>逾期次数：</span>0</li>
+					            <li><span>逾期次数：</span><strong id="jkr-countloanpay">0</strong></li>
 					
-					            <li><span>逾期总金额：</span>0.00元</li>
+					            <li><span>逾期总金额：</span><strong id="jkr-sumloanmoney">0.00</strong>元</li>
 					        </ul>
 					    </div>
 					    <br>
@@ -494,11 +488,11 @@
 					    <hr>
 					    <div class="loanee-info4">
 					        <ul>
-					            <li><span>借款笔数：</span><strong id="jkbs">1</strong></li>
+					            <li><span>借款笔数：</span>1</li>
 					
-					            <li><span>逾期次数：</span><strong id="yqcs">0</strong></li>
+					            <li><span>逾期次数：</span>0</li>
 					
-					            <li><span>逾期总金额：</span><strong id="yqzje">0.00</strong>元</li>
+					            <li><span>逾期总金额：</span>0.00元</li>
 					        </ul>
 					    </div>
 					    <br>
@@ -546,11 +540,11 @@
 							<font size='2'>© 2019 祁云信用贷商务顾问(长沙)有限公司  湖南硅谷软件公司</font><br />
 							<font size='1' color='gray'>长ICP证 100953号 长公网安备 11010502020657 长ICP备12025643号-1</font>
 						</div>
-						<div style="position: absolute;top: 150px;left: 795px;">
+						<div style="position: absolute;top: 150px;left: 530px;">
 							<img src="lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />
 							<img src="lxm/img/kefu.jpg" style="width: 150px;height: 150px;" />						
 						</div>
-						<div style="position: absolute;top: 146px;left: 1100px;">
+						<div style="position: absolute;top: 146px;left: 930px;">
 							<font size="3" color="gray">祁云信用贷财富客服：</font> <font size="5">85886</font><br><br>
 							<font size="3" color="gray">祁云信用贷借款客服：</font> <font size="5">632 133 4027</font><br><br>
 							<font size="3" color="gray">服务时间: 9:00-21:00</font>

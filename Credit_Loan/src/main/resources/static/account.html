@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+
+
+
+<link rel="stylesheet" href="xsr_html/xsr_wenjian/3.5js/bootstrap.min.css" />
+<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+
+<style type="text/css">
+
+
+html { overflow-x:hidden; }
+
+th {
+	width: 165px;
+	text-align: center;
+	height: 30px;
+}
+
+</style>
+</head>
+<body >	
+		
+		<!-- --------------------->
+
+<div style="border: 1px solid gray;height: 360px;position: relative;top: -30px;width: 1px;left: 250px;"></div>
+
+<div style="position: relative;top: -350px;left: 300px;width: 700px;height: 355px;"  align="center">
+			 <p style="position: relative; top: 5px">
+				<font size="3"><div style="background-color: gainsboro;width: 645px">用户充值与提现记录</div></font>
+			</p> 
+			<!-- 充值提现记录 -->
+				 <font  style="position: relative;">条件查询：<font>
+						<select id="jilu" style="height: 30px;">
+							<option value="1">所有记录</option>
+							<option value="2">充值记录</option>
+							<option value="3">提现记录</option>
+					</select> 从<input id="startTime" type="date" value="2019-05-01" style="height: 30px;" />到<input
+						id="endTime" type="date" value="2020-05-01" style="height: 30px;" /> 
+						<input type="button"  style="width: 100px;height: 30px;" value="查询" onclick="chaxun()" /> <br> <br> 
+
+
+		 <!-- 记录分页 -->
+			<table id='jkuanbiao' border='1' >
+				
+			</table>
+				<ul class="pagination"></ul> 
+
+	</div>
+
+			<div style="position: relative;left: 30px;top: -705px;width: 150px;height: 200px;">
+				<iframe id='ifyuee' src="account_yue.html" frameborder='no' scrolling="no" style='height: 200px;width: 150px;position: relative;'>
+					
+				</iframe>
+			
+			</div>
+</body>
+<script type="text/javascript">
+	function czgaibian(num){
+		var c=1000;
+		var b=1000;
+		if(num==1){
+			c=1000;
+			b=1000;
+			$("#pagination").html("");
+		}else{
+			c=200;
+			b=150;
+		}		
+		$("#ifyuee").css("height",c+"px");
+		$("#ifyuee").css("width",b+"px");
+	}
+	//查询
+	var yy=1
+	function chaxun(){
+		chaxun1(yy);
+	}
+	function chaxun1(page){
+		$("#jkuanbiao").html("");
+		var jilu =document.getElementById("jilu").value;
+		var startTime =document.getElementById("startTime").value;
+		var endTime =document.getElementById("endTime").value;
+		var dizhi=null;
+		if(jilu==1){
+			dizhi="getRecord_dby"
+		}else if(jilu==2){
+			dizhi="getchongzhi_dby";
+		}else{
+			dizhi="gettixian_dby";
+		}
+		$.ajax({
+			
+			url:"../../../"+dizhi,
+			data:{
+				yeshu:page,
+				startTime:startTime,
+				endTime:endTime,
+			},
+			dataType:"json",
+			success:function(da){
+				$("#jkuanbiao").html("<tr align='center'><th>记录编号</th><th>用户</th><th>充值或提现详情</th><th>时间</th></tr>");
+				if(da.total==0){
+					$("#jkuanbiao").html("<tr><td>暂时没有记录</td></tr>");
+					$(".pagination").html("");
+					return;
+				}
+				for(i=0;i<da.rows.length;i++){
+					$("#jkuanbiao").append("<tr style='height:30px;' align='center'><td>"+da.rows[i].accountid+"</td><td><font color='blue'>"+
+							da.nicheng+"</font></td><td>"+da.rows[i].record+"</td><td>"+
+							da.rows[i].recordtime+"</td></tr>");
+				}
+					$(".pagination").bootstrapPaginator({
+				       	  bootstrapMajorVersion:1,    //版本
+				               currentPage:yy,    //当前页数
+				               numberOfPages:5,    //最多显示Page页
+				               totalPages:da.total,    //所有数据可以显示的页数
+				               itemTexts : function(type, page, current) {//设置分页按钮显示字体样式
+		                            switch (type) {
+		                            case "first":
+		                                return "首页";
+		                            case "prev":
+		                                return "上一页";
+		                            case "next":
+		                                return "下一页";
+		                            case "last":
+		                                return "末页";
+		                            case "page":
+		                                return page;
+		                            }
+		                        },
+				               onPageClicked:function(e,originalEvent,type,page){
+				            	   yy = page;
+				            	   chaxun(page);
+				           	}
+				      });
+				
+				
+			}
+		}); 	
+	}
+</script>
+
+</html>

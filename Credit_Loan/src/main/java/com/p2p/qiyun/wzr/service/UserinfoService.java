@@ -8,7 +8,7 @@ import com.p2p.qiyun.wzr.domain.Userinfo;
 import com.p2p.qiyun.wzr.domain.Usersms;
 
 public interface UserinfoService {
-	Userinfo seluserById(int userid);
+	Userinfo seluserById(int uid);
 	
 	int smsinsert(Usersms sms);
 	Usersms smsselect(String mobile);
@@ -23,7 +23,5 @@ public interface UserinfoService {
 	
 	int UserTime(String phone);
 	int charukuhuxinxi(int userid);
-	
-	Userinfo forgetphone(String Phone);
 	int forgetupdate(Userinfo user);
 }

@@ -15,11 +15,6 @@ public class UserinfoServiceImpol implements UserinfoService {
 	@Autowired
 	private UserinfoMapper Mapper;
 
-	public Userinfo seluserById(int userid) {
-		Userinfo userinfo = Mapper.seluserById(userid);
-		return userinfo;
-	}
-	
 	@Override
 	public Userinfo UserEntry(String phone) {
 		Userinfo entry = Mapper.UserEntry(phone);
@@ -75,14 +70,13 @@ public class UserinfoServiceImpol implements UserinfoService {
 	}
 
 	@Override
-	public Userinfo forgetphone(String Phone) {
-		Userinfo userinfo = Mapper.forgetphone(Phone);
-		return userinfo;
-	}
-
-	@Override
 	public int forgetupdate(Userinfo user) {
 		int i = Mapper.forgetupdate(user);
 		return i;
+	}
+	
+	public Userinfo seluserById(int uid) {
+		Userinfo user=Mapper.seluserById(uid);
+		return user;
 	}
 }

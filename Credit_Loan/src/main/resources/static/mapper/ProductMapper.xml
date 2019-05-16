@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.cc.dao.ProductMapper" >
+  	 <!-- 添加 -->
+    <insert id="save" parameterType="com.p2p.qiyun.cc.pojo.Product" >
+        insert into product(pimageyi,pimageer) values (#{0},#{1}) 
+       <!--  INSERT INTO `product`(pimageyi,pimageer) VALUES ('0.jpg', '1.jpg');    -->
+    </insert> 
+    
+    <!-- 查询用户-->
+    <select id="list" resultType="com.p2p.qiyun.cc.pojo.Product" parameterType="INTEGER">
+        select * from product where pid=#{pid}
+    </select> 
+</mapper>

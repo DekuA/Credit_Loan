@@ -20,6 +20,8 @@ public interface Loan2Mapper {
 
 	 Loan2 selctloan(@Param("userid")int uid);
 	
+	 Loan2 SelectAge (@Param("userid")int uid);
+	 
 	//Loan2 selctloan(@Param("userid")int uid,@Param("loanid")int lid);
 	
 	//根据当月时间查询
@@ -35,5 +37,4 @@ public interface Loan2Mapper {
 	
 	Repayment2 selctRepaymentNext(@Param("userid")int userid);
 	
-
 }

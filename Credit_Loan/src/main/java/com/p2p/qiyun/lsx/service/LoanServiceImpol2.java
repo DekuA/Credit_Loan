@@ -90,7 +90,34 @@ public class LoanServiceImpol2 implements LoanService2 {
 	@Override
 	public int upthis(Paymenthistory2 paymenthistory) {
 		int upthis = loan.upthis(paymenthistory);
+		if(upthis>0) {
+			Paymenthistory2 findJine = loan.findJine(paymenthistory.getUserid(), paymenthistory.getRecordid());
+			System.out.println(findJine.getCurrentrepayment()+"该还");
+			System.out.println(findJine.getTodayMoneys());
+			
+			if(findJine.getCurrentrepayment()==findJine.getTodayMoneys()) {
+				//如果应还金额等于已还金额 那么显示已还
+				int upPaymentstatus = loan.upPaymentstatus(paymenthistory.getUserid(), paymenthistory.getRecordid());
+				int upReturnperiod = loan.upReturnperiod(paymenthistory.getUserid());
+				System.out.println("修改期限"+upReturnperiod);
+				System.out.println("还款成功"+upPaymentstatus);
+			}
+		}
+		
 		return upthis;
+	}
+
+	@Override
+	public int upPaymentstatus(int uid, int recordid) {
+		// TODO Auto-generated method stub
+		return loan.upPaymentstatus(uid, recordid);
+	}
+
+	@Override
+	public Paymenthistory2 findJine(int uid, int recordid) {
+		
+		Paymenthistory2 findJine = loan.findJine(uid, recordid);
+		return findJine;
 	}
 
 }

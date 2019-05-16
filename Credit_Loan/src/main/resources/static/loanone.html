@@ -319,13 +319,13 @@
     		      	    	      	    	    				  }else{
     		      	    	      	    	    					lixi=(amount*0.12).toFixed(2);
     		      	    	      	    	    				  }
-    		      	    								$.ajax({
+    		      	    								/* $.ajax({
     		      	    									url:'pdAge',
     		      	    									data:{
     		      	    										uid:userid
     		      	    									},
     		      	    									success:function(cc){
-    		      	    										if(cc>0){
+    		      	    										if(cc>0){ */
     		      	    											$.ajax({
     	    		      	    										url:'gjloan',
     	    		      	    										data:{uid : uuid,},
@@ -356,11 +356,12 @@
     	    		      	    										}
     	    		      	    									})
     		      	    										}else{
-    		      	    											alert("")
+    		      	    											alert("未满18岁不能申请哦！！")
+    		      	    											
     		      	    										}
     		      	    										
-    		      	    									}
-    		      	    								})
+    		      	    								/* 	}
+    		      	    								}) */
     		      	    										 
     		      	    								
     		      	    	      	    	    				

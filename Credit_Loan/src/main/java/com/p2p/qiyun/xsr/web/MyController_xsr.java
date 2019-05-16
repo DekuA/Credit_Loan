@@ -2,6 +2,7 @@ package com.p2p.qiyun.xsr.web;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,11 @@ import com.p2p.qiyun.xsr.service.CreditService_xsr;
 public class MyController_xsr {
 	@Autowired
 	private CreditService_xsr im;
-
+	
+	private Map kxxxmap = new HashMap();
+	private List<kefuinfo> arr= new ArrayList<kefuinfo>();
+	private List<Integer> usidarr= new ArrayList<Integer>();
+	
 	@RequestMapping("nicheng_xsr")
 	public String nicheng_xsr(HttpSession session) { 
 		String attribute = (String) session.getAttribute("user");
@@ -207,20 +212,40 @@ public class MyController_xsr {
 		String attribute = (String) session.getAttribute("user");
 		userinfo us= im.phonechaxinxi(attribute);
 		kf.setUserid(us.getUserid());
-		kf.setUid(0);
-		kf.setQiuid(1);
-		System.out.println(kf);
-		int chaduihuatext = im.chaduihuatext(kf);
-		return chaduihuatext+"";
+		arr.add(kf);//所有信息
+		usidarr.add(0);
+		System.out.println(usidarr.size());
+		for (int usid=0; usid<usidarr.size();usid++) {
+			if(kf.getUserid()!=usidarr.get(usid)) {
+				if(usid==usidarr.size()-1) {
+					usidarr.add(kf.getUserid());
+				}				
+			}
+		}	
+		usidarr.remove(0);
+		kxxxmap.put("userid"+us.getUserid(), arr);	
+		return 1+"";
 			
 	}
 
 	@RequestMapping("chaxuntext_xsr")
 	public List<kefuinfo> chaxuntext_xsr(HttpSession session) {
 		String attribute = (String) session.getAttribute("user");
-		userinfo c= im.phonechaxinxi(attribute);
-		List<kefuinfo> chatextuser = im.chatextuser(c.getUserid());
-		return chatextuser;		
+		userinfo us= im.phonechaxinxi(attribute);
+		if (kxxxmap.get("userid"+us.getUserid())==null) {
+			return null;
+		}
+		List<kefuinfo> kefuxx = (List<kefuinfo>) kxxxmap.get("userid"+us.getUserid());
+		List<kefuinfo> kefuxxda = new ArrayList<kefuinfo>();//当前使用聊天用户的信息
+		for (int i = 0; i < kefuxx.size(); i++) {
+			if(kefuxx.get(i).getUserid()==us.getUserid()) {
+				kefuxxda.add(kefuxx.get(i));
+			}
+	
+		}
+		System.out.println(usidarr);
+		System.out.println(kefuxxda);
+		return kefuxxda;		
 	}
 	
 	@RequestMapping("upload_Xsr")

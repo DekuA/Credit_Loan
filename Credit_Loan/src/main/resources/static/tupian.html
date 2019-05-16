@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="addProduct" method="post" enctype="multipart/form-data">
+       图片：<input type="file" name="fileyi" onchange="showPreviewyi(this)" />
+    	<img id="portraityi" src="" style="display:none;" />
+    	<input type="file" name="fileer" onchange="showPreviewer(this)" />
+    	<img id="portraiter" src="" style="display:none;" />
+        <input type="submit" value="提交">
+        
+    </form>
+    <!-- <input type="file" name="file" onchange="showPreview(this)" />
+    <img id="portrait" src="" style="display:none;" /> -->
+</body>
+ 	<script type="text/javascript">
+	 function showPreviewyi(source) {
+	      var file = source.files[0];
+	      if(window.FileReader) {
+	          var fr = new FileReader();
+	          console.log(fr);
+	          var portrait = document.getElementById('portraityi');
+	          fr.onloadend = function(e) {
+	            portrait.src = e.target.result;
+	          };
+	          fr.readAsDataURL(file);
+	          portrait.style.display = 'block';
+	      }
+	    }
+	 function showPreviewer(source) {
+	      var file = source.files[0];
+	      if(window.FileReader) {
+	          var fr = new FileReader();
+	          console.log(fr);
+	          var portrait = document.getElementById('portraiter');
+	          fr.onloadend = function(e) {
+	            portrait.src = e.target.result;
+	          };
+	          fr.readAsDataURL(file);
+	          portrait.style.display = 'block';
+	      }
+	    }
+</script> 
+</html>
+	

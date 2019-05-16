@@ -1,5 +1,6 @@
 package com.p2p.qiyun.hjh.service;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import com.p2p.qiyun.hjh.entity.Auditing;
 import com.p2p.qiyun.hjh.entity.Loan;
 import com.p2p.qiyun.hjh.entity.Query;
+import com.p2p.qiyun.lsx.entity.Repayment2;
 
 public interface LoanService {
 	List<Loan> selStatus(HttpSession session,Integer page);
@@ -17,3 +19,6 @@ public interface LoanService {
 	 int suditingcount(Query q);
 	 int count(HttpSession session);
 }
+/*
+ * 
+ */

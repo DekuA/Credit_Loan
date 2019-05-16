@@ -13,7 +13,41 @@ public class Paymenthistory2 {
 	private String storydate;
 	private String  storydatep;
 	private String paymentstatus;
+	private double todayMoneys;
 	
+	
+	public Paymenthistory2(int repaymentid, int userid, int loanid, double currentrepayment,
+			String storydate) {
+		super();
+		this.repaymentid = repaymentid;
+		this.userid = userid;
+		this.loanid = loanid;
+		this.currentrepayment = currentrepayment;
+		this.storydate = storydate;
+	}
+
+	public Paymenthistory2(int recordid, int repaymentid, int userid, int loanid, double currentrepayment,
+			String storydate, String storydatep, String paymentstatus, double todayMoneys) {
+		super();
+		this.recordid = recordid;
+		this.repaymentid = repaymentid;
+		this.userid = userid;
+		this.loanid = loanid;
+		this.currentrepayment = currentrepayment;
+		this.storydate = storydate;
+		this.storydatep = storydatep;
+		this.paymentstatus = paymentstatus;
+		this.todayMoneys = todayMoneys;
+	}
+
+	public double getTodayMoneys() {
+		return todayMoneys;
+	}
+
+	public void setTodayMoneys(double todayMoneys) {
+		this.todayMoneys = todayMoneys;
+	}
+
 	public Paymenthistory2() {}
 	
 	@Override
@@ -22,11 +56,11 @@ public class Paymenthistory2 {
 				+ ", loanid=" + loanid + ", currentrepayment=" + currentrepayment + ", storydate=" + storydate
 				+ ", storydatep=" + storydatep + ", paymentstatus=" + paymentstatus + "]";
 	}
-    public Paymenthistory2(String storydatep,int userid,int recordid) {
+    public Paymenthistory2(String storydatep,int userid,double todayMoneys,int recordid) {
     	this.userid = userid;
     	this.storydatep = storydatep;
     	this.recordid = recordid;
-    	this.storydate = storydate;
+    	this.todayMoneys = todayMoneys;
     }
     
 	public Paymenthistory2(int recordid, int repaymentid, int userid, int loanid, double currentrepayment,

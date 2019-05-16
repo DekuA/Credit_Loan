@@ -2,25 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.p2p.qiyun.wzr.dao.BorrowMapper">
 
-	<resultMap type="com.p2p.qiyun.wzr.domain.Userinfo" id="accountMap">
-		<result column="nickname" property="nickname" jdbcType="VARCHAR"/>
-		<result column="username" property="username" jdbcType="VARCHAR"/>
-		<result column="idnumber" property="idnumber" jdbcType="VARCHAR"/>
-		<result column="Phone" property="Phone" jdbcType="VARCHAR"/>
-		<association property="l" javaType="com.p2p.qiyun.wzr.domain.Loan">
+	<resultMap type="com.p2p.qiyun.wzr.domain.Loan" id="accountMap">
 			<id column="loanid" property="loanid" jdbcType="INTEGER"/>
 			<result column="loanamount" property="loanamount" jdbcType="DOUBLE"/>
 			<result column="applicationdate" property="applicationdate" jdbcType="TIMESTAMP"/>
-		</association>
+			<result column="approvalstatus" property="approvalstatus" jdbcType="INTEGER"/>
+		<collection property="u" javaType="com.p2p.qiyun.wzr.domain.Userinfo">
+			<result column="username" property="username" jdbcType="VARCHAR"/>
+			<result column="idnumber" property="idnumber" jdbcType="VARCHAR"/>
+			<result column="Phone" property="Phone" jdbcType="VARCHAR"/>
+		</collection>
 	</resultMap>
 
 	<select id="borrowall" parameterType="com.p2p.qiyun.wzr.domain.BorrowVO" resultMap="accountMap">
-		select l.loanid,l.loanamount,l.applicationdate,u.nickname,u.username,u.idnumber,u.Phone from 
+		select l.loanid,l.loanamount,l.applicationdate,l.approvalstatus,u.username,u.idnumber,u.Phone from 
 		userinfo u INNER JOIN loan l on l.userid=u.userid
-		<if test="u.Phone!=null and u.Phone!=''">
-			where u.Phone like "%"#{u.Phone}"%"
-		</if>
-		 ORDER BY applicationdate DESC limit #{page},#{rows}
+		<where>
+			<if test="u.Phone!=null and u.Phone!=''">
+				u.Phone like "%"#{u.Phone}"%"
+			</if>
+			<if test="l.approvalstatus!=null and l.approvalstatus!=''">
+				and l.approvalstatus=#{l.approvalstatus}
+			</if>
+			<if test="date1!=null and date1!='' and date2!=null and date2!=''">
+				and l.applicationdate BETWEEN #{date1} and #{date2}
+			</if>
+		</where>
+		 ORDER BY l.applicationdate DESC limit #{page},#{rows}
 	</select>
 	<select id="borrowallcount" parameterType="com.p2p.qiyun.wzr.domain.BorrowVO" resultType="int">
 		select count(*) from 
@@ -28,5 +36,57 @@
 		<if test="u.Phone!=null and u.Phone!=''">
 			 where u.Phone like "%"#{u.Phone}"%"
 		</if>
+	</select>
+	
+	<resultMap type="com.p2p.qiyun.wzr.domain.Paymenthistory" id="storyMap">
+		<id column="recordid" property="recordid" jdbcType="INTEGER"/>
+		<result column="currentrepayment" property="currentrepayment" jdbcType="DOUBLE"/>
+		<result column="storydate" property="storydate" jdbcType="DOUBLE"/>
+		<result column="storydatep" property="storydatep" jdbcType="DOUBLE"/>
+		<result column="paymentstatus" property="paymentstatus" jdbcType="DOUBLE"/>
+		<collection property="u" javaType="com.p2p.qiyun.wzr.domain.Userinfo">
+			<result column="username" property="username" jdbcType="VARCHAR"/>
+		</collection>
+		<collection property="r" javaType="com.p2p.qiyun.wzr.domain.Repayment">
+			<result column="returnallmoney" property="returnallmoney" jdbcType="DOUBLE"/>
+		</collection>
+		<collection property="l" javaType="com.p2p.qiyun.wzr.domain.Loan">
+			<result column="repaymentperiod" property="repaymentperiod" jdbcType="DOUBLE"/>
+		</collection>
+	</resultMap>
+	<select id="storyall" parameterType="com.p2p.qiyun.wzr.domain.BorrowVO" resultMap="storyMap">
+		select p.recordid,u.username,p.currentrepayment,l.repaymentperiod,r.returnallmoney,p.storydate,p.storydatep,p.paymentstatus
+		 from userinfo u INNER JOIN repayment r INNER JOIN loan l
+		INNER JOIN paymenthistory p on u.userid=p.userid and p.repaymentid=r.repaymentid and l.loanid=p.loanid
+		<where>
+			<if test="u.username!=null and u.username!=''">
+				u.username like "%"#{u.username}"%"	
+			</if>
+			<if test="p.paymentstatus!=null and p.paymentstatus!=''">
+				and p.paymentstatus=#{p.paymentstatus}
+			</if>
+		</where>
+		limit #{page},#{rows}
+	</select>
+	<select id="storyallcount" parameterType="com.p2p.qiyun.wzr.domain.BorrowVO" resultType="int">
+		select count(*) from userinfo u INNER JOIN repayment r INNER JOIN loan l
+		INNER JOIN paymenthistory p on u.userid=p.userid and p.repaymentid=r.repaymentid and l.loanid=p.loanid
+		<where>
+			<if test="u.username!=null and u.username!=''">
+				u.username like "%"#{u.username}"%"	
+			</if>
+			<if test="p.paymentstatus!=null and p.paymentstatus!=''">
+				and p.paymentstatus=#{p.paymentstatus}
+			</if>
+		</where>
+	</select>
+	<select id="loanstatus" parameterType="int" resultType="String">
+		select approvalstatus from loan where loanid=#{loanid}
+	</select>
+	
+	<select id="loanidselect" parameterType="int" resultType="com.p2p.qiyun.wzr.domain.Repayment" >
+		select r.returnperiod,r.returnperiodp,
+		r.modmoney,r.rterest,r.returnallmoney,u.username from repayment r INNER JOIN 
+	userinfo u on r.userid=u.userid where loanid=#{loanid}
 	</select>
 </mapper>

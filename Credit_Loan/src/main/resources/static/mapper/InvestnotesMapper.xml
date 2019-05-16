@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.lxm.dao.InvestnotesMapper" >
+  <resultMap id="BaseResultMap" type="com.p2p.qiyun.lxm.domain.Investnotes" >
+    <id column="iid" property="iid" jdbcType="INTEGER" />
+    <result column="iMoney" property="imoney" jdbcType="DOUBLE" />
+    <result column="idate" property="idate" jdbcType="VARCHAR" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="ptrans" property="ptrans" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    iid, iMoney, idate, userid, pid, ptrans
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.p2p.qiyun.lxm.domain.InvestnotesExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from investnotes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from investnotes
+    where iid = #{iid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from investnotes
+    where iid = #{iid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.p2p.qiyun.lxm.domain.InvestnotesExample" >
+    delete from investnotes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.p2p.qiyun.lxm.domain.Investnotes" >
+    insert into investnotes (iid, iMoney, idate, 
+      userid, pid, ptrans
+      )
+    values (#{iid,jdbcType=INTEGER}, #{imoney,jdbcType=DOUBLE}, #{idate,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{ptrans,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.p2p.qiyun.lxm.domain.Investnotes" >
+    insert into investnotes
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="iid != null" >
+        iid,
+      </if>
+      <if test="imoney != null" >
+        iMoney,
+      </if>
+      <if test="idate != null" >
+        idate,
+      </if>
+      <if test="userid != null" >
+        userid,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="ptrans != null" >
+        ptrans,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="iid != null" >
+        #{iid,jdbcType=INTEGER},
+      </if>
+      <if test="imoney != null" >
+        #{imoney,jdbcType=DOUBLE},
+      </if>
+      <if test="idate != null" >
+        #{idate,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="ptrans != null" >
+        #{ptrans,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.p2p.qiyun.lxm.domain.InvestnotesExample" resultType="java.lang.Integer" >
+    select count(*) from investnotes
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update investnotes
+    <set >
+      <if test="record.iid != null" >
+        iid = #{record.iid,jdbcType=INTEGER},
+      </if>
+      <if test="record.imoney != null" >
+        iMoney = #{record.imoney,jdbcType=DOUBLE},
+      </if>
+      <if test="record.idate != null" >
+        idate = #{record.idate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userid != null" >
+        userid = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.pid != null" >
+        pid = #{record.pid,jdbcType=INTEGER},
+      </if>
+      <if test="record.ptrans != null" >
+        ptrans = #{record.ptrans,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update investnotes
+    set iid = #{record.iid,jdbcType=INTEGER},
+      iMoney = #{record.imoney,jdbcType=DOUBLE},
+      idate = #{record.idate,jdbcType=VARCHAR},
+      userid = #{record.userid,jdbcType=INTEGER},
+      pid = #{record.pid,jdbcType=INTEGER},
+      ptrans = #{record.ptrans,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.p2p.qiyun.lxm.domain.Investnotes" >
+    update investnotes
+    <set >
+      <if test="imoney != null" >
+        iMoney = #{imoney,jdbcType=DOUBLE},
+      </if>
+      <if test="idate != null" >
+        idate = #{idate,jdbcType=VARCHAR},
+      </if>
+      <if test="userid != null" >
+        userid = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="ptrans != null" >
+        ptrans = #{ptrans,jdbcType=INTEGER},
+      </if>
+    </set>
+    where iid = #{iid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.p2p.qiyun.lxm.domain.Investnotes" >
+    update investnotes
+    set iMoney = #{imoney,jdbcType=DOUBLE},
+      idate = #{idate,jdbcType=VARCHAR},
+      userid = #{userid,jdbcType=INTEGER},
+      pid = #{pid,jdbcType=INTEGER},
+      ptrans = #{ptrans,jdbcType=INTEGER}
+    where iid = #{iid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -3,8 +3,10 @@ package com.p2p.qiyun.dyj.dao;
 import com.p2p.qiyun.dyj.pojo.Info;
 import com.p2p.qiyun.dyj.pojo.InfoExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface InfoMapper {
     int countByExample(InfoExample example);
 

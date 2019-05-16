@@ -18,6 +18,16 @@ public class Repayment2 {
 
 	public Repayment2() {}
     
+	public Repayment2(int loanid, int userid,double rterest, double returnallmoney,int returnperiod) {
+		
+		this.loanid = loanid;
+		this.userid = userid;
+		this.returnallmoney = returnallmoney;
+		this.rterest = rterest;
+		this.returnperiod = returnperiod;
+	}
+    
+	
 	@Override
 	public String toString() {
 		return "Repayment2 [repaymentid=" + repaymentid + ", loanid=" + loanid + ", userid=" + userid + ", rterest="

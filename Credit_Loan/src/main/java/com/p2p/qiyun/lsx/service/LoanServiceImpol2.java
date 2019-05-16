@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.p2p.qiyun.lsx.dao.Loan2Mapper;
+import com.p2p.qiyun.lsx.entity.Balance2;
 import com.p2p.qiyun.lsx.entity.Loan2;
 import com.p2p.qiyun.lsx.entity.Paymenthistory2;
 import com.p2p.qiyun.lsx.entity.Repayment2;
@@ -72,6 +73,24 @@ public class LoanServiceImpol2 implements LoanService2 {
 	public Loan2 SelectAge(int uid) {
 		Loan2 age = loan.SelectAge(uid);
 		return age;
+	}
+
+	@Override
+	public int Upbalace(Balance2 balance2) {
+		int upbalace = loan.Upbalace(balance2);
+		return upbalace;
+	}
+
+	@Override
+	public int upRepayment(Repayment2 repay) {
+		int i = loan.upRepayment(repay);
+		return i;
+	}
+
+	@Override
+	public int upthis(Paymenthistory2 paymenthistory) {
+		int upthis = loan.upthis(paymenthistory);
+		return upthis;
 	}
 
 }

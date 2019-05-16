@@ -9,15 +9,17 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.p2p.qiyun.dyj.pojo.Users;
 import com.p2p.qiyun.hjh.dao.AuditingMapper;
+import com.p2p.qiyun.hjh.dao.BalanceMapper;
 import com.p2p.qiyun.hjh.dao.CustomerMapper;
 import com.p2p.qiyun.hjh.entity.DateAge;
 import com.p2p.qiyun.hjh.dao.LoanMapper;
 
 import com.p2p.qiyun.hjh.entity.Auditing;
-
+import com.p2p.qiyun.hjh.entity.Balance;
 import com.p2p.qiyun.hjh.entity.Customer;
 import com.p2p.qiyun.hjh.entity.Loan;
 import com.p2p.qiyun.hjh.entity.Query;
@@ -31,6 +33,9 @@ public class LoanServiceimpol extends Thread implements LoanService {
 	@Autowired
 
 	private AuditingMapper aud;
+	@Autowired
+
+	private BalanceMapper ba;
 
 	private Users u = null;
 
@@ -42,13 +47,14 @@ public class LoanServiceimpol extends Thread implements LoanService {
 		if (u.getDid() == 1) {
 			selStatus = lomapper.selStatus1(page);
 
-		} else if(u.getDid() == 2){
+		} else if (u.getDid() == 2) {
 			selStatus = lomapper.selStatus(page);
 		}
 
 		return selStatus;
 	}
 
+	@Transactional
 	@Override
 	public int selectByPrimaryKeys(Integer id, HttpSession session) {
 
@@ -69,7 +75,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 			String idnumber = selloan.getUserinfo().getIdnumber();
 
 			int age = DateAge.getAge(idnumber);
-			
+
 			if (age >= 18) {
 
 				if (selloan.getApprovalstatus().equals("0")) {
@@ -102,8 +108,17 @@ public class LoanServiceimpol extends Thread implements LoanService {
 
 								Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 								aud.insertSelective(a);
+								Balance b = ba.selectBalanceBy(id);
+								b.setBalance(b.getBalance()+selloan.getLoanamount());
 
-								return 2;
+								if (ba.updateBalace(b) > 0) {
+									
+									return 2;
+
+								} else {
+
+									return 0;
+								}
 
 							} else {
 
@@ -121,7 +136,17 @@ public class LoanServiceimpol extends Thread implements LoanService {
 
 						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 2);
 						aud.insertSelective(a);
-						return 2;
+						Balance b = ba.selectBalanceBy(id);
+						b.setBalance(b.getBalance()+selloan.getLoanamount());
+
+						if (ba.updateBalace(b) > 0) {
+						
+							return 2;
+
+						} else {
+
+							return 0;
+						}
 					} else {
 
 						Auditing a = new Auditing(id, format, selloan.getLoanamount().toString(), 0);

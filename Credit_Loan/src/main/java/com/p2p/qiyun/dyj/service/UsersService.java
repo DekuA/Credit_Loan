@@ -55,4 +55,8 @@ public class UsersService {
 		int updateRid = mapper.updateRid(u);
 		return updateRid;
 	}
+	public int updatePwd(Users u){
+		int updatePwd = mapper.updatePwd(u);
+		return updatePwd;
+	}
 }

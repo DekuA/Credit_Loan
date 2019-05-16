@@ -19,7 +19,7 @@ public interface UsersMapper {
     int deleteByPrimaryKey(Integer uid);
 
     int insert(Users record);
-
+    int updatePwd(Users u);
     int insertSelective(Users record);
     List<Users> findUsers1(UsersQueryVO vo);
     int userscount(UsersQueryVO vo);

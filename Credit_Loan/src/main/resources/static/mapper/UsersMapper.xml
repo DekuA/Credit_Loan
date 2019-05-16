@@ -357,4 +357,8 @@
       rid = #{rid,jdbcType=INTEGER}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+  <update id="updatePwd" parameterType="com.p2p.qiyun.dyj.pojo.Users">
+  	update users
+    set  pwd = #{pwd,jdbcType=VARCHAR}  where uid = #{uid,jdbcType=INTEGER}
+  </update>
 </mapper>

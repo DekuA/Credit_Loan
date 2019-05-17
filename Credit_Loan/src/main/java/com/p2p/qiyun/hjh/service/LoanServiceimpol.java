@@ -143,6 +143,24 @@ public class LoanServiceimpol extends Thread implements LoanService {
 									int k = promap.insertBysp(pro);
 									  System.out.println(k);
 									
+									Date da = new Date();   
+									SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+							        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");  
+							        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss"); 
+							        pro.setPclosing(sdf3.format(da));
+							        if(loan2.getRepaymentperiod()==3) {
+							        	pro.setPlcure(6.60);
+							        }else if(loan2.getRepaymentperiod()==6) {
+							        	pro.setPlcure(7.84);
+							        }else {
+							        	pro.setPlcure(8.40);
+							        }
+							        pro.setPnumber("88"+sdf2.format(da));
+							        pro.setPestimate(5);
+							        pro.setPstarttime(sdf1.format(da));
+							        
+									int insertBysp = promap.insertBysp(pro);
+									  System.out.println("成功"+insertBysp);
 									  Repayment2 repayment2=new Repayment2(Loanid, id, loanrate, mm, qix); 
 									  int addRepayment2 = loan2s.AddRepayment2(repayment2); 
 									  if(addRepayment2>0) { 
@@ -215,6 +233,25 @@ public class LoanServiceimpol extends Thread implements LoanService {
 								pro.setPassessor(u.getUid());
 								int k = promap.insertBysp(pro);
 							  System.out.println(k);
+								Date da = new Date();   
+								SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+						        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");  
+						        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss"); 
+						        pro.setPclosing(sdf3.format(da));
+						        if(loan2.getRepaymentperiod()==3) {
+						        	pro.setPlcure(6.60);
+						        }else if(loan2.getRepaymentperiod()==6) {
+						        	pro.setPlcure(7.84);
+						        }else {
+						        	pro.setPlcure(8.40);
+						        }
+						        pro.setPnumber("88"+sdf2.format(da));
+						        pro.setPestimate(5);
+						        pro.setPstarttime(sdf1.format(da));
+						        
+								int insertBysp = promap.insertBysp(pro);
+								
+							  System.out.println("成功"+insertBysp);
 							  if(addRepayment2>0) { 
 								  Calendar cal=Calendar.getInstance();    
 								  int y=cal.get(Calendar.YEAR);    

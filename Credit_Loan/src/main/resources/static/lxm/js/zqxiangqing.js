@@ -19,6 +19,10 @@ $(function(){
 				userbalance=data.balance;
 				$(".navbar-nav").append("<li class='nav-item'><a class='nav-link' href='#'><font size='1'>"+user.nickname+"</font></a></li>"+
 				"<li class='nav-item'><a class='nav-link' href='logouttt'>[<font size='1'>退出 </font>]</a></li>");
+				if(user.userid==inves.userid){
+					$("#touzianniu").css("disabled","disabled");
+					$(".right-head").append("<p class='right-shiming'>不能购买自己的债权</p>");
+				}
 				if(user.idnumber==null){
 					$("#touzianniu").css("disabled","disabled");
 					$(".right-head").append("<p class='right-shiming'>请先实名验证再进行购买       点击 <a href='xsr_html/xsr_zhanghu.html'>>>实名验证</a></p>");

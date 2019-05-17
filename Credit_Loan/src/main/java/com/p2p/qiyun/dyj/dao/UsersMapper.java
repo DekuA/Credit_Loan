@@ -15,9 +15,9 @@ public interface UsersMapper {
     int countByExample(UsersExample example);
 
     int deleteByExample(UsersExample example);
-
+    int deleteUsers(int[] idlist);
     int deleteByPrimaryKey(Integer uid);
-
+    int insertUsers(Users u);
     int insert(Users record);
     int updatePwd(Users u);
     int insertSelective(Users record);

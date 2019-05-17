@@ -82,6 +82,7 @@ public class ShiroConfiguration {
         map.put("/xmxiangqing.html", "anon");
         map.put("/login.html", "anon");
         map.put("/loanone.html","anon");
+        map.put("/zqxiangqing.html","anon");
 
 
         map.put("/shouye.html", "anon");

@@ -1,5 +1,19 @@
+var user;
 $(function(){
 	$("tr td").css("cursor","pointer");
+	
+	$.ajax({
+		url:"gotoindex",
+		success:function(data){
+			if(data==""){
+				$(".navbar-nav").append("<li class='nav-item'><a class='nav-link' href='login.html'><font size='1'>登录</font></a></li>");
+			}else{
+				user = data;
+				$(".navbar-nav").append("<li class='nav-item'><a class='nav-link' href='#'><font size='1'>"+data.nickname+"</font></a></li>"+
+				"<li class='nav-item'><a class='nav-link' href='logouttt'>[<font size='1'>退出 </font>]</a></li>");
+			}
+		}
+	});
 })
 
 var mh1="";
@@ -7,18 +21,6 @@ var mh2="";
 var my1="";
 var my2="";
 var sfyq="";
-
-$.ajax({
-	url:"gotoindex",
-	success:function(data){
-		if(data==""){
-			$(".navbar-nav").append("<li class='nav-item'><a class='nav-link' href='login.html'><font size='1'>登录</font></a></li>");
-		}else{
-			$(".navbar-nav").append("<li class='nav-item'><a class='nav-link' href='#'><font size='1'>"+data.nickname+"</font></a></li>"+
-			"<li class='nav-item'><a class='nav-link' href='logouttt'>[<font size='1'>退出 </font>]</a></li>");
-		}
-	}
-});
 
 function seltiaojian1(e,trr,month2,month1){
 	$("#"+trr+" td").css("color","#040505");
@@ -115,7 +117,7 @@ function selzhaiqzr(){
 									"	<td>"+loan[i].repaymentperiod+"期 <font style='font-size:12px;color:orange;'></font></td>"+
 										"<td>"+project[i].pncome+"</td>"+
 										"<td style='font-size:18px;color:orange'>"+abs(ptransmoney+"00")+"元</td>"+
-										"<td><button class='btn btn-group' style='background-color: orange;' onclick='xmxiangqing("+inves[i].iid+")'>投资</button></td>"+
+										"<td><button class='btn btn-group' style='background-color: orange;' onclick='zqxiangqing("+inves[i].iid+")'>投资</button></td>"+
 									"</tr>");
 				}
 			}
@@ -128,6 +130,14 @@ function selzhaiqzr(){
 	})
 }
 
+
+function zqxiangqing(invesid){
+	if(user==null){
+		window.location.href="login.html";
+	}else{
+		window.location.href="selInvesById.lxm?invesid="+invesid;
+	}
+}
 
 function shouye(){
 	window.location.href="shouye.html";

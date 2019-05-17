@@ -8,12 +8,49 @@ public class investnotes {
 	private String pid;
 	private int ptrans;
 	private double ptransmoney;
+	private String username;
+	private String pname;
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	public investnotes(int iid, String iMoney, String idate, String username, String pname, int page, int rows) {
+		super();
+		this.iid = iid;
+		this.iMoney = iMoney;
+		this.idate = idate;
+		this.username = username;
+		this.pname = pname;
+		this.page = page;
+		this.rows = rows;
+	}
+	public String getPname() {
+		return pname;
+	}
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
 	private int page;
 	private int rows;
 	public investnotes(int page, int rows) {
 		super();
+		this.iid = iid;
+		this.iMoney = iMoney;
+		this.idate = idate;
+		this.username = username;
+		this.pname = pname;
 		this.page = page;
 		this.rows = rows;
+	}
+	public investnotes(int page, int rows,String username,String pname) {
+		super();
+		
+		this.page = page;
+		this.rows = rows;
+		this.username = username;
+		this.pname = pname;
 	}
 	public int getPage() {
 		return page;
@@ -63,8 +100,7 @@ public class investnotes {
 	public void setPtrans(int ptrans) {
 		this.ptrans = ptrans;
 	}
-	public investnotes(int iid, String iMoney, String idate, String userid, String pid, int ptrans, double ptransmoney,
-			int page, int rows) {
+	public investnotes(int iid, String iMoney, String idate, String userid, String pid, int ptrans, double ptransmoney,int page, int rows) {
 		super();
 		this.iid = iid;
 		this.iMoney = iMoney;
@@ -84,9 +120,7 @@ public class investnotes {
 	}
 	@Override
 	public String toString() {
-		return "investnotes [iid=" + iid + ", iMoney=" + iMoney + ", idate=" + idate + ", userid=" + userid + ", pid="
-				+ pid + ", ptrans=" + ptrans + ", ptransmoney=" + ptransmoney + ", page=" + page + ", rows=" + rows
-				+ "]";
+		return "investnotes [username=" + username + ", pname=" + pname + ", page=" + page + ", rows=" + rows + "]";
 	}
 	public investnotes() {}
 	public investnotes(int iid, String iMoney, String idate, String userid, String pid, int ptrans,double ptransmoney) {

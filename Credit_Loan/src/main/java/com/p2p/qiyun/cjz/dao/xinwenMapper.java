@@ -9,7 +9,7 @@ import com.p2p.qiyun.cjz.domain.userinfo;
 @Mapper
 public interface xinwenMapper {
 	List<news> listnews(news e);
-	int countnews();
+	int countnews(String ntitle);
 	int deletenews(int[] idlist);
 	int newsadd(news s);
 	int updatenews(news s);

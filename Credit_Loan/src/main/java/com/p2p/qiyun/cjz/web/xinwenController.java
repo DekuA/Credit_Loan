@@ -24,14 +24,14 @@ public class xinwenController {
 	private xinwenService ser;
 
 	@RequestMapping("listnews")
-	public Map listinfo(HttpServletRequest request) {
+	public Map listinfo(HttpServletRequest request,String ntitle) {
 		int page = Integer.parseInt(request.getParameter("page"));
 		int rows = Integer.parseInt(request.getParameter("rows"));
 		int first = rows * (page - 1);
 		System.out.println(first);
 		Map map = new HashMap(); 
-		List<news> listinfo = ser.listnews(new news(first, rows));
-		int countinfo = ser.countnews();
+		List<news> listinfo = ser.listnews(new news(first, rows, ntitle));
+		int countinfo = ser.countnews(ntitle);
 		map.put("total", countinfo);
 		map.put("rows", listinfo);
 		return map;

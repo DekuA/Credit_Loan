@@ -24,8 +24,9 @@ public class news {
 		this.page = page;
 		this.rows = rows;
 	}
-	public news(int page, int rows) {
+	public news(int page, int rows ,String ntitle) {
 		super();
+		this.ntitle=ntitle;
 		this.page = page;
 		this.rows = rows;
 	}

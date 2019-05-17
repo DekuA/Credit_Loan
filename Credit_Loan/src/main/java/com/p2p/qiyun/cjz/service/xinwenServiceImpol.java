@@ -18,12 +18,10 @@ public class xinwenServiceImpol implements xinwenService{
 
 
 
-	@Override
-	public int countnews() {
-		// TODO Auto-generated method stub
-		int countinfo = dao.countnews();
-		return countinfo;
-	}
+	/*
+	 * @Override public int countnews() { // TODO Auto-generated method stub int
+	 * countinfo = dao.countnews(); return countinfo; }
+	 */
 
 
 
@@ -68,8 +66,10 @@ public class xinwenServiceImpol implements xinwenService{
 
 
 
-	
-
-
+	@Override
+	public int countnews(String ntitle) {
+		int countnews = dao.countnews(ntitle);
+		return countnews;
+	}
 
 }

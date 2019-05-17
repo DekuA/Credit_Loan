@@ -9,7 +9,7 @@ import com.p2p.qiyun.cjz.domain.userinfo;
 
 public interface touziService {
 	List<investnotes> listtouzi(investnotes e);
-	int counttouzi();
+	int counttouzi(investnotes i);
 	/*
 	 * int deletenews(int[] idlist); int newsadd(news s); int updatenews(news s);
 	 * news selid(news id);

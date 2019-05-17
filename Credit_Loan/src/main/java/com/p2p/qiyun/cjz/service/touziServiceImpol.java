@@ -26,15 +26,12 @@ public class touziServiceImpol implements touziService{
 	}
 
 	@Override
-	public int counttouzi() {
-		// TODO Auto-generated method stub
-		int counttouzi = dao.counttouzi();
+	public int counttouzi(investnotes i) {
+		int counttouzi = dao.counttouzi(i);
 		return counttouzi;
 	}
 
+	
 
-
-
-
-
+	
 }

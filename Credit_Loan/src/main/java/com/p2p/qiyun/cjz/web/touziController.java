@@ -26,14 +26,18 @@ public class touziController {
 	private touziService ser;
 
 	@RequestMapping("listtouzi")
-	public Map listinfo(HttpServletRequest request) {
+	public Map listinfo(HttpServletRequest request,String username,String pname) {
+		/*
+		 * username=username.length()==0?"":username; pname=pname.length()==0?"":pname;
+		 */
+		System.out.println("11:"+username+pname);
 		int page = Integer.parseInt(request.getParameter("page"));
 		int rows = Integer.parseInt(request.getParameter("rows"));
 		int first = rows * (page - 1);
 		System.out.println(first = rows * (page - 1));
 		Map map = new HashMap(); 
-		List<investnotes> listtouzi = ser.listtouzi(new investnotes(first, rows));
-		int counttouzi = ser.counttouzi();
+		List<investnotes> listtouzi = ser.listtouzi(new investnotes(first, rows, username, pname));
+		int counttouzi = ser.counttouzi(new investnotes(first, rows, username, pname));
 		map.put("total", counttouzi);
 		map.put("rows", listtouzi);
 		return map;	

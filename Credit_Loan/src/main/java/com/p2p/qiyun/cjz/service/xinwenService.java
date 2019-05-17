@@ -8,7 +8,8 @@ import com.p2p.qiyun.cjz.domain.userinfo;
 
 public interface xinwenService {
 	List<news> listnews(news e);
-	int countnews();
+	int countnews(String ntitle);
+	/* int countnews(); */
 	int deletenews(int[] idlist);
 	int newsadd(news s);
 	int updatenews(news s);

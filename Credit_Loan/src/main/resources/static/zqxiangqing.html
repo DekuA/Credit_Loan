@@ -4,12 +4,12 @@
 		<meta charset="UTF-8">
 		<title></title>
 	</head>
-		<link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.min.css">
 		<script type="text/javascript" src="js/jquery-3.3.1.js"></script>
 		<script type="text/javascript" src="js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
-		<link rel="stylesheet" href="lxm/css/xmxiangqing.css" />
+		<link rel="stylesheet" href="lxm/css/zqxiangqing.css" />
 	<body style="background-color: #f1eff1;">
 			<div style="background-color: gray;">				
 				<nav class="navbar navbar-expand-sm bg-light" style="height: 30px;">
@@ -18,7 +18,7 @@
 						     <a class="nav-link" href="#"> <font size="1">用户论坛</font></a>
 						    </li>
 						    <li class="nav-item">
-						      <a class="nav-link" href="helpcenter.html""><font size="1">帮助中心</font></a>
+						      <a class="nav-link" href="#"><font size="1">帮助中心</font></a>
 						    </li>
 						    <li class="nav-item">
 						      <a class="nav-link" href="#"><font size="1">关于我们</font></a>
@@ -32,18 +32,27 @@
 						    <li class="nav-item">
 						      &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 						      </li>
+						    <!-- <li class="nav-item">
+						    	 <li>
+						      	<a class="nav-link" href="#"><font size="1">昵称</font></a>						   
+						    </li>
+						     <li>
+						      	<a class="nav-link" href="#">[<font size="1">退出 </font>]</a>						   
+						    </li> -->
 					  </ul>
 				</nav>
 				<div style="position: absolute;right: 40px;top:3px;"><font size="1" >客服电话: 38383</font></div>
 			</div>
-			<div style="height: 60px;background-color: white;">
+			<div style="height: 60px;">
 				<div style="position: absolute;top: 40px;">
 					<ul class="nav">
 						<li class="nav-item">
 					     &nbsp; &nbsp; &nbsp; 
 					    </li>
-						
-					   <li class="nav-item">
+						<li class="nav-item"><a class="nav-link" href="#">
+					      <img src="img/q11.jpg" style="height: 30px;width: 30px;border-radius: 30px;border: 1px solid black;" /></a>
+					    </li>
+					    <li class="nav-item">
 					      <a class="nav-link" href="xsr_html/xsr_zhanghu.html">我的账户</a>
 					    </li>
 					    <li class="nav-item">
@@ -59,7 +68,7 @@
 					      <a class="nav-link" href="zhaiquanzr.html">债权转让</a>
 					    </li>
 					    <li class="nav-item">
-					      <a class="nav-link" href="shouye.html" >首页</a>
+					      <a class="nav-link" href="shouye.html">首页</a>
 					    </li>
 					  </ul>
 				</div> 
@@ -103,6 +112,10 @@
 							</ul>
 							
 							<div class="other-info1">
+								<!-- <i class="fa fa-star"></i>&nbsp;<i class="fa fa-star"></i>
+								<i class="fa fa-star"></i>&nbsp;<i class="fa fa-star"></i>&nbsp;<i class="fa fa-star"></i>
+								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>低风险（内部评级，仅供参考）</span>
+								<p>投资人条件： 1. 身份：非护照注册会员； 2. 风险承受能力“保守型” 及以上</p> -->
 							</div>
 							
 							<div class="other-info2-right">
@@ -111,16 +124,9 @@
 									<span id="zhye">*****</span>  &nbsp;&nbsp;<button class="fa fa-eye" onclick="chakanyue()"></button>
 									<hr>
 									<div class="input-group mb-2" style="width: 300px;margin-left: 35px;">
-										<div class="input-group-prepend">
-									      	<button class="input-group-text" onclick="jianjine()">-</button>
-									    </div>
-									    <input type="text" class="form-control" onchange="touzimoney()" id="touzijine" value="0">
-									    <div class="input-group-append">
-									      	<button class="input-group-text" onclick="jiajine()">+</button>
-									    </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									    <button class="btn btn-group" onclick="lijitouzi()" id="touzianniu" style="background-color: orange;">立即投资</button>
+									    <input type="text" disabled="disabled" class="form-control" onchange="touzimoney()" id="touzijine" value="0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									    <button class="btn btn-group" onclick="lijitouzi()" id="touzianniu" style="background-color: orange;">立即购买</button>
 									</div>
-									<p class="right-dizeng">递增金额：<strong id="right-dizengjine">100.00</strong>元</p>
 								</div>
 							</div>
 						</div>
@@ -131,22 +137,21 @@
 <div class="modal fade" id="zhifukuang" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
-			<div class="modal-header">
-			<div align="center"><h5 class="modal-title" id="myModalLabel" align="center">
+			<div class="modal-header"><div align="center"><h5 class="modal-title" id="myModalLabel" align="center">
 					请输入支付密码
 				</h5></div>
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
 					&times;
 				</button>
+				
 			</div>
 			<div class="modal-body">
 				<div align="center">
 				 <input type="password" id="moneypwd" style="width: 300px;"><br>
-				 <small><a href="#">忘记密码？</a></small>
+				 <!-- <small><a href="#">忘记密码？</a></small> -->
 				</div><br>
 			</div>
 			<div class="modal-footer" align="center">
-				
 				<button type="button" onclick="zhifumoney()" class="btn btn-primary">
 					确认支付
 				</button>
@@ -168,9 +173,6 @@
 				    </li>
 				    <li class="nav-item">
 				        <a class="nav-link" data-toggle="tab" href="#menu2">预保单</a>
-				    </li>
-				    <li class="nav-item">
-				        <a class="nav-link" data-toggle="tab" href="#menu3" onclick="touzijilucx()" >投资记录</a>
 				    </li>
 				    <li class="nav-item">
 				        <a class="nav-link" data-toggle="tab" href="#menu4">常见问题</a>
@@ -353,25 +355,6 @@
 				        	</div>
 					    	
 					    </div>
-				    </div>
-				    <div id="menu3" class="container tab-pane fade"><br>
-				        <table id="menu3-tab1" class="tab table-active">
-				        	<tr>
-				        		<th>投资人</th><th>金额（元）</th><th>时间</th>
-				        	</tr>
-				        </table>
-				        
-				        <table id="menu3-tab2" class="tab table">
-				        	<tr>
-				        		<th></th><th></th><th></th>
-				        	</tr>
-				        	<tr>
-				        		<td>f***q</td><td>20,000.00</td><td>2019-05-08</td>
-				        	</tr>
-				        	<tr>
-				        		<td>y***s</td><td>10,000.00</td><td>2019-05-07</td>
-				        	</tr>
-				        </table>
 				    </div>
 				    <div id="menu4" class="container tab-pane fade"><br>
 				        <div class="menu4-hidden" style="display: block;">
@@ -609,6 +592,6 @@
       </div>
     </div>
   </div>
-	<script type="text/javascript" src="lxm/js/xmxiangqing.js" ></script>
+	<script type="text/javascript" src="lxm/js/zqxiangqing.js" ></script>
 	</body>
 </html>

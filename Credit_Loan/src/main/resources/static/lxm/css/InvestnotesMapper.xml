@@ -256,16 +256,9 @@
   </select>
   
   <insert id="insertInves" parameterType="com.p2p.qiyun.lxm.domain.Investnotes">
-  		insert into investnotes (iMoney,idate,userid,pid,ptrans,ptransmoney,ptransdate)
+  		insert into investnotes (iMoney,idate,userid,pid,ptrans,ptransmoney)
     	values (#{imoney,jdbcType=DOUBLE}, #{idate,jdbcType=VARCHAR}, 
       #{userid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, "0", 
-      "0","0")
+      "0")
   </insert>
-  
-  <update id="upInvesptrans" parameterType="com.p2p.qiyun.lxm.domain.Investnotes">
-  		update investnotes set ptrans=#{ptrans},ptransmoney=#{ptransmoney} where iid=#{iid}
-  </update>
-  
-  
-  
 </mapper>

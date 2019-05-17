@@ -553,5 +553,25 @@
   		<if test="month2==3"></if> 
   	</select>
   	
+  <insert id="insertBysp" parameterType="com.p2p.qiyun.lxm.domain.Project" >
+    insert into project (pname, Pmoneybig, 
+      Pmoneysmall, Pbudget, Pclosing, 
+      Pstatus, plcure, Pncome, 
+      Pdate, Ptransfer, Pnmoney, 
+      Pnterest, Psurplus, Pinfo, 
+      Pattorn, Ppublish, Pnumber, 
+      Pschedule, Pestimate, pStartTime, 
+      pPerson, pAssessor, lenderId, 
+      Risktaking)
+    values ("慧盈-安e+", "0", 
+      "0", "0", #{pclosing,jdbcType=VARCHAR}, 
+      "1", #{plcure,jdbcType=DOUBLE}, "每月等额本息", 
+      "", "60", "", 
+      "", "", "0.12", 
+      "", "", #{pnumber,jdbcType=VARCHAR}, 
+      "0", #{pestimate,jdbcType=INTEGER}, #{pstarttime,jdbcType=VARCHAR}, 
+      #{pperson,jdbcType=INTEGER}, #{passessor,jdbcType=INTEGER}, #{lenderid,jdbcType=INTEGER}, 
+      "")
+  	</insert>
   	
 </mapper>

@@ -38,4 +38,8 @@ public class DeptService {
 		int count = mapper.deleteDept(idlist);
 		return count;
 	}
+	public int showByDeptname(String deptname){
+		int showByDeptname = mapper.showByDeptname(deptname);
+		return showByDeptname;
+	}
 }

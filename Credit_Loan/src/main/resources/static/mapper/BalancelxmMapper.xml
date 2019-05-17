@@ -197,4 +197,8 @@
   <select id="selectBalanceByUid" parameterType="int" resultType="com.p2p.qiyun.lxm.domain.Balancelxm">
   	select * from balance where userid=#{uid}
   </select>
+  
+  <update id="upBalanceByUid" parameterType="com.p2p.qiyun.lxm.domain.Balancelxm">
+  	update balance set balance=balance-#{balance} where userid=#{userid}
+  </update>
 </mapper>

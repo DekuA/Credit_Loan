@@ -29,8 +29,55 @@
   	<insert id="charukuhuxinxi" parameterType="int">
   		insert into customer(userid,custometype) values(#{userid},'个人')
   	</insert>
-  	
   	<update id="forgetupdate" parameterType="com.p2p.qiyun.wzr.domain.Userinfo">
   		update userinfo set password=#{password} where Phone=#{Phone}
   	</update>
+  	
+<<<<<<< HEAD
+  	<select id="voluntarilydate" resultType="com.p2p.qiyun.wzr.domain.Paymenthistory">
+  		select * from paymenthistory where paymentstatus=0
+  	</select>
+  	<select id="voluntarilyuserid" resultType="Integer">
+  		select distinct(userid) from paymenthistory where paymentstatus=0
+  	</select>
+  	<select id="voluntarilyment" resultType="Double">
+  		select distinct(currentrepayment) from paymenthistory where paymentstatus=0
+  	</select>
+  	<select id="voluntarilymoney" parameterType="Integer" resultType="Double">
+  		select balance from balance where userid in
+  		<foreach collection="list" item='kk' open='(' close=')' separator=",">
+  			#{kk}
+  		</foreach>
+  	</select>
+  	<update id="voluntarilyupdate" parameterType="com.p2p.qiyun.wzr.domain.VoluntarilyVo">
+			update balance set balance in
+			<foreach collection="list" item="cus" open="(" separator="," close=")">
+				#{cus.balances}
+			</foreach>
+			where userid in
+			<foreach collection="list" item="cus" open="(" separator="," close=")">
+				#{cus.userids}
+			</foreach>
+  	</update>
+  	<update id="voluntarilypayupdate" parameterType="com.p2p.qiyun.wzr.domain.VoluntarilyVo">
+  			update paymenthistory set todayMoneys in
+  			<foreach collection="list" item="cus" open="(" separator="," close=")">
+  					#{cus.balances}
+  			</foreach>
+		          where userid in
+			<foreach collection="list" open="(" item="cus" separator="," close=")">
+				#{cus.userids}
+			</foreach> 
+  	</update>
+  	<update id="voluntarilypayupdate2" parameterType="com.p2p.qiyun.wzr.domain.VoluntarilyVo">
+  		update paymenthistory set paymentstatus=2 where userid=#{userid}
+  	</update>
+  	<update id="voluntarilycustupdate" parameterType="com.p2p.qiyun.wzr.domain.VoluntarilyVo">
+  		update customer set creditrate=creditrate-100 where userid=#{userid}
+  	</update>
+=======
+  	<select id="seluserById" parameterType="int" resultType="com.p2p.qiyun.wzr.domain.Userinfo">
+  		select * from userinfo where userid=#{userid}
+  	</select>
+>>>>>>> branch 'master' of https://github.com/DekuA/Credit_Loan.git
 </mapper>

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.p2p.qiyun.wzr.dao.UserinfoMapper;
+import com.p2p.qiyun.wzr.domain.Paymenthistory;
 import com.p2p.qiyun.wzr.domain.Userinfo;
 import com.p2p.qiyun.wzr.domain.Usersms;
 
@@ -73,5 +74,10 @@ public class UserinfoServiceImpol implements UserinfoService {
 	public int forgetupdate(Userinfo user) {
 		int i = Mapper.forgetupdate(user);
 		return i;
+	}
+	
+	public Userinfo seluserById(int uid) {
+		Userinfo user=Mapper.seluserById(uid);
+		return user;
 	}
 }

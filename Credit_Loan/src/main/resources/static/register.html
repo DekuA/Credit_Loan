@@ -33,6 +33,7 @@
 	.dialog-button {
 		text-align: center;
 	}
+	
 </style>
 		<script>
 		
@@ -50,10 +51,10 @@
 				    url:"find?nickname="+user+"&username="+name+"&Phone="+phone,   
 				    //title:"<div align='center'>新闻</div>",
 				    width:'auto',
-				    height:730,
+				    height:'auto',
 				    toolbar: [{
 				    	iconCls: 'icon-edit',
-						text:'查询会员借款',
+						text:'查询会员详细信息',
 						handler: function(){
 							var rows = $('#dg2').datagrid('getSelections');
 							
@@ -99,21 +100,17 @@
 											substring="女";
 										}
 										
-										var input = "<input name='font' style='display: none;' value='"+data[0].loanid+"'></input>"+
-										"<p>用户id:<input readonly='readonly' disabled='disabled' id='num' name='num' value='"+data[0].userid+"' class='textbox' style='width:auto;'></p>"+
-										"<p>贷款月利息:<input type='text' id='name' disabled='disabled' name='name' class='textbox' value='"+data[0].loanrate+"' style='width:auto;'></p>"+
-										"<p>性&nbsp;&nbsp;别:<input type='text' disabled='disabled' class='textbox' name='radio' value='"+substring+"' style='width:auto;'></p>"+
-										"<p>申请日期:<input type='text' name='day' disabled='disabled' class='textbox' required ='required' value='"+data[0].applicationdate+"' style='width:auto;'></p>"+
-										"<p>贷款总金额:<input type='text' name='phone1' disabled='disabled' class='textbox' value='"+data[0].loanamount+"' style='width:auto;'></p>"+
-										"<p>还款期数:<input type='text' name='cuty' disabled='disabled' class='textbox' value='"+data[0].repaymentperiod+"' style='width:auto;'></p>"+
-										"<p>审批状态:<input type='text' name='zhiwu' disabled='disabled' id='zhiwu' class='textbox' value='"+a+"' style='width:auto;'></p>"+
-										"<p>审批人:<input type='text' name='zhiwu' disabled='disabled' class='textbox' value='"+data[0].uu.username+"' style='width:auto;'></p>"+
-										"<p>身份证正面:<img alt='' src='"+data[0].uuu.usersrcz+"' style='width:200px;'></p>"+
-										"<p>身份证反面:<img alt='' src='"+data[0].uuu.usersrcf+"' style='width:200px;'></p>"
+										
+										var input ="<table border='1' align='center' width='100%' height='20%' ><tr align='center'><th>用户id</th><th>贷款月利息</th><th>性别</th><th>申请日期</th><th>贷款总金额</th><th>还款期数</th><th>审批状态</th><th>审批人</th></tr>"+
+													"<tr align='center'><td>"+data[0].userid+"</td><td>"+data[0].loanrate+"</td><td>"+substring+"</td><td>"+data[0].applicationdate+"</td><td>"+data[0].loanamount+"</td><td>"+data[0].repaymentperiod+"</td><td>"+a+"</td><td>"+data[0].uu.username+"</td></tr>"+
+													
+													"</table>"+
+													"<table align='center' width='100%'><tr align='center'><th>身份证正面</th><th>身份证反面</th></tr>"+
+													"<tr align='center'><td><img alt='' src='"+data[0].uuu.usersrcz+"' style='width:80%;'></td><td><img alt='' src='"+data[0].uuu.usersrcf+"' style='width:80%;'></td></table>"
 											
 										$("#manage_edit").append(input);
 										}else{
-											alert("该会员没有借款");
+											alert("该会员没有添加详细信息");
 											$.messager.progress('close');
 										}
 									},
@@ -146,11 +143,19 @@
 			show();
 			//修改弹出框
 			$("#manage_edit").dialog({
-				width: 600,
-				height:650,
+				width: '50%',
+				height:'40%',
 				title: '查询信息',
 				modal: true,
-				closed: true
+				closed: true,
+				buttons: [{
+					text: '取消',
+					handler: function() {
+						$('#manage_edit').dialog('close').form('reset');
+					}
+				}]
+				
+				
 				/* buttons: [{
 					
 					handler: function() {
@@ -198,5 +203,6 @@
 				}],*/
 			}) 
 		</script>
+
 </body>
 </html>

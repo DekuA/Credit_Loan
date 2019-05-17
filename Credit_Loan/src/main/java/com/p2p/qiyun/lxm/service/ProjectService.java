@@ -10,6 +10,12 @@ import com.p2p.qiyun.lxm.domain.SelZhaiQuan;
 public interface ProjectService {
 	List<Investnotes> selZhaiqzr(SelZhaiQuan selzq);
 	
+	int upBalanceByUid(Balancelxm balance);
+	
+	int updatePschedule(int pschedule,String pid);
+	
+	int insertInves(Investnotes inves);
+	
 	List<Project> selProject();
 	Project selProjectById(int pid);
 	Balancelxm selBalance(int uid);

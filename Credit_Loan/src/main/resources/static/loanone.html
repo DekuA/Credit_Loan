@@ -13,8 +13,8 @@
 <script
 	src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-paginator.js"></script>
 
+<script src='lsx_html/js/alert.js'></script>
 <style>
 #lunbo {
 	height: 600px;
@@ -96,7 +96,7 @@
 				<li><a class="nav-link" href="#"> <font size="1">昵称</font>
 				</a></li>
 				<li><a class="nav-link" href="#">[ <font size="1">退出
-					</font>]
+					</font>
 				</a></li>
 			</ul>
 		</nav>
@@ -238,18 +238,20 @@
 			</div>
 
 		</div>
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
-			aria-labelledby="myModalLabel">
-
-			<div class="modal-dialog" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">查看利息</h4>
-						 <button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						 </button><hr>
-						<table id="tablx" border="1">
+	
+	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				
+				<div align="center"><h4 class="modal-title" id="myModalLabel" align="center">
+					查看利息
+				</h4></div>
+			</div>
+			<div class="modal-body">
+				<div align="center">
+				 <table id="tablx" border="1">
 						  <tr>
 						      <th>借款总金额</th>
 						      <th>借款期限</th>
@@ -258,13 +260,28 @@
 						      <th>总利息</th>
 						     <th>手续费</th>
 						  </tr>
+						  <tr>
+						    <td id="jiekz"></td>
+						    <td id="jieqx"></td>
+						    <td id="jieje"></td>
+						    <td id="huanklx"></td>
+						    <td id="zlx"></td>
+						      <td id="shouxf"></td>
+						  </tr>
 						</table>
-					</div>
-				</div>
+				</div><br>
+				
+				
+				
+			</div>
+			<div class="modal-footer" align="center">
+				
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
 			</div>
 		</div>
+	  </div>
 	</div>
-
 </body>
 
 <script type="text/javascript">
@@ -281,6 +298,28 @@
     					 userid=data;  	
     					 if(data==0){
     						 alert("您没有登录,请登录后申请！！");
+    						/*  var dialog12 = jqueryAlert({
+    							   'title'   : '登录提示',
+    							   'content' : '您没有登录,请登录后申请！！',
+    							    'modal'   : true,
+    							    'buttons' :{
+    							        '确定' : function(){
+    							            dialog12.close();
+    							        }
+    							    }
+    				    		})
+    						 //
+    						  dialog12.show(); 
+    						  PostbirdAlertBox.alert({
+    							    'title': '登录标题',
+    							    'content': '您没有登录,请登录后申请！',
+    							    'okBtn': '好的',
+    							    'contentColor': 'red',
+    							    'onConfirm': function () {
+    							        console.log("回调触发后隐藏提示框");
+    							        
+    							    }
+    							});*/
     						 window.location.href="login.html";
     					 }
     					 //----
@@ -288,11 +327,33 @@
     		    			var amperiods = $("#amperiods").val();
     		    			var gg=$("#checkbox-id").get(0).checked;//是否勾选同意合同
     		    			if (!amount) {
-    		    				alert("请填写您的借款金额！！");
+    		    				/*  var dialog1 = jqueryAlert({
+    		    		    		    'icon'    : 'lsx_html/img/error.png',
+    		    		    		    'content' : '请填写您的借款金额！！！',
+    		    		    		    'closeTime' : 2000,
+    		    		    		})dialog1.show(); */
+    		    		    		/*  alert({
+    		    		    		    'title': '提示',
+    		    		    		    'content': '请填写您的借款金额！',
+    		    		    		    'okBtn': '好的',
+    		    		    		    'contentColor': 'red',
+    		    		    		    'onConfirm': function () {
+    		    		    		        console.log("回调触发后隐藏提示框");
+    		    		    		       
+    		    		    		    }
+    		    		    		});  */
+    		    			alert("请填写您的借款金额！！");
+    		    				
     		    			} else if (!amperiods) {
-    		    				alert("请填写您的借款期限！！");
+    		    				alert("请填写借款期限")
     		    			}  else if(gg==false){
-    		    				alert("请勾选签订合同！！");
+    		    				alert("请勾选签订合同！！！");
+    		    				 /* var dialog4= jqueryAlert({
+  		    		    		    'icon'    : 'lsx_html/img/error.png',
+  		    		    		    'content' : '！',
+  		    		    		    'closeTime' : 2000,
+  		    		    		})
+  		    		    		dialog4.show(); */
     		    			}else{
     		    				 
     			    			var autonym=0;
@@ -306,7 +367,19 @@
     		      	    								data:{uid:userid},
     		      	    								success:function(data){
     		      	    									if(data==0){
-    		      	    										alert("您没有实名,请实名后申请！！");
+    		      	    										//alert("");
+    		      	    										/*  var dialog5 = jqueryAlert({
+    		      	    		    							   'title'   : '实名提示',
+    		      	    		    							   'content' : '您没有实名,请实名后申请！！！',
+    		      	    		    							    'modal'   : true,
+    		      	    		    							    'buttons' :{
+    		      	    		    							        '确定' : function(){
+    		      	    		    							            dialog5.close();
+    		      	    		    							        }
+    		      	    		    							    }
+    		      	    		    				    		}) 
+    		      	    		    				    		 dialog5.show();*/
+    		      	    		    				    		 alert("您没有实名,请实名后申请！");
     		      	    										location.href="xsr_html/xsr_zhanghu.html";
     		      	    									}else{
     		      	    										autonym=data;
@@ -319,19 +392,24 @@
     		      	    	      	    	    				  }else{
     		      	    	      	    	    					lixi=(amount*0.12).toFixed(2);
     		      	    	      	    	    				  }
-    		      	    								$.ajax({
-    		      	    									url:'pdAge',
-    		      	    									data:{
-    		      	    										uid:userid
-    		      	    									},
-    		      	    									success:function(cc){
-    		      	    										if(cc>0){
+    		      	    							
     		      	    											$.ajax({
     	    		      	    										url:'gjloan',
     	    		      	    										data:{uid : uuid,},
     	    		      	    										success:function(test){
     	    		      	    											if(test>0){
     	    		      	    												alert("您已经提交过1次申请哦！！");
+    	    		      	    												/*  var dialog6 = jqueryAlert({
+    	    		    		      	    		    							   'title'   : '提示',
+    	    		    		      	    		    							   'content' : '您已经提交过1次申请哦！！！！',
+    	    		    		      	    		    							    'modal'   : true,
+    	    		    		      	    		    							    'buttons' :{
+    	    		    		      	    		    							        '确定' : function(){
+    	    		    		      	    		    							            dialog6.close();
+    	    		    		      	    		    							        }
+    	    		    		      	    		    							    }
+    	    		    		      	    		    				    		})
+    	    		    		      	    		    				    		 dialog6.show(); */
     	    		      	    												window.location.href="/xsr_html/xsr_jiehuanjilu.html";
     	    		      	    											}else{
     	    		      	    												$.ajax({
@@ -348,6 +426,28 @@
     	    	    		      	    	      	    	    						if (data > 0) {
     	    	    		      	    	      	    	    							alert("借款申请提交成功，请等待客户经理联系")
     	    	    		      	    	      	    	    							alert("请耐心等待3-2个工作日");
+    	    	    		      	    	      	    	    					/* 	var dialog4s = jqueryAlert({
+    	    	    		      	    	      	    	    						'icon'    : 'lsx_html/img/right.png',
+    	    	    		      	    	      	    	    					    'title'   : '提示',
+    	    	    		      	    	      	    	    					    'content' : '借款申请提交成功，请等待客户经理联系',
+    	    	    		      	    	      	    	    					    'modal'   : true,
+    	    	    		      	    	      	    	    					    'animateType' : '',
+    	    	    		      	    	      	    	    					    'buttons' :{
+    	    	    		      	    	      	    	    					        '关闭' : function(){
+    	    	    		      	    	      	    	    					            M.dialog4.close();
+    	    	    		      	    	      	    	    					        },
+    	    	    		      	    	      	    	    					        '好的' : function(){
+    	    	    		      	    	      	    	    					            if(M.dialog41){
+    	    	    		      	    	      	    	    					                return M.dialog41.show();
+    	    	    		      	    	      	    	    					            }
+    	    	    		      	    	      	    	    					            M.dialog41 = jqueryAlert({
+    	    	    		      	    	      	    	    					                
+    	    	    		      	    	      	    	    					                'content' : '请耐心等待3-2个工作日.'
+    	    	    		      	    	      	    	    					            })
+    	    	    		      	    	      	    	    					        }
+    	    	    		      	    	      	    	    					    }
+    	    	    		      	    	      	    	    					})
+    	    	    		      	    	      	    	    					dialog4s.show(); */
     	    	    		      	    	      	    	    						window.location.href="/xsr_html/xsr_jiehuanjilu.html";
     	    	    		      	    	      	    	    						}
     	    	    		      	    	      	    	    					}
@@ -355,16 +455,7 @@
     	    		      	    											}
     	    		      	    										}
     	    		      	    									})
-    		      	    										}else{
-    		      	    											alert("")
-    		      	    										}
     		      	    										
-    		      	    									}
-    		      	    								})
-    		      	    										 
-    		      	    								
-    		      	    	      	    	    				
-    		      	    	      	    						
     		      	    	      	    					}
     		      	    	      	    				}
     		      	    	      	    			})
@@ -399,41 +490,47 @@
 		} else if (!amperiods) {
 			alert("请填写您的借款期限！！");
 		} else {
+			
+			
 			if(amperiods==3){
-				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
-				+((amount*0.025)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
-				+(amount*0.025).toFixed(2)+'</td><td>'+
-				((amount*0.025)/amperiods).toFixed(2)+'</td><td>'
-				+'2.5%</td></tr>';
-				$("#tablx").append(str);
+				$('#jiekz').text(amount);
+				$('#jieqx').text(amperiods);
+				$('#jieje').text(((amount*0.025)/amperiods+amount/amperiods).toFixed(2));
+				$('#zlx').text((amount*0.025).toFixed(2));
+				$('#huanklx').text(((amount*0.025)/amperiods).toFixed(2));
+				$('#shouxf').text("2.5%");
+			
 			}else if(amperiods==6){
-				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
-				+((amount*0.045)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
-				+(amount*0.045).toFixed(2)+'</td><td>'+
-				((amount*0.045)/amperiods).toFixed(2)+'</td><td>'
-				+'4.5%</td></tr>';
-				$("#tablx").append(str);
+				$('#jiekz').text(amount);
+				$('#jieqx').text(amperiods);
+				$('#jieje').text(((amount*0.045)/amperiods+amount/amperiods).toFixed(2));
+				$('#zlx').text((amount*0.045).toFixed(2));
+				$('#huanklx').text(((amount*0.045)/amperiods).toFixed(2));
+				$('#shouxf').text("4.5%");
+				
 			}else if(amperiods==12){
-				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
-				+((amount*0.088)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
-				+(amount*0.088).toFixed(2)+'</td><td>'+
-				((amount*0.088)/amperiods).toFixed(2)+'</td><td>'
-				+'8.8%</td></tr>';
-				$("#tablx").append(str);
+				$('#jiekz').text(amount);
+				$('#jieqx').text(amperiods);
+				$('#jieje').text(((amount*0.088)/amperiods+amount/amperiods).toFixed(2));
+				$('#zlx').text((amount*0.088).toFixed(2));
+				$('#huanklx').text(((amount*0.088)/amperiods).toFixed(2));
+				$('#shouxf').text("8.8%");
+				
 			}else if(amperiods==24){
-				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
-				+((amount*0.12)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
-				+(amount*0.12).toFixed(2)+'</td><td>'+
-				((amount*0.12)/amperiods).toFixed(2)+'</td><td>'
-				+'12%</td></tr>';
-				$("#tablx").append(str);
+				$('#jiekz').text(amount);
+				$('#jieqx').text(amperiods);
+				$('#jieje').text(((amount*0.12)/amperiods+amount/amperiods).toFixed(2));
+				$('#zlx').text((amount*0.12).toFixed(2));
+				$('#huanklx').text(((amount*0.12)/amperiods).toFixed(2));
+				$('#shouxf').text("12%");
+				
 			}else{
-				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
-				+((amount*0.18)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
-				+(amount*0.018).toFixed(2)+'</td><td>'+
-				((amount*0.18)/amperiods).toFixed(2)+'</td><td>'
-				+'18%</td></tr>';
-				$("#tablx").append(str);
+				$('#jiekz').text(amount);
+				$('#jieqx').text(amperiods);
+				$('#jieje').text(((amount*0.18)/amperiods+amount/amperiods).toFixed(2));
+				$('#zlx').text((amount*0.18).toFixed(2));
+				$('#huanklx').text(((amount*0.18)/amperiods).toFixed(2));
+				$('#shouxf').text("18%");
 				
 			}
 			$('#myModal').modal();

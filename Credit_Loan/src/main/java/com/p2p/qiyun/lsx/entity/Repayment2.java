@@ -13,33 +13,21 @@ public class Repayment2 {
     private int returnperiod;
     private int returnperiodp;
     private double modmoney;
-    private double todayMoney;
+   
     
-    public Repayment2(int repaymentid, int loanid, int userid, double rterest, double returnallmoney, Timestamp rdate,
-			int returnperiod, int returnperiodp, double modmoney, double todayMoney) {
-		super();
-		this.repaymentid = repaymentid;
-		this.loanid = loanid;
-		this.userid = userid;
-		this.rterest = rterest;
-		this.returnallmoney = returnallmoney;
-		this.rdate = rdate;
-		this.returnperiod = returnperiod;
-		this.returnperiodp = returnperiodp;
-		this.modmoney = modmoney;
-		this.todayMoney = todayMoney;
-	}
-
-	public double getTodayMoney() {
-		return todayMoney;
-	}
-
-	public void setTodayMoney(double todayMoney) {
-		this.todayMoney = todayMoney;
-	}
 
 	public Repayment2() {}
     
+	public Repayment2(int loanid, int userid,double rterest, double returnallmoney,int returnperiodp) {
+		
+		this.loanid = loanid;
+		this.userid = userid;
+		this.returnallmoney = returnallmoney;
+		this.rterest = rterest;
+		this.returnperiodp = returnperiodp;
+	}
+    
+	
 	@Override
 	public String toString() {
 		return "Repayment2 [repaymentid=" + repaymentid + ", loanid=" + loanid + ", userid=" + userid + ", rterest="

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.p2p.qiyun.wzr.dao.UserinfoMapper;
+import com.p2p.qiyun.wzr.domain.Paymenthistory;
 import com.p2p.qiyun.wzr.domain.Userinfo;
 import com.p2p.qiyun.wzr.domain.Usersms;
 

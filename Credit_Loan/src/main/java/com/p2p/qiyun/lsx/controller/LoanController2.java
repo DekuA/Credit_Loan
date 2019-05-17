@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.p2p.qiyun.dby.pojo.balance;
+import com.p2p.qiyun.hjh.entity.Customer;
 import com.p2p.qiyun.lsx.entity.Balance2;
 import com.p2p.qiyun.lsx.entity.Loan2;
 import com.p2p.qiyun.lsx.entity.Paymenthistory2;
@@ -40,6 +41,20 @@ public class LoanController2 {
 		System.out.println(i);
 		return i;
 	}
+	
+	@RequestMapping("findCustomerxy")
+	public int findCustomerxy(String uids) {
+		int uid = Integer.parseInt(uids);
+		System.out.println(uid);
+		Customer findCustomer = ser.findCustomer(uid);
+		int creditrate=0;
+		int parseInt = Integer.parseInt(findCustomer.getCreditrate());
+		System.out.println(parseInt);
+		if(parseInt>500 || parseInt==500) {
+			    creditrate=parseInt;  
+		}
+		return creditrate;
+	} 
 	
 	@RequestMapping("panlog")
 	public int panlog(HttpSession session) {

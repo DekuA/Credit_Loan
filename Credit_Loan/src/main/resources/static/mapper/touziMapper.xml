@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.p2p.qiyun.cjz.dao.touziMapper" >
+<!--and u.username like '%吴%' and  p.pname like '%慧%'  -->
+  	 <select id="listtouzi"  resultType="com.p2p.qiyun.cjz.domain.investnotes">
+		select i.iid,i.iMoney,i.idate,u.username,p.pname from investnotes i,userinfo u,project p where i.userid=u.userid and i.pid=p.pid
+		 <if test="username!=null and username!=''  "><!-- and username!='' -->
+  			and u.username like "%"#{username}"%"
+  			</if>
+  			<if test="pname!=null and pname!='' "><!-- and pname!='' -->
+  			 and  p.pname like "%"#{pname}"%"
+  		</if>
+  		LIMIT #{page},#{rows}
+		
+		</select>     
+		<select id="counttouzi" parameterType="com.p2p.qiyun.cjz.domain.investnotes" resultType="int">
+		select count(*) from investnotes i,userinfo u,project p where i.userid=u.userid and i.pid=p.pid and u.username like "%"#{username}"%"  and  p.pname like "%"#{pname}"%"
+		</select>	
+		<!-- 	<delete id="deletenews" parameterType="int">
+	  	 delete from news where newsId in 
+	  	 <foreach collection="array" open="(" close=")" item="k" separator=",">
+	    	#{k}
+		 </foreach>
+		  </delete>
+		  <insert id="newsadd" parameterType="com.p2p.qiyun.cjz.domain.news">
+		 INSERT INTO news(ntitle,ncontent,ncreatedate) VALUES(#{ntitle},#{ncontent},#{ncreatedate})
+		  </insert>
+		  	<update id="updatenews" parameterType="com.p2p.qiyun.cjz.domain.news">
+		update news set ntitle=#{ntitle},ncontent=#{ncreatedate}, ncreatedate=#{ncreatedate} where newsid=#{newsid}
+	</update>
+	<select id="selid" parameterType="com.p2p.qiyun.cjz.domain.news" resultType="com.p2p.qiyun.cjz.domain.news">
+	select * from news  where newsid=#{newsid}
+	</select> -->
+</mapper>

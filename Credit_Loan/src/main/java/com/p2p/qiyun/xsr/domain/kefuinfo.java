@@ -7,10 +7,11 @@ public class kefuinfo {
 	private String kfnr;
 	private int  qiuid;
 	private String fasongdate;
+	
 	@Override
 	public String toString() {
 		return "kefuinfo [kfxxid=" + kfxxid + ", userid=" + userid + ", uid=" + uid + ", kfnr=" + kfnr + ", qiuid="
-				+ qiuid + "]";
+				+ qiuid + ", fasongdate=" + fasongdate + "]";
 	}
 	public kefuinfo() {
 		super();

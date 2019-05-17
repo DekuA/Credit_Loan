@@ -139,13 +139,20 @@ public class LoanServiceimpol extends Thread implements LoanService {
 										  int y=cal.get(Calendar.YEAR);    
 										 int  m=cal.get(Calendar.MONTH);    
 										 int d=cal.get(Calendar.DATE);    
-										 int ssm=m+1;
+										 int ssm=m+2;
+										 int month=12;
+										 String ss="";
 										 Repayment2 rs = loan2s.selctRepayment(id);
 										  for(int i = 0; i < loan2.getRepaymentperiod(); i++) {
-									      String ss=y+"-"+((ssm+1)+i)+"-"+d;
+												  if(12>=(ssm+i)) {
+													  ss = y+"-"+(ssm+i)+"-"+d;
+												  }else {
+													  ss = (y+1)+"-"+((ssm+i)-month)+"-"+d;
+												  }
+									      //y+"-"+((ssm+1)+i)+"-"+d;
 									     Paymenthistory2 paym=new Paymenthistory2(rs.getRepaymentid(), id, Loanid, mm/qix, ss);
 									     int j = loan2s.AddPaymenthistory2(paym);
-									     System.out.println(j+"还款记录表成功！！");
+									    // System.out.println(j+"还款记录表成功！！");
 										  
 									   }
 									  
@@ -194,10 +201,17 @@ public class LoanServiceimpol extends Thread implements LoanService {
 								  int y=cal.get(Calendar.YEAR);    
 								 int  m=cal.get(Calendar.MONTH);    
 								 int d=cal.get(Calendar.DATE);    
-								 int ssm=m+1;
+								 int ssm=m+2;
+								 int month=12;
+								 String ss="";
 								 Repayment2 rs = loan2s.selctRepayment(id);
 								  for(int i = 0; i < loan2.getRepaymentperiod(); i++) {
-							      String ss=y+"-"+((ssm+1)+i)+"-"+d;
+									  if(12>=(ssm+i)) {
+										  ss = y+"-"+(ssm+i)+"-"+d;
+									  }else {
+										  ss = (y+1)+"-"+((ssm+i)-month)+"-"+d;
+									  }
+							      //ss=y+"-"+((ssm+1)+i)+"-"+d;
 							     Paymenthistory2 paym=new Paymenthistory2(rs.getRepaymentid(), id, Loanid, mm/qix, ss);
 							     int j = loan2s.AddPaymenthistory2(paym);
 							     System.out.println(j+"还款记录表成功！！");

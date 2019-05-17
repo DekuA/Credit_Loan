@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+</head>
+<script src="easyui/jquery.min.js"></script>
+<script src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+<link rel="stylesheet" href="easyui/themes/default/easyui.css" />
+<link rel="stylesheet" href="easyui/themes/icon.css" />
+<body>
+	<!-- <div align="center" style="width:100%;height:100%;">
+
+	<table id="tabID1" class="easyui-datagrid" >
+	</table>
+</div> -->
+	<div align="center" style="width: 100%; height: 100%;">
+
+		<table id="dg" class="easyui-datagrid">
+
+			<div style="padding: 0 0 0 7px; color: #333;" align="center" id="tt">
+				姓名:<input type="text" class="textbox" id="ntitle3"
+					style="width: 100px; height: 22px"> <a href="#"
+					class="easyui-linkbutton" iconCls="icon-search" onclick="show()">查询</a>
+				<a href="#" class="easyui-linkbutton" iconCls="icon-add"
+					palin="true" onclick="add()">添加</a> <a href="#"
+					class="easyui-linkbutton" iconCls="icon-edit" palin="true"
+					onclick="update()">修改</a> <a href="#" class="easyui-linkbutton"
+					iconCls="icon-remove" palin="true" onclick="remove()">删除</a>
+			</div>
+			<div id="add" style="display: none; text-align: center;">
+				标题:<input id="ntitle" style='width: 250px;' /><br> 内容:<br>
+				<textarea rows="5" cols="30" id="ncontent" style='width: 250px;'></textarea>
+				<br> <br> <input id="ncreatedate" type="hidden" />
+				<!-- 時間<input type="text" id="ncreatedate" class="easyui-datebox" editable="false"><br><br> -->
+				<button class="easyui-linkbutton" onclick="tijiao()">提交</button>
+				<button class="easyui-linkbutton" onclick="quxiao()">取消</button>
+			</div>
+		</table>
+		<form id="manage_edit"
+			style="margin: 0; padding: 5px 0 0 25px; color: #333;">
+			<input type="hidden" id="newsid1" name="newsid" />
+			<p>
+				標題:<input type='text' id="ntitle1" name='ntitle' class='textbox'
+					style='width: 250px;'></input>
+			</p>
+			<p>
+				内容:
+				<textarea id="ncontent1" name='ncontent' rows="5" cols="30"
+					style='width: 250px;'></textarea>
+			</p>
+			<p>
+				時間:<input type='text' readonly="readonly" id="ncreatedate1" name='ncreatedate'
+					class='textbox' style='width: 250px;'></input>
+			</p>
+		</form>
+	</div>
+	<script type="text/javascript">
+		show();
+		function show() {
+			var ntitle3 = $('#ntitle3').val();
+			if (ntitle3==null) {
+				ntitle3 = '';
+			}
+			$("#dg").datagrid({
+				title : '新聞',
+				width : 'auto',
+				height : 406,
+				url : "listnews?ntitle="+ntitle3,
+				columns : [ [ {
+					field : 'newsid',
+					width : 200,
+					align : 'center',
+					title : 'ID',
+					checkbox : true
+				}, {
+					field : 'ntitle',
+					title : '標題',
+					width : 200,
+					align : 'center'
+				}, {
+					field : 'ncontent',
+					width : 360,
+					align : 'center',
+					title : '内容'
+				}, {
+					field : 'ncreatedate',
+					title : '時間',
+					width : 200,
+					align : 'center'
+				}, ] ],
+				fitColumns : true,
+				pagination : true,
+				pageList : [ 10, 15, 20 ],
+				pageSize : 10
+			});
+		}
+		function add() {
+			$('#add').dialog({
+				title : '添加员工',
+				width : 280,
+				height : 250,
+				closed : false,
+				cache : false,
+				modal : true
+			});
+
+		}
+		function quxiao() {
+			$("#add").dialog('close').form('reset');
+		}
+		function tijiao() {
+			var ntitle = $("#ntitle").val();
+			var ncontent = $("#ncontent").val();
+			var ncreatedate = $("#ncreatedate").val();
+			$.ajax({
+				url : "newsadd",
+				data : {
+					ntitle : ntitle,
+					ncontent : ncontent,
+					ncreatedate : ncreatedate
+				},
+				success : function(data) {
+					if (data > 0) {
+						$("#add").dialog('close').form('reset');
+						$('#dg').datagrid('reload');//重新加载
+					}
+				},
+			});
+			show();
+		}
+
+		function remove() {
+			var rows = $("#dg").datagrid('getSelections');
+			if (rows.length > 0) {
+				$.messager.confirm(' 确 定 ', ' 您 要 删 除 所 选 的 <strong>'
+						+ rows.length + '</strong>条记录吗？', function(flag) {
+					if (flag) {
+						var ids = [];
+						for (var i = 0; i < rows.length; i++) {
+							ids.push(rows[i].newsid);
+							/* 							alert(rows[i].newsid); */
+						}
+						$.ajax({
+							type : "post",
+							url : "deletenews",
+							async : true,
+							data : {
+								idlist : ids.join(','),
+							},
+							beforeSend : function() {
+								$.messager.progress({
+									text : '删除数据中，稍等...',
+								});
+							},
+							beforeSend : function() {
+								$('#dg').datagrid('loading'); //显示载入状态。
+							},
+							success : function(data) {
+								$.messager.progress('close');
+								if (data > 0) {
+									$.messager.show({
+										title : '提示',
+										msg : data + '个删除成功！',
+									});
+									$('#dg').datagrid('reload');//重新加载。
+									$('#dg').datagrid('loaded');//隐藏载入状态。
+									$('#dg').datagrid('unselectAll')//取消选择所有当前页中所有的行。
+								} else {
+									$.messager.alert('警告操作', '删除异常，请重 新提交！',
+											'warning');
+								}
+							},
+
+						})
+					}
+				})
+			} else {
+				$.messager.alert('警告操作', '请选择要删除的选项！', 'warning');
+			}
+		}
+		function update() {
+			var rows = $('#dg').datagrid('getSelections');
+			if (rows.length > 1) {
+				$.messager.alert('警告操作', '编辑记录只能选定一条数据！', 'warning');
+			} else if (rows.length == 1) {
+				$.ajax({
+					type : "post",
+					url : "selid",
+					async : true,
+					data : {
+						newsid : rows[0].newsid,
+					},
+					beforeSend : function() {
+						$.messager.progress({
+							text : '正在尝试获取数据...',
+						});
+					},
+					success : function(data) {
+						//alert(data.newsid);
+						$.messager.progress('close');
+						/*  $('#manage_edit').dialog('open'); 
+						 $("#manage_edit").empty(); */
+
+						/* var input = "<p>標題:<input type='text' name='ntitle' class='textbox' value='"+data['news'].ntitle+"' style='width:200px;'></input></p>"+
+						"<p>内容:<input type='text' id='ncontent' name='ncontent' class='textbox' value='"+data['news'].ncontent+"' style='width:200px;'></input></p>"+
+						"<p>時間:<input type='text' id='ncreatedate' name='ncreatedate' class='textbox' value='"+data['news'].ncreatedate+"' style='width:200px;'></input></p>";	
+						$("#manage_edit").append(input); 
+						ntitle:$("#ntitle").val(),
+						ncontent:$("#ncontent").val(),
+						ncreatedate:$("#ncreatedate").val(), */
+						$('#manage_edit').form('load', {
+							newsid : data.newsid,
+							ntitle : data.ntitle,
+							ncontent : data.ncontent,
+							ncreatedate : data.ncreatedate,
+
+						}).dialog('open');
+
+					},
+					error : function() {
+						$.messager.alert('警告操作', '服务器返回数据失败', 'warning');
+					}
+
+				});
+
+			} else {
+				$.messager.alert('警告操作', '编辑记录至少选定一条数据！', 'warning');
+			}
+		}
+		$("#manage_edit").dialog(
+				{
+					width : 350,
+					height : 280,
+					title : '修改管理',
+					modal : true,
+					closed : true,
+					buttons : [
+							{
+								text : '提交',
+								handler : function() {
+									$.ajax({
+										url : "updatenews",
+										type : "post",
+										data : {
+											newsid : $("#newsid1").val(),
+											ntitle : $("#ntitle1").val(),
+											ncontent : $("#ncontent1").val(),
+											ncreatedate : $("#ncreatedate1")
+													.val(),
+										},
+										beforeSend : function() {
+											$.messager.progress({
+												text : '正在尝试提交...',
+											});
+										},
+										success : function(data) {
+											/* alert(data); */
+											$.messager.progress('close');
+											if (data > 0) {
+												$.messager.show({
+													title : '提示',
+													msg : '修改管理成功！',
+												});
+												$('#manage_edit').dialog(
+														'close').form('reset');
+												$('#dg').datagrid('reload');
+											} else {
+												$.messager.alert('警告操作',
+														'未知操作或无任何修改，请重 新提交！',
+														'warning');
+											}
+										}
+									})
+
+								},
+							},
+							{
+								text : '取消',
+								handler : function() {
+									$('#manage_edit').dialog('close').form(
+											'reset');
+								},
+							} ],
+
+				});
+	</script>
+</body>
+</html>

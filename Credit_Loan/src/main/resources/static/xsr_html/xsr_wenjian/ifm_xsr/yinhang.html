@@ -8,9 +8,11 @@
 		<script type="text/javascript" src="../js_xsr/jquery-3.3.1.js"></script>
 		<script type="text/javascript" src="../js_xsr/bootstrap.min.js"></script>
 		<script type="text/javascript" src="../js_xsr/bootstrap-paginator.js"></script>
-	<body>
-		<div class="container" style="position: relative;top: 20px;">
+		<style>
 			
+		</style>
+	<body>
+		<div class="container" style="position: relative;top: 20px;">			
 				<div id='bangka' style="width: 290px;height: 150px;border-radius: 10px;background-color: gainsboro;">
 					<a href="javascript::" onclick="tianyin()">
 					<div style="position: absolute;height: 100px;width: 15px;border-radius: 10px;left: 150px;top: 25px;background-color: gray;">
@@ -20,9 +22,9 @@
 						
 					</div>
 					</a>	
-				</div>
-			
+				</div>			
 		</div>
+
 	</body>
 	<script>
 		 $.ajax({
@@ -33,6 +35,7 @@
 			dataType : "json",
 			success:function(da){		
 				if(da.bankid != null){
+					$("#myModal-shezhimima").modal("show");
 					var numid = da.bankid;
 					var d="";
 					var a=4;
@@ -55,11 +58,12 @@
 					success:function(da){	
 						if(da=="0"){
 							alert("请先实名认证");
-						}else{
-							 window.location.href="../../xsr_bangyin.html";
+						}else{						
+							window.location.href="../../xsr_bangyin.html";
 						}
 					}
 				}) 	
-		}
+		}		 
+		
 	</script>
 </html>

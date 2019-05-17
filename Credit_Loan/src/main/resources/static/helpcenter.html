@@ -70,26 +70,25 @@
 					&nbsp;
 					<li class="nav-item">
 						    	 
-				<li>
-						      	<a class="nav-link" href="#"><font size="2">昵称</font></a>						   
+						  </li>
+						      <li class="nav-item">
+						       <a class="nav-link" href="xsr_html/xsr_zhanghu.html"><font id='nic' size="2">昵称</font></a>
 						    </li>
-						     <li>
-						      	<a class="nav-link" href="../logouttt">[<font size="2">退出 </font>]</a>						   
+						    <li class="nav-item">
+						      <a class="nav-link" href="../logouttt">[<font size="1">退出</font>]</a>
 						    </li>
 					  </ul>
 				</nav>
 				<div style="position: absolute; right: 40px; top: 3px;">
 						<font size="2">客服电话: 38383</font>
 					</div></div>
-			<div style="height: 39px;background-color: #f1eff1;">
-				<div style="position: absolute;top: 38px;width: 100%;margin-left:  120px;">
-					<ul class="topmenu" >
-   <li>&nbsp;&nbsp;<a href="shouye.html"><font face="仿宋" size="4.5">首页</font></a></li>
-  <li>&nbsp;&nbsp;<a href="#"><font face="仿宋" size="4.5">我要投资</font></a></li>
+			<div style="height: 39px;background-color: white;">
+				<div style="position: absolute;top: 50px;width: 100%">
+					<ul class="topmenu">
+  <li>&nbsp;&nbsp;<a href="shouye.html"><font face="仿宋" size="4.5">首页</font></a></li>
+  <li>&nbsp;&nbsp;<a href="shouye.html"><font face="仿宋" size="4.5">我要投资</font></a></li>
    <li>&nbsp;&nbsp;<a href="loanone.html"><font face="仿宋" size="4">我要借款/还款</font></a></li>
     <li>&nbsp;&nbsp;<a href="wzz_information.html"><font face="仿宋" size="4">信息披露</font></a></li>
-  
-  
 </ul>
 				</div>
 				</div> 
@@ -213,6 +212,18 @@
 		</div>
 	</div>
 	<script type="text/javascript">
+	$.ajax({
+		url : "nicheng_xsr",
+		type : "post",	
+		data : {
+			
+		},
+		dataType : "text",
+		success : function(data) {
+			$("#nic").html(data)
+		}
+
+	});
 		$(function() {
 
 			$.ajax({

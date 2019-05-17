@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.p2p.qiyun.wzr.common.SmsAO;
-import com.p2p.qiyun.wzr.common.Test;
 import com.p2p.qiyun.wzr.common.cn.com.webxml.ArrayOfString;
 import com.p2p.qiyun.wzr.common.cn.com.webxml.WeatherWSSoap;
 import com.p2p.qiyun.wzr.common.cn.com.webxml.WeatherWS;
@@ -40,8 +39,6 @@ public class UserinfoController {
 	private UserinfoService service;
 	@Autowired
 	private CreditService_xsr im;
-	
-
 
 	@RequestMapping("sendsms")
 	public int sendsms(String mobile,int smstype) throws Exception {
@@ -108,8 +105,6 @@ public class UserinfoController {
 		
 	@RequestMapping("userentry")
 	public int userentry(Userinfo user,HttpSession session){
-		
-
 		ByteSource bytes = ByteSource.Util.bytes(user.getPhone());
 		SimpleHash hash = new SimpleHash("MD5",user.getPassword(),bytes,1234);
 		user.setPassword(hash.toString());
@@ -133,6 +128,7 @@ public class UserinfoController {
 			for (int i = 1; i < kehuxinxi.size(); i++) {
 				im.delecus(kehuxinxi.get(i).getCustomerid());			
 			}
+			
 			return 1;
 		}
 		return 0;
@@ -237,31 +233,5 @@ public class UserinfoController {
 		int forgetupdate = service.forgetupdate(user);
 		return forgetupdate;
 	}
-	
-	//时间间隔(一天)  
-    private static final long PERIOD_DAY = 24 * 60 * 60 * 1000;
-	public static void main(String[] args){
-		 Calendar calendar = Calendar.getInstance();  
-	        calendar.set(Calendar.HOUR_OF_DAY, 1); //凌晨1点  
-	        calendar.set(Calendar.MINUTE, 0);  
-	        calendar.set(Calendar.SECOND, 0);  
-	        Date date=calendar.getTime(); //第一次执行定时任务的时间  
-	        //如果第一次执行定时任务的时间 小于当前的时间  
-	        //此时要在 第一次执行定时任务的时间加一天，以便此任务在下个时间点执行。如果不加一天，任务会立即执行。  
-	        if (date.before(new Date())) {  
-	            date = addDay(date, 1);  
-	        }  
-	        Timer timer = new Timer();
-	        //安排指定的任务在指定的时间开始进行重复的固定延迟执行。  
-	        timer.schedule(new Test(),date,PERIOD_DAY); 
-	}
-	
-	// 增加或减少天数  
-    public static Date addDay(Date date, int num) {  
-        Calendar startDT = Calendar.getInstance();  
-        startDT.setTime(date);  
-        startDT.add(Calendar.DAY_OF_MONTH, num);  
-        return startDT.getTime();  
-    }
 	
 }

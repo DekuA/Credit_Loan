@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.p2p.qiyun.wzr.domain.Paymenthistory;
 import com.p2p.qiyun.wzr.domain.Userinfo;
 import com.p2p.qiyun.wzr.domain.Usersms;
+import com.p2p.qiyun.wzr.domain.VoluntarilyVo;
 @Mapper
 public interface UserinfoMapper {
 
@@ -26,6 +28,20 @@ public interface UserinfoMapper {
 	int charukuhuxinxi(int userid);
 	
 	int forgetupdate(Userinfo user);
+
+	List<Paymenthistory> voluntarilydate();
+	
+	List<Integer> voluntarilyuserid();
+	List<Double> voluntarilyment();
+	List<Double> voluntarilymoney(List<Integer> userids);
+	int voluntarilyupdate(VoluntarilyVo vo);
+	int voluntarilypayupdate(VoluntarilyVo vo);
+	int voluntarilypayupdate2(VoluntarilyVo vo);
+	int voluntarilycustupdate(VoluntarilyVo vo);
+	
+
+
 	
 	Userinfo seluserById(int uid);
 }
+

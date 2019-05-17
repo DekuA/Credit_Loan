@@ -49,6 +49,16 @@
 							<span class="input-group-text">元</span>
 						</div>
 					</div>
+					<div >
+						<div class="input-group-prepend">
+							<span class="input-group-text">支付方式</span>&nbsp;&nbsp;
+							<input type="image" id="img1" src="xsr_html/xsr_wenjian/img_xsr/yyyyyyyyyy.png"  value="1" onclick="r1()" />&nbsp;&nbsp;
+							<input type="image" id="img2" src="xsr_html/xsr_wenjian/img_xsr/bbbbbb.png"  value="2" onclick="r2()" />&nbsp;&nbsp;
+							<input type="image" id="img3" src="xsr_html/xsr_wenjian/img_xsr/aaaaa.png"  value="3" onclick="r3()" />&nbsp;&nbsp;
+							<button type="button" id="b1" style="display: none;" class="btn" onclick="xianshiAll()">更换</button>
+						</div>
+							
+					</div>	<br>
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text">支付密码</span>
@@ -126,6 +136,33 @@
 </div>
 </body>
 <script type="text/javascript">
+function r1(){
+	document.getElementById("img2").style.display="none";//隐藏
+	document.getElementById("img3").style.display="none";//隐藏
+	document.getElementById("img1").style.display="";//显示
+	document.getElementById("b1").style.display="";//显示
+	
+}
+function r2(){
+	document.getElementById("img1").style.display="none";//隐藏
+	document.getElementById("img3").style.display="none";//隐藏
+	document.getElementById("img2").style.display="";//显示
+	document.getElementById("b1").style.display="";//显示
+	
+}
+function r3(){
+	document.getElementById("img2").style.display="none";//隐藏
+	document.getElementById("img1").style.display="none";//隐藏
+	document.getElementById("img3").style.display="";//显示
+	document.getElementById("b1").style.display="";//显示
+}
+
+function xianshiAll(){
+	document.getElementById("img3").style.display="";//显示
+	document.getElementById("img2").style.display="";//显示
+	document.getElementById("img1").style.display="";//显示
+	document.getElementById("b1").style.display="none";//隐藏
+}
 function czn(num11){
 	window.parent.czgaibian(num11);		
 }

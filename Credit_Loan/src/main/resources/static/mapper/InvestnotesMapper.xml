@@ -254,4 +254,11 @@
   	<if test="money2 !='0.0' and money1=='0.0' ">ptransmoney>#{money2}+1 and</if>  
   	 ptrans=1 
   </select>
+  
+  <insert id="insertInves" parameterType="com.p2p.qiyun.lxm.domain.Investnotes">
+  		insert into investnotes (iMoney,idate,userid,pid,ptrans,ptransmoney)
+    	values (#{imoney,jdbcType=DOUBLE}, #{idate,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, "0", 
+      "0")
+  </insert>
 </mapper>

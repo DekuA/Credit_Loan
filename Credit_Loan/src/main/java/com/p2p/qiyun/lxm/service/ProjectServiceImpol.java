@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.p2p.qiyun.lxm.dao.BalanceMapperlxm;
 import com.p2p.qiyun.lxm.dao.InvestnotesMapper;
@@ -24,6 +25,24 @@ public class ProjectServiceImpol implements ProjectService {
 	
 	@Autowired
 	private InvestnotesMapper inmap;
+	
+	@Transactional
+	public int upBalanceByUid(Balancelxm balance) {
+		int i = bamap.upBalanceByUid(balance);
+		return i;
+	}
+	
+	@Transactional
+	public int updatePschedule(int pschedule,String pid) {
+		int i = promap.updatePschedule(pschedule, pid);
+		return i;
+	}
+	
+	@Transactional
+	public int insertInves(Investnotes inves) {
+		int i = inmap.insertInves(inves);
+		return i;
+	}
 	
 	public int selYuqicishu(SelZhaiQuan zq) {
 		int selYuqicishu = promap.selYuqicishu(zq);

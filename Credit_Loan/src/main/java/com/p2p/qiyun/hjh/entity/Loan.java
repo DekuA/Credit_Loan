@@ -13,7 +13,7 @@ public class Loan {
 
     private Double loanamount;
 
-    private Double repaymentperiod;
+    private int repaymentperiod;
 
     private String approvalstatus;
 public Loan() {
@@ -75,11 +75,11 @@ public void setLoanamount(Double loanamount) {
 	this.loanamount = loanamount;
 }
 
-public Double getRepaymentperiod() {
+public int getRepaymentperiod() {
 	return repaymentperiod;
 }
 
-public void setRepaymentperiod(Double repaymentperiod) {
+public void setRepaymentperiod(int repaymentperiod) {
 	this.repaymentperiod = repaymentperiod;
 }
 

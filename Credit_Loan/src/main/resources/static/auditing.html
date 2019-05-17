@@ -114,11 +114,11 @@
 										+ "</tr>";
 								document.getElementById("tableauditing").innerHTML += tr;
 
-								if (data.list[i].astatus == 2) {
+								if (data.list[i].astatus == 1) {
 
 									document.getElementById("y"+i).innerText = "成功";
 									document.getElementById("y"+i).style.color = "green";
-								} else if (data.list[i].astatus == 1) {
+								} else if (data.list[i].astatus == 3) {
 									document.getElementById("y"+i).innerText = "审核中.。。。。";
 									document.getElementById("y"+i).style.color = "pink";
 								} else {

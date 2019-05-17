@@ -19,6 +19,7 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -113,6 +114,35 @@ public class MyController {
 		return map;
 	}
 	
+	@RequestMapping("lxm/selBalancepwd")
+	public String selBalancepwd(String pwd,String userid,String userbalance,String pid,String loanid){
+		Balancelxm balance = proser.selBalance(Integer.parseInt(userid));
+		if(balance.getPaypwd().equals(pwd)) {
+			Investnotes inves = new Investnotes();
+			inves.setImoney(Double.parseDouble(userbalance));
+			inves.setPid(Integer.parseInt(pid));
+			inves.setUserid(Integer.parseInt(userid));
+			Date d = new Date();   
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+	        String dateNowStr = sdf.format(d); 
+	        inves.setIdate(dateNowStr);
+			Balancelxm bbb = new Balancelxm();
+			bbb.setUserid(Integer.parseInt(userid));
+			bbb.setBalance(Double.parseDouble(userbalance));
+			Loan2 loan = loanser.selLoansById(Integer.parseInt(loanid));
+			int i = (int) ((Double.parseDouble(userbalance)/loan.getLoanamount())*100);
+			int i1 = proser.updatePschedule(i, pid); int i2 = proser.insertInves(inves);
+			int i3 = proser.upBalanceByUid(bbb); 
+			if(i1==1&&i2==1&&i3==1) { 
+				return "1";
+			}else { 
+				return "2"; 
+			}
+		}else {
+			return "0";
+		}
+	}
+	
 	@RequestMapping("lxm/selInvestnotes")
 	public Map selInvestnotes(String pid){
 		Map map = new HashMap();
@@ -153,7 +183,7 @@ public class MyController {
 	@RequestMapping("lxm/seluserbalance")
 	public String selUserBalance(String userid) {
 		Balancelxm balance = proser.selBalance(Integer.parseInt(userid));
-		System.out.println(balance.getBalance());
+		//System.out.println(balance.getBalance());
 		return balance.getBalance()+"";
 	}
 	
@@ -163,10 +193,12 @@ public class MyController {
 		Map map = new HashMap();
 		Project project = (Project)session.getAttribute("projectxq");
 		if(project!=null) {
+			String balance = selUserBalance(userinfo.getUserid()+"");
 			map.put("userinfo", userinfo);
 			Loan2 loan2 = loanser.selLoansById(project.getLenderid());
 			map.put("project",project);
 			map.put("loan2",loan2);
+			map.put("balance",balance);
 			return map;
 		}
 		return null;
@@ -187,13 +219,17 @@ public class MyController {
 	@RequestMapping("lxm/selProject")
 	public Map selProject(){
 		List<Project> projectlist = proser.selProject();
+		List<Project> projectll = new ArrayList<Project>(); 
 		List<Loan2> loanlist = new ArrayList<Loan2>(); 
 		for (Project project : projectlist) {
 			Loan2 loan2 = loanser.selLoansById(project.getLenderid());
-			loanlist.add(loan2);
+			if(loan2.getApprovalstatus().equals("1")) {
+				loanlist.add(loan2);
+				projectll.add(project);
+			}
 		}
 		Map map = new HashMap();
-		map.put("projectlist",projectlist);
+		map.put("projectlist",projectll);
 		map.put("loanlist", loanlist);
 		return map;
 	}

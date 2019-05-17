@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface InvestnotesMapper {
+	int insertInves(Investnotes record);
 
 	List<Investnotes> selZhaiqzr(SelZhaiQuan selzq);
 	

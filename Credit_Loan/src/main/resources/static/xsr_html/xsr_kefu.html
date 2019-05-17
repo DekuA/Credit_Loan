@@ -67,6 +67,7 @@
 					dataType : "text",
 					success:function(da){	
 						if(da=="1"){
+							self.frames[0].num=1;
 							self.frames[0].diao();
 							$("#test").val(" ");
 						}

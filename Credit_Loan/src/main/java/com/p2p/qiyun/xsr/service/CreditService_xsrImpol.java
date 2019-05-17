@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.internal.bind.DateTypeAdapter;
 import com.p2p.qiyun.dby.pojo.balance;
 import com.p2p.qiyun.dyj.pojo.Users;
 import com.p2p.qiyun.lsx.entity.Loan;
@@ -165,6 +166,18 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 	public balance sebalance(int userid) {
 		balance sebalance = dao.sebalance(userid);
 		return sebalance;
+	}
+
+	@Override
+	public List<userinfo> chaxunqingqiu(List<String> list) {
+		List<userinfo> chaxunqingqiu = dao.chaxunqingqiu(list);
+		return chaxunqingqiu;
+	}
+
+	@Override
+	public int upzfmm(balance ba) {
+		int upzfmm = dao.upzfmm(ba);
+		return upzfmm;
 	}
 
 	

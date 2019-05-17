@@ -22,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.p2p.qiyun.dby.pojo.balance;
+import com.p2p.qiyun.dby.service.accountService;
 import com.p2p.qiyun.lsx.entity.Loan;
 import com.p2p.qiyun.xsr.domain.customer;
 import com.p2p.qiyun.xsr.domain.kefuinfo;
@@ -40,9 +42,11 @@ public class MyController_xsr {
 	private CreditService_xsr im;
 	
 	private Map kxxxmap = new HashMap();
-	private List<kefuinfo> arr= new ArrayList<kefuinfo>();
-	private List<Integer> usidarr= new ArrayList<Integer>();
-	
+	private List<kefuinfo> kefuxx=null;
+	private List<String> usidarr= new ArrayList<String>();//存发起聊天用户的id 
+	private List<kefuinfo> kefuxxda = new ArrayList<kefuinfo>();//当前使用聊天用户发送的信息
+	private List<kefuinfo> kefuhuifuarr = new ArrayList<kefuinfo>();//当前使用聊天客服回复的信息
+	private List<kefuinfo> kefuxx2 = new ArrayList<kefuinfo>();//所有信息
 	@RequestMapping("nicheng_xsr")
 	public String nicheng_xsr(HttpSession session) { 
 		String attribute = (String) session.getAttribute("user");
@@ -206,47 +210,65 @@ public class MyController_xsr {
 		map.put("userphone",us.getNickname());
 		return map;			
 	}
-	
+	//-获取消息------------------------------------------------	
 	@RequestMapping("chatext_xsr")
 	public String chatext_xsr(kefuinfo kf,HttpSession session) {
 		String attribute = (String) session.getAttribute("user");
 		userinfo us= im.phonechaxinxi(attribute);
 		kf.setUserid(us.getUserid());
+		List<kefuinfo> arr= new ArrayList<kefuinfo>();
 		arr.add(kf);//所有信息
-		usidarr.add(0);
-		System.out.println(usidarr.size());
-		for (int usid=0; usid<usidarr.size();usid++) {
-			if(kf.getUserid()!=usidarr.get(usid)) {
-				if(usid==usidarr.size()-1) {
-					usidarr.add(kf.getUserid());
-				}				
+		for (int usid=0; usid<usidarr.size();usid++) {			
+			if((us.getUserid()+"").equals(usidarr.get(usid))) {
+					usidarr.remove(usid);			
 			}
 		}	
-		usidarr.remove(0);
+		usidarr.add(kf.getUserid()+"");
+		
+		
 		kxxxmap.put("userid"+us.getUserid(), arr);	
 		return 1+"";
 			
 	}
-
+	//用户发送
 	@RequestMapping("chaxuntext_xsr")
-	public List<kefuinfo> chaxuntext_xsr(HttpSession session) {
+	public List<kefuinfo> chaxuntext_xsr(int number,HttpSession session) {
 		String attribute = (String) session.getAttribute("user");
 		userinfo us= im.phonechaxinxi(attribute);
+		List<kefuinfo> gebie = new ArrayList<kefuinfo>();//当前用户的信息
 		if (kxxxmap.get("userid"+us.getUserid())==null) {
 			return null;
-		}
-		List<kefuinfo> kefuxx = (List<kefuinfo>) kxxxmap.get("userid"+us.getUserid());
-		List<kefuinfo> kefuxxda = new ArrayList<kefuinfo>();//当前使用聊天用户的信息
-		for (int i = 0; i < kefuxx.size(); i++) {
-			if(kefuxx.get(i).getUserid()==us.getUserid()) {
-				kefuxxda.add(kefuxx.get(i));
+		}				
+			List<kefuinfo> f=(List<kefuinfo>) kxxxmap.get("userid"+us.getUserid());
+			if(number==1) {
+				kefuxxda.add(f.get(0));	//当前所有信息
+			}			
+			for (int i = 0; i < kefuxxda.size(); i++) {
+				if(us.getUserid()==kefuxxda.get(i).getUserid()) {
+					kefuinfo kefuinfo = kefuxxda.get(i);
+					gebie.add(kefuinfo);
+				}
 			}
-	
-		}
-		System.out.println(usidarr);
-		System.out.println(kefuxxda);
-		return kefuxxda;		
+			return gebie;
+							
 	}
+	//客服回复
+	@RequestMapping("huifuuser_xsr")
+	public Map huifuuser_xsr(int qingqiuuserid) {
+		System.out.println(usidarr);
+		List<String> usidarr222 = usidarr;
+		for (int i = 0; i < kefuxx2.size(); i++) {
+			if(kefuxx2.get(i).getUserid()==qingqiuuserid) {
+				kefuxx2.get(i).setUid(6);
+				kefuhuifuarr.add(kefuxx2.get(i));				
+			}	
+		}
+		Map map = new HashMap();
+		map.put("quanbuqingqiu_xsr",usidarr222);//查询所有的聊天请求
+		map.put("dangeuserinfo_xsr",kefuhuifuarr);//客服回复个别的信息
+		return map;		
+	}
+//-0	---------------------------
 	
 	@RequestMapping("upload_Xsr")
 	public  int upload(MultipartFile file,HttpSession session)  {
@@ -272,7 +294,7 @@ public class MyController_xsr {
         }
         return 0;
     }
-
+	
 	@RequestMapping("xiunicheg_xsr")
 	public int xiunicheg_xsr(userinfo us,HttpSession session) {
 		int attribute = (int) session.getAttribute("useridss");		

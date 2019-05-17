@@ -238,18 +238,36 @@
 			</div>
 
 		</div>
-		<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		<!-- <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
 
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel">查看利息</h4>
-						 <button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+					<div align="center" id="ccc">
+						<h4 class="modal-title" id="myModalLabel">查看利息</h4></div>
 							<span aria-hidden="true">&times;</span>
-						 </button><hr>
-						<table id="tablx" border="1">
+						 <hr><br>
+						
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+		</div> -->
+	</div>
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				
+				<div align="center"><h4 class="modal-title" id="myModalLabel" align="center">
+					查看利息
+				</h4></div>
+			</div>
+			<div class="modal-body">
+				<div align="center">
+				 <table id="tablx" border="1">
 						  <tr>
 						      <th>借款总金额</th>
 						      <th>借款期限</th>
@@ -258,13 +276,28 @@
 						      <th>总利息</th>
 						     <th>手续费</th>
 						  </tr>
+						  <tr>
+						    <td id="jiekz"></td>
+						    <td id="jieqx"></td>
+						    <td id="jieje"></td>
+						    <td id="huanklx"></td>
+						    <td id="zlx"></td>
+						      <td id="shouxf"></td>
+						  </tr>
 						</table>
-					</div>
-				</div>
+				</div><br>
+				
+				
+				
+			</div>
+			<div class="modal-footer" align="center">
+				
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
 			</div>
 		</div>
+	  </div>
 	</div>
-
 </body>
 
 <script type="text/javascript">
@@ -319,13 +352,13 @@
     		      	    	      	    	    				  }else{
     		      	    	      	    	    					lixi=(amount*0.12).toFixed(2);
     		      	    	      	    	    				  }
-    		      	    								$.ajax({
+    		      	    								/* $.ajax({
     		      	    									url:'pdAge',
     		      	    									data:{
     		      	    										uid:userid
     		      	    									},
     		      	    									success:function(cc){
-    		      	    										if(cc>0){
+    		      	    										if(cc>0){ */
     		      	    											$.ajax({
     	    		      	    										url:'gjloan',
     	    		      	    										data:{uid : uuid,},
@@ -355,12 +388,13 @@
     	    		      	    											}
     	    		      	    										}
     	    		      	    									})
-    		      	    										}else{
-    		      	    											alert("")
-    		      	    										}
+    		      	    										/* }else{
+    		      	    											alert("未满18岁不能申请哦！！")
+    		      	    											
+    		      	    										} */
     		      	    										
-    		      	    									}
-    		      	    								})
+    		      	    								/* 	}
+    		      	    								}) */
     		      	    										 
     		      	    								
     		      	    	      	    	    				
@@ -399,41 +433,57 @@
 		} else if (!amperiods) {
 			alert("请填写您的借款期限！！");
 		} else {
+			
+			/* <td id="jiekz"></td>
+		    <td id="jieqx"></td>
+		    <td id="jieje"></td>
+		    <td id="huanklx"></td>
+		    <td id="zlx"></td>
+		      <td id="shouxf"></td> */
 			if(amperiods==3){
-				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
+				$('#jiekz').text(amount);
+				$('#jieqx').text(amperiods);
+				$('#jieje').text(((amount*0.025)/amperiods+amount/amperiods).toFixed(2));
+				$('#zlx').text((amount*0.025).toFixed(2));
+				$('#huanklx').text(((amount*0.025)/amperiods).toFixed(2));
+				$('#shouxf').text("2.5%");
+			/* 	var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
 				+((amount*0.025)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
 				+(amount*0.025).toFixed(2)+'</td><td>'+
 				((amount*0.025)/amperiods).toFixed(2)+'</td><td>'
 				+'2.5%</td></tr>';
-				$("#tablx").append(str);
+				$("#tablx").append(str); */
 			}else if(amperiods==6){
-				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
-				+((amount*0.045)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
-				+(amount*0.045).toFixed(2)+'</td><td>'+
-				((amount*0.045)/amperiods).toFixed(2)+'</td><td>'
-				+'4.5%</td></tr>';
-				$("#tablx").append(str);
+				$('#jiekz').text(amount);
+				$('#jieqx').text(amperiods);
+				$('#jieje').text(((amount*0.045)/amperiods+amount/amperiods).toFixed(2));
+				$('#zlx').text((amount*0.045).toFixed(2));
+				$('#huanklx').text(((amount*0.045)/amperiods).toFixed(2));
+				$('#shouxf').text("4.5%");
+				
 			}else if(amperiods==12){
-				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
-				+((amount*0.088)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
-				+(amount*0.088).toFixed(2)+'</td><td>'+
-				((amount*0.088)/amperiods).toFixed(2)+'</td><td>'
-				+'8.8%</td></tr>';
-				$("#tablx").append(str);
+				$('#jiekz').text(amount);
+				$('#jieqx').text(amperiods);
+				$('#jieje').text(((amount*0.088)/amperiods+amount/amperiods).toFixed(2));
+				$('#zlx').text((amount*0.088).toFixed(2));
+				$('#huanklx').text(((amount*0.088)/amperiods).toFixed(2));
+				$('#shouxf').text("8.8%");
+				
 			}else if(amperiods==24){
-				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
-				+((amount*0.12)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
-				+(amount*0.12).toFixed(2)+'</td><td>'+
-				((amount*0.12)/amperiods).toFixed(2)+'</td><td>'
-				+'12%</td></tr>';
-				$("#tablx").append(str);
+				$('#jiekz').text(amount);
+				$('#jieqx').text(amperiods);
+				$('#jieje').text(((amount*0.12)/amperiods+amount/amperiods).toFixed(2));
+				$('#zlx').text((amount*0.12).toFixed(2));
+				$('#huanklx').text(((amount*0.12)/amperiods).toFixed(2));
+				$('#shouxf').text("12%");
+				
 			}else{
-				var str='<tr><td>'+amount+'</td><td>'+amperiods+'</td><td>'
-				+((amount*0.18)/amperiods+amount/amperiods).toFixed(2)+'</td><td>'+
-				+(amount*0.018).toFixed(2)+'</td><td>'+
-				((amount*0.18)/amperiods).toFixed(2)+'</td><td>'
-				+'18%</td></tr>';
-				$("#tablx").append(str);
+				$('#jiekz').text(amount);
+				$('#jieqx').text(amperiods);
+				$('#jieje').text(((amount*0.18)/amperiods+amount/amperiods).toFixed(2));
+				$('#zlx').text((amount*0.18).toFixed(2));
+				$('#huanklx').text(((amount*0.18)/amperiods).toFixed(2));
+				$('#shouxf').text("18%");
 				
 			}
 			$('#myModal').modal();

@@ -13,9 +13,21 @@ public class Repayment2 {
     private int returnperiod;
     private int returnperiodp;
     private double modmoney;
+   
     
-    public Repayment2() {}
+
+	public Repayment2() {}
     
+	public Repayment2(int loanid, int userid,double rterest, double returnallmoney,int returnperiod) {
+		
+		this.loanid = loanid;
+		this.userid = userid;
+		this.returnallmoney = returnallmoney;
+		this.rterest = rterest;
+		this.returnperiod = returnperiod;
+	}
+    
+	
 	@Override
 	public String toString() {
 		return "Repayment2 [repaymentid=" + repaymentid + ", loanid=" + loanid + ", userid=" + userid + ", rterest="
@@ -23,6 +35,11 @@ public class Repayment2 {
 				+ ", returnperiodp=" + returnperiodp + ", modmoney=" + modmoney + "]";
 	}
 
+	public Repayment2(Timestamp rdate,Double modmoney,int userid) {
+		this.modmoney = modmoney;
+		this.userid = userid;
+		this.rdate = rdate;
+	}
 	public Repayment2(int repaymentid, int loanid, int userid, double rterest, double returnallmoney, Timestamp rdate,
 			int returnperiod, int returnperiodp, double modmoney) {
 		super();

@@ -1,5 +1,8 @@
 package com.p2p.qiyun.lsx.controller;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -8,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.p2p.qiyun.dby.pojo.balance;
 import com.p2p.qiyun.lsx.entity.Balance2;
 import com.p2p.qiyun.lsx.entity.Loan2;
 import com.p2p.qiyun.lsx.entity.Paymenthistory2;
@@ -60,11 +64,13 @@ public class LoanController2 {
 		}
 		return 1;
 	}
+	
 	//判断年龄
 	@RequestMapping("pdAge")
 	public int gjAge(String uid) {
 		int uids=Integer.parseInt(uid);
 		Loan2 selctloan = loans.SelectAge(uids);
+		System.out.println(selctloan);
 		if(selctloan==null) {
 			return 0;
 		}
@@ -137,7 +143,7 @@ public class LoanController2 {
 			Repayment2 selctRepayment = loans.selctRepayment(uid);
 			
 			if(selctRepayment!=null) {
-				monney=selctRepayment.getModmoney();
+				//monney=selctRepayment.getTodayMoney();
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -158,7 +164,7 @@ public class LoanController2 {
 				if(selctRepayment==null) {
 					return 0;
 				}else {
-					monney=selctRepayment.getModmoney();
+					//monney=selctRepayment.getTodayMoney();
 				}
 			} catch (Exception e) {
 				// TODO: handle exception
@@ -177,4 +183,44 @@ public class LoanController2 {
 				
 			return findBalance;
 		}
+		
+		@RequestMapping("upbalance")
+		public int upbalace(String uids,String mima,String modmoney,String storydate,String   jlid){
+			int bnum = Integer.parseInt(mima);
+			int uid=Integer.parseInt(uids);
+			Balance2 balance2=new Balance2(1, uid, bnum);
+			int jiluid=Integer.parseInt(jlid);
+			Balance2 ba = ser.findBalance(uid);
+			double money2 = ba.getBalance()-Double.parseDouble(modmoney);
+			balance2.setBalance(money2);
+			int upbalace = loans.Upbalace(balance2);
+			//System.out.println(upbalace+"删除");
+			
+			Timestamp times=new java.sql.Timestamp(System.currentTimeMillis());
+			//System.out.println(times);
+			if(upbalace>0) {
+				double moneys = Double.parseDouble(modmoney);
+				System.out.println("传进来的还款金额"+moneys);
+				System.out.println(modmoney+"momomomo");
+				Paymenthistory2 paymenthistory=new Paymenthistory2(times.toString(), uid,moneys,jiluid);
+				Repayment2 selctRepayment = loans.selctRepayment(uid);
+			 double num=(selctRepayment.getModmoney()+moneys);
+			 //System.out.println(num+"钱");
+			
+				Repayment2 repay=new Repayment2(times, moneys, uid);
+				repay.setModmoney(num);
+					int upRepayment = loans.upRepayment(repay);
+					//System.out.println("还款表"+upRepayment);
+					if(upRepayment>0) {
+						int upthis = loans.upthis(paymenthistory);
+						
+					}
+				
+				
+				
+			}
+			return upbalace;
+		}		
+		
+		
 }

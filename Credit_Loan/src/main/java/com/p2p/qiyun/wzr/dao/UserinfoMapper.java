@@ -28,6 +28,7 @@ public interface UserinfoMapper {
 	int charukuhuxinxi(int userid);
 	
 	int forgetupdate(Userinfo user);
+
 	List<Paymenthistory> voluntarilydate();
 	
 	List<Integer> voluntarilyuserid();
@@ -38,4 +39,9 @@ public interface UserinfoMapper {
 	int voluntarilypayupdate2(VoluntarilyVo vo);
 	int voluntarilycustupdate(VoluntarilyVo vo);
 	
+
+
+	
+	Userinfo seluserById(int uid);
 }
+

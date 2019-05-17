@@ -8,6 +8,7 @@
     <result column="userid" property="userid" jdbcType="INTEGER" />
     <result column="pid" property="pid" jdbcType="INTEGER" />
     <result column="ptrans" property="ptrans" jdbcType="INTEGER" />
+    <result column="ptransmoney" property="ptransmoney" jdbcType="DOUBLE" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    iid, iMoney, idate, userid, pid, ptrans
+    iid, iMoney, idate, userid, pid, ptrans, ptransmoney
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.p2p.qiyun.lxm.domain.InvestnotesExample" >
     select
@@ -102,11 +103,11 @@
   </delete>
   <insert id="insert" parameterType="com.p2p.qiyun.lxm.domain.Investnotes" >
     insert into investnotes (iid, iMoney, idate, 
-      userid, pid, ptrans
-      )
+      userid, pid, ptrans, 
+      ptransmoney)
     values (#{iid,jdbcType=INTEGER}, #{imoney,jdbcType=DOUBLE}, #{idate,jdbcType=VARCHAR}, 
-      #{userid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{ptrans,jdbcType=INTEGER}
-      )
+      #{userid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{ptrans,jdbcType=INTEGER}, 
+      #{ptransmoney,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.p2p.qiyun.lxm.domain.Investnotes" >
     insert into investnotes
@@ -129,6 +130,9 @@
       <if test="ptrans != null" >
         ptrans,
       </if>
+      <if test="ptransmoney != null" >
+        ptransmoney,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="iid != null" >
@@ -148,6 +152,9 @@
       </if>
       <if test="ptrans != null" >
         #{ptrans,jdbcType=INTEGER},
+      </if>
+      <if test="ptransmoney != null" >
+        #{ptransmoney,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -178,6 +185,9 @@
       <if test="record.ptrans != null" >
         ptrans = #{record.ptrans,jdbcType=INTEGER},
       </if>
+      <if test="record.ptransmoney != null" >
+        ptransmoney = #{record.ptransmoney,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +200,8 @@
       idate = #{record.idate,jdbcType=VARCHAR},
       userid = #{record.userid,jdbcType=INTEGER},
       pid = #{record.pid,jdbcType=INTEGER},
-      ptrans = #{record.ptrans,jdbcType=INTEGER}
+      ptrans = #{record.ptrans,jdbcType=INTEGER},
+      ptransmoney = #{record.ptransmoney,jdbcType=DOUBLE}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +224,9 @@
       <if test="ptrans != null" >
         ptrans = #{ptrans,jdbcType=INTEGER},
       </if>
+      <if test="ptransmoney != null" >
+        ptransmoney = #{ptransmoney,jdbcType=DOUBLE},
+      </if>
     </set>
     where iid = #{iid,jdbcType=INTEGER}
   </update>
@@ -222,7 +236,29 @@
       idate = #{idate,jdbcType=VARCHAR},
       userid = #{userid,jdbcType=INTEGER},
       pid = #{pid,jdbcType=INTEGER},
-      ptrans = #{ptrans,jdbcType=INTEGER}
+      ptrans = #{ptrans,jdbcType=INTEGER},
+      ptransmoney = #{ptransmoney,jdbcType=DOUBLE}
     where iid = #{iid,jdbcType=INTEGER}
   </update>
+  
+  <select id="selByPid" parameterType="int" resultType="com.p2p.qiyun.lxm.domain.Investnotes">
+  	select * from investnotes where pid=#{pid}
+  </select>
+  
+  <select id="selZhaiqzr" parameterType="com.p2p.qiyun.lxm.domain.SelZhaiQuan" resultType="com.p2p.qiyun.lxm.domain.Investnotes">
+  	select * from investnotes where 
+  	
+  	<if test="money2 !='0.0' and money1!='0.0' ">ptransmoney>#{money2}+1 and ptransmoney&lt;#{money1}+1 and</if>  
+  	
+  	<if test="money1 !='0.0' and money2=='0.0' ">ptransmoney&lt;#{money1}+1 and</if>  
+  	<if test="money2 !='0.0' and money1=='0.0' ">ptransmoney>#{money2}+1 and</if>  
+  	 ptrans=1 
+  </select>
+  
+  <insert id="insertInves" parameterType="com.p2p.qiyun.lxm.domain.Investnotes">
+  		insert into investnotes (iMoney,idate,userid,pid,ptrans,ptransmoney)
+    	values (#{imoney,jdbcType=DOUBLE}, #{idate,jdbcType=VARCHAR}, 
+      #{userid,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, "0", 
+      "0")
+  </insert>
 </mapper>

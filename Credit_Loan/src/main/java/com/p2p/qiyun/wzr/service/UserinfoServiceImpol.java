@@ -75,4 +75,9 @@ public class UserinfoServiceImpol implements UserinfoService {
 		int i = Mapper.forgetupdate(user);
 		return i;
 	}
+	
+	public Userinfo seluserById(int uid) {
+		Userinfo user=Mapper.seluserById(uid);
+		return user;
+	}
 }

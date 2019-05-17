@@ -8,7 +8,9 @@ public class Balancelxm {
     private Double balance;
 
     private String paypwd;
-
+public Balancelxm() {
+	// TODO Auto-generated constructor stub
+}
     public Integer getYueid() {
         return yueid;
     }

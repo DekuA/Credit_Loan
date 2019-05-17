@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 import com.p2p.qiyun.dby.pojo.account;
 import com.p2p.qiyun.dby.pojo.balance;
+import com.p2p.qiyun.dby.pojo.rows1;
 
 
 @Mapper
@@ -29,4 +30,16 @@ public interface accountMapper {
 	//验证支付密码
 	balance getPayPwd(balance ba);
 	
+	//EasyUI用
+	//获取总数
+	int getCount();
+	//获取所有记录
+	List<account> getAll(rows1 ro);
+	//后台模糊查询记录和总数 有ID
+	List<account>houtaiCha(account ac);
+	int getCount1(account ac);
+	
+	//后台模糊查询记录和总数
+	List<account>houtaiCha1(account ac);
+	int getCount2(account ac);
  }

@@ -492,6 +492,69 @@
 		</div>
 	  </div>
 	</div>
+	<div class="modal fade" id="zfmima" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<div align="center"><h5 class="modal-title" id="myModalLabel" align="center">
+					请输入支付密码
+				</h5></div>
+			</div>
+			<div class="modal-body">
+				<div align="center">
+				 <input type="password" id="mima" style="width: 300px;"><br>
+				 <small><a href="#">忘记密码？</a></small>
+				</div><br>
+				
+				
+				
+			</div>
+			<div class="modal-footer" align="center">
+				
+				<button type="button" id="xxxqr" class="btn btn-primary">
+					确认支付
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+			</div>
+		</div>
+	  </div>
+	</div>
+	
+	<div class="modal fade" id="zfmima1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+					&times;
+				</button>
+				<div align="center"><h5 class="modal-title" id="myModalLabel" align="center">
+					请输入支付密码
+				</h5></div>
+			</div>
+			<div class="modal-body">
+				<div align="center">
+				 <input type="password" id="mima1" style="width: 300px;"><br>
+				 <small><a href="#">忘记密码？</a></small>
+				</div><br>
+				
+				
+				
+			</div>
+			<div class="modal-footer" align="center">
+				
+				<button type="button" id="xxxqr1" class="btn btn-primary">
+					确认支付
+				</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+				</button>
+			</div>
+		</div>
+	  </div>
+	</div>
 </body>
 
 <script type="text/javascript">
@@ -499,7 +562,6 @@
 
 		var myDate = new Date();
 		var moth = myDate.getMonth() + 1;
-		//alert(moth);
 		var moth2 = myDate.getMonth() + 2;
 
 		$('#reids').text(moth + "月应还");
@@ -517,28 +579,26 @@
 							location.href = "login.html";
 						} else {
 							userid = data;
-
 							$.ajax({
 										url : 'getDatetoday',
 										data : {
 											userid2s : userid,
 										},
 										success : function(data) {
+											var nest=data.storydate;
+											$('#nums').text(data.todayMoneys+ "元");
+											var dateEnd = new Date(nest);
 											if (data.currentrepayment == undefined) {
-												$('#num1').text("00元");
+												
 												$('#xx').text("您本月无分期借款！！");
+												$('#num1').text("00元");
 												$('#glgl').text("无需还款！");
 											} else if (data != null) {
 												$('#num1').text(data.currentrepayment+ "元");
-
-												$.ajax({
-															url : 'Hasalso',
-															data : {
-																uid1s : userid,
-
-															},
-															success : function(da) {
-																$('#nums').text(da+ "元");
+												var datas=data.storydate;
+												var dateEnd = new Date(datas);
+						
+																
 																$('#lijihk').click(function() {
 																	if (data.paymentstatus == 1 && !$('#num1').text() == "00元") {
 																		alert("您的当月账号已还清啦！");
@@ -559,54 +619,87 @@
 																	$('#glgl').text("请尽快完成还款，逾期每日利息按2.5%计算");
 																} else {
 																	$('#sysy').text("剩余待还（元）");
-																	$('#xx').text($('#num1').text());
+																	$('#xx').text((data.currentrepayment-data.todayMoneys).toFixed(2));
 																	$('#xx').val($('#num1').text());
-																	$('#glgl').text("最后还款日期"+ moth+ "月10日");
-																	$('#lijihk').click(function() { //点击第一个立即付款按钮
-																		if ($('#num1').text() == $('#nums').text() && !$('#num1').text() == "00元") {
-																				alert("您的当月账号已还清啦！");
-																			} else if ($('#num1').text() == "00元" && $('#nums').text() == "00元") {
-																				alert("您本月无分期借款！")
-																			} else {
-                                                                              $('#example1').modal();
-                                                                              $('#hkje1').val($('#num2').text());
-                                                                              $('#hkjee1').text("可还"+$('#num2').text());
-																				var tmoney=0;
-																				$('#qrss1').click(function() { //点击确认付款按钮
-																					$('#qrmoney1').text($('#num1').text());
-																					$('#querhk1').modal();
-																					$('#qrss2s').click(function() { //立即付款按钮
-																						alert("qss")
-																						 if($("#fkfs1").val()==2){
-																								$.ajax({
-																									url : 'findsBalance',
-																									data : {
-																										uids22 : userid
-																									},
-																									success : function(te) {
-																										tmoney=te.balance;
-																										
-																										if(tmoney<data.currentrepayment){
-																											alert("您的余额不足，请充值");
-																											
-																										}else{
-																											
-																										}
+																	
+																	$('#glgl').text("最后还款日期"+ (dateEnd.getMonth() + 1)+ "月"+(dateEnd.getDate()-1)+"日");
+																	
+																	$('#lijihk').click(function() {
+																				if ($('#num2').text() == $('#num3').text() && !$('#num2').text() == "00元") {
+																						alert("您的当月账号已还清啦！");
+																					} else if ($('#num2').text() == "00元" && $('#num3').text() == "00元") {
+																						alert("您本月无分期借款！")
+																					} else {
+                                                                                      $('#example1').modal();
+                                                                                      $('#hkje1').val((data.currentrepayment-data.todayMoneys).toFixed(2));
+                                                                                      $('#hkjee1').text("可还"+(data.currentrepayment-data.todayMoneys).toFixed(2)+"元");
+																						var tmoney=0;
+																						$('#qrss1').click(function() {
+																							var datess = new Date();
+				                                                                               var s=datess.getFullYear()+"-"+(datess.getMonth()+1)+"-"+datess.getDate()+""
+																							if(s!=(data.storydate).substring(0,10)){
+																								alert("还没到规定还款日期")
+																							}else{
+																								$('#qrmoney1').text( $('#hkje1').val());
+																								//alert($('#qrmoney1').val()+"qqq");
+																								$('#querhk1').modal();
+																								$('#qrss2s').click(function() { //立即付款按钮
+																							
+																									 if($("#fkfs1").val()==2){
+																										$.ajax({
+																											url : 'findsBalance',
+																											data : {
+																												uids22 : userid,
+																											},
+																											success : function(te) {
+																												tmoney=te.balance;
+																												var money1ss=$('#qrmoney1').text();
+																												if(tmoney<money1ss){
+																													alert("您的余额不足，请充值");
+																													window.location.href="/xsr_html/xsr_yue.html";
+																													
+																												}else{
+																													$('#zfmima1').modal();
+																													 $('#xxxqr1').click(function() {
+																														var mimas=$('#mima1').val();
+																														 $.ajax({
+																															 url:'upbalance',
+																															 data:{
+																																 uids:userid,
+																																 mima:mimas,
+																															     modmoney:money1ss,
+																															     storydate:s,
+																															     jlid:data.recordid,
+																															 },
+																															 success : function(num) {
+																																 if(num>0){
+																																	 alert("还款成功！！给你点赞！");
+																																	 window.location.href="repayment.html";
+																																 }
+																																 
+																															 }
+																														    
+																														 })
+																														
+																														
+																													})
+																												}
+																											}
+																										})
 																									}
-																								})
-																							} 
-																					})
-																			
-																				})
-																				
+																								<!----->
+																							  
+																							
+																							})
+																							}
+																						})
 																						
-																			}
-																		})
+																								
+																					}
+																				})
 																}
 
-															}
-														})
-											}
+											   }
 
 										}
 
@@ -618,23 +711,18 @@
 											userid1s : userid
 										},
 										success : function(data) {
+											var nest=data.storydate;
+											var dateEnd2 = new Date(nest);
+											$('#num3').text(data.todayMoneys+"元"); 
 											if (data.currentrepayment == undefined) {
-												$('#num2').text("00元");
+												
 												$('#xx2').text("您本月无分期借款！！");
+												$('#num2').text("00元");
 												$('#glgl2').text("无需还款！");
 											} else if (data != null) {
-												$('#num2').text(data.currentrepayment+ "元");
-                                               
-												$.ajax({
-															url : 'HasalsoNext',
-															data : {
-																uid2s : userid,
-
-															},
-															success : function(da) {
-																$('#num3').text(da+ "元");
-																
-																
+												
+                                        
+																$('#num2').text(data.currentrepayment+ "元");
 																if (data.paymentstatus == 1) {
 																	$('#xx2').text("本月账单已还清！！");
 																	$('#glgl2').text("好棒！点个赞！");
@@ -646,8 +734,8 @@
 																	
 																} else {
 																	$('#sysy2').text("剩余待还（元）");
-																	$('#xx2').text($('#num2').text());
-																	$('#glgl2').text("最后还款日期"+ moth2+ "月10日");
+																	$('#xx2').text((data.currentrepayment-data.todayMoneys).toFixed(2));
+																	$('#glgl2').text("最后还款日期"+(dateEnd2.getMonth()+1)+ "月"+(dateEnd2.getDate()-1)+"日");
 																	
 																	$('#lijihk2').click(function() {
 																				if ($('#num2').text() == $('#num3').text() && !$('#num2').text() == "00元") {
@@ -656,43 +744,80 @@
 																						alert("您本月无分期借款！")
 																					} else {
                                                                                       $('#example').modal();
-                                                                                      $('#hkje').val($('#num2').text());
-                                                                                      $('#hkjee').text("可还"+$('#num2').text());
+                                                                                      $('#hkje').val((data.currentrepayment-data.todayMoneys).toFixed(2));
+                                                                                      $('#hkjee').text("可还"+(data.currentrepayment-data.todayMoneys).toFixed(2)+"元");
 																						var tmoney=0;
 																						$('#qrss').click(function() {
-																							$('#qrmoney').text($('#num2').text());
-																							
-																							$('#querhk').modal();
-																							$('#qrss1s').click(function() { //立即付款按钮
-																								//alert("qss")
-																							alert($("#fkfs").val())
-																								 if($("#fkfs").val()==2){
-																									$.ajax({
-																										url : 'findsBalance',
-																										data : {
-																											uids22 : userid
-																										},
-																										success : function(te) {
-																											tmoney=te.balance;
-																											
-																											if(tmoney<data.currentrepayment){
-																												alert("您的余额不足，请充值");
-																												
-																											}else{
-																												
+																							var datess = new Date();
+				                                                                               var s=datess.getFullYear()+"-"+(datess.getMonth()+1)+"-"+datess.getDate()+""
+																						
+																								 $('#qrmoney').text( $('#hkje').val());
+																								//alert($('#qrmoney').text())
+																								$('#querhk').modal();
+																								$('#qrss1s').click(function() { //立即付款按钮
+																									
+																									
+																									 if($("#fkfs").val()==2){
+																										$.ajax({
+																											url : 'findsBalance',
+																											data : {
+																												uids22 : userid,
+																											},
+																											success : function(te) {
+																												tmoney=te.balance;
+																												var ttmonneys=$('#qrmoney').text();
+																												if(tmoney<ttmonneys){
+																													alert("您的余额不足，请充值");
+																													window.location.href="/xsr_html/xsr_yue.html";
+																													
+																												}else{
+																													$('#zfmima').modal();
+																													
+																													//alert(userid+"idid");
+																													 $('#xxxqr').click(function() {
+																														var mimas=$('#mima').val();
+																														//alert(mimas)
+																														 $.ajax({
+																															 url:'upbalance',
+																															 data:{
+																																 uids:userid,
+																																 mima:mimas,
+																															     modmoney:ttmonneys,
+																															     storydate:s,
+																															     jlid:data.recordid,
+																															 },
+																															 success : function(num) {
+																																 if(num>0){
+																																	 alert("还款成功！！给你点赞！");
+																																	
+																																	 window.location.href="repayment.html";
+																																 }
+																																 
+																															 }
+																														    
+																														 })
+																														
+																														
+																													})
+																												}
 																											}
-																										}
-																									})
-																								} 
-																							})
+																										})
+																									}
+																								<!----->
+																							  
+																							
+																							}) 
+																							
+																							
+																						
+				                                                                               
 																						})
 																						
 																								
 																					}
 																				})
 																}
-															}
-														})
+													
 											}
 
 										}

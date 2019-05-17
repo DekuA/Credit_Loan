@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/jquery.easyui.min.js"></script>
+<link rel="stylesheet" href="themes/default/easyui.css" />
+<link rel="stylesheet" href="themes/icon.css" />
+<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<!-- 头部面板操作选项 -->
+	<div id="manager_tool" style="">
+
+		<div style="padding: 0 0 0 7px; color: #333;">
+			用户ID:<input type="number" class="textbox" id="userId"style="width: 100px; height: 22px;" onchange="idchangge()"/> 
+			记录类型：<select id="record1" class="easyui-combobox">
+						<option value="1">所有记录</option>
+						<option value="2">充值记录</option>
+						<option value="3">提现记录</option>
+					</select>
+			查询时间从: <input type="text"class="easyui-datebox" editable="false" id="startDate" style="width: 100px; height: 22px;"  /> 到:
+						<input type="text" class="easyui-datebox" editable="false" id="endDate"style="width: 100px; height: 22px;"  />
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						<a href="#" class="easyui-linkbutton" iconCls="icon-search" onclick="select()">查询</a>
+		</div>
+	</div>
+
+
+	<table id="empList" ></table>
+
+
+
+
+	<script type="text/javascript">
+	
+	
+		//设置id必须大于0
+		function idchangge(){
+			var id=$("#userId").val();
+			if(parseInt(id)<1){
+				$("#userId").val(1);
+			}
+		}
+	
+		// 加载datagrid分页数据
+		$("#empList").datagrid({
+			width : 700,
+			height:280,
+			url :"../../../getAll_dby",
+		//	toolbar : "#manager_tool",
+			columns : [ [ {
+				field : "accountid",
+				title : "记录编号",
+				width:100,
+				align :'center',
+			}, {
+				field : "userid",
+				title : "用户ID",
+				width:100,
+				align :'center',
+			},{
+				field : "username",
+				title : "用户姓名",
+				width:100,
+				align :'center',
+			}, {
+				field : "record",
+				title : "充值或提现详情",
+				width:200,
+				align :'center',
+			}, {
+				field : "recordtime",
+				title : "充值或提现时间",
+				width:200,
+				align :'center',
+			}, ] ],
+			pagination : true,
+			pageSize : 8,
+			pageList : [ 4, 6, 8, 10 ],
+//			fit : true,
+//			fitColumns : false,
+
+		})
+		
+		function select(){
+			var userid=$("#userId").val();
+			var record=$("#record1").combobox("getValue");
+			alert(record);
+			var startTime=$("#startDate").datebox("getValue");
+			var endTime=$("#endDate").datebox("getValue");
+			var url1="../../../getTiaojian_dby?userid="+userid+"&record="+record+"&startTime="+startTime+"&endTime="+endTime;
+			// 加载datagrid分页数据
+			$("#empList").datagrid({
+				width : 700,
+				height:280,
+				url :url1,
+			//	toolbar : "#manager_tool",
+				columns : [ [ {
+					field : "accountid",
+					title : "记录编号",
+					width:100,
+					align :'center',
+				}, {
+					field : "userid",
+					title : "用户ID",
+					width:100,
+					align :'center',
+				},{
+					field : "username",
+					title : "用户姓名",
+					width:100,
+					align :'center',
+				}, {
+					field : "record",
+					title : "充值或提现详情",
+					width:200,
+					align :'center',
+				}, {
+					field : "recordtime",
+					title : "充值或提现时间",
+					width:200,
+					align :'center',
+				}, ] ],
+				pagination : true,
+				pageSize : 8,
+				pageList : [ 4, 6, 8, 10 ],
+//				fit : true,
+//				fitColumns : false,
+
+			})
+			}
+
+	
+	</script>
+
+</body>
+</html>

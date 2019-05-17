@@ -340,12 +340,9 @@ $.ajax({
     		    		    		    'closeTime' : 2000,
     		    		    		});
     		    		    		 
-    		    		//	alert("请填写您的借款金额！！");
-    		    				
     		    			} else if (!amperiods) {
     		    				alert("请填写借款期限")
     		    			}  else if(gg==false){
-    		    			//	alert("请勾选签订合同！！！");
     		    				 jqueryAlert({
   		    		    		    'icon'    : 'lsx_html/img/error.png',
   		    		    		    'content' : '请勾选签订合同！！！',
@@ -375,18 +372,73 @@ $.ajax({
     		      	    		    							        }
     		      	    		    							    }
     		      	    		    				    		})
+
     		      	    									}else{
-    		      	    										autonym=data;
-    		      	    										 if(amperiods>0 && amperiods<4){
-    		      	    	      	    	    					lixi=(amount*0.025).toFixed(2);
-    		      	    	      	    	    				  }else if(amperiods>3 && amperiods<7){
-    		      	    	      	    	    					lixi=(amount*0.045).toFixed(2);
-    		      	    	      	    	    				  }else if(amperiods>6 && amperiods<13){
-    		      	    	      	    	    					lixi=(amount*0.088).toFixed(2);
-    		      	    	      	    	    				  }else{
-    		      	    	      	    	    					lixi=(amount*0.12).toFixed(2);
-    		      	    	      	    	    				  }
-    		      	    							
+    		      	    										 $.ajax({
+    		      	    											 url:'findCustomerxy',
+    		      	    											 data:{uids:uuid},
+    		      	    											success:function(Cust){
+    		      	    												
+    		      	    												if(Cust>0){
+    		      	    													autonym=data;
+    		    		      	    										 if(amperiods>0 && amperiods<4){
+    		    		      	    	      	    	    					lixi=(amount*0.025).toFixed(2);
+    		    		      	    	      	    	    				  }else if(amperiods>3 && amperiods<7){
+    		    		      	    	      	    	    					lixi=(amount*0.045).toFixed(2);
+    		    		      	    	      	    	    				  }else if(amperiods>6 && amperiods<13){
+    		    		      	    	      	    	    					lixi=(amount*0.088).toFixed(2);
+    		    		      	    	      	    	    				  }else{
+    		    		      	    	      	    	    					lixi=(amount*0.12).toFixed(2);
+    		    		      	    	      	    	    				  }
+    		      	    													$.ajax({
+    	    	    		      	    										url:'gjloan',
+    	    	    		      	    										data:{uid : uuid,},
+    	    	    		      	    										success:function(test){
+    	    	    		      	    											if(test>0){
+    	    	    		      	    												alert("您已经提交过1次申请哦！！");
+    	    	    		      	    												
+    	    	    		      	    												window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	    	    		      	    											}else{
+    	    	    		      	    												$.ajax({
+    	    	    	    		      	    	      	    	    					type : "post",
+    	    	    	    		      	    	      	    	    					url : "loansAdd",
+    	    	    	    		      	    	      	    	    					data : {
+    	    	    	    		      	    	      	    	    					    uid : uuid,
+    	    	    	    		      	    	      	    	    						amo : amount,
+    	    	    	    		      	    	      	    	    						aper : amperiods,
+    	    	    	    		      	    	      	    	    						lixis:lixi,
+    	    	    	    		      	    	      	    	    					},
+    	    	    	    		      	    	      	    	    					async : true,
+    	    	    	    		      	    	      	    	    					success : function(data) {
+    	    	    	    		      	    	      	    	    						if (data > 0) {
+    	    	    	    		      	    	      	    	    							alert("借款申请提交成功，请等待客户经理联系")
+    	    	    	    		      	    	      	    	    							alert("请耐心等待3-2个工作日");
+    	    	    	    		      	    	      	    	    					
+    	    	    	    		      	    	      	    	    						window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	    	    	    		      	    	      	    	    						}
+    	    	    	    		      	    	      	    	    					}
+    	    	    	    		      	    	      	    	    				})
+    	    	    		      	    											}
+    	    	    		      	    										}
+    	    	    		      	    									})
+    		      	    												}else{
+    		      	    													var ddd4 = jqueryAlert({
+    		      	    														'content' : '您的信用不足，请前去银行卡来增加信用值！！！',
+    		      	    														'width' :'350px',
+    		      	    														'height' :'120px',
+    		      	    														'modal' : true,
+    		      	    														'buttons' : {
+    		      	    															'确定' : function() {
+    		      	    																window.location.href="xsr_html/xsr_zhanghu.html";
+    		      	    															}
+    		      	    														}
+    		      	    													})
+    		      	    													
+    		      	    												}
+    		      	    												
+    		      	    											}
+    		      	    											 
+    		      	    										 })
     		      	    											$.ajax({
     	    		      	    										url:'gjloan',
     	    		      	    										data:{uid : uuid,},
@@ -439,7 +491,6 @@ $.ajax({
     	    		      	    											}
     	    		      	    										}
     	    		      	    									})
-    		      	    										
     		      	    	      	    					}
     		      	    	      	    				}
     		      	    	      	    			})

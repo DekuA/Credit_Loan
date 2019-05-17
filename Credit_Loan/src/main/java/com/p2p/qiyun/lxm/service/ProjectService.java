@@ -8,6 +8,12 @@ import com.p2p.qiyun.lxm.domain.Project;
 import com.p2p.qiyun.lxm.domain.SelZhaiQuan;
 
 public interface ProjectService {
+	int insertBysp(Project pro);
+	
+	int upInvesptrans(Investnotes inves);
+	
+	Investnotes selInvesById(int invesid);
+	
 	List<Investnotes> selZhaiqzr(SelZhaiQuan selzq);
 	
 	int upBalanceByUid(Balancelxm balance);

@@ -82,6 +82,7 @@ public class ShiroConfiguration {
         map.put("/xmxiangqing.html", "anon");
         map.put("/login.html", "anon");
         map.put("/loanone.html","anon");
+        map.put("/zqxiangqing.html","anon");
 
 
         map.put("/shouye.html", "anon");
@@ -119,6 +120,8 @@ public class ShiroConfiguration {
         map.put("/xsr_jisuanqi.html","anon");
         map.put("/loanone.html","anon");
         map.put("/pdAge", "anon");
+        map.put("/findCustomerxy","anon" );
+        
         
         map.put("/gjloan", "anon");
         map.put("/loansAdd", "anon");

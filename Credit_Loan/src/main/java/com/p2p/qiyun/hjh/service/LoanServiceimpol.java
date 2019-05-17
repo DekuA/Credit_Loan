@@ -27,6 +27,8 @@ import com.p2p.qiyun.hjh.entity.Query;
 import com.p2p.qiyun.lsx.dao.Loan2Mapper;
 import com.p2p.qiyun.lsx.entity.Paymenthistory2;
 import com.p2p.qiyun.lsx.entity.Repayment2;
+import com.p2p.qiyun.lxm.dao.ProjectMapper;
+import com.p2p.qiyun.lxm.domain.Project;
 
 @Service
 public class LoanServiceimpol extends Thread implements LoanService {
@@ -43,6 +45,9 @@ public class LoanServiceimpol extends Thread implements LoanService {
 
 	@Autowired
 	private Loan2Mapper loan2s;
+	
+	@Autowired
+	private ProjectMapper promap;
 	
 	private Users u = null;
 
@@ -122,8 +127,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 
 								b.setBalance(b.getBalance() + selloan.getLoanamount());
 
-								if (ba.updateBalace(b) > 0) {
- 
+								if (ba.updateBalace(b) > 0) {	
 									Loan loan2 = lomapper.selloan(id); //id 是用户id 
 									int Loanid=loan2.getLoanid();
 									//借款编号 
@@ -131,7 +135,29 @@ public class LoanServiceimpol extends Thread implements LoanService {
 									double mm=(loan2.getLoanamount()+loan2.getLoanrate());//借款金额加利息总金额
 									Double loanrate =loan2.getLoanrate(); //总利息 
 									int qix = loan2.getRepaymentperiod(); //期限
-									  
+									
+									Project pro = new Project();
+									pro.setLenderid(loan2.getLoanid());
+									pro.setPperson(u.getUid());
+									pro.setPassessor(u.getUid());
+									Date da = new Date();   
+									SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+							        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");  
+							        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss"); 
+							        pro.setPclosing(sdf3.format(da));
+							        if(loan2.getRepaymentperiod()==3) {
+							        	pro.setPlcure(6.60);
+							        }else if(loan2.getRepaymentperiod()==6) {
+							        	pro.setPlcure(7.84);
+							        }else {
+							        	pro.setPlcure(8.40);
+							        }
+							        pro.setPnumber("88"+sdf2.format(da));
+							        pro.setPestimate(5);
+							        pro.setPstarttime(sdf1.format(da));
+							        
+									int insertBysp = promap.insertBysp(pro);
+									  System.out.println("成功"+insertBysp);
 									  Repayment2 repayment2=new Repayment2(Loanid, id, loanrate, mm, qix); 
 									  int addRepayment2 = loan2s.AddRepayment2(repayment2); 
 									  if(addRepayment2>0) { 
@@ -152,7 +178,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 									      //y+"-"+((ssm+1)+i)+"-"+d;
 									     Paymenthistory2 paym=new Paymenthistory2(rs.getRepaymentid(), id, Loanid, mm/qix, ss);
 									     int j = loan2s.AddPaymenthistory2(paym);
-									     System.out.println(j+"还款记录表成功！！");
+									    // System.out.println(j+"还款记录表成功！！");
 										  
 									   }
 									  
@@ -186,6 +212,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 						b.setBalance(b.getBalance() + selloan.getLoanamount());
 
 						if (ba.updateBalace(b) > 0) {
+							
 							Loan loan2 = lomapper.selloan(id); //id 是用户id 
 							int Loanid=loan2.getLoanid();
 							//借款编号 
@@ -196,6 +223,30 @@ public class LoanServiceimpol extends Thread implements LoanService {
 							  
 							  Repayment2 repayment2=new Repayment2(Loanid, id, loanrate, mm, qix); 
 							  int addRepayment2 = loan2s.AddRepayment2(repayment2); 
+							  
+							  Project pro = new Project();
+								pro.setLenderid(loan2.getLoanid());
+								pro.setPperson(u.getUid());
+								pro.setPassessor(u.getUid());
+								Date da = new Date();   
+								SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+						        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");  
+						        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss"); 
+						        pro.setPclosing(sdf3.format(da));
+						        if(loan2.getRepaymentperiod()==3) {
+						        	pro.setPlcure(6.60);
+						        }else if(loan2.getRepaymentperiod()==6) {
+						        	pro.setPlcure(7.84);
+						        }else {
+						        	pro.setPlcure(8.40);
+						        }
+						        pro.setPnumber("88"+sdf2.format(da));
+						        pro.setPestimate(5);
+						        pro.setPstarttime(sdf1.format(da));
+						        
+								int insertBysp = promap.insertBysp(pro);
+								
+							  System.out.println("成功"+insertBysp);
 							  if(addRepayment2>0) { 
 								  Calendar cal=Calendar.getInstance();    
 								  int y=cal.get(Calendar.YEAR);    

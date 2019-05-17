@@ -25,12 +25,15 @@ import com.p2p.qiyun.dyj.pojo.Role;
 import com.p2p.qiyun.dyj.pojo.RoleQueryVO;
 import com.p2p.qiyun.dyj.pojo.Users;
 import com.p2p.qiyun.dyj.pojo.UsersQueryVO;
+import com.p2p.qiyun.dyj.service.DeptService;
 import com.p2p.qiyun.dyj.service.UsersService;
 
 @RestController
 public class UsersController {
 	@Autowired
 	private UsersService us;
+	@Autowired
+	private DeptService ds;
 	@RequestMapping("findpwd")
 	public Users findPwd(String loginname,String pwd,HttpSession session,HttpServletResponse response) throws IOException{
 		Users u = us.findPwd(loginname);
@@ -106,6 +109,7 @@ public class UsersController {
 	}
 	@RequestMapping("/findUsers1")
 	public Map<String, Object> findUsers1(Users u,int rows,int page){
+		System.out.println(u);
 		UsersQueryVO p=new UsersQueryVO(rows*(page-1), rows,u);
 		List<Users> list = us.findUsers1(p);
 		Map<String, Object> map=new HashMap();
@@ -140,5 +144,30 @@ public class UsersController {
 		u.setPwd(hash.toString());
 		int updatePwd = us.updatePwd(u);
 		return updatePwd;
+	}
+	@RequestMapping("/insertUsers")
+	public int insertUsers(Users u){
+		ByteSource bytes = ByteSource.Util.bytes(u.getLoginname());
+		SimpleHash hash = new SimpleHash("MD5","123123",bytes,1234);
+		u.setPwd(hash.toString());
+		int insertusers = us.insertusers(u);
+		return insertusers;
+	}
+	@RequestMapping("/showByUid")
+	public Users showByUid(int uid){
+		Users showByUid = us.showByUid(uid);
+		return showByUid;
+	}
+	@RequestMapping("/updateUsers")
+	public int updateUsers(Users u,String deptname){
+		int deptid = ds.showByDeptname(deptname);
+		u.setDid(deptid);
+		int updateUsers = us.updateUsers(u);
+		return updateUsers;
+	}
+	@RequestMapping("/deleteUsers")
+	public int deleteUsers(int[] idlist){
+		int deleteUsers = us.deleteUsers(idlist);
+		return deleteUsers;
 	}
 }

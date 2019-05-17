@@ -59,4 +59,20 @@ public class UsersService {
 		int updatePwd = mapper.updatePwd(u);
 		return updatePwd;
 	}
+	public int insertusers(Users u){
+		int insertUsers = mapper.insertUsers(u);
+		return insertUsers;
+	}
+	public Users showByUid(int uid){
+		Users selectByPrimaryKey = mapper.selectByPrimaryKey(uid);
+		return selectByPrimaryKey;
+	}
+	public int updateUsers(Users u){
+		int updateByPrimaryKey = mapper.updateByPrimaryKey(u);
+		return updateByPrimaryKey;
+	}
+	public int  deleteUsers(int[] idlist){
+		int deleteUsers = mapper.deleteUsers(idlist);
+		return deleteUsers;
+	}
 }

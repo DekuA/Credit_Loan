@@ -14,6 +14,18 @@ public class Investnotes {
     private Integer ptrans;
     
     private Double ptransmoney;
+    
+    private String ptransdate;
+    
+    
+
+	public String getPtransdate() {
+		return ptransdate;
+	}
+
+	public void setPtransdate(String ptransdate) {
+		this.ptransdate = ptransdate;
+	}
 
 	public Integer getIid() {
 		return iid;
@@ -72,7 +84,7 @@ public class Investnotes {
 	}
 
 	public Investnotes(Integer iid, Double imoney, String idate, Integer userid, Integer pid, Integer ptrans,
-			Double ptransmoney) {
+			Double ptransmoney,String ptransdate) {
 		super();
 		this.iid = iid;
 		this.imoney = imoney;
@@ -81,6 +93,7 @@ public class Investnotes {
 		this.pid = pid;
 		this.ptrans = ptrans;
 		this.ptransmoney = ptransmoney;
+		this.ptransdate=ptransdate;
 	}
 
 	public Investnotes() {
@@ -91,7 +104,7 @@ public class Investnotes {
 	@Override
 	public String toString() {
 		return "Investnotes [iid=" + iid + ", imoney=" + imoney + ", idate=" + idate + ", userid=" + userid + ", pid="
-				+ pid + ", ptrans=" + ptrans + ", ptransmoney=" + ptransmoney + "]";
+				+ pid + ", ptrans=" + ptrans + ", ptransmoney=" + ptransmoney + ",ptransdate" +ptransdate+"]";
 	}
 
     

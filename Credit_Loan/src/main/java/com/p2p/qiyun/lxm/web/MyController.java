@@ -22,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.p2p.qiyun.cjz.domain.customer;
@@ -55,8 +56,82 @@ public class MyController {
 	@Autowired
 	private UserinfoService user;
 	
+	@RequestMapping("lxm/selZqBalancepwd")
+	public String selZqBalancepwd(String pwd,String userid,String userbalance,String invesid) {
+		Balancelxm balance = proser.selBalance(Integer.parseInt(userid));
+		if(balance.getPaypwd().equals(pwd)) {
+			Investnotes inves = proser.selInvesById(Integer.parseInt(invesid));
+			inves.setPtrans(2);
+			Date d = new Date();   
+			SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+			inves.setPtransdate(sdf1.format(d));
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+	        String dateNowStr = sdf.format(d);
+			Balancelxm bbb = new Balancelxm();
+			bbb.setUserid(Integer.parseInt(userid));
+			bbb.setBalance(Double.parseDouble(userbalance));
+			int i1 = proser.upInvesptrans(inves);
+			Investnotes invest = new Investnotes();
+			invest.setUserid(Integer.parseInt(userid));
+			invest.setIdate(dateNowStr);
+			invest.setImoney(Double.parseDouble(userbalance));
+			invest.setPid(inves.getPid());
+			int i2 = proser.insertInves(invest);
+			int i3 = proser.upBalanceByUid(bbb); 
+			if(i1==1&&i2==1&&i3==1) { 
+				return "1";
+			}else { 
+				return "2"; 
+			}
+		}else {
+			return "0";
+		}
+	}
+	
+	@RequestMapping("lxm/zqxiangqingxs")
+	public Map selZrInves(HttpSession session) {
+		Map map = new HashMap();
+		Userinfo userinfo = (Userinfo)session.getAttribute("UserInfo");
+		Investnotes inves = (Investnotes) session.getAttribute("Inves");
+		if(inves!=null) {
+			Project project = proser.selProjectById(inves.getPid());
+			String balance = selUserBalance(userinfo.getUserid()+"");
+			map.put("userinfo", userinfo);
+			Loan2 loan2 = loanser.selLoansById(project.getLenderid());
+			double repaymentperiod = loan2.getRepaymentperiod();
+			String idate = inves.getIdate();
+			Date d = new Date();   
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+	        String dateNowStr = sdf.format(d); 
+	        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+	        DateTime start = formatter.parseDateTime(idate);
+	        DateTime end = formatter.parseDateTime(dateNowStr);
+	        int qixian = (int) Math.round(repaymentperiod);
+	        int months = Months.monthsBetween(start, end).getMonths();
+	        loan2.setRepaymentperiod(repaymentperiod-months);
+			map.put("project",project);
+			map.put("inves",inves);
+			map.put("loan2",loan2);
+			map.put("balance",balance);
+			return map;
+		}
+		return null;
+	}
+	
+	@RequestMapping("selInvesById.lxm")
+	public void selInvesById(String invesid,HttpSession session,HttpServletResponse response) {
+		Investnotes inves = proser.selInvesById(Integer.parseInt(invesid));
+		session.setAttribute("Inves", inves);
+		try {
+			response.sendRedirect("zqxiangqing.html");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	@RequestMapping("lxm/selzhaiqzr")
-	public Map selzhaiqzr(SelZhaiQuan selzq) {
+	public Map selzhaiqzr(SelZhaiQuan selzq,HttpSession session) {
 		Map map = new HashMap();
 		List<Investnotes> inves = proser.selZhaiqzr(selzq);
 		List<Project> projects = new ArrayList<Project>();
@@ -108,6 +183,8 @@ public class MyController {
 		    }
 		    
 		}
+		Userinfo attribute = (Userinfo)session.getAttribute("UserInfo");
+		map.put("c",attribute);
 		map.put("projectlist", projects);
 		map.put("loanlist",loans);
 		map.put("inves", inves);
@@ -132,7 +209,8 @@ public class MyController {
 			bbb.setBalance(Double.parseDouble(userbalance));
 			Loan2 loan = loanser.selLoansById(Integer.parseInt(loanid));
 			int i = (int) ((Double.parseDouble(userbalance)/loan.getLoanamount())*100);
-			int i1 = proser.updatePschedule(i, pid); int i2 = proser.insertInves(inves);
+			int i1 = proser.updatePschedule(i, pid);
+			int i2 = proser.insertInves(inves);
 			int i3 = proser.upBalanceByUid(bbb); 
 			if(i1==1&&i2==1&&i3==1) { 
 				return "1";
@@ -160,7 +238,6 @@ public class MyController {
 	
 	@RequestMapping("lxm/selCountLoan")
 	public Map selCountLoan(String userid) {
-		//System.out.println(userid);
 		Map map=new HashMap();
 		map.put("countloan", proser.selcountloan(Integer.parseInt(userid)));
 		map.put("countloanpay", proser.selCountloanPay(Integer.parseInt(userid)));
@@ -171,7 +248,6 @@ public class MyController {
 		sumpaymoney=sumpaymoney==null?"0.00":sumpaymoney;
 		map.put("sumloanmoney",sumloanmoney);
 		map.put("sumpaymoney",sumpaymoney);
-		//System.out.println(map);
 		return map;
 	}
 	

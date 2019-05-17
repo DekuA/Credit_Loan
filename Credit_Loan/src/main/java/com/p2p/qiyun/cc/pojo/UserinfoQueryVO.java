@@ -1,20 +1,20 @@
 package com.p2p.qiyun.cc.pojo;
 
 public class UserinfoQueryVO {
-	private int pageNum;
-	private int maxPage;
+	private Integer pageNum;
+	private Integer maxPage;
 	private Userinfo u;
 	public UserinfoQueryVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public UserinfoQueryVO(int pageNum, int maxPage, Userinfo u) {
+	public UserinfoQueryVO(Integer pageNum, Integer maxPage, Userinfo u) {
 		super();
 		this.pageNum = pageNum;
 		this.maxPage = maxPage;
 		this.u = u;
 	}
-	public UserinfoQueryVO(int pageNum, int maxPage) {
+	public UserinfoQueryVO(Integer pageNum, Integer maxPage) {
 		super();
 		this.pageNum = pageNum;
 		this.maxPage = maxPage;

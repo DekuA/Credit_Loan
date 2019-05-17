@@ -13,7 +13,7 @@
   		select * from userinfo  u
 		<where>
 			<if test="u.nickname !=null and u.nickname != '' ">
-				u.nickname like "%"#{u.nickname}"%"
+			or	u.nickname like "%"#{u.nickname}"%"
 			</if>
 			<if test="u.username !=null and u.username != ''  ">
 				and u.username like "%"#{u.username}"%"

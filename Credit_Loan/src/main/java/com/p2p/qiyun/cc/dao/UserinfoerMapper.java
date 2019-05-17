@@ -13,6 +13,6 @@ public interface UserinfoerMapper {
 	//查询所有
 	List<Userinfo> userinfo(UserinfoQueryVO vo);
 	//总数
-	 int count(UserinfoQueryVO vo);
+	Integer count(UserinfoQueryVO v);
 	
 }

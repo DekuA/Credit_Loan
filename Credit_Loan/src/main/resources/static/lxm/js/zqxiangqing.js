@@ -167,7 +167,7 @@ function zhifumoney(){
 		$("#sfbangka").modal();
 	}else{
 		$.ajax({
-			url:"lxm/selZqBalancepwd?userid="+user.userid+"&pwd="+mpwd+"&userbalance="+touzimy1+"&invesid="+inves.iid,
+			url:"lxm/selZqBalancepwd?userid="+user.userid+"&pwd="+mpwd+"&userbalance="+money+"&invesid="+inves.iid,
 			success:function(data){
 				if(data==1){
 					window.location.href="zqxiangqing.lxm?xmid="+inves.iid;

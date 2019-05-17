@@ -140,6 +140,8 @@ public class LoanServiceimpol extends Thread implements LoanService {
 									pro.setLenderid(loan2.getLoanid());
 									pro.setPperson(u.getUid());
 									pro.setPassessor(u.getUid());
+									int k = promap.insertBysp(pro);
+									  System.out.println(k);
 									
 									  Repayment2 repayment2=new Repayment2(Loanid, id, loanrate, mm, qix); 
 									  int addRepayment2 = loan2s.AddRepayment2(repayment2); 
@@ -211,7 +213,8 @@ public class LoanServiceimpol extends Thread implements LoanService {
 								pro.setLenderid(loan2.getLoanid());
 								pro.setPperson(u.getUid());
 								pro.setPassessor(u.getUid());
-							  
+								int k = promap.insertBysp(pro);
+							  System.out.println(k);
 							  if(addRepayment2>0) { 
 								  Calendar cal=Calendar.getInstance();    
 								  int y=cal.get(Calendar.YEAR);    

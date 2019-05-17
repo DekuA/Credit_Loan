@@ -18,13 +18,13 @@ public class Repayment2 {
 
 	public Repayment2() {}
     
-	public Repayment2(int loanid, int userid,double rterest, double returnallmoney,int returnperiod) {
+	public Repayment2(int loanid, int userid,double rterest, double returnallmoney,int returnperiodp) {
 		
 		this.loanid = loanid;
 		this.userid = userid;
 		this.returnallmoney = returnallmoney;
 		this.rterest = rterest;
-		this.returnperiod = returnperiod;
+		this.returnperiodp = returnperiodp;
 	}
     
 	

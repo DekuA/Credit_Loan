@@ -62,7 +62,6 @@ public class BorrowController {
 	@RequestMapping("borrowdetail")
 	public Repayment borrowdetail(int loanid){
 		Repayment repayment = service.loanidselect(loanid);
-		System.out.println(repayment);
 		return repayment;
 	}
 }

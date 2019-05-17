@@ -7,8 +7,8 @@
   	</insert>
  
  <insert id="AddRepayment2" parameterType="com.p2p.qiyun.lsx.entity.Repayment2">
-  	      INSERT into Repayment(loanid,userid,rterest,returnallmoney,returnperiod) VALUES
-          (#{loanid},#{userid},#{rterest},#{returnallmoney},#{returnperiod})
+  	      INSERT into Repayment(loanid,userid,rterest,returnallmoney,returnperiodp) VALUES
+          (#{loanid},#{userid},#{rterest},#{returnallmoney},#{returnperiodp})
   	</insert>
   	<insert id="AddPaymenthistory2" parameterType="com.p2p.qiyun.lsx.entity.Paymenthistory2">
   	      INSERT into Paymenthistory(repaymentid,userid,loanid,currentrepayment,storydate) VALUES

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.p2p.qiyun.wzr.domain.BorrowVO;
+import com.p2p.qiyun.wzr.domain.Paymenthistory;
 import com.p2p.qiyun.wzr.domain.Repayment;
 
 public interface BorrowService {
@@ -14,4 +15,5 @@ public interface BorrowService {
 	
 	String loanstatus(int loanid);
 	Repayment loanidselect(int loanid);
+	
 }

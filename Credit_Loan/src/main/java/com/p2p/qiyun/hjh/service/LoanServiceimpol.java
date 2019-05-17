@@ -152,7 +152,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 									      //y+"-"+((ssm+1)+i)+"-"+d;
 									     Paymenthistory2 paym=new Paymenthistory2(rs.getRepaymentid(), id, Loanid, mm/qix, ss);
 									     int j = loan2s.AddPaymenthistory2(paym);
-									     System.out.println(j+"还款记录表成功！！");
+									    // System.out.println(j+"还款记录表成功！！");
 										  
 									   }
 									  

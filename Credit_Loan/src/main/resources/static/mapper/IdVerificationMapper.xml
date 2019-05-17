@@ -8,4 +8,8 @@
   	<select id="findBalance" resultType="com.p2p.qiyun.lsx.entity.Balance2" parameterType="java.lang.Integer">
      	select * from Balance where userid=#{userid}
   	</select>
+  	
+  	<select id="findCustomer" resultType="com.p2p.qiyun.hjh.entity.Customer" parameterType="java.lang.Integer">
+  	select * from customer where userid=#{userid}
+  	</select>
 </mapper>

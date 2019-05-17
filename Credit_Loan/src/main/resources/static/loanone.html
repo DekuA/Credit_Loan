@@ -424,94 +424,68 @@ $.ajax({
     		      	    								data:{uid:userid},
     		      	    								success:function(data){
     		      	    									if(data==0){
-    		      	    										//alert("");
-    		      	    										/*  var dialog5 = jqueryAlert({
-    		      	    		    							   'title'   : '实名提示',
-    		      	    		    							   'content' : '您没有实名,请实名后申请！！！',
-    		      	    		    							    'modal'   : true,
-    		      	    		    							    'buttons' :{
-    		      	    		    							        '确定' : function(){
-    		      	    		    							            dialog5.close();
-    		      	    		    							        }
-    		      	    		    							    }
-    		      	    		    				    		}) 
-    		      	    		    				    		 dialog5.show();*/
+    		      	    										
     		      	    		    				    		 alert("您没有实名,请实名后申请！");
     		      	    										location.href="xsr_html/xsr_zhanghu.html";
     		      	    									}else{
-    		      	    										autonym=data;
-    		      	    										 if(amperiods>0 && amperiods<4){
-    		      	    	      	    	    					lixi=(amount*0.025).toFixed(2);
-    		      	    	      	    	    				  }else if(amperiods>3 && amperiods<7){
-    		      	    	      	    	    					lixi=(amount*0.045).toFixed(2);
-    		      	    	      	    	    				  }else if(amperiods>6 && amperiods<13){
-    		      	    	      	    	    					lixi=(amount*0.088).toFixed(2);
-    		      	    	      	    	    				  }else{
-    		      	    	      	    	    					lixi=(amount*0.12).toFixed(2);
-    		      	    	      	    	    				  }
+    		      	    										 $.ajax({
+    		      	    											 url:'findCustomerxy',
+    		      	    											 data:{uids:uuid},
+    		      	    											success:function(Cust){
+    		      	    												alert(Cust+"哈哈哈哈或或或")
+    		      	    												if(Cust>0){
+    		      	    													autonym=data;
+    		    		      	    										 if(amperiods>0 && amperiods<4){
+    		    		      	    	      	    	    					lixi=(amount*0.025).toFixed(2);
+    		    		      	    	      	    	    				  }else if(amperiods>3 && amperiods<7){
+    		    		      	    	      	    	    					lixi=(amount*0.045).toFixed(2);
+    		    		      	    	      	    	    				  }else if(amperiods>6 && amperiods<13){
+    		    		      	    	      	    	    					lixi=(amount*0.088).toFixed(2);
+    		    		      	    	      	    	    				  }else{
+    		    		      	    	      	    	    					lixi=(amount*0.12).toFixed(2);
+    		    		      	    	      	    	    				  }
+    		      	    													$.ajax({
+    	    	    		      	    										url:'gjloan',
+    	    	    		      	    										data:{uid : uuid,},
+    	    	    		      	    										success:function(test){
+    	    	    		      	    											if(test>0){
+    	    	    		      	    												alert("您已经提交过1次申请哦！！");
+    	    	    		      	    												
+    	    	    		      	    												window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	    	    		      	    											}else{
+    	    	    		      	    												$.ajax({
+    	    	    	    		      	    	      	    	    					type : "post",
+    	    	    	    		      	    	      	    	    					url : "loansAdd",
+    	    	    	    		      	    	      	    	    					data : {
+    	    	    	    		      	    	      	    	    					    uid : uuid,
+    	    	    	    		      	    	      	    	    						amo : amount,
+    	    	    	    		      	    	      	    	    						aper : amperiods,
+    	    	    	    		      	    	      	    	    						lixis:lixi,
+    	    	    	    		      	    	      	    	    					},
+    	    	    	    		      	    	      	    	    					async : true,
+    	    	    	    		      	    	      	    	    					success : function(data) {
+    	    	    	    		      	    	      	    	    						if (data > 0) {
+    	    	    	    		      	    	      	    	    							alert("借款申请提交成功，请等待客户经理联系")
+    	    	    	    		      	    	      	    	    							alert("请耐心等待3-2个工作日");
+    	    	    	    		      	    	      	    	    					
+    	    	    	    		      	    	      	    	    						window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	    	    	    		      	    	      	    	    						}
+    	    	    	    		      	    	      	    	    					}
+    	    	    	    		      	    	      	    	    				})
+    	    	    		      	    											}
+    	    	    		      	    										}
+    	    	    		      	    									})
+    		      	    												}else{
+    		      	    													alert(Cust+"ss")
+    		      	    													alert("您的信用不足，请前去银行卡来增加信用值！！");
+    		      	    													location.href="xsr_html/xsr_zhanghu.html";
+    		      	    												}
+    		      	    												
+    		      	    											}
+    		      	    											 
+    		      	    										 })
     		      	    							
-    		      	    											$.ajax({
-    	    		      	    										url:'gjloan',
-    	    		      	    										data:{uid : uuid,},
-    	    		      	    										success:function(test){
-    	    		      	    											if(test>0){
-    	    		      	    												alert("您已经提交过1次申请哦！！");
-    	    		      	    												/*  var dialog6 = jqueryAlert({
-    	    		    		      	    		    							   'title'   : '提示',
-    	    		    		      	    		    							   'content' : '您已经提交过1次申请哦！！！！',
-    	    		    		      	    		    							    'modal'   : true,
-    	    		    		      	    		    							    'buttons' :{
-    	    		    		      	    		    							        '确定' : function(){
-    	    		    		      	    		    							            dialog6.close();
-    	    		    		      	    		    							        }
-    	    		    		      	    		    							    }
-    	    		    		      	    		    				    		})
-    	    		    		      	    		    				    		 dialog6.show(); */
-    	    		      	    												window.location.href="/xsr_html/xsr_jiehuanjilu.html";
-    	    		      	    											}else{
-    	    		      	    												$.ajax({
-    	    	    		      	    	      	    	    					type : "post",
-    	    	    		      	    	      	    	    					url : "loansAdd",
-    	    	    		      	    	      	    	    					data : {
-    	    	    		      	    	      	    	    					    uid : uuid,
-    	    	    		      	    	      	    	    						amo : amount,
-    	    	    		      	    	      	    	    						aper : amperiods,
-    	    	    		      	    	      	    	    						lixis:lixi,
-    	    	    		      	    	      	    	    					},
-    	    	    		      	    	      	    	    					async : true,
-    	    	    		      	    	      	    	    					success : function(data) {
-    	    	    		      	    	      	    	    						if (data > 0) {
-    	    	    		      	    	      	    	    							alert("借款申请提交成功，请等待客户经理联系")
-    	    	    		      	    	      	    	    							alert("请耐心等待3-2个工作日");
-    	    	    		      	    	      	    	    					/* 	var dialog4s = jqueryAlert({
-    	    	    		      	    	      	    	    						'icon'    : 'lsx_html/img/right.png',
-    	    	    		      	    	      	    	    					    'title'   : '提示',
-    	    	    		      	    	      	    	    					    'content' : '借款申请提交成功，请等待客户经理联系',
-    	    	    		      	    	      	    	    					    'modal'   : true,
-    	    	    		      	    	      	    	    					    'animateType' : '',
-    	    	    		      	    	      	    	    					    'buttons' :{
-    	    	    		      	    	      	    	    					        '关闭' : function(){
-    	    	    		      	    	      	    	    					            M.dialog4.close();
-    	    	    		      	    	      	    	    					        },
-    	    	    		      	    	      	    	    					        '好的' : function(){
-    	    	    		      	    	      	    	    					            if(M.dialog41){
-    	    	    		      	    	      	    	    					                return M.dialog41.show();
-    	    	    		      	    	      	    	    					            }
-    	    	    		      	    	      	    	    					            M.dialog41 = jqueryAlert({
-    	    	    		      	    	      	    	    					                
-    	    	    		      	    	      	    	    					                'content' : '请耐心等待3-2个工作日.'
-    	    	    		      	    	      	    	    					            })
-    	    	    		      	    	      	    	    					        }
-    	    	    		      	    	      	    	    					    }
-    	    	    		      	    	      	    	    					})
-    	    	    		      	    	      	    	    					dialog4s.show(); */
-    	    	    		      	    	      	    	    						window.location.href="/xsr_html/xsr_jiehuanjilu.html";
-    	    	    		      	    	      	    	    						}
-    	    	    		      	    	      	    	    					}
-    	    	    		      	    	      	    	    				})
-    	    		      	    											}
-    	    		      	    										}
-    	    		      	    									})
+    		      	    										
     		      	    										
     		      	    	      	    					}
     		      	    	      	    				}

@@ -23,7 +23,7 @@ public interface DeptMapper {
     List<Dept> selectByExample(DeptQuerVO vo);
 
     Dept selectByPrimaryKey(Integer deptid);
-
+    int showByDeptname(String deptname);
     int updateByExampleSelective(@Param("record") Dept record, @Param("example") DeptExample example);
 
     int updateByExample(@Param("record") Dept record, @Param("example") DeptExample example);

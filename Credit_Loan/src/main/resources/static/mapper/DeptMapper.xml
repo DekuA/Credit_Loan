@@ -76,6 +76,9 @@
     from dept
     where deptid = #{deptid,jdbcType=INTEGER}
   </select>
+  <select id="showByDeptname" parameterType="String" resultType="int">
+  	select deptid from dept where deptname=#{deptname}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from dept
     where deptid = #{deptid,jdbcType=INTEGER}

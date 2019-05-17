@@ -51,7 +51,7 @@
 				    url:"find?nickname="+user+"&username="+name+"&Phone="+phone,   
 				    //title:"<div align='center'>新闻</div>",
 				    width:'auto',
-				    height:'auto',
+				    height:405,
 				    toolbar: [{
 				    	iconCls: 'icon-edit',
 						text:'查询会员详细信息',
@@ -110,7 +110,7 @@
 											
 										$("#manage_edit").append(input);
 										}else{
-											alert("该会员没有添加详细信息");
+											$.messager.alert('警告操作', '该会员没有添加详细信息', 'warning');
 											$.messager.progress('close');
 										}
 									},

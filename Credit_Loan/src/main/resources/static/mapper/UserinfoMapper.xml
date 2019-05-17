@@ -33,7 +33,7 @@
   		update userinfo set password=#{password} where Phone=#{Phone}
   	</update>
   	
-<<<<<<< HEAD
+
   	<select id="voluntarilydate" resultType="com.p2p.qiyun.wzr.domain.Paymenthistory">
   		select * from paymenthistory where paymentstatus=0
   	</select>
@@ -75,9 +75,9 @@
   	<update id="voluntarilycustupdate" parameterType="com.p2p.qiyun.wzr.domain.VoluntarilyVo">
   		update customer set creditrate=creditrate-100 where userid=#{userid}
   	</update>
-=======
+
   	<select id="seluserById" parameterType="int" resultType="com.p2p.qiyun.wzr.domain.Userinfo">
   		select * from userinfo where userid=#{userid}
   	</select>
->>>>>>> branch 'master' of https://github.com/DekuA/Credit_Loan.git
+
 </mapper>

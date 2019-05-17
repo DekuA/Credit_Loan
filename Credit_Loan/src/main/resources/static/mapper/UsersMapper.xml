@@ -98,10 +98,9 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from users
-    where uid = #{uid,jdbcType=INTEGER}
+   select u.uid,u.loginname,u.pwd,u.username,u.sex,u.datebirth,u.job,u.xueli,d.* from users u,dept d
+  	 where u.did=d.deptid
+    and  u.uid = #{uid,jdbcType=INTEGER}
   </select>
   <select id="showDeptByDid" resultType="int" parameterType="int">
   	select count(*) from users where did in <foreach collection="array" open="(" close=")" item="k" separator=",">
@@ -145,6 +144,9 @@
   	 	<if test="u.rid!=null and u.rid!=0 ">
   	 		and u.rid=#{u.rid}
   	 	</if>
+  	 	<if test="u.did!=null and u.did!=0">
+  	 		and u.did=#{u.did}
+  	 	</if>
   	 </where>LIMIT #{pageNum},#{maxPage}
   </select>
   <select id="userscount" resultType="int" parameterType="com.p2p.qiyun.dyj.pojo.UsersQueryVO">
@@ -157,11 +159,18 @@
   	 	<if test="u.rid!=null and u.rid!=0 "> 
   	 		and u.rid=#{u.rid}
   	 	</if>
+  	 	<if test="u.did!=null and u.did!=0">
+  	 		and u.did=#{u.did}
+  	 	</if>
   	 </where>
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from users
     where uid = #{uid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteUsers" parameterType="int">
+  	 delete from users
+    where uid in <foreach collection="array" open="(" close=")" item="k" separator=",">#{k}</foreach>
   </delete>
   <delete id="deleteByExample" parameterType="com.p2p.qiyun.dyj.pojo.UsersExample" >
     delete from users
@@ -175,6 +184,16 @@
       xueli, job, did, rid
       )
     values (#{uid,jdbcType=INTEGER}, #{loginname,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
+      #{username,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{datebirth,jdbcType=VARCHAR}, 
+      #{xueli,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{did,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertUsers" parameterType="com.p2p.qiyun.dyj.pojo.Users">
+  insert into users (loginname, pwd, 
+      username, sex, datebirth, 
+      xueli, job, did, rid
+      )
+    values ( #{loginname,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, 
       #{username,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, #{datebirth,jdbcType=VARCHAR}, 
       #{xueli,jdbcType=VARCHAR}, #{job,jdbcType=VARCHAR}, #{did,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER}
       )
@@ -346,15 +365,13 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.p2p.qiyun.dyj.pojo.Users" >
     update users
-    set loginname = #{loginname,jdbcType=VARCHAR},
-      pwd = #{pwd,jdbcType=VARCHAR},
+    set 
       username = #{username,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       datebirth = #{datebirth,jdbcType=VARCHAR},
       xueli = #{xueli,jdbcType=VARCHAR},
       job = #{job,jdbcType=VARCHAR},
-      did = #{did,jdbcType=INTEGER},
-      rid = #{rid,jdbcType=INTEGER}
+      did = #{did,jdbcType=INTEGER}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
   <update id="updatePwd" parameterType="com.p2p.qiyun.dyj.pojo.Users">

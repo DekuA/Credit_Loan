@@ -13,6 +13,8 @@
 	src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+<script type="text/javascript" src="../lsx_html/js/alert.js"></script>
+<link rel="stylesheet" href="../lsx_html/css/alert.css" />
 
 <style>
 #lunbo {
@@ -648,8 +650,20 @@ $.ajax({
 																	$('#lijihk').click(function() {
 																				if ($('#num2').text() == $('#num3').text() && !$('#num2').text() == "00元") {
 																						alert("您的当月账号已还清啦！");
+																						var ddd = jqueryAlert({
+																							'content' : '您的当月账号已还清啦！',
+																							'width' :'350px',
+																							'height' :'100px',
+																							'modal' : true,
+																							'buttons' : {
+																								'确定' : function() {
+																									ddd.close();
+																								}
+																							}
+																						})
 																					} else if ($('#num2').text() == "00元" && $('#num3').text() == "00元") {
 																						alert("您本月无分期借款！")
+																						
 																					} else {
                                                                                       $('#example1').modal();
                                                                                       $('#hkje1').val((data.currentrepayment-data.todayMoneys).toFixed(2));
@@ -773,7 +787,6 @@ $.ajax({
 				                                                                               var s=datess.getFullYear()+"-"+(datess.getMonth()+1)+"-"+datess.getDate()+""
 																						
 																								 $('#qrmoney').text( $('#hkje').val());
-																								//alert($('#qrmoney').text())
 																								$('#querhk').modal();
 																								$('#qrss1s').click(function() { //立即付款按钮
 																									
@@ -793,11 +806,8 @@ $.ajax({
 																													
 																												}else{
 																													$('#zfmima').modal();
-																													
-																													//alert(userid+"idid");
 																													 $('#xxxqr').click(function() {
 																														var mimas=$('#mima').val();
-																														//alert(mimas)
 																														 $.ajax({
 																															 url:'upbalance',
 																															 data:{
@@ -809,8 +819,6 @@ $.ajax({
 																															 },
 																															 success : function(num) {
 																																 if(num>0){
-																																	 alert("还款成功！！给你点赞！");
-																																	
 																																	 window.location.href="repayment.html";
 																																 }
 																																 

@@ -33,7 +33,7 @@ public class kahaoxxController {
 		int rows = Integer.parseInt(request.getParameter("rows"));
 		int first = rows * (page - 1);// 第几个记录数 
 		Map map = new HashMap(); 
-		List<customer> list = ser.seluser(new customer(page,rows,username));
+		List<customer> list = ser.seluser(new customer(first,rows,username));
 		int ccount = ser.ccount(username);
 		map.put("total", ccount);
 		map.put("rows", list);
@@ -55,6 +55,15 @@ public class kahaoxxController {
 		return selkahao;
 		
 	}
-	
+	/*
+	 * @RequestMapping("listinfo") public Map listinfo(HttpServletRequest request) {
+	 * int page = Integer.parseInt(request.getParameter("page")); int rows =
+	 * Integer.parseInt(request.getParameter("rows")); int first = rows * (page -
+	 * 1); Map map = new HashMap(); List<info> listinfo = ser.listinfo(new
+	 * info(first, rows)); int countinfo = ser.countinfo(); map.put("total",
+	 * countinfo); map.put("rows", listinfo); return map;
+	 * 
+	 * }
+	 */
 	}
 

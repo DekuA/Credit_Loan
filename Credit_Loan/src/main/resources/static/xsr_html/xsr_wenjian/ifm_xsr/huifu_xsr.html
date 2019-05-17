@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+		<link rel="stylesheet" href="../css_xsr/bootstrap.min.css" />
+		<script type="text/javascript" src="../js_xsr/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap-paginator.js"></script>
+		<style>
+			a{
+				text-decoration: none;
+			}
+			font{
+				size: 1;
+			}
+		</style>
+<body  >
+	<div style="position: relative;top: 30px;left: 10px;width: 150px;height: 700px;border: 1px solid red; ">
+		<table  id='tab_yonghuqiu'>
+		
+		</table>
+	</div>
+	
+	<script type="text/javascript">
+	var id=5;
+	ff1();
+	function ff1(){
+		$.ajax({
+			url:"../../../huifuuser_xsr",
+			data:{
+				qingqiuuserid:id
+			},
+			dataType : "json",
+			success:function(da){
+				$("#tab_yonghuqiu").html();
+				for(i=da.quanbuqingqiu_xsr.length-1;i>=0;i--){
+					$("#tab_yonghuqiu").append("<tr id='tr"+da.quanbuqingqiu_xsr[i]+"'><td><button  class='btn btn-outline-info'>"+da.quanbuqingqiu_xsr[i]+"号用户请求</button></td></tr><tr style='height: 10px;'><td></td></tr>");
+				} 
+			}
+		}) 
+	}
+	  
+	</script>
+</body>
+	
+</html>

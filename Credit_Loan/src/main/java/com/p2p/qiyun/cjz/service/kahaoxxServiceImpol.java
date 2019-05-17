@@ -40,7 +40,6 @@ public class kahaoxxServiceImpol implements kahaoxxService{
 	}
 
 
-
 	/*
 	 * @Override public List<customer> mohu(customer c) { // TODO Auto-generated
 	 * method stub List<customer> mohu = dao.mohu(c); return mohu; }

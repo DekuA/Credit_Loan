@@ -86,5 +86,16 @@
 	<select id="sebalance" parameterType="int" resultType="com.p2p.qiyun.dby.pojo.balance">
 		select * from balance where userid=#{userid}
 	</select>
+	
+	<select id="chaxunqingqiu" resultType="com.p2p.qiyun.xsr.domain.userinfo">
+		select * from  userinfo where userid in 
+		<foreach collection="list" close=")" item="v" open="(">
+			#{v}
+		</foreach>
+	</select>
+	
+	<update id="upzfmm" parameterType="com.p2p.qiyun.dby.pojo.balance">		
+			update balance set paypwd=#{paypwd} where userid=#{userid}
+	</update>
   	
 </mapper>

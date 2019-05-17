@@ -24,6 +24,7 @@
 		</table>
 	</body>
 	<script>
+	var num=0;
 		function shijian(){
 			var d1=new Date();
 			var shi = d1.getHours();
@@ -38,28 +39,27 @@
 		function diao(){
 				$("#kf_table").html("<tr><td><font size='1' color='blue' class='kfname'>小安</font> <font id='kf_font1' size='1' color='gray'></font></td></tr><tr><td> <font id='kf_nr1' size='1' color='blue'>您好，祁云贷客服-龙龙，很高兴为您服务。请问有什么可以帮您？</font></td></tr>");
 				$(".kfname").html("祁云贷客服-龙龙");
-				$("#kf_font1").html(shijian());
 				chaxunduihua();		
 		}
 		function chaxunduihua(){
-			$.ajax({
+			 $.ajax({
 				url:"../../../chaxuntext_xsr",
 				data:{
-					
+					number:num
 				},
 				dataType : "json",
-				success:function(da){	
-					for(i=0;i<da.length;i++){
+				success:function(da){
+					 for(i=0;i<da.length;i++){
 						if(da[i].uid!=0){		
-							$("#kf_table").append("<tr><td><font color='blue' size='1'>kefu</font> <font size='1' color='gray'>("+da[i].fasongdate+")</font></td></tr>");
+							$("#kf_table").append("<tr><td><font color='blue' size='1'>kefu</font> <font size='1' color='gray'>"+da[i].fasongdate+"</font></td></tr>");
 							$("#kf_table").append("<tr><td> <font size='1' color='blue'>"+da[i].kfnr+"</font></td></tr>");							
 						}else{
-							$("#kf_table").append("<tr><td><font size='1'>您</font> <font size='1' color='gray'>("+da[i].fasongdate+")</font></td></tr>");
+							$("#kf_table").append("<tr><td><font size='1'>您</font> <font size='1' color='gray'>"+da[i].fasongdate+"</font></td></tr>");
 							$("#kf_table").append("<tr><td> <font size='1'>"+da[i].kfnr+"</font></td></tr>");
 						}
 					}
 				}
-			}) 
+			})  
 		}
 		
 	</script>

@@ -23,7 +23,7 @@ public class UserinfoerController {
 	private UserinfoerService service;
 	
 	@RequestMapping("find")
-	public Map<String, Object> userinfo(UserinfoQueryVO v,Userinfo u,HttpSession session,int page,int rows) {
+	public Map<String, Object> userinfo(UserinfoQueryVO v,Userinfo u,HttpSession session,Integer page,Integer rows) {
 		
 		v.setU(u);
 		v.setPageNum((page-1)*rows);

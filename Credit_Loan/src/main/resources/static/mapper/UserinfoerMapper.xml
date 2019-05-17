@@ -13,7 +13,7 @@
   		select * from userinfo  u
 		<where>
 			<if test="u.nickname !=null and u.nickname != '' ">
-				u.nickname like "%"#{u.nickname}"%"
+			or	u.nickname like "%"#{u.nickname}"%"
 			</if>
 			<if test="u.username !=null and u.username != ''  ">
 				or u.username like "%"#{u.username}"%"
@@ -24,7 +24,18 @@
 		</where> LIMIT #{pageNum},#{maxPage}
   	</select>
   	<select id="count" parameterType="com.p2p.qiyun.cc.pojo.UserinfoQueryVO" resultType="java.lang.Integer" >
-    	select count(*) from userinfo
+    	select count(*) from userinfo u
+    	<where>
+			<if test="u.nickname !=null and u.nickname != '' ">
+				or u.nickname like "%"#{u.nickname}"%"
+			</if>
+			<if test="u.username !=null and u.username != ''  ">
+				or u.username like "%"#{u.username}"%"
+			</if>
+			<if test="u.Phone !=null and u.Phone != '' ">
+				or u.Phone like "%"#{u.Phone}"%"
+			</if>
+		</where>
   </select>
   
 </mapper>

@@ -20,8 +20,8 @@ public class UserinfoerService {
 		return userinfo;
 		
 	}
-	public int count(UserinfoQueryVO vo) {
-		int count = mapper.count(vo);
+	public Integer count(UserinfoQueryVO v) {
+		Integer count = mapper.count(v);
 		return count;
 	}
 	

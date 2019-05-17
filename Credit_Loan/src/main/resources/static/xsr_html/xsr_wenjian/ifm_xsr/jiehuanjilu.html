@@ -76,6 +76,7 @@
 					if(da.rows[i].paymentstatus==2){
 						sh="逾期";co="red";caozuo=da.rows[i].storydatep;
 					}
+					
 					$("#jkuanbiao").append("<tr><td>"+da.rows[i].repaymentid+"</td><td>"+da.rows[i].loanid+"</td><td><font color='blue'>"+da.userphone+"</font></td><td>"+da.rows[i].currentrepayment+"</td><td>"+da.rows[i].storydate+"</td><td>"+caozuo+"</td><td><font color='"+co+"'>"+sh+"</font></td></tr>");
 				}
 				$(".pagination").bootstrapPaginator({
@@ -129,6 +130,9 @@
 					}
 					if(da.rows[i].approvalstatus=="2"){
 						sh="未通过";co="red";					
+					}
+					if(da.rows[i].approvalstatus=="3"){
+						sh="审核中";co="red";					
 					}
 					$("#jkuanbiao").append("<tr><td>"+da.rows[i].loanid+"</td><td><font color='blue'>"+da.userphone+"</font></td><td>"+da.rows[i].loanrate+"</td><td>"+da.rows[i].applicationdate+"</td><td>"+da.rows[i].loanamount+"</td><td>"+da.rows[i].repaymentperiod+"</td><td><font color='"+co+"'>"+sh+"</font></td></tr>");
 				}

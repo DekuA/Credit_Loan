@@ -35,7 +35,6 @@
 				<!-- 充值头部 -->
 				<div class="modal-header">
 					<h4 class="modal-title">充值</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 
 				<!-- 充值主体 -->
@@ -45,7 +44,7 @@
 							<span class="input-group-text">充值金额</span>
 						</div>
 						<input type="number" class="input-group-text" placeholder="0"
-							id="record" name="record">
+							id="record" name="record" oninput="chongzzz()">
 						<div class="input-group-prepend">
 							<span class="input-group-text">元</span>
 						</div>
@@ -81,7 +80,6 @@
 				<!-- 提现头部 -->
 				<div class="modal-header">
 					<h4 class="modal-title">提现</h4>
-					<button type="button" class="close" data-dismiss="modal">&times;</button>
 				</div>
 
 				<!-- 提现主体 -->
@@ -92,7 +90,7 @@
 								<span class="input-group-text">提现金额</span>
 							</div>
 							<input type="number" class="input-group-text" placeholder="0"
-								id="tixianyue1" name="record" onchange="tixian1()">
+								id="tixianyue1" name="record" oninput="tixian1()">
 							<div class="input-group-prepend">
 								<span class="input-group-text">元</span>
 							</div>
@@ -142,10 +140,16 @@ function czn(num11){
 		});
 	}
 
+	function chongzzz(){
+		if($("#record").val()<1){
+			document.getElementById("record").value = 1;
+		}
+	}	
+	
 	//充值
 	function chongzhi() {
 		var pwd1 = $("#pwd").val();
-
+		
 		$.ajax({
 			url : "../../../chongzhi_dby?pwd=" + pwd1,
 			type : "post",
@@ -199,6 +203,9 @@ function czn(num11){
 		var tixian=document.getElementById("tixianyue1").value;
 		if(parseInt(tixian)>parseInt(yue1)){
 			document.getElementById("tixianyue1").value = yue1;
+		}
+		if(parseInt(tixian)<1){
+			document.getElementById("tixianyue1").value = 1;
 		}
 	}
 </script>

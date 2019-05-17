@@ -3,7 +3,7 @@
 
 <head>
 <meta charset="utf-8" />
-<title>我要借款</title>
+<title>【祁云贷】 我要借款</title>
 </head>
 <link rel="stylesheet" href="css/bootstrap.min.css" />
 <link
@@ -93,10 +93,10 @@
 				<li class="nav-item">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
 					&nbsp;
 				<li class="nav-item">
-				<li><a class="nav-link" href="#"> <font size="1">昵称</font>
+				<li><a class="nav-link" href="xsr_wenjian/xsr_zhanghu.html"> <font id='nic' size="1">昵称</font>
 				</a></li>
-				<li><a class="nav-link" href="#">[ <font size="1">退出
-					</font>
+				<li><a class="nav-link" href="../logouttt">[ <font size="1">退出
+					</font>]
 				</a></li>
 			</ul>
 		</nav>
@@ -330,6 +330,18 @@
 </body>
 
 <script type="text/javascript">
+$.ajax({
+	url : "nicheng_xsr",
+	type : "post",	
+	data : {
+		
+	},
+	dataType : "text",
+	success : function(data) {
+		$("#nic").html(data)
+	}
+
+});
 
      $(function(){
     	

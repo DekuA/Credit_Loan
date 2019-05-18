@@ -395,9 +395,20 @@ $.ajax({
     	    	    		      	    										data:{uid : uuid,},
     	    	    		      	    										success:function(test){
     	    	    		      	    											if(test>0){
-    	    	    		      	    												alert("您已经提交过1次申请哦！！");
+    	    	    		      	    												var ddd6 = jqueryAlert({
+    	        		      	    														'content' : '您已经提交过1次申请哦！!',
+    	        		      	    														'width' :'350px',
+    	        		      	    														'height' :'120px',
+    	        		      	    														'modal' : true,
+    	        		      	    														'buttons' : {
+    	        		      	    															'确定' : function() {
+    	        		      	    																window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	        		      	    															}
+    	        		      	    														}
+    	        		      	    													})
+    	    	    		      	    												//alert("您已经提交过1次申请哦！！");
     	    	    		      	    												
-    	    	    		      	    												window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	    	    		      	    												
     	    	    		      	    											}else{
     	    	    		      	    												$.ajax({
     	    	    	    		      	    	      	    	    					type : "post",
@@ -411,10 +422,18 @@ $.ajax({
     	    	    	    		      	    	      	    	    					async : true,
     	    	    	    		      	    	      	    	    					success : function(data) {
     	    	    	    		      	    	      	    	    						if (data > 0) {
-    	    	    	    		      	    	      	    	    							alert("借款申请提交成功，请等待客户经理联系")
-    	    	    	    		      	    	      	    	    							alert("请耐心等待3-2个工作日");
-    	    	    	    		      	    	      	    	    					
-    	    	    	    		      	    	      	    	    						window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	    	    	    		      	    	      	    	    						var ddd4 = jqueryAlert({
+    	    	        		      	    														'content' : '借款申请提交成功，请等待客户经理联系！！！<br>请耐心等待3-2个工作日!',
+    	    	        		      	    														'width' :'350px',
+    	    	        		      	    														'height' :'120px',
+    	    	        		      	    														'modal' : true,
+    	    	        		      	    														'buttons' : {
+    	    	        		      	    															'确定' : function() {
+    	    	        		      	    																window.location.href="/xsr_html/xsr_jiehuanjilu.html";
+    	    	        		      	    															}
+    	    	        		      	    														}
+    	    	        		      	    													})
+    	    	    	    		      	    	      	    	    						
     	    	    	    		      	    	      	    	    						}
     	    	    	    		      	    	      	    	    					}
     	    	    	    		      	    	      	    	    				})
@@ -468,8 +487,6 @@ $.ajax({
     	    	    		      	    	      	    	    					async : true,
     	    	    		      	    	      	    	    					success : function(data) {
     	    	    		      	    	      	    	    						if (data > 0) {
-    	    	    		      	    	      	    	    							alert("借款申请提交成功，请等待客户经理联系")
-    	    	    		      	    	      	    	    							alert("请耐心等待3-2个工作日");
     	    	    		      	    	      	    	    					 	var dialog4s = jqueryAlert({
     	    	    		      	    	      	    	    						'icon'    : 'lsx_html/img/right.png',
     	    	    		      	    	      	    	    					    'title'   : '提示',

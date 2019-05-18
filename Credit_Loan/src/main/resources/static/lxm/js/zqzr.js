@@ -117,7 +117,7 @@ function selzhaiqzr(){
 									"	<td>"+loan[i].repaymentperiod+"期 <font style='font-size:12px;color:orange;'></font></td>"+
 										"<td>"+project[i].pncome+"</td>"+
 										"<td style='font-size:18px;color:orange'>"+abs(ptransmoney+"00")+"元</td>"+
-										"<td><button class='btn btn-group' style='background-color: orange;' onclick='zqxiangqing("+inves[i].iid+")'>投资</button></td>"+
+										"<td><button class='btn btn-group' style='background-color: orange;' onclick='zqxiangqing("+inves[i].iid+")'>购买</button></td>"+
 									"</tr>");
 				}
 			}

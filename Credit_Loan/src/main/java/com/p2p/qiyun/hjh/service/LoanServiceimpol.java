@@ -140,6 +140,9 @@ public class LoanServiceimpol extends Thread implements LoanService {
 									pro.setLenderid(loan2.getLoanid());
 									pro.setPperson(u.getUid());
 									pro.setPassessor(u.getUid());
+									int k = promap.insertBysp(pro);
+									  System.out.println(k);
+									
 									Date da = new Date();   
 									SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 							        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");  
@@ -228,6 +231,8 @@ public class LoanServiceimpol extends Thread implements LoanService {
 								pro.setLenderid(loan2.getLoanid());
 								pro.setPperson(u.getUid());
 								pro.setPassessor(u.getUid());
+								int k = promap.insertBysp(pro);
+							  System.out.println(k);
 								Date da = new Date();   
 								SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 						        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");  

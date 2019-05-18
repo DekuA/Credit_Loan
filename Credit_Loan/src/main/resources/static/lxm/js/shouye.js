@@ -10,7 +10,7 @@ $(function(){
 				var arr=project[i].pclosing.split("-");
 				var smallmoney=loan[i].loanamount/100;
 				var birthDate = new Date(arr[0]+"/"+arr[1]+"/"+arr[2]);
-				if (myDate.getMonth() < birthDate.getMonth() || (myDate.getMonth() == birthDate.getMonth() && myDate.getDate() < birthDate.getDate())||project[i].pschedule<100) {
+				if (myDate.getMonth() < birthDate.getMonth() || (myDate.getMonth() == birthDate.getMonth() && myDate.getDate() < birthDate.getDate())||project[i].pschedule<=100) {
 					$("#xmxstab").append("<tr><td colspan='5'><hr><h3 style='float:left;color: #666;font-size: 15px;font-weight: 400;'>"+
 							project[i].pname+" 项目编号:"+project[i].pnumber+" <span class='tag-discount-orange'>信息服务费率"+project[i].pinfo+"00%</span>"+
 								"</h3></td></tr>"+

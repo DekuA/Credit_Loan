@@ -10,8 +10,8 @@
 				<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap.min.js"></script>
 			<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap-paginator.js"></script>
 	<body>
-			<div style='position: relative;height:200px;background-color: gainsboro;'>
-			<div class="container" style="position: relative;height: 180px;top: 10px;width: 80%;background-color: white;">
+			<div style='position: relative;height:400px;background-color: gainsboro;'>
+			<div class="container" style="position: relative;height: 380px;top: 10px;width: 80%;background-color: white;">
 				<h4>绑定银行卡</h4><hr />
 				<div align="center">
 					<table align="center" >
@@ -24,6 +24,11 @@
 								<select id='yinhangdizhi' style="border-radius: 5px;width: 100px;height: 36px;"></select>
 							</td>
 						</tr>
+						<tr><td>&nbsp;&nbsp;</td><td><font color="red" size="2" id='zuoaaa1'></font></td></tr>
+						<tr><td>设置支付密码：</td><td><input id='szmima' class="form-control" placeholder="6位数密码" style='width: 300px;' /></font></td></tr>
+						<tr><td>&nbsp;&nbsp;</td><td><font color="red" size="2" id='zuoaaa2'></font></td></tr>
+						<tr><td>确认支付密码：</td><td><input id='renszmima' class="form-control" placeholder="确认密码" style='width: 300px;' /></font></td></tr>
+						<tr><td>&nbsp;&nbsp;</td><td><font color="red" size="2" id='zuoaaa3'></font></td></tr>
 					</table><br>
 					<button class="btn btn-warning" onclick="bangyin()" style="width: 120px;" >立即绑定</button>
 				</div>
@@ -38,11 +43,30 @@
 			$("#yinhangdizhi").append("<option value='"+arr[i]+"'>"+arr[i]+"</option>");
 		}
 		function bangyin(){
-			 $.ajax({
+			if($("#yhhaoma").val().length!=19){
+				$("#zuoaaa1").html("正确输入19位银行卡号");
+				return;
+			}else{
+				$("#zuoaaa1").html("");
+			}
+			if($("#szmima").val().length!=6){
+				$("#zuoaaa2").html("正确输入6位支付密码");
+				return;
+			}else{
+				$("#zuoaaa2").html("");
+			}
+			if($("#renszmima").val()!=$("#szmima").val()){
+				$("#zuoaaa3").html("与设置的密码不一致");
+				return;
+			}else{
+				$("#zuoaaa3").html("");
+			}
+			  $.ajax({
 					url:"../../../bangyin_xsr",
 					data:{
 						bankname:$("#yinhangdizhi").val(),
-						bankid:$("#yhhaoma").val()
+						bankid:$("#yhhaoma").val(),
+						payPwd:$("#szmima").val()
 					},
 					dataType : "text",
 					success:function(da){	
@@ -52,7 +76,7 @@
 							alert("绑定失败");
 						}
 					}
-				}) 
+				})  
 		}
 	</script>
 </html>

@@ -20,6 +20,8 @@ import com.p2p.qiyun.lsx.entity.Repayment2;
 import com.p2p.qiyun.lsx.service.LoanService2;
 import com.p2p.qiyun.lsx.service.VerificationService;
 import com.p2p.qiyun.wzr.domain.Userinfo;
+import com.p2p.qiyun.xsr.domain.xiaoxi;
+import com.p2p.qiyun.xsr.service.CreditService_xsr;
 
 @RestController
 public class LoanController2 {
@@ -28,17 +30,20 @@ public class LoanController2 {
 	private LoanService2 loans;
 	@Autowired
 	private VerificationService ser;
+	@Autowired
+	private CreditService_xsr im;
 	
 	@RequestMapping("loansAdd")   
-	public int addLoans(String uid,String amo,String aper,String lixis) {
+	public int addLoans(String uid,String amo,String aper,double lixis) {
 	
 	 	 int userid=Integer.parseInt(uid);
 		 double loanamount = Double.parseDouble(amo);
 		 double amperiods=Double.parseDouble(aper); 
-	     double loanrate=Double.parseDouble(lixis);   
+	     double loanrate=lixis;   
 		 Loan2 one=new Loan2(userid,  loanrate, loanamount, amperiods);
 		int i = loans.AddLoans(one);
-		System.out.println(i);
+		xiaoxi xo=new xiaoxi(0, userid, loanamount+"借款提交申请", null);	
+		im.charuxiaoxi(xo);
 		return i;
 	}
 	
@@ -231,7 +236,8 @@ public class LoanController2 {
 						
 					}
 				
-				
+					xiaoxi xo=new xiaoxi(0, uid, moneys+"元还款成功", null);	
+					im.charuxiaoxi(xo);
 				
 			}
 			return upbalace;

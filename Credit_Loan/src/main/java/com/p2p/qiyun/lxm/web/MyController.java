@@ -141,48 +141,49 @@ public class MyController {
 		for (Investnotes investnotes : inves) {
 			Project project = proser.selProjectById(investnotes.getPid());
 			Loan2 loan = loanser.selLoansById(project.getLenderid());
-			double repaymentperiod = loan.getRepaymentperiod();
-			String idate = investnotes.getIdate();
-			Date d = new Date();   
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
-	        String dateNowStr = sdf.format(d); 
-	        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
-	        DateTime start = formatter.parseDateTime(idate);
-	        DateTime end = formatter.parseDateTime(dateNowStr);
-	        int qixian = (int) Math.round(repaymentperiod);
-	        int months = Months.monthsBetween(start, end).getMonths();
-	        int month1 = selzq.getMonth1();
-	        int month2 = selzq.getMonth2();
-	        if(month1==0&&month2==0) {
-	        	loan.setRepaymentperiod(repaymentperiod-months);
-			    projects.add(project);
-			    loans.add(loan);
-	        }else if(month2==0&&month1!=0&&month1>=repaymentperiod-months) {
-	        	loan.setRepaymentperiod(repaymentperiod-months);
-			    projects.add(project);
-			    loans.add(loan);
-			}else if(month1!=0&&month2!=0&&month1>=repaymentperiod-months&&month2<=repaymentperiod-months) {
-				loan.setRepaymentperiod(repaymentperiod-months); 
-				projects.add(project);
-				loans.add(loan); 
-			}else if(month1==0&&month2!=0&&month2<=repaymentperiod-months) {
-	        	loan.setRepaymentperiod(repaymentperiod-months);
-			    projects.add(project);
-			    loans.add(loan);
-	        }
-	        
-	        SelZhaiQuan zq = new SelZhaiQuan();
-	        zq.setMonth1(loan.getLoanid());
-	        zq.setMonth2(Integer.parseInt(selzq.getSfyq()));
-		    int yuqicishu = proser.selYuqicishu(zq);
-		    if(zq.getMonth2()==3) {
-		    	list.add(3);
-		    }else if(yuqicishu>0&&zq.getMonth2()==2){
-		    	list.add(2);
-		    }else{
-		    	list.add(1);
-		    }
-		    
+			if(loan!=null) {
+				double repaymentperiod = loan.getRepaymentperiod();
+				String idate = investnotes.getIdate();
+				Date d = new Date();   
+		        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
+		        String dateNowStr = sdf.format(d); 
+		        DateTimeFormatter formatter = DateTimeFormat.forPattern("yyyy-MM-dd");
+		        DateTime start = formatter.parseDateTime(idate);
+		        DateTime end = formatter.parseDateTime(dateNowStr);
+		        int qixian = (int) Math.round(repaymentperiod);
+		        int months = Months.monthsBetween(start, end).getMonths();
+		        int month1 = selzq.getMonth1();
+		        int month2 = selzq.getMonth2();
+		        if(month1==0&&month2==0) {
+		        	loan.setRepaymentperiod(repaymentperiod-months);
+				    projects.add(project);
+				    loans.add(loan);
+		        }else if(month2==0&&month1!=0&&month1>=repaymentperiod-months) {
+		        	loan.setRepaymentperiod(repaymentperiod-months);
+				    projects.add(project);
+				    loans.add(loan);
+				}else if(month1!=0&&month2!=0&&month1>=repaymentperiod-months&&month2<=repaymentperiod-months) {
+					loan.setRepaymentperiod(repaymentperiod-months); 
+					projects.add(project);
+					loans.add(loan); 
+				}else if(month1==0&&month2!=0&&month2<=repaymentperiod-months) {
+		        	loan.setRepaymentperiod(repaymentperiod-months);
+				    projects.add(project);
+				    loans.add(loan);
+		        }
+		        
+		        SelZhaiQuan zq = new SelZhaiQuan();
+		        zq.setMonth1(loan.getLoanid());
+		        zq.setMonth2(Integer.parseInt(selzq.getSfyq()));
+			    int yuqicishu = proser.selYuqicishu(zq);
+			    if(zq.getMonth2()==3) {
+			    	list.add(3);
+			    }else if(yuqicishu>0&&zq.getMonth2()==2){
+			    	list.add(2);
+			    }else{
+			    	list.add(1);
+			    }
+			}
 		}
 		Userinfo attribute = (Userinfo)session.getAttribute("UserInfo");
 		map.put("c",attribute);
@@ -301,7 +302,7 @@ public class MyController {
 		List<Loan2> loanlist = new ArrayList<Loan2>(); 
 		for (Project project : projectlist) {
 			Loan2 loan2 = loanser.selLoansById(project.getLenderid());
-			if(loan2.getApprovalstatus().equals("1")) {
+			if(loan2!=null&&loan2.getApprovalstatus().equals("1")) {
 				loanlist.add(loan2);
 				projectll.add(project);
 			}

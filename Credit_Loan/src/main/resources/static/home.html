@@ -146,7 +146,7 @@ a:hover {
 		<div id="logoout"
 			style="padding: 10px; background: #eee; font-size: 13px; text-align: center;">
 			欢迎您,<font color="red" id="fu"></font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a href="loginout">[退出]</a><br> <br>
+			<a href=loginout1>[退出]</a><br> <br>
 			您上次访问时间为:<br> <font color="blue" id="fd"></font> <br> <br>
 			<div id='schedule-box' class="boxshaw"></div>
 			<div>
@@ -534,7 +534,7 @@ function mima(){
 							success:function(data){
 								if(data>0){
 									$("#myModal").modal('hide');
-									location.href='loginout';
+									location.href='loginout1';
 								}else{
 									$("#font").append("修改失败");
 								}

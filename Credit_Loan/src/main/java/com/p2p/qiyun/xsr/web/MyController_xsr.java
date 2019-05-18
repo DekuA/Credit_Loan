@@ -115,9 +115,12 @@ public class MyController_xsr {
 	}
 	
 	@RequestMapping("bangyin_xsr")
-	public String bangyin_xsr(customer cus,HttpSession session) {
+	public String bangyin_xsr(customer cus,HttpSession session,balance ba) {
 		int attribute = (int) session.getAttribute("Customerid_xsr");
+		int userid = (int) session.getAttribute("useridss");
 		cus.setCustomerid(attribute);
+		ba.setUserid(userid);
+		int upzfmm = im.upzfmm(ba);
 		int bangyin = im.bangyin(cus);
 		return bangyin+"";
 	}
@@ -197,6 +200,7 @@ public class MyController_xsr {
 		PageHelper.startPage(yeshu, 5);
 		List<paymenthistory> chahuankuan = im.chahuankuan(us.getUserid());
 		PageInfo<paymenthistory> info = new PageInfo<>(chahuankuan);
+		System.out.println(info);
 		int zonghang = (int) info.getTotal();
 		int num = 0;
 		if(zonghang%5==0){

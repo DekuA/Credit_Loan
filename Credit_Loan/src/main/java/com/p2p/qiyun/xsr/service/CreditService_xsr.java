@@ -39,5 +39,6 @@ public interface CreditService_xsr {
 	balance sebalance(int userid);//查询余额信息存不存在
 	List<userinfo> chaxunqingqiu(List<String> list);//查询用户请求
 	int upzfmm(balance ba);//设置支付密码
+	int charuxiaoxi(xiaoxi xo);
 
 }

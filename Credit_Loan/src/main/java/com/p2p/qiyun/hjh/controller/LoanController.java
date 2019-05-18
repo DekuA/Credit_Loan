@@ -14,6 +14,7 @@ import com.p2p.qiyun.hjh.entity.Loan;
 import com.p2p.qiyun.hjh.entity.Query;
 import com.p2p.qiyun.hjh.entity.Auditing;
 import com.p2p.qiyun.hjh.service.LoanService;
+import com.p2p.qiyun.xsr.domain.xiaoxi;
 
 @RestController
 public class LoanController {
@@ -32,6 +33,7 @@ public class LoanController {
 	@RequestMapping("selectByPrimary")
 	public int Auditing(Integer userid, HttpSession request) {
 
+		
 		return loanservice.selectByPrimaryKeys(userid, request);
 
 	}

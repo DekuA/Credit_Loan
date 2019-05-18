@@ -180,6 +180,12 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 		return upzfmm;
 	}
 
+	@Override
+	public int charuxiaoxi(xiaoxi xo) {
+		int charuxiaoxi = dao.charuxiaoxi(xo);
+		return charuxiaoxi;
+	}
+
 	
 
 }

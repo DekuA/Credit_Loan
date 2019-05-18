@@ -47,6 +47,7 @@ public class UsersController {
 			session.setAttribute("user", u);
 		} catch (UnknownAccountException e) {
 			System.out.println("不存在");
+			session.removeAttribute("user");
 			response.sendRedirect("lg.html");
 		}catch (IncorrectCredentialsException e) {
 			session.removeAttribute("user");
@@ -63,8 +64,9 @@ public class UsersController {
 	
 	@RequestMapping("/loginout")
 	public void logout(HttpSession session,HttpServletResponse response){
-		Subject subject = SecurityUtils.getSubject();
+		System.out.println("afsd");
 		session.removeAttribute("user");
+		Subject subject = SecurityUtils.getSubject();
 		subject.logout();
 		try {
 			response.sendRedirect("lg.html");

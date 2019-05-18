@@ -76,6 +76,7 @@ public class MyController {
 			invest.setIdate(dateNowStr);
 			invest.setImoney(Double.parseDouble(userbalance));
 			invest.setPid(inves.getPid());
+			invest.setPtransdate(sdf1.format(d));
 			int i2 = proser.insertInves(invest);
 			int i3 = proser.upBalanceByUid(bbb); 
 			if(i1==1&&i2==1&&i3==1) { 

@@ -112,7 +112,7 @@ public class ShiroConfiguration {
         map.put("/loanone.html", "anon");
         map.put("/loanfalv.html", "anon");
         map.put("/userentry","anon");
-        map.put("/loginout","anon");
+        map.put("/loginout1","anon");
         map.put("/loginout","logout");
         map.put("/logouttt", "anon");
         map.put("/usercode", "anon");

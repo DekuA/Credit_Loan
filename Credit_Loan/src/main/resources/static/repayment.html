@@ -13,6 +13,8 @@
 	src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 <script type="text/javascript" src="js/bootstrap-paginator.js"></script>
+<script type="text/javascript" src="../lsx_html/js/alert.js"></script>
+<link rel="stylesheet" href="../lsx_html/css/alert.css" />
 
 <style>
 #lunbo {
@@ -27,7 +29,7 @@
 
 #xxcol {
 	height: 90%;
-	border: 1px solid darkgrey;
+	
 }
 
 #divsxx {
@@ -35,7 +37,7 @@
 }
 
 #loanjk {
-	width: 100%;s
+	width: 100%;
 	border-color: burlywood;
 	background-color: #171A1D;
 }
@@ -59,7 +61,7 @@
 	left: 220px;
 	width: 100%;
 	height: 310px;
-	border: 1px solid darkgrey;
+	
 }
 #myModalLabel{
 
@@ -72,7 +74,7 @@
 	height: 310px;
 	left: 220px;
 	width: 100%;
-	border: 1px solid darkgrey;
+	
 }
 
 #reids3 {
@@ -313,25 +315,27 @@
 			<img src="img/logo.png" style="height: 50px; width: 140px;" />
 		</div>
 	</div>
-	<div id="lunbo" class="col-*-12" style="background-color: gainsboro;">
+	<div id="lunbo" class="col-*-12" style="background-color: ghostwhite;">
 		<div id="erdiv" class="col-lg-10 " style="background-color: white;">
+		
 			<div id="loanjk">
 
-				<ul class="nav nav-tabs">
-					<li class="nav-item"><a class="nav-link" style="color: white;"
+				<ul class="nav nav-tabs" style="background-color: white;">
+					<li class="nav-item"><a class="nav-link" style="color: black;"
 						href="loanone.html">我要借款</a></li>
-					<li class="nav-item"><a class="nav-link" style="color: white;"
+					<li class="nav-item"><a class="nav-link" style="color: black;"
 						href="repayment.html">还款</a></li>
 				</ul>
 			</div>
+			<div style="position: absolute;height: 620px;width: 1px;border: 1px solid gray;left: 260px;top: 60px;"></div>
 			<div id="xxcol" class="col-lg-14">
 				<div id="divsxx">
 					<nav class="col-sm-3 col-4" id="myScrollspy">
 						<ul class="nav nav-pills flex-column">
-							<li class="nav-item"><a class="nav-link active"
-								href="#section1"><p id="reids">月应还</p></a></li>
-							<li class="nav-item"><a class="nav-link" href="#section2">
-							<p id="reids2">月应还</p></a></li>
+						<br>
+							<li class="nav-item"><a class="nav-link active" style="height: 40px;width: 150px;" href="#section1"><p align="center" id="reids">月应还</p></a></li>
+							<br>
+							<li class="nav-item "><a class="nav-link active"  href="#section2" style="height: 40px;width: 150px;"><p align="center" id="reids2">月应还</p></a></li>
 
 						</ul>
 					</nav>
@@ -564,6 +568,55 @@
 		</div>
 	  </div>
 	</div>
+	
+	<!--底部代码-->
+			<div id='didiv'  style='position: relative;height: 450px;top:20px;top: 0px;background-color: white;'><br />
+				<div class='container'   ><font size='2' >客服服务</font></div><br />
+					<div class='container'>
+						<a href='javascript::' data-toggle="modal" data-target="#myModal"><font size='2' color='gray' >客服微信</font></a> |
+						<a href='#'><font size='2' color='gray' >在线克服</font></a> |
+						<a href='#'><font size='2' color='gray' >新浪微博</font></a> <br /><br />
+						<hr  /><br />
+					</div>	
+					<div class="container">
+						<div class='container' ><br />
+							<font size='2'>© 2019 祁云信用贷商务顾问(长沙)有限公司  湖南硅谷软件公司</font><br />
+							<font size='1' color='gray'>长ICP证 100953号 长公网安备 11010502020657 长ICP备12025643号-1</font>
+						</div>
+						<div style="position: absolute;top: 150px;left: 43%;">
+							<img src="xsr_html/xsr_wenjian/img_xsr/kefu.jpg" style="width: 150px;height: 150px;" />
+							<img src="xsr_html/xsr_wenjian/img_xsr/kefu.jpg" style="width: 150px;height: 150px;" />						
+						</div>
+						<div style="position: absolute;top: 146px;left: 63%;">
+							<font size="3" color="gray">祁云信用贷财富客服：</font> <font size="5">85886</font><br><br>
+							<font size="3" color="gray">祁云信用贷借款客服：</font> <font size="5">632 133 4027</font><br><br>
+							<font size="3" color="gray">服务时间: 9:00-21:00</font>
+						</div><br><br><hr />
+						<div class="container" align="center"><br />
+							<img src="xsr_html/xsr_wenjian/img_xsr/tu1.PNG" />
+							<img src="xsr_html/xsr_wenjian/img_xsr/tu2.PNG" />
+							<img src="xsr_html/xsr_wenjian/img_xsr/tu3.PNG" />
+							<img src="xsr_html/xsr_wenjian/img_xsr/tu4.PNG" />
+							<img src="xsr_html/xsr_wenjian/img_xsr/tu5.PNG" />
+							<img src="xsr_html/xsr_wenjian/img_xsr/tu6.PNG" />
+						</div>
+					</div>
+			</div>
+			<!--模态-->
+			<div class="modal fade" id="myModal">
+			    <div class="modal-dialog">
+			      <div class="modal-content">
+			        <div class="modal-body" align="center">
+			       		<img src="xsr_html/xsr_wenjian/img_xsr/kefu.jpg" style="width: 150px;height: 150px;" />
+			        </div>			   
+				        <div class="modal-footer">
+				          <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+				        </div>
+			      </div>
+			    </div>
+			  </div>
+	
+	
 </body>
 
 <script type="text/javascript">
@@ -607,7 +660,12 @@ $.ajax({
 										},
 										success : function(data) {
 											var nest=data.storydate;
-											$('#nums').text(data.todayMoneys+ "元");
+											if(data.todayMoneys==undefined){
+												$('#nums').text("00元");
+											}else{
+												$('#nums').text(data.todayMoneys+ "元");
+											}
+											
 											var dateEnd = new Date(nest);
 											if (data.currentrepayment == undefined) {
 												
@@ -648,8 +706,20 @@ $.ajax({
 																	$('#lijihk').click(function() {
 																				if ($('#num2').text() == $('#num3').text() && !$('#num2').text() == "00元") {
 																						alert("您的当月账号已还清啦！");
+																						var ddd = jqueryAlert({
+																							'content' : '您的当月账号已还清啦！',
+																							'width' :'350px',
+																							'height' :'100px',
+																							'modal' : true,
+																							'buttons' : {
+																								'确定' : function() {
+																									ddd.close();
+																								}
+																							}
+																						})
 																					} else if ($('#num2').text() == "00元" && $('#num3').text() == "00元") {
 																						alert("您本月无分期借款！")
+																						
 																					} else {
                                                                                       $('#example1').modal();
                                                                                       $('#hkje1').val((data.currentrepayment-data.todayMoneys).toFixed(2));
@@ -773,7 +843,6 @@ $.ajax({
 				                                                                               var s=datess.getFullYear()+"-"+(datess.getMonth()+1)+"-"+datess.getDate()+""
 																						
 																								 $('#qrmoney').text( $('#hkje').val());
-																								//alert($('#qrmoney').text())
 																								$('#querhk').modal();
 																								$('#qrss1s').click(function() { //立即付款按钮
 																									
@@ -793,11 +862,8 @@ $.ajax({
 																													
 																												}else{
 																													$('#zfmima').modal();
-																													
-																													//alert(userid+"idid");
 																													 $('#xxxqr').click(function() {
 																														var mimas=$('#mima').val();
-																														//alert(mimas)
 																														 $.ajax({
 																															 url:'upbalance',
 																															 data:{
@@ -809,8 +875,6 @@ $.ajax({
 																															 },
 																															 success : function(num) {
 																																 if(num>0){
-																																	 alert("还款成功！！给你点赞！");
-																																	
 																																	 window.location.href="repayment.html";
 																																 }
 																																 

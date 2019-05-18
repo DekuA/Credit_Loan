@@ -4,7 +4,7 @@ public class paymenthistory {
 		private int recordid;
 		private int repaymentid;
 		private int userid;
-		private String loanid;
+		private int loanid;
 		private String currentrepayment;
 		private String storydate;
 		private String storydatep;
@@ -28,10 +28,10 @@ public class paymenthistory {
 		public void setUserid(int userid) {
 			this.userid = userid;
 		}
-		public String getLoanid() {
+		public int getLoanid() {
 			return loanid;
 		}
-		public void setLoanid(String loanid) {
+		public void setLoanid(int loanid) {
 			this.loanid = loanid;
 		}
 		public String getCurrentrepayment() {
@@ -58,7 +58,7 @@ public class paymenthistory {
 		public void setPaymentstatus(String paymentstatus) {
 			this.paymentstatus = paymentstatus;
 		}
-		public paymenthistory(int recordid, int repaymentid, int userid, String loanid, String currentrepayment,
+		public paymenthistory(int recordid, int repaymentid, int userid, int loanid, String currentrepayment,
 				String storydate, String storydatep, String paymentstatus) {
 			super();
 			this.recordid = recordid;

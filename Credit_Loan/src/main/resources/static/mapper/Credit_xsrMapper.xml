@@ -95,7 +95,11 @@
 	</select>
 	
 	<update id="upzfmm" parameterType="com.p2p.qiyun.dby.pojo.balance">		
-			update balance set paypwd=#{paypwd} where userid=#{userid}
+			update balance set payPwd=#{payPwd} where userid=#{userid}
 	</update>
+	
+	<insert id="charuxiaoxi" parameterType="com.p2p.qiyun.xsr.domain.xiaoxi">
+			insert into xiaoxi(userid,msgcontext) values(#{userid},#{msgcontext})
+	</insert>
   	
 </mapper>

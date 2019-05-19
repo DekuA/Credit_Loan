@@ -73,7 +73,7 @@ public class MyController {
 			Balancelxm bbb1 = new Balancelxm();
 			bbb1.setUserid(inves.getUserid());
 			bbb1.setBalance(Double.parseDouble(userbalance));
-			int i1 = proser.upInvesptrans(inves);
+			int i1 = proser.upInvesptrans(inves); 
 			Investnotes invest = new Investnotes();
 			invest.setUserid(Integer.parseInt(userid));
 			invest.setIdate(dateNowStr);

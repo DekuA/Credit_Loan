@@ -205,4 +205,5 @@
   <update id="upBalanceByUidjia" parameterType="com.p2p.qiyun.lxm.domain.Balancelxm">
   	update balance set balance=balance+#{balance} where userid=#{userid}
   </update>
+  
 </mapper>

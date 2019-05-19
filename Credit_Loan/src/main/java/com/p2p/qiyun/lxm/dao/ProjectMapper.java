@@ -11,6 +11,8 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface ProjectMapper {
+	int selYihuanqishu(int loanid);
+	
 	int insertBysp(Project pro);
 	
 	int updatePschedule(int pschedule,String pid);
@@ -38,6 +40,8 @@ public interface ProjectMapper {
     List<Project> selectByExample(ProjectExample example);
 
     Project selectByPrimaryKey(Integer pid);
+    
+    Project selProjectByLoanid(int loanid);
 
     int updateByExampleSelective(@Param("record") Project record, @Param("example") ProjectExample example);
 

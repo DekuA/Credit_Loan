@@ -19,6 +19,8 @@ import com.p2p.qiyun.lsx.entity.Paymenthistory2;
 import com.p2p.qiyun.lsx.entity.Repayment2;
 import com.p2p.qiyun.lsx.service.LoanService2;
 import com.p2p.qiyun.lsx.service.VerificationService;
+import com.p2p.qiyun.lxm.domain.Project;
+import com.p2p.qiyun.lxm.service.ProjectService;
 import com.p2p.qiyun.wzr.domain.Userinfo;
 import com.p2p.qiyun.xsr.domain.xiaoxi;
 import com.p2p.qiyun.xsr.service.CreditService_xsr;
@@ -32,6 +34,8 @@ public class LoanController2 {
 	private VerificationService ser;
 	@Autowired
 	private CreditService_xsr im;
+	@Autowired
+	private ProjectService proser;
 	
 	@RequestMapping("loansAdd")   
 	public int addLoans(String uid,String amo,String aper,double lixis) {
@@ -233,7 +237,9 @@ public class LoanController2 {
 					//System.out.println("还款表"+upRepayment);
 					if(upRepayment>0) {
 						int upthis = loans.upthis(paymenthistory);
-						
+						Loan2 loan2s = loans.selctloan(Integer.parseInt(uids));
+						Project project = proser.selProjectByLoanid(loan2s.getLoanid());
+						int i = proser.touzishouyi(project.getPid());
 					}
 				
 					xiaoxi xo=new xiaoxi(0, uid, moneys+"元还款成功", null);	

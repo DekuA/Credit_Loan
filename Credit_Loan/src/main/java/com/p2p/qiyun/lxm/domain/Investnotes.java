@@ -16,16 +16,6 @@ public class Investnotes {
     private Double ptransmoney;
     
     private String ptransdate;
-    
-    
-
-	public String getPtransdate() {
-		return ptransdate;
-	}
-
-	public void setPtransdate(String ptransdate) {
-		this.ptransdate = ptransdate;
-	}
 
 	public Integer getIid() {
 		return iid;
@@ -81,6 +71,14 @@ public class Investnotes {
 
 	public void setPtransmoney(Double ptransmoney) {
 		this.ptransmoney = ptransmoney;
+	}
+	
+	public String getPtransdate() {
+		return ptransdate;
+	}
+
+	public void setPtransdate(String ptransdate) {
+		this.ptransdate = ptransdate;
 	}
 
 	public Investnotes(Integer iid, Double imoney, String idate, Integer userid, Integer pid, Integer ptrans,

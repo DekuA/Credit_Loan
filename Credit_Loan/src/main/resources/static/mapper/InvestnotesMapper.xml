@@ -263,7 +263,7 @@
   </insert>
   
   <update id="upInvesptrans" parameterType="com.p2p.qiyun.lxm.domain.Investnotes">
-  		update investnotes set ptrans=#{ptrans},ptransmoney=#{ptransmoney} where iid=#{iid}
+  		update investnotes set ptrans=#{ptrans},ptransmoney=#{ptransmoney},ptransdate=#{ptransdate} where iid=#{iid}
   </update>
   
   

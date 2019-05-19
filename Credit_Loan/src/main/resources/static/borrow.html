@@ -150,12 +150,13 @@
 									$("#manger_ppp").dialog('open');
 									$("#manger_ppp").empty();
 									var input="<table style='font-size: 16px'>"+
-									"<tr align='right'><th>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</th><th>"+data.username+"</th></tr>"+
-									"<tr align='right'><th>已&nbsp;还&nbsp;期&nbsp;数：</th><th>"+data.returnperiod+"</th></tr>"+
-									"<tr align='right'><th>剩余还款期数：</th><th>"+data.returnperiodp+"</th></tr>"+
-									"<tr align='right'><th>剩余还款金额：</th><th>"+data.modmoney+"</th></tr>"+
-									"<tr align='right'><th>还&nbsp;款&nbsp;利&nbsp;息：</th><th>"+data.rterest+"</th></tr>"+
-									"<tr align='right'><th>本&nbsp;金&nbsp;+&nbsp;利&nbsp;息：</th><th>"+data.returnallmoney+"</th></tr></table>";
+									"<tr><th align='right'>姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</th><th align='left'>"+data.username+"</th></tr>"+
+									"<tr><th align='right'>已&nbsp;还&nbsp;期&nbsp;数：</th><th align='left'>"+data.returnperiod+"</th></tr>"+
+									"<tr><th align='right'>剩余还款期数：</th><th align='left'>"+data.returnperiodp+"</th></tr>"+
+									"<tr><th align='right'>已还款金额：</th><th align='left'>"+data.modmoney+"</th></tr>"+
+									"<tr><th align='right'>剩余还款金额：</th><th align='left'>"+(data.returnallmoney-data.modmoney)+"</th></tr>"+
+									"<tr><th align='right'>还&nbsp;款&nbsp;利&nbsp;息：</th><th align='left'>"+data.rterest+"</th></tr>"+
+									"<tr><th align='right'>本&nbsp;金&nbsp;+&nbsp;利&nbsp;息：</th><th align='left'>"+data.returnallmoney+"</th></tr></table>";
 									$("#manger_ppp").append(input);
 									$.messager.progress('close');
 								}

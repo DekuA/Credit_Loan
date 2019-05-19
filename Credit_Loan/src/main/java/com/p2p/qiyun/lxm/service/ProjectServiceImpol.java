@@ -2,7 +2,9 @@ package com.p2p.qiyun.lxm.service;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,12 +52,15 @@ public class ProjectServiceImpol implements ProjectService {
 			if(inves.getPtrans()!=2) {
 				Balancelxm balancelxm1 = bamap.selectBalanceByUid(inves.getUserid());
 				System.out.println("dq余额："+balancelxm1.getBalance());
-				double d = counters((int)loan.getRepaymentperiod(),inves.getImoney(),project.getPlcure(),project.getPinfo(),j);
+				Map map = counters((int)loan.getRepaymentperiod(),inves.getImoney(),project.getPlcure(),project.getPinfo(),j);
 				Balancelxm bbb = new Balancelxm();
-				bbb.setBalance(d);
+				double benxi = (double) map.get("benxi");
+				double xinxifei = (double) map.get("xinxifei");
+				bbb.setBalance(benxi-xinxifei);
 				bbb.setUserid(inves.getUserid());
 				i += bamap.upBalanceByUidjia(bbb);
-				System.out.println(inves.getUserid()+"投资 "+inves.getImoney()+"元 的 "+project.getPname()+project.getPnumber()+"项目第"+j+"期收益了 "+d+"元");
+				System.out.println(inves.getUserid()+"投资 "+inves.getImoney()+"元 的 "+project.getPname()+project.getPnumber()+"项目第"
+				+j+"期收益了 "+benxi+"元,扣去信息服务费"+xinxifei+"元，还剩"+(benxi-xinxifei)+"元");
 				Balancelxm balancelxm = bamap.selectBalanceByUid(inves.getUserid());
 				System.out.println("余额："+balancelxm.getBalance());
 			}
@@ -176,7 +181,8 @@ public class ProjectServiceImpol implements ProjectService {
 	}
 	
 	@Test
-	public double counters(int repaymentperiod,double loanamount,double plcure,double pinfo,int dangqi){
+	public Map counters(int repaymentperiod,double loanamount,double plcure,double pinfo,int dangqi){
+		Map map=new HashMap();
 		int dkqs=repaymentperiod;
 		double dkbj=loanamount;
 		double cksyl=plcure;
@@ -200,10 +206,12 @@ public class ProjectServiceImpol implements ProjectService {
 			double benxi = Double.parseDouble(formatDouble5(ysbx));
 			if(i==dangqi) {
 				double5 = formatDouble5(benxi-(bqysbj+bqsybj)*(pinfo/100));
+				map.put("benxi", benxi);
+				map.put("xinxifei",(bqysbj+bqsybj)*(pinfo/100));
 			}
 			
 		}
-		return Double.parseDouble(double5);
+		return map;
 	}
 	
 	

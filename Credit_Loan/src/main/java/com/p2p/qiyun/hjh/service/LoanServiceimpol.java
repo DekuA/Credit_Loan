@@ -1,5 +1,6 @@
 package com.p2p.qiyun.hjh.service;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -132,8 +133,9 @@ public class LoanServiceimpol extends Thread implements LoanService {
 								Balance b = ba.selectBalanceBy(id);
 
 								b.setBalance(b.getBalance() + selloan.getLoanamount());
-
-								if (ba.updateBalace(b) > 0) {
+								int upda = ba.updateBalace(b);
+								if (upda > 0) {
+									
 									xiaoxi xo=new xiaoxi(0, id, selloan.getLoanamount()+"借款通过，已放款至您账户余额", null);	
 									im.charuxiaoxi(xo);
 									Loan loan2 = lomapper.selloan(id); //id 是用户id 
@@ -149,14 +151,16 @@ public class LoanServiceimpol extends Thread implements LoanService {
 									pro.setPperson(u.getUid());
 									pro.setPassessor(u.getUid());
 									int k = promap.insertBysp(pro);
-									  System.out.println(k);
+									  System.out.println("xse");
 									  
 									Date da = new Date();   
 									SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 							        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");  
-							        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss"); 
+							        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+
 							        String dday = plusDay(20,sdf3.format(da));
-							        pro.setPclosing(sdf3.format(dday));
+
+							        pro.setPclosing(dday);
 							        if(loan2.getRepaymentperiod()==3) {
 							        	pro.setPlcure(6.60);
 							        }else if(loan2.getRepaymentperiod()==6) {
@@ -185,7 +189,11 @@ public class LoanServiceimpol extends Thread implements LoanService {
 												  if(12>=(ssm+i)) {
 													  ss = y+"-"+(ssm+i)+"-"+d;
 												  }else {
-													  ss = (y+1)+"-"+((ssm+i)-month)+"-"+d;
+													  if(24>=(ssm+i)) {
+														  ss = (y+1)+"-"+((ssm+i)-month)+"-"+d;
+													  }else {
+														  ss = (y+2)+"-"+((ssm+i)-24)+"-"+d;
+													}
 												  }
 									      //y+"-"+((ssm+1)+i)+"-"+d;
 									     Paymenthistory2 paym=new Paymenthistory2(rs.getRepaymentid(), id, Loanid, mm/qix, ss);
@@ -198,7 +206,6 @@ public class LoanServiceimpol extends Thread implements LoanService {
 									return 1;
 
 								} else {
-
 									return 2;
 								}
 
@@ -237,7 +244,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 							  
 							  Repayment2 repayment2=new Repayment2(Loanid, id, loanrate, mm, qix); 
 							  int addRepayment2 = loan2s.AddRepayment2(repayment2); 
-							  
+							  System.out.println(addRepayment2+"ddddd");
 							  Project pro = new Project();
 								pro.setLenderid(loan2.getLoanid());
 								pro.setPperson(u.getUid());
@@ -247,9 +254,11 @@ public class LoanServiceimpol extends Thread implements LoanService {
 								Date da = new Date();   
 								SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 						        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");  
-						        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss"); 
+						        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+						        
 						        String dday = plusDay(20,sdf3.format(da));
-						        pro.setPclosing(sdf3.format(dday));
+						        
+						        pro.setPclosing(dday);
 						        if(loan2.getRepaymentperiod()==3) {
 						        	pro.setPlcure(6.60);
 						        }else if(loan2.getRepaymentperiod()==6) {
@@ -277,7 +286,11 @@ public class LoanServiceimpol extends Thread implements LoanService {
 									  if(12>=(ssm+i)) {
 										  ss = y+"-"+(ssm+i)+"-"+d;
 									  }else {
-										  ss = (y+1)+"-"+((ssm+i)-month)+"-"+d;
+										  if(24>=(ssm+i)) {
+											  ss = (y+1)+"-"+((ssm+i)-month)+"-"+d;
+										  }else {
+											  ss = (y+2)+"-"+((ssm+i)-24)+"-"+d;
+										}
 									  }
 							      //ss=y+"-"+((ssm+1)+i)+"-"+d;
 							     Paymenthistory2 paym=new Paymenthistory2(rs.getRepaymentid(), id, Loanid, mm/qix, ss);
@@ -312,7 +325,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
-
+			System.out.println("xsr");
 			System.out.println(e);
 			return 2;
 		}
@@ -355,7 +368,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 	       Calendar ca = Calendar.getInstance();
 	       ca.add(Calendar.DATE, num);// num为增加的天数，可以改变的
 	       currdate = ca.getTime();
-	         String enddate = format.format(currdate);
+	         String enddate = format.format(DateFormat.getDateInstance().parse(newDate));
 	        System.out.println("增加天数以后的日期：" + enddate);
 	        return enddate;
 	}

@@ -24,7 +24,7 @@
 		<font >我的投资</font></div>	
 						<hr>
 	<div class="container">
-			<table id='tab3_touzi' border="1" >
+			<table id='tab3_touzi'  >
 						
 			</table>
 	</div>		
@@ -60,7 +60,7 @@
 							if(da.rows[i].ptrans==2){
 								zt="被购买";co="gray";zqcaozuo="<font color='gray'>该项目已售出</font>"
 							}
-							$("#tab3_touzi").append("<tr><td>"+da.rows[i].pname+""+da.rows[i].pnumber+"</td><td>"+da.rows[i].iMoney+"</td><td>"+da.rows[i].idate+"</td><td> <font color='"+co+"'>"+zt+"</font></td><td>"+zqcaozuo+"</td></tr>");
+							$("#tab3_touzi").append("<tr><td><font color='blue'>"+da.rows[i].pname+""+da.rows[i].pnumber+"</font></td><td>"+da.rows[i].iMoney+"</td><td>"+da.rows[i].idate+"</td><td> <font color='"+co+"'>"+zt+"</font></td><td>"+zqcaozuo+"</td></tr>");
 						}
 						
 						$(".pagination").bootstrapPaginator({

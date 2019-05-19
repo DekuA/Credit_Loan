@@ -60,14 +60,16 @@ public class MyController_xsr {
 	@RequestMapping("zhanghu_xsr")
 	public Map kehuxx(HttpSession session) {
 		String attribute = (String) session.getAttribute("user");
-		userinfo us= im.phonechaxinxi(attribute);
+		userinfo us= im.phonechaxinxi(attribute);		
 		List<customer> kehuxinxi = im.kehuxinxi(us.getUserid());
 		for (int i = 1; i < kehuxinxi.size(); i++) {
 			im.delecus(kehuxinxi.get(i).getCustomerid());			
-		}	
+		}			
 		session.setAttribute("Customerid_xsr", kehuxinxi.get(0).getCustomerid());
+		String shuaping_xsr = shuaping_xsr(session);
+		kehuxinxi.get(0).setCreditrate(shuaping_xsr);
 		String scdenglu = im.scdenglu(us.getPhone());
-		String setousrc = im.setousrc(us.getUserid());
+		String setousrc = im.setousrc(us.getUserid());		
 		Map map = new HashMap();
 		map.put("userinfo_xsr",us);
 		map.put("customer_xsr",kehuxinxi.get(0));

@@ -87,16 +87,17 @@ public class MyController {
 			invest.setPid(inves.getPid());
 			invest.setPtransdate(sdf1.format(d));
 			int i2 = proser.insertInves(invest);
-			int i3 = proser.upBalanceByUid(bbb); 
-			if(i1==1&&i2==1&&i3==1) { 
+			int i3 = proser.upBalanceByUid(bbb); 				
+			int i4 = proser.upBalanceByUidjia(bbb1); 
+			if(i1==1&&i2==1&&i3==1&&i4==1) { 
 				//插入账户信息
 				Project s1111 = proser.selProjectById(inves.getPid());
 				 String pname = s1111.getPname();
 				 String pnumber = s1111.getPnumber();
 				xiaoxi xo = new xiaoxi(0, Integer.parseInt(userid),pname+pnumber+"项目购买成功,购买金额"+userbalance+"元", null);
+				xiaoxi xo1 = new xiaoxi(0, inves.getUserid(),pname+pnumber+"项目被购买成功,卖出金额"+userbalance+"元，已转入您账户余额", null);
 				im.charuxiaoxi(xo);
-			int i4 = proser.upBalanceByUidjia(bbb1); 
-			if(i1==1&&i2==1&&i3==1&&i4==1) { 
+				im.charuxiaoxi(xo1);
 					return "1";
 				}else { 
 					return "2"; 
@@ -104,9 +105,6 @@ public class MyController {
 			}else {
 				return "0";
 			}				
-		}else {
-			return "0";
-		}
 		
 	}		
 	

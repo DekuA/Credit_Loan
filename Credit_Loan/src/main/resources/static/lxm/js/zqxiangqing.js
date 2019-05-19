@@ -174,7 +174,7 @@ function zhifumoney(){
 			url:"lxm/selZqBalancepwd?userid="+user.userid+"&pwd="+mpwd+"&userbalance="+money+"&invesid="+inves.iid,
 			success:function(data){
 				if(data==1){
-					window.location.href="zqxiangqing.lxm?invesid="+inves.iid;
+					window.location.href="selInvesById.lxm?invesid="+inves.iid;
 				}else if(data==2){
 					$(".modal-body1").html("&nbsp;订单数据错误！&nbsp;");
 					$("#sfbangka").modal();

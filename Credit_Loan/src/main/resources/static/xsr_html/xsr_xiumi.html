@@ -11,7 +11,7 @@
 	<body>
 		<div style='position: relative;height:450px;background-color: gainsboro;'>
 			<div class="container" style="position: relative;height: 400px;top: 25px;width: 80%;background-color: white;">
-				<h2>绑定邮箱</h2><hr />
+				<h2>修改密码</h2><hr />
 				<div align="center">
 					<table align="center" >
 						<tr align="right">
@@ -38,6 +38,10 @@
 		var ymima = $("#ypass").val();
 		var xmima = $("#xpass").val();
 		var quexmima = $("#quexpass").val();
+		if(ymima.length==0){
+			$("#cuowu").html("请输入密码");
+			return;
+		}
 		if(xmima!=quexmima){
 			$("#cuowu").html("新密码确认不一致");
 			return;

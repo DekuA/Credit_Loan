@@ -15,6 +15,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -22,6 +23,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.p2p.qiyun.cjz.domain.investnotes;
+import com.p2p.qiyun.cjz.service.touziService;
 import com.p2p.qiyun.dby.pojo.balance;
 import com.p2p.qiyun.dby.service.accountService;
 import com.p2p.qiyun.lsx.entity.Loan;
@@ -338,5 +341,37 @@ public class MyController_xsr {
         }
         return 0;
     }
+	
+	@RequestMapping("chatouzi_xsr")
+	public Map chatouzi_xsr(int yeshu,HttpSession session) {
+		int userid = (int)session.getAttribute("useridss");
+		PageHelper.startPage(yeshu, 5);
+		List<investnotes> wodetouzibiao = im.wodetouzibiao(userid);
+		System.out.println(wodetouzibiao);
+		PageInfo<investnotes> info = new PageInfo<>(wodetouzibiao);
+		int zonghang = (int) info.getTotal();
+		int num = 0;
+		if(zonghang%5==0){
+			num=zonghang/5;
+		}else{
+			num=zonghang/5+1;
+		}
+		Map map = new HashMap();
+		map.put("rows",wodetouzibiao);//存集合
+		map.put("total",num);//存总数据的行数
+		return map;
+	}
+	
+	@RequestMapping("xiugaizr_xsr")
+	public int xiugaizr_xsr(investnotes in,int number) {
+		 int zqzrcaozuo=0;
+		if(number==1) {
+			 zqzrcaozuo = im.zqzrcaozuo(in);
+		}else {
+			 zqzrcaozuo = im.zqzrcaozuo2(in);
+		}
+		 
+		return zqzrcaozuo;
+	}
 	
 }

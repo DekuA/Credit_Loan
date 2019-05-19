@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.p2p.qiyun.cjz.domain.customer;
+import com.p2p.qiyun.cjz.domain.news;
 import com.p2p.qiyun.cjz.service.kahaoxxService;
 import com.p2p.qiyun.lsx.entity.Loan2;
 import com.p2p.qiyun.lsx.entity.Paymenthistory2;
@@ -40,6 +41,8 @@ import com.p2p.qiyun.lxm.service.ProjectService;
 import com.p2p.qiyun.lxm.service.dddService;
 import com.p2p.qiyun.wzr.domain.Userinfo;
 import com.p2p.qiyun.wzr.service.UserinfoService;
+import com.p2p.qiyun.xsr.domain.xiaoxi;
+import com.p2p.qiyun.xsr.service.CreditService_xsr;
 
 @Controller
 @RestController
@@ -55,6 +58,9 @@ public class MyController {
 	
 	@Autowired
 	private UserinfoService user;
+	
+	@Autowired
+	private CreditService_xsr im;
 	
 	@RequestMapping("lxm/selZqBalancepwd")
 	public String selZqBalancepwd(String pwd,String userid,String userbalance,String invesid) {
@@ -80,6 +86,12 @@ public class MyController {
 			int i2 = proser.insertInves(invest);
 			int i3 = proser.upBalanceByUid(bbb); 
 			if(i1==1&&i2==1&&i3==1) { 
+				//插入账户信息
+				Project s1111 = proser.selProjectById(inves.getPid());
+				 String pname = s1111.getPname();
+				 String pnumber = s1111.getPnumber();
+				xiaoxi xo = new xiaoxi(0, Integer.parseInt(userid),pname+pnumber+"项目购买成功,购买金额"+userbalance+"元", null);
+				im.charuxiaoxi(xo);
 				return "1";
 			}else { 
 				return "2"; 
@@ -215,6 +227,12 @@ public class MyController {
 			int i2 = proser.insertInves(inves);
 			int i3 = proser.upBalanceByUid(bbb); 
 			if(i1==1&&i2==1&&i3==1) { 
+				//插入账户信息
+				Project s1111 = proser.selProjectById(inves.getPid());
+				 String pname = s1111.getPname();
+				 String pnumber = s1111.getPnumber();
+				xiaoxi xo = new xiaoxi(0, Integer.parseInt(userid),pname+pnumber+"项目投资成功,投资金额"+userbalance+"元", null);
+				im.charuxiaoxi(xo);
 				return "1";
 			}else { 
 				return "2"; 

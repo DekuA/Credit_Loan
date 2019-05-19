@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<link rel="stylesheet" href="../3.5js/bootstrap.min.css" />
+		<script type="text/javascript" src="../js_xsr/jquery-3.3.1.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js_xsr/bootstrap-paginator.js"></script>
+		<style>
+			th{
+				text-align: center;
+				height: 30px;
+			}
+			td{
+				text-align: center;
+				height: 30px;
+				width: 200px;
+			}
+		</style>
+<body><br>
+	<div class="container">
+		<font >我的投资</font></div>	
+						<hr>
+	<div class="container">
+			<table id='tab3_touzi' border="1" >
+						
+			</table>
+	</div>		
+	<div align="center"><ul class="pagination"></ul></div>
+</body>
+<script>
+		var yy=1;
+		fenyetouzi(yy);
+		function fenyetouzi(page){
+			 $.ajax({
+					url:"../../../chatouzi_xsr",
+					data:{
+						yeshu:page
+					},
+					dataType : "json",
+					success:function(da){	
+						if(da.total==0){
+							$("#tab3_touzi").html("<tr><td>暂时无投资信息</td></tr>");
+							return;
+						}
+						$("#tab3_touzi").html("<tr><th>项目名称</th><th>投资金额</th><th>投资时间</th><th>债券状态</th><th>操作</th></tr>");
+						for(i=0;i<da.rows.length;i++){
+							var  zt="";
+							var co = "";
+							var zqcaozuo="";
+							
+							if(da.rows[i].ptrans==0){
+								zt="可转让";co="black";zqcaozuo="<a href='javascript::'  onclick='zhaungr("+da.rows[i].iid+",1)' style='border:1px;color:red;text-decoration: none;'>转让</a>";
+							}
+							if(da.rows[i].ptrans==1){
+								zt="转让中";co="gray";zqcaozuo="<a href='javascript::' onclick='zhaungr("+da.rows[i].iid+",2)' style='border:1px;color:red;text-decoration: none;'>取消转让</a>"				
+							}
+							if(da.rows[i].ptrans==2){
+								zt="被购买";co="gray";zqcaozuo="<font color='gray'>该项目已售出</font>"
+							}
+							$("#tab3_touzi").append("<tr><td>"+da.rows[i].pname+""+da.rows[i].pnumber+"</td><td>"+da.rows[i].iMoney+"</td><td>"+da.rows[i].idate+"</td><td> <font color='"+co+"'>"+zt+"</font></td><td>"+zqcaozuo+"</td></tr>");
+						}
+						
+						$(".pagination").bootstrapPaginator({
+					       	  bootstrapMajorVersion:1,    //版本
+					               currentPage:yy,    //当前页数
+					               numberOfPages:5,    //最多显示Page页
+					               totalPages:da.total,    //所有数据可以显示的页数
+					               itemTexts : function(type, page, current) {//设置分页按钮显示字体样式
+			                            switch (type) {
+			                            case "first":
+			                                return "首页";
+			                            case "prev":
+			                                return "上一页";
+			                            case "next":
+			                                return "下一页";
+			                            case "last":
+			                                return "末页";
+			                            case "page":
+			                                return page;
+			                            }
+			                        },
+					               onPageClicked:function(e,originalEvent,type,page){
+					            	   yy = page;
+					            	   fenyetouzi(page);
+					           	}
+					      });
+						
+					}
+					
+				})
+		}
+		var iidd=0;
+		 function zhaungr(num,ddd){
+			 iidd=num;
+			if(ddd==1){
+				window.parent.$("#zqModal").modal('show');
+			}else{
+				 $.ajax({
+						url:"../../../xiugaizr_xsr",
+						data:{
+							iid:num	,
+							number:ddd
+						},
+						dataType:"text",
+						success:function(da){
+								fenyetouzi(yy);
+						}
+				})
+			}			 
+			
+		 }
+		 function zqtijiao(jine){
+			 $.ajax({
+					url:"../../../xiugaizr_xsr",
+					data:{
+						iid:iidd,
+						ptransmoney:jine,
+						number:1
+					},
+					dataType:"text",
+					success:function(da){
+						fenyetouzi(yy);
+					}
+				}) 
+		 }
+		
+	</script>
+</html>

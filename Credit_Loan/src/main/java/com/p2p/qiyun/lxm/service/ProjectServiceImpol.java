@@ -62,6 +62,12 @@ public class ProjectServiceImpol implements ProjectService {
 	}
 	
 	@Transactional
+	public int upBalanceByUidjia (Balancelxm record) {
+		int i = bamap.upBalanceByUidjia(record);
+		return i;
+	}
+	
+	@Transactional
 	public int upBalanceByUid(Balancelxm balance) {
 		int i = bamap.upBalanceByUid(balance);
 		return i;

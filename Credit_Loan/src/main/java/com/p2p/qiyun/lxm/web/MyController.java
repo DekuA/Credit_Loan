@@ -70,6 +70,9 @@ public class MyController {
 			Balancelxm bbb = new Balancelxm();
 			bbb.setUserid(Integer.parseInt(userid));
 			bbb.setBalance(Double.parseDouble(userbalance));
+			Balancelxm bbb1 = new Balancelxm();
+			bbb1.setUserid(inves.getUserid());
+			bbb1.setBalance(Double.parseDouble(userbalance));
 			int i1 = proser.upInvesptrans(inves);
 			Investnotes invest = new Investnotes();
 			invest.setUserid(Integer.parseInt(userid));
@@ -79,7 +82,9 @@ public class MyController {
 			invest.setPtransdate(sdf1.format(d));
 			int i2 = proser.insertInves(invest);
 			int i3 = proser.upBalanceByUid(bbb); 
-			if(i1==1&&i2==1&&i3==1) { 
+			//---
+			int i4 = proser.upBalanceByUidjia(bbb1); 
+			if(i1==1&&i2==1&&i3==1&&i4==1) { 
 				return "1";
 			}else { 
 				return "2"; 

@@ -21,6 +21,8 @@ import com.p2p.qiyun.lxm.domain.Investnotes;
 import com.p2p.qiyun.lxm.domain.Project;
 import com.p2p.qiyun.lxm.domain.ProjectExample;
 import com.p2p.qiyun.lxm.domain.SelZhaiQuan;
+import com.p2p.qiyun.xsr.domain.xiaoxi;
+import com.p2p.qiyun.xsr.service.CreditService_xsr;
 
 @Service
 public class ProjectServiceImpol implements ProjectService {
@@ -35,6 +37,9 @@ public class ProjectServiceImpol implements ProjectService {
 	
 	@Autowired
 	private Loan2Mapper loanmap;
+	
+	@Autowired
+	private CreditService_xsr im;
 	
 	public Project selProjectByLoanid(int loanid) {
 		Project project = promap.selProjectByLoanid(loanid);
@@ -61,6 +66,8 @@ public class ProjectServiceImpol implements ProjectService {
 				i += bamap.upBalanceByUidjia(bbb);
 				System.out.println(inves.getUserid()+"投资 "+inves.getImoney()+"元 的 "+project.getPname()+project.getPnumber()+"项目第"
 				+j+"期收益了 "+benxi+"元,扣去信息服务费"+xinxifei+"元，还剩"+(benxi-xinxifei)+"元");
+				xiaoxi xo = new xiaoxi(0, inves.getUserid(),"投资 "+inves.getImoney()+"元 的 "+project.getPname()+project.getPnumber()+"项目第"+j+"期收益了 "+benxi+"元,扣去信息服务费"+xinxifei+"元，总收益"+(benxi-xinxifei)+"元", null);
+				im.charuxiaoxi(xo);
 				Balancelxm balancelxm = bamap.selectBalanceByUid(inves.getUserid());
 				System.out.println("余额："+balancelxm.getBalance());
 			}

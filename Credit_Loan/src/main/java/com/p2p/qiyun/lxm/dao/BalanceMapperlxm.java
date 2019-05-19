@@ -9,6 +9,8 @@ import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface BalanceMapperlxm {
+	int upBalanceByUidjia(Balancelxm record);
+	
 	int upBalanceByUid(Balancelxm record);
 	
 	Balancelxm selectBalanceByUid(int uid);

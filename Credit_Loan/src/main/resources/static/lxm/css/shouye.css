@@ -3,7 +3,7 @@ body, button, input, select, textarea {
 			}
 			.main-wide-wrap{
 				width: 100%;
-				position: relative;
+				
 				height: auto!important;
 			}
 			.main-body{

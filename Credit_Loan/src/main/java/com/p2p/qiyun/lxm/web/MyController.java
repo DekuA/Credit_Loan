@@ -76,7 +76,10 @@ public class MyController {
 			Balancelxm bbb = new Balancelxm();
 			bbb.setUserid(Integer.parseInt(userid));
 			bbb.setBalance(Double.parseDouble(userbalance));
-			int i1 = proser.upInvesptrans(inves);
+			Balancelxm bbb1 = new Balancelxm();
+			bbb1.setUserid(inves.getUserid());
+			bbb1.setBalance(Double.parseDouble(userbalance));
+			int i1 = proser.upInvesptrans(inves); 
 			Investnotes invest = new Investnotes();
 			invest.setUserid(Integer.parseInt(userid));
 			invest.setIdate(dateNowStr);
@@ -92,14 +95,20 @@ public class MyController {
 				 String pnumber = s1111.getPnumber();
 				xiaoxi xo = new xiaoxi(0, Integer.parseInt(userid),pname+pnumber+"项目购买成功,购买金额"+userbalance+"元", null);
 				im.charuxiaoxi(xo);
-				return "1";
-			}else { 
-				return "2"; 
-			}
+			int i4 = proser.upBalanceByUidjia(bbb1); 
+			if(i1==1&&i2==1&&i3==1&&i4==1) { 
+					return "1";
+				}else { 
+					return "2"; 
+				}
+			}else {
+				return "0";
+			}				
 		}else {
 			return "0";
 		}
-	}
+		
+	}		
 	
 	@RequestMapping("lxm/zqxiangqingxs")
 	public Map selZrInves(HttpSession session) {

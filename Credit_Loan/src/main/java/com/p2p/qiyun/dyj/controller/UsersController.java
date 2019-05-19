@@ -62,14 +62,13 @@ public class UsersController {
 		return u;
 	}
 	
-	@RequestMapping("/loginout")
+	@RequestMapping("/loginout1")
 	public void logout(HttpSession session,HttpServletResponse response){
-		System.out.println("afsd");
 		session.removeAttribute("user");
 		Subject subject = SecurityUtils.getSubject();
 		subject.logout();
 		try {
-			response.sendRedirect("lg.html");
+			response.sendRedirect("loginout");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

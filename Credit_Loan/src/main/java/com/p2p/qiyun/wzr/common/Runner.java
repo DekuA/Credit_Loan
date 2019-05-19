@@ -27,7 +27,7 @@ public class Runner {
 	@Autowired
 	private UserinfoMapper Mapper;
 
-	@Scheduled(cron = "0 39 15 * * ?")
+	@Scheduled(cron = "0 00 00 * * ?")
 	public void queryPayStatus() throws ParseException {
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		List<Paymenthistory> list = Mapper.voluntarilydate();

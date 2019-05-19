@@ -539,7 +539,7 @@
   	</select>
   	
   	<select id="selCountloanPay" parameterType="int" resultType="int">
-  		select count(*) from paymenthistory where userid=#{userid}
+  		select count(*) from paymenthistory where userid=#{userid} and paymentstatus=2
   	</select>
   	
   	<select id="selPayMoney" parameterType="int" resultType="String">

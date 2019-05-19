@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -146,34 +147,26 @@ public class LoanServiceimpol extends Thread implements LoanService {
 									Double loanrate =loan2.getLoanrate(); //总利息 
 									int qix = loan2.getRepaymentperiod(); //期限
 									
-									Project pro = new Project();
-									pro.setLenderid(loan2.getLoanid());
-									pro.setPperson(u.getUid());
-									pro.setPassessor(u.getUid());
-									int k = promap.insertBysp(pro);
-									  System.out.println("xse");
-									  
-									Date da = new Date();   
-									SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-							        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");  
-							        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-
-							        String dday = plusDay(20,sdf3.format(da));
-
-							        pro.setPclosing(dday);
-							        if(loan2.getRepaymentperiod()==3) {
-							        	pro.setPlcure(6.60);
-							        }else if(loan2.getRepaymentperiod()==6) {
-							        	pro.setPlcure(7.84);
-							        }else {
-							        	pro.setPlcure(8.40);
-							        }
-							        pro.setPnumber("88"+sdf2.format(da));
-							        pro.setPestimate(5);
-							        pro.setPstarttime(sdf1.format(da));
-							        
-									int insertBysp = promap.insertBysp(pro);
-									  System.out.println("成功"+insertBysp);
+									/*
+									 * Project pro = new Project(); pro.setLenderid(loan2.getLoanid());
+									 * pro.setPperson(u.getUid()); pro.setPassessor(u.getUid()); int k =
+									 * promap.insertBysp(pro); System.out.println("xse");
+									 * 
+									 * Date da = new Date(); SimpleDateFormat sdf1 = new
+									 * SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); SimpleDateFormat sdf3 = new
+									 * SimpleDateFormat("yyyy-MM-dd"); SimpleDateFormat sdf2 = new
+									 * SimpleDateFormat("yyyyMMddHHmmss");
+									 * 
+									 * String dday = plusDay();
+									 * 
+									 * pro.setPclosing(dday); if(loan2.getRepaymentperiod()==3) {
+									 * pro.setPlcure(6.60); }else if(loan2.getRepaymentperiod()==6) {
+									 * pro.setPlcure(7.84); }else { pro.setPlcure(8.40); }
+									 * pro.setPnumber("88"+sdf2.format(da)); pro.setPestimate(5);
+									 * pro.setPstarttime(sdf1.format(da));
+									 * 
+									 * int insertBysp = promap.insertBysp(pro); System.out.println("成功"+insertBysp);
+									 */
 									  Repayment2 repayment2=new Repayment2(Loanid, id, loanrate, mm, qix); 
 									  int addRepayment2 = loan2s.AddRepayment2(repayment2); 
 									  if(addRepayment2>0) { 
@@ -232,6 +225,7 @@ public class LoanServiceimpol extends Thread implements LoanService {
 						b.setBalance(b.getBalance() + selloan.getLoanamount());
 
 						if (ba.updateBalace(b) > 0) {
+							
 							xiaoxi xo=new xiaoxi(0, id, selloan.getLoanamount()+"借款通过，已放款至您账户余额", null);	
 							im.charuxiaoxi(xo);
 							Loan loan2 = lomapper.selloan(id); //id 是用户id 
@@ -254,9 +248,9 @@ public class LoanServiceimpol extends Thread implements LoanService {
 								Date da = new Date();   
 								SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
 						        SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");  
-						        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
+						        SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss"); 
 						        
-						        String dday = plusDay(20,sdf3.format(da));
+						        String dday = plusDay();
 						        
 						        pro.setPclosing(dday);
 						        if(loan2.getRepaymentperiod()==3) {
@@ -361,16 +355,22 @@ public class LoanServiceimpol extends Thread implements LoanService {
 		}
 	}
 	
-	public String plusDay(int num,String newDate) throws ParseException{
-	        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-	         Date  currdate = format.parse(newDate);
-	        System.out.println("现在的日期是：" + currdate);
-	       Calendar ca = Calendar.getInstance();
-	       ca.add(Calendar.DATE, num);// num为增加的天数，可以改变的
-	       currdate = ca.getTime();
-	         String enddate = format.format(DateFormat.getDateInstance().parse(newDate));
-	        System.out.println("增加天数以后的日期：" + enddate);
-	        return enddate;
+	public String plusDay() throws ParseException{
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
+		System.out.println("当前日期:"+sf.format(c.getTime()));
+		c.add(Calendar.DAY_OF_MONTH, 20);
+		System.out.println("增加一天后日期:"+sf.format(c.getTime()));
+		return sf.format(c.getTime());
+	}
+	
+	public String ccc() throws ParseException {
+		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar c = Calendar.getInstance();
+		System.out.println("当前日期:"+sf.format(c.getTime()));
+		c.add(Calendar.DAY_OF_MONTH, 20);
+		System.out.println("增加一天后日期:"+sf.format(c.getTime()));
+		return sf.format(c.getTime());
 	}
 
 }

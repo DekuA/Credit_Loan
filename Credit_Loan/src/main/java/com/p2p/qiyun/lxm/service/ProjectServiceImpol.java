@@ -4,6 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -32,6 +33,35 @@ public class ProjectServiceImpol implements ProjectService {
 	
 	@Autowired
 	private Loan2Mapper loanmap;
+	
+	public Project selProjectByLoanid(int loanid) {
+		Project project = promap.selProjectByLoanid(loanid);
+		return project;
+	}
+	
+	@Transactional
+	public int touzishouyi(int pid) {
+		List<Investnotes> list = inmap.selByPid(pid);
+		Project project = promap.selectByPrimaryKey(pid);
+		Loan2 loan = loanmap.selLoansById(project.getLenderid());
+		int j = promap.selYihuanqishu(project.getLenderid());
+		int i=0;
+		for (Investnotes inves : list) {
+			if(inves.getPtrans()!=2) {
+				Balancelxm balancelxm1 = bamap.selectBalanceByUid(inves.getUserid());
+				System.out.println("dq余额："+balancelxm1.getBalance());
+				double d = counters((int)loan.getRepaymentperiod(),inves.getImoney(),project.getPlcure(),project.getPinfo(),j);
+				Balancelxm bbb = new Balancelxm();
+				bbb.setBalance(d);
+				bbb.setUserid(inves.getUserid());
+				i += bamap.upBalanceByUidjia(bbb);
+				System.out.println(inves.getUserid()+"投资 "+inves.getImoney()+"元 的 "+project.getPname()+project.getPnumber()+"项目第"+j+"期收益了 "+d+"元");
+				Balancelxm balancelxm = bamap.selectBalanceByUid(inves.getUserid());
+				System.out.println("余额："+balancelxm.getBalance());
+			}
+		}
+		return i;
+	}
 	
 	public int insertBysp(Project pro) {
 		Loan2 loan2 = loanmap.selLoansById(pro.getLenderid());
@@ -145,5 +175,39 @@ public class ProjectServiceImpol implements ProjectService {
 		return list;
 	}
 	
+	@Test
+	public double counters(int repaymentperiod,double loanamount,double plcure,double pinfo,int dangqi){
+		int dkqs=repaymentperiod;
+		double dkbj=loanamount;
+		double cksyl=plcure;
+		//年收益率/百分比/总年数=月收益
+		double qs = ((cksyl/100)/12)+1; //月利率+1
+		double  bj = Math.pow(qs,dkqs);//（1+月利率）
+		double bj2 = bj*((cksyl/100)/12);
+		//应收本息
+		double ysbx = (dkbj*bj2)/(Math.pow(qs,dkqs)-1);		
+		double ResidualPrincipal = dkbj;
+		String double5="0.0";
+		for(int i=1;i<=dkqs;i++){
+			double lixi = ResidualPrincipal*(cksyl/100)/12;
+			ResidualPrincipal = ResidualPrincipal-ysbx+lixi;
+			if(i==dkqs){
+				ResidualPrincipal = 0.00;
+			}
+			double bqysbj=(ysbx-lixi)*1;
+			double bqsybj=ResidualPrincipal*1;
+			//System.out.println(formatDouble5(ysbx-lixi)+","+formatDouble5(lixi)+","+formatDouble5(ResidualPrincipal)+",");
+			double benxi = Double.parseDouble(formatDouble5(ysbx));
+			if(i==dangqi) {
+				double5 = formatDouble5(benxi-(bqysbj+bqsybj)*(pinfo/100));
+			}
+			
+		}
+		return Double.parseDouble(double5);
+	}
 	
+	
+	public String formatDouble5(double d) {
+        return String.format("%.2f", d);
+    }
 }

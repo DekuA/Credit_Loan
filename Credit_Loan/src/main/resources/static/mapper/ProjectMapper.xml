@@ -574,4 +574,12 @@
       "0")
   	</insert>
   	
+  	<select id="selProjectByLoanid" parameterType="int" resultMap="BaseResultMap">
+  		select * from project where lenderId=#{loanid}
+  	</select>
+  	
+  	<select id="selYihuanqishu" resultType="int" parameterType="int">
+  		select returnperiod from repayment  where loanid=#{loanid}
+  	</select>
+  	
 </mapper>

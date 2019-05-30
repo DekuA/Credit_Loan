@@ -101,5 +101,17 @@
 	<insert id="charuxiaoxi" parameterType="com.p2p.qiyun.xsr.domain.xiaoxi">
 			insert into xiaoxi(userid,msgcontext) values(#{userid},#{msgcontext})
 	</insert>
+	
+	<select id='wodetouzibiao' parameterType="int" resultType="com.p2p.qiyun.cjz.domain.investnotes">
+		select i.iid,i.iMoney,i.idate,u.username,p.pname,p.pnumber,i.ptrans from investnotes i,userinfo u,project p where i.userid=u.userid and i.pid=p.pid and i.userid=#{userid} ORDER BY idate desc
+	</select>
+	
+	<update id="zqzrcaozuo" parameterType="com.p2p.qiyun.cjz.domain.investnotes">
+		update investnotes set ptrans=1,ptransmoney=#{ptransmoney} where iid=#{iid}
+	</update>
+	
+	<update id="zqzrcaozuo2" parameterType="com.p2p.qiyun.cjz.domain.investnotes">
+		update investnotes set ptrans=0,ptransmoney=0 where iid=#{iid}
+	</update>
   	
 </mapper>

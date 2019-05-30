@@ -10,21 +10,53 @@ public class investnotes {
 	private double ptransmoney;
 	private String username;
 	private String pname;
+	private String pnumber;
+
+	public String getPnumber() {
+		return pnumber;
+	}
+	public void setPnumber(String pnumber) {
+		this.pnumber = pnumber;
+	}
+	public investnotes( int page, int rows,String username, String pname) {
+		super();
+		this.username = username;
+		this.pname = pname;
+		this.page = page;
+		this.rows = rows;
+	}
 	public String getUsername() {
 		return username;
 	}
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public investnotes(int iid, String iMoney, String idate, String username, String pname, int page, int rows) {
+	public investnotes(int iid, String iMoney, String idate, String userid, String pid, int ptrans, double ptransmoney,
+			String username, String pname, String pnumber, int page, int rows) {
 		super();
 		this.iid = iid;
 		this.iMoney = iMoney;
 		this.idate = idate;
+		this.userid = userid;
+		this.pid = pid;
+		this.ptrans = ptrans;
+		this.ptransmoney = ptransmoney;
 		this.username = username;
 		this.pname = pname;
+		this.pnumber = pnumber;
 		this.page = page;
 		this.rows = rows;
+	}
+	public investnotes(int iid, String iMoney, String idate, int ptrans, String username, String pname,
+			String pnumber) {
+		super();
+		this.iid = iid;
+		this.iMoney = iMoney;
+		this.idate = idate;
+		this.ptrans = ptrans;
+		this.username = username;
+		this.pname = pname;
+		this.pnumber = pnumber;
 	}
 	public String getPname() {
 		return pname;
@@ -34,24 +66,6 @@ public class investnotes {
 	}
 	private int page;
 	private int rows;
-	public investnotes(int page, int rows) {
-		super();
-		this.iid = iid;
-		this.iMoney = iMoney;
-		this.idate = idate;
-		this.username = username;
-		this.pname = pname;
-		this.page = page;
-		this.rows = rows;
-	}
-	public investnotes(int page, int rows,String username,String pname) {
-		super();
-		
-		this.page = page;
-		this.rows = rows;
-		this.username = username;
-		this.pname = pname;
-	}
 	public int getPage() {
 		return page;
 	}

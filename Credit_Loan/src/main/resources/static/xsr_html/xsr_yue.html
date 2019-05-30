@@ -87,6 +87,9 @@
 					  		<a  class='nav-link' style='color: black;' href='xsr_jiehuanjilu.html'>借款/还款 记录</a>				  		
 				  		</li>
 				  		<li class='nav-item'>
+					  		<a  class='nav-link' style='color: black;' href='xsr_wodetouzi.html'>我的投资</a>				  		
+				  		</li>
+				  		<li class='nav-item'>
 					  		<a  class='nav-link' style='color: orange;' href='xsr_yue.html'>余额管理</a>				  		
 				  		</li>
 				  		
@@ -166,10 +169,12 @@
 			
 	</body> 
 	<script> 	
+	
 	$.ajax({
 		url:"../panlogin_xsr",
 		dataType:"text",
 		success:function(data){
+			
 			if(data=="0"){
 				location.href="../login.html";
 			}

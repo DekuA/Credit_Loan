@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.internal.bind.DateTypeAdapter;
+import com.p2p.qiyun.cjz.domain.investnotes;
 import com.p2p.qiyun.dby.pojo.balance;
 import com.p2p.qiyun.dyj.pojo.Users;
 import com.p2p.qiyun.lsx.entity.Loan;
@@ -184,6 +185,24 @@ public class CreditService_xsrImpol implements CreditService_xsr {
 	public int charuxiaoxi(xiaoxi xo) {
 		int charuxiaoxi = dao.charuxiaoxi(xo);
 		return charuxiaoxi;
+	}
+
+	@Override
+	public List<investnotes> wodetouzibiao(int userid) {
+		List<investnotes> wodetouzibiao = dao.wodetouzibiao(userid);
+		return wodetouzibiao;
+	}
+
+	@Override
+	public int zqzrcaozuo(investnotes in) {
+		int zqzrcaozuo = dao.zqzrcaozuo(in);
+		return zqzrcaozuo;
+	}
+
+	@Override
+	public int zqzrcaozuo2(investnotes in) {
+		int zqzrcaozuo2 = dao.zqzrcaozuo2(in);
+		return zqzrcaozuo2;
 	}
 
 	

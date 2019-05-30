@@ -8,6 +8,8 @@
 			<script type="text/javascript" src="xsr_wenjian/js_xsr/jquery-3.3.1.js"></script>
 			<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap.min.js"></script>
 			<script type="text/javascript" src="xsr_wenjian/js_xsr/bootstrap-paginator.js"></script>
+			<script type="text/javascript" src="../lsx_html/js/alert.js"></script>
+		<link rel="stylesheet" href="../lsx_html/css/alert.css" />
 			
     
 	<body style="background-color: ghostwhite;">
@@ -55,7 +57,17 @@
 		}	
 		 function fasong(){
 			if($("#test").val()==" "){
-				alert("输入不能为空");
+				 var xsr1 = jqueryAlert({
+						'content' : '输入不能为空',
+						'width' :'350px',
+						'height' :'100px',
+						'modal' : true,
+						'buttons' : {
+							'确定' : function() {
+								xsr1.close();
+							}
+						}
+					})
 				return;
 			}
 			 $.ajax({

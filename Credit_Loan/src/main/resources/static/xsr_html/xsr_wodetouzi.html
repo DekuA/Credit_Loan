@@ -91,7 +91,7 @@
 				<div style='position: absolute;right: 100px;'>
 					 <ul class='nav' id='zhxxk'>
 					  	<li class='nav-item'>
-					  		<a  class='nav-link' style='color: orange;' href='xsr_zhanghu.html'>账户设置</a>				  		
+					  		<a  class='nav-link' style='color: black;' href='xsr_zhanghu.html'>账户设置</a>				  		
 				  		</li>
 				  		<li class='nav-item'>
 					  		<a  class='nav-link' style='color: black;' href='xsr_xiaoxi.html'>消息中心</a>				  		
@@ -100,7 +100,7 @@
 					  		<a  class='nav-link' style='color: black;' href='xsr_jiehuanjilu.html'>借款/还款 记录</a>				  		
 				  		</li>
 				  		<li class='nav-item'>
-					  		<a  class='nav-link' style='color: black;' href='xsr_wodetouzi.html'>我的投资</a>				  		
+					  		<a  class='nav-link' style='color: orange;' href='xsr_wodetouzi.html'>我的投资</a>				  		
 				  		</li>
 				  		<li class='nav-item'>
 					  		<a  class='nav-link' style='color: black;' href='xsr_yue.html'>余额管理</a>				  		
@@ -111,22 +111,10 @@
 			</div>
 		</div>
 		<!--我的账户页面-->
-		<div id='zhdakuang' style='position: relative;height:750px;background-color: ghostwhite;'>
-			<div id='zherkuang' class='container' style="position: relative;height: 700px;top: 30px;width: 80%;background-color: white;">
-				<div>
-					<ul class='nav'>
-						  <li  class='nav-item' style='width: 50%;text-align: center;'>
-						  		<a id='zhanghuxx' class='nav-link' style='color: #0056B3;' href='javascript::' onclick="zhanghuxinxi()">账户信息</a>
-						  		<hr id='hr1'style='height: 2px;' color='#0056B3' />
-						  </li>
-						   <li class='nav-item' style='width: 50%;text-align: center;'>
-						  		<a id='yinhangka' class='nav-link' style='color: gray;' href='javascript::' onclick="yinhang()">我的银行卡</a>
-						  		<hr id='hr2' style='height: 2px;' color='gray' />
-						  </li>
-					 </ul>
-				</div>
-				
-				<iframe id='iframe2' frameborder='no' src='xsr_wenjian/ifm_xsr/zhanghu.html' style='height: 560px;width: 100%;position: relative;'  ></iframe>
+		<div id='zhtouzi1' style='position: relative;height:450px;background-color: ghostwhite;'>
+			<div id='zhtouzi2' class='container' style="position: relative;height: 400px;top: 30px;width: 80%;background-color: white;">
+						
+				<iframe id='iframewodeyouzi' frameborder='no' src='xsr_wenjian/ifm_xsr/touzi.html' style='height: 360px;width: 100%;position: relative;'  ></iframe>
 				
 			</div>
 		</div>
@@ -178,75 +166,69 @@
 			      </div>
 			    </div>
 			  </div>
-
-<!-- 浮动 -->
-		<div style="float: left;width: 50px;height: 80px;position: fixed;top: 400px;right: 15px;background-color: ghostwhite;">
-					<!-- <a href="xsr_jisuanqi.html" target="_blank"><div id='jisuan_div1' style="height: 80px;border: 1px solid gainsboro;" align="center" onmouseout="likai(1)" onmouseover="fangs(1)">
-							<img style="width: 30px;height: 30px;top: 5px;position: relative;" src="xsr_wenjian/img_xsr/jisuanqi.PNG" /><br>
-							<font size="2" color="gray">收益<br>计算器</font>
-						</div></a>	 -->
-					<a href="javascript::" onclick="kefu()" ><div id='jisuan_div2' style="height: 80px;border: 1px solid gainsboro;" align="center" onmouseout="likai(2)" onmouseover="fangs(2)">
-							<img style="width: 30px;height: 30px;top: 5px;position: relative;" src="xsr_wenjian/img_xsr/zxkf.PNG" /><br>
-							<font size="2" color="gray">在线<br>客服</font>
-						</div></a>
-							
-		</div>
+			  
+			  
+			  <!--输入转让的金额 模态框 -->
+				<div class="modal fade" id="zqModal">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				 
+				      <!-- 模态框头部 -->
+				      <div class="modal-header">
+				        <h4 class="modal-title">债权转让</h4>
+				      </div>
+				 
+				      <!-- 模态框主体 -->
+				      <div class="modal-body" align="center">
+				      		<div >输入转让金额</div> <br>
+				      		 <input  class="form-control" id="zqshujine" placeholder="输入转让金额">
+				      		 <br>
+				      		 <font size="2" color="red" id="touzicuowu"></font>
+				      </div>
+				 
+				      <!-- 模态框底部 -->
+				      <div class="modal-footer">
+				       <button type="button" class="btn btn-primary" onclick="tijiaozqzr()" >提交</button>
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+				      </div>
+				 
+				    </div>
+				  </div>
+</div>
+			  
+			  
 			
 </body>
 <script> 
-$.ajax({
-	url:"../panlogin_xsr", 
-	dataType:"text",
-	success:function(data){
-		if(data=="0"){
-			location.href="../login.html";
+	$.ajax({
+		url:"../panlogin_xsr", 
+		dataType:"text",
+		success:function(data){
+			if(data=="0"){
+				location.href="../login.html";
+			}
+		}
+	});
+	
+	$.ajax({
+		url:"../nicheng_xsr",
+		dataType:"text",
+		success:function(da){
+			$("#nic").html(da);
+		}
+	})
+	
+	function tijiaozqzr(){
+		var zz=/^\+?[1-9][0-9]*$/;
+		var shujine=$("#zqshujine").val();
+		if(zz.test(shujine)){
+			$("#touzicuowu").html("");
+			self.frames[0].zqtijiao(shujine);
+			$("#zqshujine").val("");
+			$("#zqModal").modal('hide');
+		}else{
+			$("#touzicuowu").html("请准确输入金额");
 		}
 	}
-});
-
-function dingnich(a){
-	$("#nic").html(a);
-}
-		function kefu(){
-				window.open("xsr_kefu.html");
-		}
-		
-		function fangs(num){
-			$("#jisuan_div"+num).css("background-color","gainsboro");
-		}
-		function likai(num){
-			$("#jisuan_div"+num).css("background-color","white");
-		}
-		
-		function logout(){
-			$.ajax({
-				url:"../logout",
-				success:function(data){
-					if(data>0){
-						location.href="../login.html";
-					}
-				}
-			});
-		}
-		function zhanghuxinxi(){
-			document.getElementById("iframe2").src="xsr_wenjian/ifm_xsr/zhanghu.html";
-			$("#zhdakuang").css("height","750px");
-			$("#zherkuang").css("height","700px");
-			$("#zhanghuxx").css("color","#0056B3");
-			$("#yinhangka").css("color","gray");
-			document.getElementById("hr1").color="#0056B3";
-			document.getElementById("hr2").color="gray";
-			$("#iframe2").css("height","560px");
-		}
-		function yinhang(){
-			document.getElementById("iframe2").src="xsr_wenjian/ifm_xsr/yinhang.html";
-			$("#zhdakuang").css("height","550px");
-			$("#zherkuang").css("height","500px");
-			$("#yinhangka").css("color","#0056B3");
-			$("#zhanghuxx").css("color","gray");
-			document.getElementById("hr1").color="gray";
-			document.getElementById("hr2").color="#0056B3";
-			$("#iframe2").css("height","400px");
-		}
 </script>
 </html>

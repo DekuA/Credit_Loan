@@ -172,9 +172,12 @@ public class ShiroConfiguration {
 		map.put("/chaxuntext_xsr","anon");
 		map.put("/huifuuser_xsr", "anon");
 		map.put("/szzfmm_xsr", "anon");
+		map.put("/chatouzi_xsr", "anon");
+		map.put("/touzi.html", "anon");
+		map.put("/xiugaizr_xsr", "anon");
 		//修改调整的登录页面
         bean.setLoginUrl("/lg.html");
-		
+        
 
 		map.put("/chaxuntext_xsr","anon");
 		map.put("/upload_Xsr","anon");

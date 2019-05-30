@@ -244,28 +244,31 @@ function zhifumoney(){
 }
 
 function lijitouzi(){
-	if(userbalance*1>=$("#touzijine").val()*1){
-		$.ajax({
-			url:"lxm/selsfbk?userid="+user.userid,
-			success:function(data){
-				if(data>0){
-					touzimy1=$("#touzijine").val();
-					//touzimy1=;
-					$("#zhifukuang").modal();
-					//alert("投资成功！");
-				}else{
-					alert();
-					$(".modal-body1").html("&nbsp;您还未绑定银行卡,请绑定银行卡后再进行投资&nbsp;");
-					$("#sfbangka").modal();
-					window.location.href="xsr_html/xsr_zhanghu.html";
-				}
-			}
-		})
+	if($("#touzijine").val()==""){
+		$(".modal-body1").html("&nbsp;投资金额为空！无法投资！&nbsp;");
+		$("#sfbangka").modal();
 	}else{
-		$(".modal-body1").html("&nbsp;账户余额不足，请充值后再进行投资&nbsp;");
-		$("#sfbangka").modal();	
+		if(userbalance*1>=$("#touzijine").val()*1){
+			$.ajax({
+				url:"lxm/selsfbk?userid="+user.userid,
+				success:function(data){
+					if(data>0){
+						touzimy1=$("#touzijine").val();
+						//touzimy1=;
+						$("#zhifukuang").modal();
+						//alert("投资成功！");
+					}else{
+						$(".modal-body1").html("&nbsp;您还未绑定银行卡,请绑定银行卡后再进行投资&nbsp;");
+						$("#sfbangka").modal();
+						window.location.href="xsr_html/xsr_zhanghu.html";
+					}
+				}
+			})
+		}else{
+			$(".modal-body1").html("&nbsp;账户余额不足，请充值后再进行投资&nbsp;");
+			$("#sfbangka").modal();	
+		}
 	}
-	
 }
 
 abs = function(val){

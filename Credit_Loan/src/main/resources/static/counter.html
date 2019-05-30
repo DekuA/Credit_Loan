@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="easyui/jquery.min.js"></script>
+		<script src="easyui/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="easyui/locale/easyui-lang-zh_CN.js"></script>
+		<link rel="stylesheet" href="easyui/themes/default/easyui.css" />
+		<link rel="stylesheet" href="easyui/themes/icon.css" />
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+	</head>
+	<body onload="ss()">
+		<div>
+			<div style="background-color: lightgray;width: 100%;height: 80px;border:1px solid;border-bottom-color: red;">
+				<br>
+				<div>
+					<h2 style="position:relative;left: 300px;" >投资收益计算器</h2>
+				</div>
+			</div>
+			<br>
+			
+			<div style="position:relative;left: 300px;">
+				<select id="single" class="form-control form-control-chosen" data-placeholder="Please select..." style="width: 150px;" onchange="bian()">
+				  <option value="1">等额本息</option>
+				  <option value="2">等额本金</option>
+				  <option value="3">先息后本</option>
+				</select>
+				<br>
+				<div style="width: 800px;height: 160px;border:1px solid;border-color: Silver;">
+					<br>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					起息日&nbsp;&nbsp;<input id="qxr" type="text" style="width: 120px;height: 40px;" class="easyui-datebox" editable="false" />
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					贷款期数&nbsp;&nbsp;<input id="dkqs" class="textbox" style="width: 120px;height: 40px;"/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					
+					<br/><br/>
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					贷款本金&nbsp;&nbsp;<input id="dkbj" class="textbox" style="width: 120px;height: 40px;"/>&nbsp;&nbsp;元
+					&nbsp;&nbsp;&nbsp;&nbsp;参考收益率&nbsp;&nbsp;<input id="cksyl" class="textbox" style="width: 120px;height: 40px;"/>&nbsp;&nbsp;%
+					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button id="compute" type="button" class="btn btn-outline-secondary" style="width: 80px;height: 40px;color: black;"><b>计算</b></button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					<button type="button" onclick="resets()" class="btn btn-outline-secondary" style="width: 80px;height: 40px;color: black;"><b>重置</b></button>
+				</div>
+				
+				<div style="width: 800px;height: 30px;background-color: papayawhip;">&nbsp;&nbsp;<b>计算结果</b></div>
+				<table id="tbs" border="1" style="width: 800px;height: 100px;border:1px solid;border-color: Silver;">
+					
+				</table>
+				<br />
+				<br />
+			</div>
+		</div>
+	</body>
+	<script>
+		$("#cksyl").validatebox({
+			required: true,
+			missingMessage:'利率不能为空',
+			invalidMessage:'还款预期利率只能为数字，且小数点后最多两位',
+			validType:'(^[1-9](\d+)?(\.\d{1,2})?$)|(^\d\.\d{1,2}$)',
+		});
+		
+		$("#dkbj").validatebox({
+			required: true,
+			missingMessage:'贷款金额不能为空',
+			invalidMessage:'贷款金额只能为正整数',
+			validType:'^[1-9]\d*$',
+		});
+		
+		$("#dkqs").validatebox({
+			required: true,
+			missingMessage:'利率不能为空',
+			invalidMessage:'还款预期利率只能为数字，且小数点后最多两位',
+			validType:'(^[1-9](\d+)?(\.\d{1,2})?$)|(^\d\.\d{1,2}$)',
+		});
+		
+		function ss(){
+			document.getElementById("compute").onclick=function(){
+				counters();
+			};
+			var ths = "<tr style='text-align: center;background-color: papayawhip;'>"
+					+"<th>期次</th>"
+					+"<th>还款日</th>"
+					+"<th>应收本息(元)</th>"
+					+"<th>应收本金(元)</th>"
+					+"<th>应收利息(元)</th>"
+					+"<th>剩余本金(元)</th>"
+				+"</tr>";
+			document.getElementById("tbs").innerHTML=ths;
+			
+			var ss="<tr id='trs' style='text-align: center;'>"
+				   +"<td class='text-danger' colspan='2'>合计</td>"
+				   +"<td></td>"
+				   +"<td></td>"
+				   +"<td></td>"
+				   +"<td></td>"
+				+"</tr>";
+			$("#tbs").append(ss);
+		}
+		
+		function aa(){
+			var ths = "<tr style='text-align: center;background-color: papayawhip;'>"
+					+"<th>期次</th>"
+					+"<th>还款日</th>"
+					+"<th>应收本息(元)</th>"
+					+"<th>应收本金(元)</th>"
+					+"<th>应收利息(元)</th>"
+					+"<th>剩余本金(元)</th>"
+				+"</tr>";
+			document.getElementById("tbs").innerHTML=ths;
+			var ss="<tr id='trs' style='text-align: center;'>"
+				   +"<td class='text-danger' colspan='2'>合计</td>"
+				   +"<td></td>"
+				   +"<td></td>"
+				   +"<td></td>"
+				   +"<td></td>"
+				+"</tr>";
+			$("#tbs").append(ss);
+		}
+		
+		//等额本金
+		function averageCapital(){
+			//期限日
+			var qxr=$('#qxr').datetimebox('getText');
+			if(!$('#cksyl').validatebox('isValid')){
+				alert("还款预期利率只能为数字，且小数点后最多两位");
+				//$('#cksyl').focus();
+			}else if(!$('#dkbj').validatebox('isValid')){
+				alert("贷款金额只能为正整数");
+			}else if(!$('#dkbj').validatebox('isValid')){
+				
+			}else if(1==1){
+				
+			}else{
+				
+			}
+			//贷款期数
+			var dkqs=$("#dkqs").val();
+			//贷款本金
+			var dkbj=parseInt($("#dkbj").val());
+			//历史参考收益率
+			var cksyl=$("#cksyl").val();
+			var nian = qxr.substring(0,5);
+			var yue  = parseInt(qxr.substring(5,8));
+			var ri  = parseInt(qxr.substring(7,11));
+			//if(/(^[1-9](\d+)?(\.\d{1,2})?$)|(^\d\.\d{1,2}$)/.test(cksyl) && /^[+-]?(\d){1,}0$/.test(dkbj) ){
+				$("#tbs").html("");
+				aa();
+				//每月应收本金
+				var ysbj = dkbj/dkqs;
+				//应收本息
+				var ysbx;		
+				//var curDate = new Date();
+				//剩余本金
+				var ResidualPrincipal = dkbj;
+				var zonglixi=Number(0)+Number(0);
+				var zongysbx=Number(0)+Number(0);
+				for(var i=1;i<=dkqs;i++){
+					yue++;
+					if(yue>12) {
+						yue=01;
+				 		nian = parseInt(nian)+1+"-";
+					}
+					//var month=yue;
+				    //curDate.setMonth(month);
+				    //curDate.setDate(0);
+					//var dates = curDate.getDate();
+					var lixi = ResidualPrincipal*(cksyl/100)/12;
+					ysbx = ysbj + ResidualPrincipal*cksyl/100/12;
+					ResidualPrincipal = ResidualPrincipal-ysbj;
+					if(i==dkqs){
+						ResidualPrincipal = 0.00;
+					}
+					var tr="<tr id='qs' style='text-align: center;'><td>"+i+"</td>"
+					+"<td>"+nian+yue+ri+"</td>"
+					+"<td>"+ysbx.toFixed(2)+"</td>"
+					+"<td>"+ysbj.toFixed(2)+"</td>"
+					+"<td>"+lixi.toFixed(2)+"</td>"
+					+"<td>"+ResidualPrincipal.toFixed(2)+"</td>"
+					+"</tr>";
+					$("#tbs").append(tr);
+					zonglixi += Number(lixi.toFixed(2));
+					zongysbx += Number(ysbx.toFixed(2));
+				}
+				$("#trs").remove();
+				var ss="<tr id='trs' style='text-align: center;'>"
+						+"<td class='text-danger' colspan='2'>合计</td>"
+						+"<td>"+zongysbx.toFixed(2)+"</td>"
+						+"<td>"+dkbj+"</td>"
+						+"<td>"+zonglixi.toFixed(2)+"</td>"
+						+"<td></td>"
+					+"</tr>";
+				$("#tbs").append(ss);
+			//}else{
+				//alert("还款预期利率只能为数字，且小数点后最多两位");
+			//}
+		}
+		
+		//先息后本
+		function FirstOfAll(){
+			$("#tbs").html("");
+			aa();
+			var qxr=$('#qxr').datetimebox('getText');
+			var dkqs=$("#dkqs").val();
+			var dkbj=parseInt($("#dkbj").val());
+			var cksyl=$("#cksyl").val();
+				
+			var nian = qxr.substring(0,5);
+			var yue  = parseInt(qxr.substring(5,8));
+			var ri  = parseInt(qxr.substring(7,11));	
+					 
+			//每月应收利息
+			var yslx = dkbj*(cksyl/100/12);
+			var ysbx=yslx;
+			var ysbj=0;
+			var lixi=yslx;
+			var sybj=dkbj;
+			//剩余本金
+			var ResidualPrincipal = dkbj;
+			for(var i=1;i<=dkqs;i++){
+				yue++;
+				if(yue>12) {
+					yue=01;
+			 		nian = parseInt(nian)+1+"-";
+				}
+				if(i==dkqs){
+					ysbx = dkbj + yslx;
+					ysbj = dkbj;
+					sybj = 0.00;
+				}
+				var tr="<tr id='qs' style='text-align: center;'><td>"+i+"</td>"
+				+"<td>"+nian+yue+ri+"</td>"
+				+"<td>"+ysbx.toFixed(2)+"</td>"
+				+"<td>"+ysbj.toFixed(2)+"</td>"
+				+"<td>"+lixi.toFixed(2)+"</td>"
+				+"<td>"+sybj.toFixed(2)+"</td>"
+				+"</tr>";
+				$("#tbs").append(tr);
+			}
+			$("#trs").remove();
+			var ss="<tr id='trs' style='text-align: center;'>"
+					+"<td class='text-danger' colspan='2'>合计</td>"
+					+"<td>"+(dkbj+dkbj*(cksyl/100/12*dkqs)).toFixed(2)+"</td>"
+					+"<td>"+dkbj+"</td>"
+					+"<td>"+(dkbj*(cksyl/100/12*dkqs)).toFixed(2)+"</td>"
+					+"<td></td>"
+				+"</tr>";
+			$("#tbs").append(ss);
+		}
+		
+		
+		//等额本息
+		function counters(){
+			$("#tbs").html("");
+			aa();
+			var qxr=$('#qxr').datetimebox('getText');
+			var dkqs=$("#dkqs").val();
+			var dkbj=parseInt($("#dkbj").val());
+			var cksyl=$("#cksyl").val();
+			var nian = qxr.substring(0,5);
+			var yue  = parseInt(qxr.substring(5,8));
+			var ri  = parseInt(qxr.substring(7,11));	
+			//年收益率/百分比/总年数=月收益
+			var qs = ((cksyl/100)/12)+1; //月利率+1
+			var  bj = Math.pow(qs,dkqs);//（1+月利率）
+			var bj2 = bj*((cksyl/100)/12);
+			//应收本息
+			var ysbx = (dkbj*bj2)/(Math.pow(qs,dkqs)-1);		
+			//var curDate = new Date();
+			var ResidualPrincipal = dkbj;
+			for(var i=1;i<=dkqs;i++){
+				yue++;
+			
+				if(yue>12) {
+					yue=01;
+		 			nian = parseInt(nian)+1+"-";
+				}
+				//var month=yue;
+		        //curDate.setMonth(month);
+		        //curDate.setDate(0);
+				//var dates = curDate.getDate();
+				var lixi = ResidualPrincipal*(cksyl/100)/12;
+				ResidualPrincipal = ResidualPrincipal-ysbx+lixi;
+				if(i==dkqs){
+					ResidualPrincipal = 0.00;
+				}
+				var tr="<tr id='qs' style='text-align: center;'><td>"+i+"</td>"
+				+"<td>"+nian+yue+ri+"</td>"
+				+"<td>"+ysbx.toFixed(2)+"</td>"
+				+"<td>"+(ysbx-lixi).toFixed(2)+"</td>"
+				+"<td>"+lixi.toFixed(2)+"</td>"
+				+"<td>"+ResidualPrincipal.toFixed(2)+"</td>"
+				+"</tr>";
+				$("#tbs").append(tr);
+			}
+			$("#trs").remove();
+			var ss="<tr id='trs' style='text-align: center;'>"
+				   +"<td class='text-danger' colspan='2'>合计</td>"
+				   +"<td>"+(ysbx*dkqs).toFixed(2)+"</td>"
+				   +"<td>"+dkbj+"</td>"
+				   +"<td>"+((ysbx*dkqs)-dkbj).toFixed(2)+"</td>"
+				   +"<td></td>"
+				+"</tr>";
+			$("#tbs").append(ss);
+		}
+		
+		function resets(){
+			$("#qs").remove();
+			$("#trs").remove();
+			ss();
+			$('#qxr').datetimebox('clear');
+			$("#dkqs").val("");
+			$("#dkbj").val("");
+			$("#cksyl").val("");
+			
+		}
+		
+		function bian(){
+			$("#tbs").html("");
+			aa();
+			var id = $('#single option:selected').val();
+			var curObj = document.getElementById("compute");
+			if(id==1){
+				curObj.onclick=counters;
+			}else if(id==2){
+				curObj.onclick=averageCapital;
+			}else if(id==3){
+				curObj.onclick=FirstOfAll;
+			}
+		}
+	</script>
+</html>
